@@ -1,0 +1,6 @@
+framework module LUIToolSwift {
+  umbrella header "LUIToolSwift-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,777 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1F716B507DBE51ADC2749CA436F39B53 /* Pods-LUIToolSwift_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328F059DD8B571BEC3A604A1248F5B7 /* Pods-LUIToolSwift_Tests-dummy.m */; };
+		2F26923936102C02059518624239565A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		30EC6104B49385805FA20C694CBD726F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		3BA420FDFEC7C5EB4F9FB46AEBC4AE64 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		44947C47C087D560DBFF5F9DA83469A9 /* Pods-LUIToolSwift_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B1A90A461F2D196D5EFB964E74CF3FFC /* Pods-LUIToolSwift_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7006F223D951B8A6CE176F468E5939FC /* LUIToolSwift-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1177B27ABA6F90CAC47238800EF991 /* LUIToolSwift-dummy.m */; };
+		7E53340E52AADDBD96CFA2C07738E336 /* LUIToolSwift-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6DE414A4D197D988D91E67712DCD00F2 /* LUIToolSwift-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8A21842628BC6AA6ED174770530C750D /* Pods-LUIToolSwift_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 179BD883232851FFC5A28930BAF0288E /* Pods-LUIToolSwift_Example-dummy.m */; };
+		91558BCD75878053593D6D22B793877A /* Pods-LUIToolSwift_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8184CC285747602B50FFC54035ADAB15 /* Pods-LUIToolSwift_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E49BA1142D3C2ED331E579EC45A150AD /* ReplaceMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AA564C091C47B8F8CB39B13D7477F9 /* ReplaceMe.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9C19504C0C79D83FAFE6BCAD704CE587 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FF5BB4426BE26192F335EC13332ACE10;
+			remoteInfo = LUIToolSwift;
+		};
+		D889FE1125E19DED8B4B3DDA17D7F336 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C704B2D9EAFB7A7275BA14034694CF09;
+			remoteInfo = "Pods-LUIToolSwift_Example";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		036A049389555CB4295CFCCEB7CA5F46 /* Pods-LUIToolSwift_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-LUIToolSwift_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		12D14BBCE6B634D9D2BCCF300D49491B /* Pods-LUIToolSwift_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-LUIToolSwift_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
+		142776E956BE1263F9AB484E45FE2E6C /* LUIToolSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = LUIToolSwift.release.xcconfig; sourceTree = "<group>"; };
+		179BD883232851FFC5A28930BAF0288E /* Pods-LUIToolSwift_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-LUIToolSwift_Example-dummy.m"; sourceTree = "<group>"; };
+		194437EE67FCB9B1836B33271C084D6D /* LUIToolSwift.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = LUIToolSwift.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		1A6F02EC51FC36261D14038EF9F52D4A /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		1ECF57F7E65C9B8FF06C46D20386A1DC /* Pods-LUIToolSwift_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-LUIToolSwift_Tests.modulemap"; sourceTree = "<group>"; };
+		20D4B7FC20828B1E84A3AAC46217DA4B /* LUIToolSwift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = LUIToolSwift.modulemap; sourceTree = "<group>"; };
+		2763022547E3C3DF5B0762954E00462A /* LUIToolSwift */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = LUIToolSwift; path = LUIToolSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2CE9181A20D6CF41BE6DFA484E5FB440 /* Pods-LUIToolSwift_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LUIToolSwift_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		31DBA9D10AE63B7FDD86C71C37EE6431 /* LUIToolSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = LUIToolSwift.debug.xcconfig; sourceTree = "<group>"; };
+		5116C4E72FB5705DA227A834EC7B3A64 /* Pods-LUIToolSwift_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-LUIToolSwift_Example-Info.plist"; sourceTree = "<group>"; };
+		55EEE374C01EEF33BD9540447E7E6BC3 /* Pods-LUIToolSwift_Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-LUIToolSwift_Tests-Info.plist"; sourceTree = "<group>"; };
+		6CFD73F64E2C73E1A2A50817912C4E9A /* Pods-LUIToolSwift_Example */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-LUIToolSwift_Example"; path = Pods_LUIToolSwift_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6DE414A4D197D988D91E67712DCD00F2 /* LUIToolSwift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LUIToolSwift-umbrella.h"; sourceTree = "<group>"; };
+		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		7B0DA74B69EBFCAF6A1396EB8749CFB5 /* Pods-LUIToolSwift_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-LUIToolSwift_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
+		8184CC285747602B50FFC54035ADAB15 /* Pods-LUIToolSwift_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-LUIToolSwift_Tests-umbrella.h"; sourceTree = "<group>"; };
+		8328F059DD8B571BEC3A604A1248F5B7 /* Pods-LUIToolSwift_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-LUIToolSwift_Tests-dummy.m"; sourceTree = "<group>"; };
+		840393144684256C2B0AFC631F8C79B6 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		8FBEC00D1C87EEAB47D94ED0E308617B /* Pods-LUIToolSwift_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-LUIToolSwift_Example-frameworks.sh"; sourceTree = "<group>"; };
+		905AC7311CCDF26C88420492D06A2162 /* LUIToolSwift-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "LUIToolSwift-Info.plist"; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		B161A345F65C4FF2489BDCBDD575CB44 /* Pods-LUIToolSwift_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-LUIToolSwift_Example.modulemap"; sourceTree = "<group>"; };
+		B1A90A461F2D196D5EFB964E74CF3FFC /* Pods-LUIToolSwift_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-LUIToolSwift_Example-umbrella.h"; sourceTree = "<group>"; };
+		B27FAC594201D52C6D5F16647DA6608B /* Pods-LUIToolSwift_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LUIToolSwift_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		D8AA564C091C47B8F8CB39B13D7477F9 /* ReplaceMe.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ReplaceMe.swift; path = LUIToolSwift/Classes/ReplaceMe.swift; sourceTree = "<group>"; };
+		DD1177B27ABA6F90CAC47238800EF991 /* LUIToolSwift-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "LUIToolSwift-dummy.m"; sourceTree = "<group>"; };
+		E34447DDCC6A2297DF6012EF7F9A8A65 /* Pods-LUIToolSwift_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LUIToolSwift_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		E5F476BEE6E0A382FC466765029CBD9B /* Pods-LUIToolSwift_Tests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-LUIToolSwift_Tests"; path = Pods_LUIToolSwift_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F1DC4341DB3C335FC3EA043EFB6136A8 /* LUIToolSwift-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LUIToolSwift-prefix.pch"; sourceTree = "<group>"; };
+		F1E86CE09F8C206EE2A139CBAE283956 /* Pods-LUIToolSwift_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-LUIToolSwift_Example-acknowledgements.plist"; sourceTree = "<group>"; };
+		F54DE79CD960343689F0329C166585A4 /* Pods-LUIToolSwift_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LUIToolSwift_Example.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		94268161D81194E6D3E5D8AC7A283F0E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3BA420FDFEC7C5EB4F9FB46AEBC4AE64 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A27C51843B76AFCE8AD98F17116E9F0E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2F26923936102C02059518624239565A /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FD26908AD9EACB95030DF35F1A9A45B0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30EC6104B49385805FA20C694CBD726F /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		07A9F497C237DC1307DD245D40C3F2FD /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				20D4B7FC20828B1E84A3AAC46217DA4B /* LUIToolSwift.modulemap */,
+				DD1177B27ABA6F90CAC47238800EF991 /* LUIToolSwift-dummy.m */,
+				905AC7311CCDF26C88420492D06A2162 /* LUIToolSwift-Info.plist */,
+				F1DC4341DB3C335FC3EA043EFB6136A8 /* LUIToolSwift-prefix.pch */,
+				6DE414A4D197D988D91E67712DCD00F2 /* LUIToolSwift-umbrella.h */,
+				31DBA9D10AE63B7FDD86C71C37EE6431 /* LUIToolSwift.debug.xcconfig */,
+				142776E956BE1263F9AB484E45FE2E6C /* LUIToolSwift.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/LUIToolSwift";
+			sourceTree = "<group>";
+		};
+		0B7E897F49A69CED8169FF49CC9350CC /* Pods-LUIToolSwift_Tests */ = {
+			isa = PBXGroup;
+			children = (
+				1ECF57F7E65C9B8FF06C46D20386A1DC /* Pods-LUIToolSwift_Tests.modulemap */,
+				036A049389555CB4295CFCCEB7CA5F46 /* Pods-LUIToolSwift_Tests-acknowledgements.markdown */,
+				7B0DA74B69EBFCAF6A1396EB8749CFB5 /* Pods-LUIToolSwift_Tests-acknowledgements.plist */,
+				8328F059DD8B571BEC3A604A1248F5B7 /* Pods-LUIToolSwift_Tests-dummy.m */,
+				55EEE374C01EEF33BD9540447E7E6BC3 /* Pods-LUIToolSwift_Tests-Info.plist */,
+				8184CC285747602B50FFC54035ADAB15 /* Pods-LUIToolSwift_Tests-umbrella.h */,
+				B27FAC594201D52C6D5F16647DA6608B /* Pods-LUIToolSwift_Tests.debug.xcconfig */,
+				E34447DDCC6A2297DF6012EF7F9A8A65 /* Pods-LUIToolSwift_Tests.release.xcconfig */,
+			);
+			name = "Pods-LUIToolSwift_Tests";
+			path = "Target Support Files/Pods-LUIToolSwift_Tests";
+			sourceTree = "<group>";
+		};
+		18E381276A990770308D5B92F6FE6A43 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				C9C72F75D3BEB30FEA0A3AE94E57BAF1 /* Pods-LUIToolSwift_Example */,
+				0B7E897F49A69CED8169FF49CC9350CC /* Pods-LUIToolSwift_Tests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		279EC05285EF724CDF644FC0F17B4CB0 /* LUIToolSwift */ = {
+			isa = PBXGroup;
+			children = (
+				D8AA564C091C47B8F8CB39B13D7477F9 /* ReplaceMe.swift */,
+				29E36D4E58D5152D24ED17E12C9C512A /* Pod */,
+				07A9F497C237DC1307DD245D40C3F2FD /* Support Files */,
+			);
+			name = LUIToolSwift;
+			path = ../..;
+			sourceTree = "<group>";
+		};
+		29E36D4E58D5152D24ED17E12C9C512A /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				1A6F02EC51FC36261D14038EF9F52D4A /* LICENSE */,
+				194437EE67FCB9B1836B33271C084D6D /* LUIToolSwift.podspec */,
+				840393144684256C2B0AFC631F8C79B6 /* README.md */,
+			);
+			name = Pod;
+			sourceTree = "<group>";
+		};
+		4D6DE48ADDC9BE14CDF696B081BE907A /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				279EC05285EF724CDF644FC0F17B4CB0 /* LUIToolSwift */,
+			);
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		578452D2E740E91742655AC8F1636D1F /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		C519C48F4C64197962A72F77A2E276A5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2763022547E3C3DF5B0762954E00462A /* LUIToolSwift */,
+				6CFD73F64E2C73E1A2A50817912C4E9A /* Pods-LUIToolSwift_Example */,
+				E5F476BEE6E0A382FC466765029CBD9B /* Pods-LUIToolSwift_Tests */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C9C72F75D3BEB30FEA0A3AE94E57BAF1 /* Pods-LUIToolSwift_Example */ = {
+			isa = PBXGroup;
+			children = (
+				B161A345F65C4FF2489BDCBDD575CB44 /* Pods-LUIToolSwift_Example.modulemap */,
+				12D14BBCE6B634D9D2BCCF300D49491B /* Pods-LUIToolSwift_Example-acknowledgements.markdown */,
+				F1E86CE09F8C206EE2A139CBAE283956 /* Pods-LUIToolSwift_Example-acknowledgements.plist */,
+				179BD883232851FFC5A28930BAF0288E /* Pods-LUIToolSwift_Example-dummy.m */,
+				8FBEC00D1C87EEAB47D94ED0E308617B /* Pods-LUIToolSwift_Example-frameworks.sh */,
+				5116C4E72FB5705DA227A834EC7B3A64 /* Pods-LUIToolSwift_Example-Info.plist */,
+				B1A90A461F2D196D5EFB964E74CF3FFC /* Pods-LUIToolSwift_Example-umbrella.h */,
+				2CE9181A20D6CF41BE6DFA484E5FB440 /* Pods-LUIToolSwift_Example.debug.xcconfig */,
+				F54DE79CD960343689F0329C166585A4 /* Pods-LUIToolSwift_Example.release.xcconfig */,
+			);
+			name = "Pods-LUIToolSwift_Example";
+			path = "Target Support Files/Pods-LUIToolSwift_Example";
+			sourceTree = "<group>";
+		};
+		CF1408CF629C7361332E53B88F7BD30C = {
+			isa = PBXGroup;
+			children = (
+				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
+				4D6DE48ADDC9BE14CDF696B081BE907A /* Development Pods */,
+				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
+				C519C48F4C64197962A72F77A2E276A5 /* Products */,
+				18E381276A990770308D5B92F6FE6A43 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				578452D2E740E91742655AC8F1636D1F /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		1DDDC63D63C9B7B062DA4F55E0957449 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				44947C47C087D560DBFF5F9DA83469A9 /* Pods-LUIToolSwift_Example-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		58AD1DDFD31049862D48B08BE190258C /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E53340E52AADDBD96CFA2C07738E336 /* LUIToolSwift-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FD7E7B02413B763488CE1FB5A4E9F030 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				91558BCD75878053593D6D22B793877A /* Pods-LUIToolSwift_Tests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		AA44ED913A4D0E2F1399A5EC63D47487 /* Pods-LUIToolSwift_Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D39628A1DE40E7242945F5967F6EA651 /* Build configuration list for PBXNativeTarget "Pods-LUIToolSwift_Tests" */;
+			buildPhases = (
+				FD7E7B02413B763488CE1FB5A4E9F030 /* Headers */,
+				9610AAB9FBAA43FBFBBED00E4126AA86 /* Sources */,
+				94268161D81194E6D3E5D8AC7A283F0E /* Frameworks */,
+				534BC7A9085E0070A951139481779DCF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C92004F9562BDD0FE5CB64C558527884 /* PBXTargetDependency */,
+			);
+			name = "Pods-LUIToolSwift_Tests";
+			productName = Pods_LUIToolSwift_Tests;
+			productReference = E5F476BEE6E0A382FC466765029CBD9B /* Pods-LUIToolSwift_Tests */;
+			productType = "com.apple.product-type.framework";
+		};
+		C704B2D9EAFB7A7275BA14034694CF09 /* Pods-LUIToolSwift_Example */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C29F37D21A7DD88F5999CE68EDE69ECF /* Build configuration list for PBXNativeTarget "Pods-LUIToolSwift_Example" */;
+			buildPhases = (
+				1DDDC63D63C9B7B062DA4F55E0957449 /* Headers */,
+				9A19A2F9C844CF5362626D3F355090C6 /* Sources */,
+				A27C51843B76AFCE8AD98F17116E9F0E /* Frameworks */,
+				DB177D48B7CCE6EEC6CA28EAE90D1C67 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				12F3FACE2DE064B7126AFD1ED5C3C17D /* PBXTargetDependency */,
+			);
+			name = "Pods-LUIToolSwift_Example";
+			productName = Pods_LUIToolSwift_Example;
+			productReference = 6CFD73F64E2C73E1A2A50817912C4E9A /* Pods-LUIToolSwift_Example */;
+			productType = "com.apple.product-type.framework";
+		};
+		FF5BB4426BE26192F335EC13332ACE10 /* LUIToolSwift */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 295413E2C2B26DBEE968918795CD847D /* Build configuration list for PBXNativeTarget "LUIToolSwift" */;
+			buildPhases = (
+				58AD1DDFD31049862D48B08BE190258C /* Headers */,
+				432A53538D3156F69EA207459FA0B3BC /* Sources */,
+				FD26908AD9EACB95030DF35F1A9A45B0 /* Frameworks */,
+				6078D311B8350B033082092C2E491B75 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LUIToolSwift;
+			productName = LUIToolSwift;
+			productReference = 2763022547E3C3DF5B0762954E00462A /* LUIToolSwift */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+			};
+			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
+			minimizedProjectReferenceProxies = 0;
+			productRefGroup = C519C48F4C64197962A72F77A2E276A5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FF5BB4426BE26192F335EC13332ACE10 /* LUIToolSwift */,
+				C704B2D9EAFB7A7275BA14034694CF09 /* Pods-LUIToolSwift_Example */,
+				AA44ED913A4D0E2F1399A5EC63D47487 /* Pods-LUIToolSwift_Tests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		534BC7A9085E0070A951139481779DCF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6078D311B8350B033082092C2E491B75 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB177D48B7CCE6EEC6CA28EAE90D1C67 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		432A53538D3156F69EA207459FA0B3BC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7006F223D951B8A6CE176F468E5939FC /* LUIToolSwift-dummy.m in Sources */,
+				E49BA1142D3C2ED331E579EC45A150AD /* ReplaceMe.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9610AAB9FBAA43FBFBBED00E4126AA86 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1F716B507DBE51ADC2749CA436F39B53 /* Pods-LUIToolSwift_Tests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9A19A2F9C844CF5362626D3F355090C6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8A21842628BC6AA6ED174770530C750D /* Pods-LUIToolSwift_Example-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		12F3FACE2DE064B7126AFD1ED5C3C17D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = LUIToolSwift;
+			target = FF5BB4426BE26192F335EC13332ACE10 /* LUIToolSwift */;
+			targetProxy = 9C19504C0C79D83FAFE6BCAD704CE587 /* PBXContainerItemProxy */;
+		};
+		C92004F9562BDD0FE5CB64C558527884 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-LUIToolSwift_Example";
+			target = C704B2D9EAFB7A7275BA14034694CF09 /* Pods-LUIToolSwift_Example */;
+			targetProxy = D889FE1125E19DED8B4B3DDA17D7F336 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		029DF0275E015479F953FD59BB581FA0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 31DBA9D10AE63B7FDD86C71C37EE6431 /* LUIToolSwift.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/LUIToolSwift/LUIToolSwift-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/LUIToolSwift/LUIToolSwift-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/LUIToolSwift/LUIToolSwift.modulemap";
+				PRODUCT_MODULE_NAME = LUIToolSwift;
+				PRODUCT_NAME = LUIToolSwift;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		4AEAEE465278C7452F8F312AF6376B27 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B27FAC594201D52C6D5F16647DA6608B /* Pods-LUIToolSwift_Tests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-LUIToolSwift_Tests/Pods-LUIToolSwift_Tests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-LUIToolSwift_Tests/Pods-LUIToolSwift_Tests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		65C82520CE64EBEB4521852CFF2007FC /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 142776E956BE1263F9AB484E45FE2E6C /* LUIToolSwift.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/LUIToolSwift/LUIToolSwift-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/LUIToolSwift/LUIToolSwift-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/LUIToolSwift/LUIToolSwift.modulemap";
+				PRODUCT_MODULE_NAME = LUIToolSwift;
+				PRODUCT_NAME = LUIToolSwift;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		685E0D43B81C740DDED39042DD1AF3A4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E34447DDCC6A2297DF6012EF7F9A8A65 /* Pods-LUIToolSwift_Tests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-LUIToolSwift_Tests/Pods-LUIToolSwift_Tests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-LUIToolSwift_Tests/Pods-LUIToolSwift_Tests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		791CBBDB28CC7CDDEB934EA1D1EDC9BE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2CE9181A20D6CF41BE6DFA484E5FB440 /* Pods-LUIToolSwift_Example.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-LUIToolSwift_Example/Pods-LUIToolSwift_Example-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-LUIToolSwift_Example/Pods-LUIToolSwift_Example.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		7EE7A78859F657F6BEFC651185B43192 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		AA66423FFD14EB19E97D18113437EDA2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F54DE79CD960343689F0329C166585A4 /* Pods-LUIToolSwift_Example.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-LUIToolSwift_Example/Pods-LUIToolSwift_Example-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-LUIToolSwift_Example/Pods-LUIToolSwift_Example.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		D299434AB35E7FD6F7921C8EF24742FF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		295413E2C2B26DBEE968918795CD847D /* Build configuration list for PBXNativeTarget "LUIToolSwift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				029DF0275E015479F953FD59BB581FA0 /* Debug */,
+				65C82520CE64EBEB4521852CFF2007FC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D299434AB35E7FD6F7921C8EF24742FF /* Debug */,
+				7EE7A78859F657F6BEFC651185B43192 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C29F37D21A7DD88F5999CE68EDE69ECF /* Build configuration list for PBXNativeTarget "Pods-LUIToolSwift_Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				791CBBDB28CC7CDDEB934EA1D1EDC9BE /* Debug */,
+				AA66423FFD14EB19E97D18113437EDA2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D39628A1DE40E7242945F5967F6EA651 /* Build configuration list for PBXNativeTarget "Pods-LUIToolSwift_Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4AEAEE465278C7452F8F312AF6376B27 /* Debug */,
+				685E0D43B81C740DDED39042DD1AF3A4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+}
