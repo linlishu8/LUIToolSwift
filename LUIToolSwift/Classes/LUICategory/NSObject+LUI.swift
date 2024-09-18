@@ -8,7 +8,7 @@
 import Foundation
 
 extension NSObject {
-
+    
     func l_valueForKeyPath(_ path: String, otherwise other: Any?) -> Any? {
         let obj = self.value(forKeyPath: path);
         return obj ?? other
@@ -149,8 +149,81 @@ extension NSObject {
         }
         return other
     }
-    func l_dateSinceReferenceDateForKeyPath(_ path: String, dateFormatter formatter: DateFormatter) -> Date? {
-        return self.l_dateSinceReferenceDateForKeyPath(path, dateFormatter: formatter, otherwise: nil)
+    func l_dateSinceReferenceDateForKeyPath(_ path: String, dateMatterString matterString: String, otherwise other: Date?) -> Date? {
+        let dateValue = DateFormatter()
+        dateValue.dateFormat = matterString
+        return self.l_dateSinceReferenceDateForKeyPath(path, dateFormatter: dateValue, otherwise: other)
+    }
+    func l_dateSinceReferenceDateForKeyPath(_ path: String, dateMatterString matterString: String) -> Date? {
+        return self.l_dateSinceReferenceDateForKeyPath(path, dateMatterString: matterString, otherwise: nil)
+    }
+    
+    func l_dateSince1970ForKeyPath(_ path: String, dateFormatter formatter: DateFormatter, otherwise other: Date?) -> Date? {
+        let obj = self.l_valueForKeyPath(path, otherwise: other)
+        if let dateValue = obj as? Date {
+            return dateValue
+        } else if let stringValue = obj as? String {
+            guard let numberValue = stringValue.l_numberValue() else { return formatter.date(from: stringValue) }
+            return Date(timeIntervalSince1970: numberValue.doubleValue)
+        } else if let numberValue = obj as? NSNumber {
+            return Date(timeIntervalSince1970: numberValue.doubleValue)
+        }
+        return other
+    }
+    func l_dateSince1970ForKeyPath(_ path: String, dateMatterString matterString: String, otherwise other: Date?) -> Date? {
+        let dateValue = DateFormatter()
+        dateValue.dateFormat = matterString
+        return self.l_dateSince1970ForKeyPath(path, dateFormatter: dateValue, otherwise: other)
+    }
+    func l_dateSince1970ForKeyPath(_ path: String, dateMatterString matterString: String) -> Date? {
+        return self.l_dateSince1970ForKeyPath(path, dateMatterString: matterString, otherwise: nil)
+    }
+    
+    func l_dateSince1970MillisecondForKeyPath(_ path: String, dateFormatter formatter: DateFormatter, otherwise other: Date?) -> Date? {
+        let obj = self.l_valueForKeyPath(path, otherwise: other)
+        if let dateValue = obj as? Date {
+            return dateValue
+        } else if let stringValue = obj as? String {
+            guard let numberValue = stringValue.l_numberValue() else { return formatter.date(from: stringValue) }
+            return Date(timeIntervalSince1970: numberValue.doubleValue/1000.0)
+        } else if let numberValue = obj as? NSNumber {
+            return Date(timeIntervalSince1970: numberValue.doubleValue/1000.0)
+        }
+        return other
+    }
+    func l_dateSince1970MillisecondForKeyPath(_ path: String, dateMatterString matterString: String, otherwise other: Date?) -> Date? {
+        let dateValue = DateFormatter()
+        dateValue.dateFormat = matterString
+        return self.l_dateSince1970MillisecondForKeyPath(path, dateFormatter: dateValue, otherwise: other)
+    }
+    func l_dateSince1970MillisecondForKeyPath(_ path: String, dateMatterString matterString: String) -> Date? {
+        return self.l_dateSince1970MillisecondForKeyPath(path, dateMatterString: matterString, otherwise: nil)
+    }
+    
+    func l_objectAddress() -> String {
+        return "\(type(of: self)):\(Unmanaged.passUnretained(self).toOpaque())"
     }
 }
 
+extension Dictionary where Key == String {
+    
+    func l_valueForKeyPath(_ path: String, otherwise other: Any?) -> Any? {
+        let keys = path.split(separator: ".").map(String.init)
+        var currentDict: Any? = self
+        for key in keys {
+            if let dict = currentDict as? [String: Any], let nextValue = dict[key] {
+                currentDict = nextValue
+            } else {
+                currentDict = nil
+                break
+            }
+        }
+        if currentDict == nil {
+            return other
+        }
+        return currentDict
+    }
+    func l_valueForKeyPath(_ path: String) -> Any? {
+        return self.l_valueForKeyPath(path, otherwise: nil)
+    }
+}
