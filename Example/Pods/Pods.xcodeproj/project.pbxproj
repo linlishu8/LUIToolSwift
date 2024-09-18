@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F1B016D2C9AA7E900C11B9D /* String+LUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1B016C2C9AA7E700C11B9D /* String+LUI.swift */; };
+		1F62EFDA2C9A5E670052F523 /* NSObject+LUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F62EFD92C9A5E670052F523 /* NSObject+LUI.swift */; };
 		1F716B507DBE51ADC2749CA436F39B53 /* Pods-LUIToolSwift_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328F059DD8B571BEC3A604A1248F5B7 /* Pods-LUIToolSwift_Tests-dummy.m */; };
 		2F26923936102C02059518624239565A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		30EC6104B49385805FA20C694CBD726F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
@@ -16,7 +18,6 @@
 		7E53340E52AADDBD96CFA2C07738E336 /* LUIToolSwift-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6DE414A4D197D988D91E67712DCD00F2 /* LUIToolSwift-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8A21842628BC6AA6ED174770530C750D /* Pods-LUIToolSwift_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 179BD883232851FFC5A28930BAF0288E /* Pods-LUIToolSwift_Example-dummy.m */; };
 		91558BCD75878053593D6D22B793877A /* Pods-LUIToolSwift_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8184CC285747602B50FFC54035ADAB15 /* Pods-LUIToolSwift_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E49BA1142D3C2ED331E579EC45A150AD /* ReplaceMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AA564C091C47B8F8CB39B13D7477F9 /* ReplaceMe.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,32 +42,33 @@
 		12D14BBCE6B634D9D2BCCF300D49491B /* Pods-LUIToolSwift_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-LUIToolSwift_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		142776E956BE1263F9AB484E45FE2E6C /* LUIToolSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = LUIToolSwift.release.xcconfig; sourceTree = "<group>"; };
 		179BD883232851FFC5A28930BAF0288E /* Pods-LUIToolSwift_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-LUIToolSwift_Example-dummy.m"; sourceTree = "<group>"; };
-		194437EE67FCB9B1836B33271C084D6D /* LUIToolSwift.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = LUIToolSwift.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		1A6F02EC51FC36261D14038EF9F52D4A /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		194437EE67FCB9B1836B33271C084D6D /* LUIToolSwift.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = LUIToolSwift.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		1A6F02EC51FC36261D14038EF9F52D4A /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		1ECF57F7E65C9B8FF06C46D20386A1DC /* Pods-LUIToolSwift_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-LUIToolSwift_Tests.modulemap"; sourceTree = "<group>"; };
+		1F1B016C2C9AA7E700C11B9D /* String+LUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+LUI.swift"; sourceTree = "<group>"; };
+		1F62EFD92C9A5E670052F523 /* NSObject+LUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+LUI.swift"; sourceTree = "<group>"; };
 		20D4B7FC20828B1E84A3AAC46217DA4B /* LUIToolSwift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = LUIToolSwift.modulemap; sourceTree = "<group>"; };
-		2763022547E3C3DF5B0762954E00462A /* LUIToolSwift */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = LUIToolSwift; path = LUIToolSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2763022547E3C3DF5B0762954E00462A /* LUIToolSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LUIToolSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CE9181A20D6CF41BE6DFA484E5FB440 /* Pods-LUIToolSwift_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LUIToolSwift_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		31DBA9D10AE63B7FDD86C71C37EE6431 /* LUIToolSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = LUIToolSwift.debug.xcconfig; sourceTree = "<group>"; };
 		5116C4E72FB5705DA227A834EC7B3A64 /* Pods-LUIToolSwift_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-LUIToolSwift_Example-Info.plist"; sourceTree = "<group>"; };
 		55EEE374C01EEF33BD9540447E7E6BC3 /* Pods-LUIToolSwift_Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-LUIToolSwift_Tests-Info.plist"; sourceTree = "<group>"; };
-		6CFD73F64E2C73E1A2A50817912C4E9A /* Pods-LUIToolSwift_Example */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-LUIToolSwift_Example"; path = Pods_LUIToolSwift_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6CFD73F64E2C73E1A2A50817912C4E9A /* Pods_LUIToolSwift_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LUIToolSwift_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DE414A4D197D988D91E67712DCD00F2 /* LUIToolSwift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LUIToolSwift-umbrella.h"; sourceTree = "<group>"; };
 		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		7B0DA74B69EBFCAF6A1396EB8749CFB5 /* Pods-LUIToolSwift_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-LUIToolSwift_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		8184CC285747602B50FFC54035ADAB15 /* Pods-LUIToolSwift_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-LUIToolSwift_Tests-umbrella.h"; sourceTree = "<group>"; };
 		8328F059DD8B571BEC3A604A1248F5B7 /* Pods-LUIToolSwift_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-LUIToolSwift_Tests-dummy.m"; sourceTree = "<group>"; };
-		840393144684256C2B0AFC631F8C79B6 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		840393144684256C2B0AFC631F8C79B6 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		8FBEC00D1C87EEAB47D94ED0E308617B /* Pods-LUIToolSwift_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-LUIToolSwift_Example-frameworks.sh"; sourceTree = "<group>"; };
 		905AC7311CCDF26C88420492D06A2162 /* LUIToolSwift-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "LUIToolSwift-Info.plist"; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		B161A345F65C4FF2489BDCBDD575CB44 /* Pods-LUIToolSwift_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-LUIToolSwift_Example.modulemap"; sourceTree = "<group>"; };
 		B1A90A461F2D196D5EFB964E74CF3FFC /* Pods-LUIToolSwift_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-LUIToolSwift_Example-umbrella.h"; sourceTree = "<group>"; };
 		B27FAC594201D52C6D5F16647DA6608B /* Pods-LUIToolSwift_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LUIToolSwift_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		D8AA564C091C47B8F8CB39B13D7477F9 /* ReplaceMe.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ReplaceMe.swift; path = LUIToolSwift/Classes/ReplaceMe.swift; sourceTree = "<group>"; };
 		DD1177B27ABA6F90CAC47238800EF991 /* LUIToolSwift-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "LUIToolSwift-dummy.m"; sourceTree = "<group>"; };
 		E34447DDCC6A2297DF6012EF7F9A8A65 /* Pods-LUIToolSwift_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LUIToolSwift_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		E5F476BEE6E0A382FC466765029CBD9B /* Pods-LUIToolSwift_Tests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-LUIToolSwift_Tests"; path = Pods_LUIToolSwift_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E5F476BEE6E0A382FC466765029CBD9B /* Pods_LUIToolSwift_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LUIToolSwift_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1DC4341DB3C335FC3EA043EFB6136A8 /* LUIToolSwift-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LUIToolSwift-prefix.pch"; sourceTree = "<group>"; };
 		F1E86CE09F8C206EE2A139CBAE283956 /* Pods-LUIToolSwift_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-LUIToolSwift_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		F54DE79CD960343689F0329C166585A4 /* Pods-LUIToolSwift_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LUIToolSwift_Example.release.xcconfig"; sourceTree = "<group>"; };
@@ -140,10 +142,29 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
+		1F62EFD72C9A5E110052F523 /* LUICore */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = LUICore;
+			path = LUIToolSwift/Classes/LUICore;
+			sourceTree = "<group>";
+		};
+		1F62EFD82C9A5E350052F523 /* LUICategory */ = {
+			isa = PBXGroup;
+			children = (
+				1F1B016C2C9AA7E700C11B9D /* String+LUI.swift */,
+				1F62EFD92C9A5E670052F523 /* NSObject+LUI.swift */,
+			);
+			name = LUICategory;
+			path = LUIToolSwift/Classes/LUICategory;
+			sourceTree = "<group>";
+		};
 		279EC05285EF724CDF644FC0F17B4CB0 /* LUIToolSwift */ = {
 			isa = PBXGroup;
 			children = (
-				D8AA564C091C47B8F8CB39B13D7477F9 /* ReplaceMe.swift */,
+				1F62EFD82C9A5E350052F523 /* LUICategory */,
+				1F62EFD72C9A5E110052F523 /* LUICore */,
 				29E36D4E58D5152D24ED17E12C9C512A /* Pod */,
 				07A9F497C237DC1307DD245D40C3F2FD /* Support Files */,
 			);
@@ -180,9 +201,9 @@
 		C519C48F4C64197962A72F77A2E276A5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2763022547E3C3DF5B0762954E00462A /* LUIToolSwift */,
-				6CFD73F64E2C73E1A2A50817912C4E9A /* Pods-LUIToolSwift_Example */,
-				E5F476BEE6E0A382FC466765029CBD9B /* Pods-LUIToolSwift_Tests */,
+				2763022547E3C3DF5B0762954E00462A /* LUIToolSwift.framework */,
+				6CFD73F64E2C73E1A2A50817912C4E9A /* Pods_LUIToolSwift_Example.framework */,
+				E5F476BEE6E0A382FC466765029CBD9B /* Pods_LUIToolSwift_Tests.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -269,7 +290,7 @@
 			);
 			name = "Pods-LUIToolSwift_Tests";
 			productName = Pods_LUIToolSwift_Tests;
-			productReference = E5F476BEE6E0A382FC466765029CBD9B /* Pods-LUIToolSwift_Tests */;
+			productReference = E5F476BEE6E0A382FC466765029CBD9B /* Pods_LUIToolSwift_Tests.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		C704B2D9EAFB7A7275BA14034694CF09 /* Pods-LUIToolSwift_Example */ = {
@@ -288,7 +309,7 @@
 			);
 			name = "Pods-LUIToolSwift_Example";
 			productName = Pods_LUIToolSwift_Example;
-			productReference = 6CFD73F64E2C73E1A2A50817912C4E9A /* Pods-LUIToolSwift_Example */;
+			productReference = 6CFD73F64E2C73E1A2A50817912C4E9A /* Pods_LUIToolSwift_Example.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		FF5BB4426BE26192F335EC13332ACE10 /* LUIToolSwift */ = {
@@ -306,7 +327,7 @@
 			);
 			name = LUIToolSwift;
 			productName = LUIToolSwift;
-			productReference = 2763022547E3C3DF5B0762954E00462A /* LUIToolSwift */;
+			productReference = 2763022547E3C3DF5B0762954E00462A /* LUIToolSwift.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -317,6 +338,11 @@
 			attributes = {
 				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					FF5BB4426BE26192F335EC13332ACE10 = {
+						LastSwiftMigration = 1540;
+					};
+				};
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -327,7 +353,6 @@
 				en,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
-			minimizedProjectReferenceProxies = 0;
 			productRefGroup = C519C48F4C64197962A72F77A2E276A5 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -368,8 +393,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F1B016D2C9AA7E900C11B9D /* String+LUI.swift in Sources */,
+				1F62EFDA2C9A5E670052F523 /* NSObject+LUI.swift in Sources */,
 				7006F223D951B8A6CE176F468E5939FC /* LUIToolSwift-dummy.m in Sources */,
-				E49BA1142D3C2ED331E579EC45A150AD /* ReplaceMe.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,6 +437,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 31DBA9D10AE63B7FDD86C71C37EE6431 /* LUIToolSwift.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -431,6 +458,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -475,6 +503,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 142776E956BE1263F9AB484E45FE2E6C /* LUIToolSwift.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -625,8 +654,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};
