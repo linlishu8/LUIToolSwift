@@ -200,7 +200,7 @@ extension NSObject {
         return self.l_dateSince1970MillisecondForKeyPath(path, dateMatterString: matterString, otherwise: nil)
     }
     
-    func l_objectAddress() -> String {
+    public func l_objectAddress() -> String {
         return "\(type(of: self)):\(Unmanaged.passUnretained(self).toOpaque())"
     }
 }

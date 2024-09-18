@@ -7,74 +7,82 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1F1B016D2C9AA7E900C11B9D /* String+LUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1B016C2C9AA7E700C11B9D /* String+LUI.swift */; };
-		1F62EFDA2C9A5E670052F523 /* NSObject+LUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F62EFD92C9A5E670052F523 /* NSObject+LUI.swift */; };
+		17896FB5E924482E3B11C5E9990E3856 /* NSObject+LUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB7FD5F6BCD029EFFE4F405FB1FEAC /* NSObject+LUI.swift */; };
 		1F716B507DBE51ADC2749CA436F39B53 /* Pods-LUIToolSwift_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328F059DD8B571BEC3A604A1248F5B7 /* Pods-LUIToolSwift_Tests-dummy.m */; };
 		2F26923936102C02059518624239565A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		30EC6104B49385805FA20C694CBD726F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		37EF39634C120C6EB3E15E4DBC93179B /* String+LUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2E98832EBD62DD8D9B9B194E1B19F6 /* String+LUI.swift */; };
 		3BA420FDFEC7C5EB4F9FB46AEBC4AE64 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		44947C47C087D560DBFF5F9DA83469A9 /* Pods-LUIToolSwift_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B1A90A461F2D196D5EFB964E74CF3FFC /* Pods-LUIToolSwift_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7006F223D951B8A6CE176F468E5939FC /* LUIToolSwift-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DD1177B27ABA6F90CAC47238800EF991 /* LUIToolSwift-dummy.m */; };
-		7E53340E52AADDBD96CFA2C07738E336 /* LUIToolSwift-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6DE414A4D197D988D91E67712DCD00F2 /* LUIToolSwift-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8A21842628BC6AA6ED174770530C750D /* Pods-LUIToolSwift_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 179BD883232851FFC5A28930BAF0288E /* Pods-LUIToolSwift_Example-dummy.m */; };
+		8C5AC6D38D2F86A1CAF41DCE2D8EBC56 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		91558BCD75878053593D6D22B793877A /* Pods-LUIToolSwift_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8184CC285747602B50FFC54035ADAB15 /* Pods-LUIToolSwift_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F03EC81DDB092C44B6B5EFF3EF2DB446 /* LUIToolSwift-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 186C5FFA26B90625AAACBA6F60AE3E6E /* LUIToolSwift-dummy.m */; };
+		FD860F3CF5A4DFD4D98A03953A335328 /* LUIToolSwift-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 73DE7054FA07B319E69DDBB8EAF68D57 /* LUIToolSwift-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		9C19504C0C79D83FAFE6BCAD704CE587 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = FF5BB4426BE26192F335EC13332ACE10;
-			remoteInfo = LUIToolSwift;
-		};
-		D889FE1125E19DED8B4B3DDA17D7F336 /* PBXContainerItemProxy */ = {
+		2DDB5EFD3CD2855325373F8F4BF1A221 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = C704B2D9EAFB7A7275BA14034694CF09;
 			remoteInfo = "Pods-LUIToolSwift_Example";
 		};
+		B761063C5CEC62AC7A3FDAF3FCF61C3C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FF5BB4426BE26192F335EC13332ACE10;
+			remoteInfo = LUIToolSwift;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		036A049389555CB4295CFCCEB7CA5F46 /* Pods-LUIToolSwift_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-LUIToolSwift_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		0F2E98832EBD62DD8D9B9B194E1B19F6 /* String+LUI.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "String+LUI.swift"; path = "LUIToolSwift/Classes/LUICategory/String+LUI.swift"; sourceTree = "<group>"; };
+		10C3BC3D445DFDDB9BDDD3BC3653EBB5 /* LUIToolSwift.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = LUIToolSwift.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		12D14BBCE6B634D9D2BCCF300D49491B /* Pods-LUIToolSwift_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-LUIToolSwift_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
-		142776E956BE1263F9AB484E45FE2E6C /* LUIToolSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = LUIToolSwift.release.xcconfig; sourceTree = "<group>"; };
 		179BD883232851FFC5A28930BAF0288E /* Pods-LUIToolSwift_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-LUIToolSwift_Example-dummy.m"; sourceTree = "<group>"; };
-		194437EE67FCB9B1836B33271C084D6D /* LUIToolSwift.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = LUIToolSwift.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		1A6F02EC51FC36261D14038EF9F52D4A /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		186C5FFA26B90625AAACBA6F60AE3E6E /* LUIToolSwift-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "LUIToolSwift-dummy.m"; sourceTree = "<group>"; };
 		1ECF57F7E65C9B8FF06C46D20386A1DC /* Pods-LUIToolSwift_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-LUIToolSwift_Tests.modulemap"; sourceTree = "<group>"; };
-		1F1B016C2C9AA7E700C11B9D /* String+LUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+LUI.swift"; sourceTree = "<group>"; };
-		1F62EFD92C9A5E670052F523 /* NSObject+LUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+LUI.swift"; sourceTree = "<group>"; };
-		20D4B7FC20828B1E84A3AAC46217DA4B /* LUIToolSwift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = LUIToolSwift.modulemap; sourceTree = "<group>"; };
-		2763022547E3C3DF5B0762954E00462A /* LUIToolSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LUIToolSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2763022547E3C3DF5B0762954E00462A /* LUIToolSwift */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = LUIToolSwift; path = LUIToolSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CE9181A20D6CF41BE6DFA484E5FB440 /* Pods-LUIToolSwift_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LUIToolSwift_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		31DBA9D10AE63B7FDD86C71C37EE6431 /* LUIToolSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = LUIToolSwift.debug.xcconfig; sourceTree = "<group>"; };
+		377AEE8C914E66AD9B1E4ABBEAE2856E /* LUIToolSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = LUIToolSwift.release.xcconfig; sourceTree = "<group>"; };
 		5116C4E72FB5705DA227A834EC7B3A64 /* Pods-LUIToolSwift_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-LUIToolSwift_Example-Info.plist"; sourceTree = "<group>"; };
 		55EEE374C01EEF33BD9540447E7E6BC3 /* Pods-LUIToolSwift_Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-LUIToolSwift_Tests-Info.plist"; sourceTree = "<group>"; };
-		6CFD73F64E2C73E1A2A50817912C4E9A /* Pods_LUIToolSwift_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LUIToolSwift_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6DE414A4D197D988D91E67712DCD00F2 /* LUIToolSwift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LUIToolSwift-umbrella.h"; sourceTree = "<group>"; };
+		678682B3F0E50AB2C32E28902FFE04C7 /* LUIToolSwift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = LUIToolSwift.modulemap; sourceTree = "<group>"; };
+		6CFD73F64E2C73E1A2A50817912C4E9A /* Pods-LUIToolSwift_Example */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-LUIToolSwift_Example"; path = Pods_LUIToolSwift_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		73DE7054FA07B319E69DDBB8EAF68D57 /* LUIToolSwift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LUIToolSwift-umbrella.h"; sourceTree = "<group>"; };
 		7B0DA74B69EBFCAF6A1396EB8749CFB5 /* Pods-LUIToolSwift_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-LUIToolSwift_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		8184CC285747602B50FFC54035ADAB15 /* Pods-LUIToolSwift_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-LUIToolSwift_Tests-umbrella.h"; sourceTree = "<group>"; };
 		8328F059DD8B571BEC3A604A1248F5B7 /* Pods-LUIToolSwift_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-LUIToolSwift_Tests-dummy.m"; sourceTree = "<group>"; };
-		840393144684256C2B0AFC631F8C79B6 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		8FBEC00D1C87EEAB47D94ED0E308617B /* Pods-LUIToolSwift_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-LUIToolSwift_Example-frameworks.sh"; sourceTree = "<group>"; };
-		905AC7311CCDF26C88420492D06A2162 /* LUIToolSwift-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "LUIToolSwift-Info.plist"; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		94E229061FC2564959C0F1BDF42A9558 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9EFD74A5026C87DA5847B5AFEB697561 /* LUIToolSwift-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LUIToolSwift-prefix.pch"; sourceTree = "<group>"; };
 		B161A345F65C4FF2489BDCBDD575CB44 /* Pods-LUIToolSwift_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-LUIToolSwift_Example.modulemap"; sourceTree = "<group>"; };
 		B1A90A461F2D196D5EFB964E74CF3FFC /* Pods-LUIToolSwift_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-LUIToolSwift_Example-umbrella.h"; sourceTree = "<group>"; };
 		B27FAC594201D52C6D5F16647DA6608B /* Pods-LUIToolSwift_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LUIToolSwift_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		DD1177B27ABA6F90CAC47238800EF991 /* LUIToolSwift-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "LUIToolSwift-dummy.m"; sourceTree = "<group>"; };
+		BB73F827B95C37E59082D2E00C80EBB8 /* LUIToolSwift-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "LUIToolSwift-Info.plist"; sourceTree = "<group>"; };
+		CBDB7FD5F6BCD029EFFE4F405FB1FEAC /* NSObject+LUI.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSObject+LUI.swift"; path = "LUIToolSwift/Classes/LUICategory/NSObject+LUI.swift"; sourceTree = "<group>"; };
 		E34447DDCC6A2297DF6012EF7F9A8A65 /* Pods-LUIToolSwift_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LUIToolSwift_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		E5F476BEE6E0A382FC466765029CBD9B /* Pods_LUIToolSwift_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LUIToolSwift_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F1DC4341DB3C335FC3EA043EFB6136A8 /* LUIToolSwift-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LUIToolSwift-prefix.pch"; sourceTree = "<group>"; };
+		E5F476BEE6E0A382FC466765029CBD9B /* Pods-LUIToolSwift_Tests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-LUIToolSwift_Tests"; path = Pods_LUIToolSwift_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EAA699590B86FE1EEE821C576F84C8CD /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
 		F1E86CE09F8C206EE2A139CBAE283956 /* Pods-LUIToolSwift_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-LUIToolSwift_Example-acknowledgements.plist"; sourceTree = "<group>"; };
+		F4C6B839FD3ABF436D7754DD1C8FB9C1 /* LUIToolSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = LUIToolSwift.debug.xcconfig; sourceTree = "<group>"; };
 		F54DE79CD960343689F0329C166585A4 /* Pods-LUIToolSwift_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LUIToolSwift_Example.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		7B7647A1875C08B95BB40214893C5AFD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C5AC6D38D2F86A1CAF41DCE2D8EBC56 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		94268161D81194E6D3E5D8AC7A283F0E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -91,32 +99,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FD26908AD9EACB95030DF35F1A9A45B0 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				30EC6104B49385805FA20C694CBD726F /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		07A9F497C237DC1307DD245D40C3F2FD /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				20D4B7FC20828B1E84A3AAC46217DA4B /* LUIToolSwift.modulemap */,
-				DD1177B27ABA6F90CAC47238800EF991 /* LUIToolSwift-dummy.m */,
-				905AC7311CCDF26C88420492D06A2162 /* LUIToolSwift-Info.plist */,
-				F1DC4341DB3C335FC3EA043EFB6136A8 /* LUIToolSwift-prefix.pch */,
-				6DE414A4D197D988D91E67712DCD00F2 /* LUIToolSwift-umbrella.h */,
-				31DBA9D10AE63B7FDD86C71C37EE6431 /* LUIToolSwift.debug.xcconfig */,
-				142776E956BE1263F9AB484E45FE2E6C /* LUIToolSwift.release.xcconfig */,
-			);
-			name = "Support Files";
-			path = "Example/Pods/Target Support Files/LUIToolSwift";
-			sourceTree = "<group>";
-		};
 		0B7E897F49A69CED8169FF49CC9350CC /* Pods-LUIToolSwift_Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -142,54 +127,6 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		1F62EFD72C9A5E110052F523 /* LUICore */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = LUICore;
-			path = LUIToolSwift/Classes/LUICore;
-			sourceTree = "<group>";
-		};
-		1F62EFD82C9A5E350052F523 /* LUICategory */ = {
-			isa = PBXGroup;
-			children = (
-				1F1B016C2C9AA7E700C11B9D /* String+LUI.swift */,
-				1F62EFD92C9A5E670052F523 /* NSObject+LUI.swift */,
-			);
-			name = LUICategory;
-			path = LUIToolSwift/Classes/LUICategory;
-			sourceTree = "<group>";
-		};
-		279EC05285EF724CDF644FC0F17B4CB0 /* LUIToolSwift */ = {
-			isa = PBXGroup;
-			children = (
-				1F62EFD82C9A5E350052F523 /* LUICategory */,
-				1F62EFD72C9A5E110052F523 /* LUICore */,
-				29E36D4E58D5152D24ED17E12C9C512A /* Pod */,
-				07A9F497C237DC1307DD245D40C3F2FD /* Support Files */,
-			);
-			name = LUIToolSwift;
-			path = ../..;
-			sourceTree = "<group>";
-		};
-		29E36D4E58D5152D24ED17E12C9C512A /* Pod */ = {
-			isa = PBXGroup;
-			children = (
-				1A6F02EC51FC36261D14038EF9F52D4A /* LICENSE */,
-				194437EE67FCB9B1836B33271C084D6D /* LUIToolSwift.podspec */,
-				840393144684256C2B0AFC631F8C79B6 /* README.md */,
-			);
-			name = Pod;
-			sourceTree = "<group>";
-		};
-		4D6DE48ADDC9BE14CDF696B081BE907A /* Development Pods */ = {
-			isa = PBXGroup;
-			children = (
-				279EC05285EF724CDF644FC0F17B4CB0 /* LUIToolSwift */,
-			);
-			name = "Development Pods";
-			sourceTree = "<group>";
-		};
 		578452D2E740E91742655AC8F1636D1F /* iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -198,12 +135,47 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
+		8F3D4524523015335D6D965E5B04D6E7 /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AF53E1C060C66D09A9137B7C752988E9 /* LUIToolSwift */,
+			);
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		A9F72BC9EDAA51F5405FE9929ECF673F /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				678682B3F0E50AB2C32E28902FFE04C7 /* LUIToolSwift.modulemap */,
+				186C5FFA26B90625AAACBA6F60AE3E6E /* LUIToolSwift-dummy.m */,
+				BB73F827B95C37E59082D2E00C80EBB8 /* LUIToolSwift-Info.plist */,
+				9EFD74A5026C87DA5847B5AFEB697561 /* LUIToolSwift-prefix.pch */,
+				73DE7054FA07B319E69DDBB8EAF68D57 /* LUIToolSwift-umbrella.h */,
+				F4C6B839FD3ABF436D7754DD1C8FB9C1 /* LUIToolSwift.debug.xcconfig */,
+				377AEE8C914E66AD9B1E4ABBEAE2856E /* LUIToolSwift.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/LUIToolSwift";
+			sourceTree = "<group>";
+		};
+		AF53E1C060C66D09A9137B7C752988E9 /* LUIToolSwift */ = {
+			isa = PBXGroup;
+			children = (
+				CBDB7FD5F6BCD029EFFE4F405FB1FEAC /* NSObject+LUI.swift */,
+				0F2E98832EBD62DD8D9B9B194E1B19F6 /* String+LUI.swift */,
+				DD4F6F58B0BEF9B8C21397348BD3AE24 /* Pod */,
+				A9F72BC9EDAA51F5405FE9929ECF673F /* Support Files */,
+			);
+			name = LUIToolSwift;
+			path = ../..;
+			sourceTree = "<group>";
+		};
 		C519C48F4C64197962A72F77A2E276A5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2763022547E3C3DF5B0762954E00462A /* LUIToolSwift.framework */,
-				6CFD73F64E2C73E1A2A50817912C4E9A /* Pods_LUIToolSwift_Example.framework */,
-				E5F476BEE6E0A382FC466765029CBD9B /* Pods_LUIToolSwift_Tests.framework */,
+				2763022547E3C3DF5B0762954E00462A /* LUIToolSwift */,
+				6CFD73F64E2C73E1A2A50817912C4E9A /* Pods-LUIToolSwift_Example */,
+				E5F476BEE6E0A382FC466765029CBD9B /* Pods-LUIToolSwift_Tests */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -229,7 +201,7 @@
 			isa = PBXGroup;
 			children = (
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
-				4D6DE48ADDC9BE14CDF696B081BE907A /* Development Pods */,
+				8F3D4524523015335D6D965E5B04D6E7 /* Development Pods */,
 				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
 				C519C48F4C64197962A72F77A2E276A5 /* Products */,
 				18E381276A990770308D5B92F6FE6A43 /* Targets Support Files */,
@@ -244,6 +216,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		DD4F6F58B0BEF9B8C21397348BD3AE24 /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				EAA699590B86FE1EEE821C576F84C8CD /* LICENSE */,
+				10C3BC3D445DFDDB9BDDD3BC3653EBB5 /* LUIToolSwift.podspec */,
+				94E229061FC2564959C0F1BDF42A9558 /* README.md */,
+			);
+			name = Pod;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -255,11 +237,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		58AD1DDFD31049862D48B08BE190258C /* Headers */ = {
+		EA0A6C6B019E37EBB2A088746E87B734 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7E53340E52AADDBD96CFA2C07738E336 /* LUIToolSwift-umbrella.h in Headers */,
+				FD860F3CF5A4DFD4D98A03953A335328 /* LUIToolSwift-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,11 +268,11 @@
 			buildRules = (
 			);
 			dependencies = (
-				C92004F9562BDD0FE5CB64C558527884 /* PBXTargetDependency */,
+				3EA255D02AC6930C432916F92A486CD7 /* PBXTargetDependency */,
 			);
 			name = "Pods-LUIToolSwift_Tests";
 			productName = Pods_LUIToolSwift_Tests;
-			productReference = E5F476BEE6E0A382FC466765029CBD9B /* Pods_LUIToolSwift_Tests.framework */;
+			productReference = E5F476BEE6E0A382FC466765029CBD9B /* Pods-LUIToolSwift_Tests */;
 			productType = "com.apple.product-type.framework";
 		};
 		C704B2D9EAFB7A7275BA14034694CF09 /* Pods-LUIToolSwift_Example */ = {
@@ -305,21 +287,21 @@
 			buildRules = (
 			);
 			dependencies = (
-				12F3FACE2DE064B7126AFD1ED5C3C17D /* PBXTargetDependency */,
+				7D7088609DA6E786C3B2DCBAA1F9EB76 /* PBXTargetDependency */,
 			);
 			name = "Pods-LUIToolSwift_Example";
 			productName = Pods_LUIToolSwift_Example;
-			productReference = 6CFD73F64E2C73E1A2A50817912C4E9A /* Pods_LUIToolSwift_Example.framework */;
+			productReference = 6CFD73F64E2C73E1A2A50817912C4E9A /* Pods-LUIToolSwift_Example */;
 			productType = "com.apple.product-type.framework";
 		};
 		FF5BB4426BE26192F335EC13332ACE10 /* LUIToolSwift */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 295413E2C2B26DBEE968918795CD847D /* Build configuration list for PBXNativeTarget "LUIToolSwift" */;
+			buildConfigurationList = 56D45AB79CB2F9364AE9252265C648FE /* Build configuration list for PBXNativeTarget "LUIToolSwift" */;
 			buildPhases = (
-				58AD1DDFD31049862D48B08BE190258C /* Headers */,
-				432A53538D3156F69EA207459FA0B3BC /* Sources */,
-				FD26908AD9EACB95030DF35F1A9A45B0 /* Frameworks */,
-				6078D311B8350B033082092C2E491B75 /* Resources */,
+				EA0A6C6B019E37EBB2A088746E87B734 /* Headers */,
+				5432460E643A3D4CA704D3995FDE758C /* Sources */,
+				7B7647A1875C08B95BB40214893C5AFD /* Frameworks */,
+				E082002B24C068B2BAD518068E434253 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -327,7 +309,7 @@
 			);
 			name = LUIToolSwift;
 			productName = LUIToolSwift;
-			productReference = 2763022547E3C3DF5B0762954E00462A /* LUIToolSwift.framework */;
+			productReference = 2763022547E3C3DF5B0762954E00462A /* LUIToolSwift */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -338,11 +320,6 @@
 			attributes = {
 				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1500;
-				TargetAttributes = {
-					FF5BB4426BE26192F335EC13332ACE10 = {
-						LastSwiftMigration = 1540;
-					};
-				};
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -353,6 +330,7 @@
 				en,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
+			minimizedProjectReferenceProxies = 0;
 			productRefGroup = C519C48F4C64197962A72F77A2E276A5 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -372,14 +350,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6078D311B8350B033082092C2E491B75 /* Resources */ = {
+		DB177D48B7CCE6EEC6CA28EAE90D1C67 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DB177D48B7CCE6EEC6CA28EAE90D1C67 /* Resources */ = {
+		E082002B24C068B2BAD518068E434253 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -389,13 +367,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		432A53538D3156F69EA207459FA0B3BC /* Sources */ = {
+		5432460E643A3D4CA704D3995FDE758C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F1B016D2C9AA7E900C11B9D /* String+LUI.swift in Sources */,
-				1F62EFDA2C9A5E670052F523 /* NSObject+LUI.swift in Sources */,
-				7006F223D951B8A6CE176F468E5939FC /* LUIToolSwift-dummy.m in Sources */,
+				F03EC81DDB092C44B6B5EFF3EF2DB446 /* LUIToolSwift-dummy.m in Sources */,
+				17896FB5E924482E3B11C5E9990E3856 /* NSObject+LUI.swift in Sources */,
+				37EF39634C120C6EB3E15E4DBC93179B /* String+LUI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -418,54 +396,21 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		12F3FACE2DE064B7126AFD1ED5C3C17D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = LUIToolSwift;
-			target = FF5BB4426BE26192F335EC13332ACE10 /* LUIToolSwift */;
-			targetProxy = 9C19504C0C79D83FAFE6BCAD704CE587 /* PBXContainerItemProxy */;
-		};
-		C92004F9562BDD0FE5CB64C558527884 /* PBXTargetDependency */ = {
+		3EA255D02AC6930C432916F92A486CD7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Pods-LUIToolSwift_Example";
 			target = C704B2D9EAFB7A7275BA14034694CF09 /* Pods-LUIToolSwift_Example */;
-			targetProxy = D889FE1125E19DED8B4B3DDA17D7F336 /* PBXContainerItemProxy */;
+			targetProxy = 2DDB5EFD3CD2855325373F8F4BF1A221 /* PBXContainerItemProxy */;
+		};
+		7D7088609DA6E786C3B2DCBAA1F9EB76 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = LUIToolSwift;
+			target = FF5BB4426BE26192F335EC13332ACE10 /* LUIToolSwift */;
+			targetProxy = B761063C5CEC62AC7A3FDAF3FCF61C3C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		029DF0275E015479F953FD59BB581FA0 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 31DBA9D10AE63B7FDD86C71C37EE6431 /* LUIToolSwift.debug.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/LUIToolSwift/LUIToolSwift-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/LUIToolSwift/LUIToolSwift-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/LUIToolSwift/LUIToolSwift.modulemap";
-				PRODUCT_MODULE_NAME = LUIToolSwift;
-				PRODUCT_NAME = LUIToolSwift;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
 		4AEAEE465278C7452F8F312AF6376B27 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B27FAC594201D52C6D5F16647DA6608B /* Pods-LUIToolSwift_Tests.debug.xcconfig */;
@@ -498,39 +443,6 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
-		};
-		65C82520CE64EBEB4521852CFF2007FC /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 142776E956BE1263F9AB484E45FE2E6C /* LUIToolSwift.release.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/LUIToolSwift/LUIToolSwift-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/LUIToolSwift/LUIToolSwift-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/LUIToolSwift/LUIToolSwift.modulemap";
-				PRODUCT_MODULE_NAME = LUIToolSwift;
-				PRODUCT_NAME = LUIToolSwift;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
 		};
 		685E0D43B81C740DDED39042DD1AF3A4 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -565,6 +477,37 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
+		};
+		7153A1002A646DA4A2895DEA52096FEE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F4C6B839FD3ABF436D7754DD1C8FB9C1 /* LUIToolSwift.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/LUIToolSwift/LUIToolSwift-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/LUIToolSwift/LUIToolSwift-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/LUIToolSwift/LUIToolSwift.modulemap";
+				PRODUCT_MODULE_NAME = LUIToolSwift;
+				PRODUCT_NAME = LUIToolSwift;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
 		};
 		791CBBDB28CC7CDDEB934EA1D1EDC9BE /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -654,7 +597,8 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};
@@ -760,23 +704,55 @@
 			};
 			name = Debug;
 		};
+		F6A22C565D53D49C1CBC2666DD5D4ECF /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 377AEE8C914E66AD9B1E4ABBEAE2856E /* LUIToolSwift.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/LUIToolSwift/LUIToolSwift-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/LUIToolSwift/LUIToolSwift-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/LUIToolSwift/LUIToolSwift.modulemap";
+				PRODUCT_MODULE_NAME = LUIToolSwift;
+				PRODUCT_NAME = LUIToolSwift;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		295413E2C2B26DBEE968918795CD847D /* Build configuration list for PBXNativeTarget "LUIToolSwift" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				029DF0275E015479F953FD59BB581FA0 /* Debug */,
-				65C82520CE64EBEB4521852CFF2007FC /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D299434AB35E7FD6F7921C8EF24742FF /* Debug */,
 				7EE7A78859F657F6BEFC651185B43192 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		56D45AB79CB2F9364AE9252265C648FE /* Build configuration list for PBXNativeTarget "LUIToolSwift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7153A1002A646DA4A2895DEA52096FEE /* Debug */,
+				F6A22C565D53D49C1CBC2666DD5D4ECF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
