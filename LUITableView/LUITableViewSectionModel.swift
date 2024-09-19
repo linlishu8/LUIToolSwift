@@ -50,6 +50,10 @@ class LUITableViewSectionModel: LUICollectionSectionModel {
         showDefaultFootViewWithHeight(height: blankFootViewHeight)
     }
     
+    required init() {
+        fatalError("init() has not been implemented")
+    }
+    
     // 设置默认的头部视图高度
     func showDefaultHeadViewWithHeight(height: CGFloat) {
         showHeadView = true
@@ -65,7 +69,7 @@ class LUITableViewSectionModel: LUICollectionSectionModel {
     }
     
     // 返回指定索引的单元格模型
-    func cellModel(at index: Int) -> LUITableViewCellModel? {
+    override func cellModel(at index: Int) -> LUITableViewCellModel? {
         return super.cellModel(at: index) as? LUITableViewCellModel
     }
     

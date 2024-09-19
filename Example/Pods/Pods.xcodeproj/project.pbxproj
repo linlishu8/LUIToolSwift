@@ -19,6 +19,7 @@
 		1FB90CED2C9BF8F2007464A3 /* LUITableViewSectionViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB90CEC2C9BF8F2007464A3 /* LUITableViewSectionViewProtocol.swift */; };
 		1FB90CEF2C9BFD52007464A3 /* LUITableViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB90CEE2C9BFD52007464A3 /* LUITableViewCellModel.swift */; };
 		1FB90CF12C9C000D007464A3 /* LUITableViewCellSwipeAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB90CF02C9C000D007464A3 /* LUITableViewCellSwipeAction.swift */; };
+		1FB90CF32C9C2153007464A3 /* LUITableViewCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB90CF22C9C2153007464A3 /* LUITableViewCellProtocol.swift */; };
 		2F26923936102C02059518624239565A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		3BA420FDFEC7C5EB4F9FB46AEBC4AE64 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		44947C47C087D560DBFF5F9DA83469A9 /* Pods-LUIToolSwift_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B1A90A461F2D196D5EFB964E74CF3FFC /* Pods-LUIToolSwift_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -64,6 +65,7 @@
 		1FB90CEC2C9BF8F2007464A3 /* LUITableViewSectionViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LUITableViewSectionViewProtocol.swift; sourceTree = "<group>"; };
 		1FB90CEE2C9BFD52007464A3 /* LUITableViewCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LUITableViewCellModel.swift; sourceTree = "<group>"; };
 		1FB90CF02C9C000D007464A3 /* LUITableViewCellSwipeAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LUITableViewCellSwipeAction.swift; sourceTree = "<group>"; };
+		1FB90CF22C9C2153007464A3 /* LUITableViewCellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LUITableViewCellProtocol.swift; sourceTree = "<group>"; };
 		2763022547E3C3DF5B0762954E00462A /* LUIToolSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LUIToolSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CE9181A20D6CF41BE6DFA484E5FB440 /* Pods-LUIToolSwift_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LUIToolSwift_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		377AEE8C914E66AD9B1E4ABBEAE2856E /* LUIToolSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = LUIToolSwift.release.xcconfig; sourceTree = "<group>"; };
@@ -175,9 +177,10 @@
 		1FB90CE72C9BCEC9007464A3 /* LUITableView */ = {
 			isa = PBXGroup;
 			children = (
+				1FB90CF22C9C2153007464A3 /* LUITableViewCellProtocol.swift */,
+				1FB90CEC2C9BF8F2007464A3 /* LUITableViewSectionViewProtocol.swift */,
 				1FB90CE82C9BCEDB007464A3 /* LUITableViewModel.swift */,
 				1FB90CEA2C9BF647007464A3 /* LUITableViewSectionModel.swift */,
-				1FB90CEC2C9BF8F2007464A3 /* LUITableViewSectionViewProtocol.swift */,
 				1FB90CEE2C9BFD52007464A3 /* LUITableViewCellModel.swift */,
 				1FB90CF02C9C000D007464A3 /* LUITableViewCellSwipeAction.swift */,
 			);
@@ -430,6 +433,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1FB90CE92C9BCEDB007464A3 /* LUITableViewModel.swift in Sources */,
+				1FB90CF32C9C2153007464A3 /* LUITableViewCellProtocol.swift in Sources */,
 				1FB90CF12C9C000D007464A3 /* LUITableViewCellSwipeAction.swift in Sources */,
 				1FB90CE22C9BBA94007464A3 /* LUICollectionModel.swift in Sources */,
 				1FB90CEB2C9BF647007464A3 /* LUITableViewSectionModel.swift in Sources */,
