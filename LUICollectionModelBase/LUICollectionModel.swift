@@ -95,12 +95,12 @@ class LUICollectionModel: LUICollectionModelObjectBase {
     
     func insertCellModels(_ cellModels: [LUICollectionCellModel], after indexPath: IndexPath) {
         guard let section = sectionModels?[indexPath.section] else { return }
-        section.insertCellModels(cellModels, after: indexPath.item)
+        section.insertCellModels(cellModels, afterIndex: indexPath.item)
     }
     
     func insertCellModels(_ cellModels: [LUICollectionCellModel], before indexPath: IndexPath) {
         guard let section = sectionModels?[indexPath.section] else { return }
-        section.insertCellModels(cellModels, before: indexPath.item)
+        section.insertCellModels(cellModels, beforeIndex: indexPath.item)
     }
     
     func insertCellModelsToBottom(_ cellModels: [LUICollectionCellModel]) {
@@ -167,9 +167,8 @@ class LUICollectionModel: LUICollectionModelObjectBase {
     
     func indexPath(of cellModel: LUICollectionCellModel) -> IndexPath? {
         for (sectionIndex, section) in sectionModels?.enumerated() ?? [].enumerated() {
-            if let rowIndex = section.indexOf(cellModel) {
-                return IndexPath(row: rowIndex, section: sectionIndex)
-            }
+            let rowIndex = section.indexOfCellModel(cellModel)
+            return IndexPath(row: rowIndex, section: sectionIndex)
         }
         return nil
     }

@@ -38,9 +38,10 @@ class LUICollectionCellModel:LUICollectionModelObjectBase {
             return IndexPath(row: row - 1, section: sectionIndex)
         } else {
             for i in stride(from: sectionIndex - 1, through: 0, by: -1) {
-                let sm = collectionModel.sectionModel(at: i)
-                if sm.numberOfCells > 0 {
-                    return IndexPath(row: sm.numberOfCells - 1, section: i)
+                if let sm = collectionModel.sectionModel(at: i) {
+                    if sm.numberOfCells > 0 {
+                        return IndexPath(row: sm.numberOfCells - 1, section: i)
+                    }
                 }
             }
         }
@@ -57,9 +58,10 @@ class LUICollectionCellModel:LUICollectionModelObjectBase {
         } else {
             let sectionCount = collectionModel.numberOfSections
             for i in (sectionIndex + 1)..<sectionCount {
-                let sm = collectionModel.sectionModel(at: i)
-                if sm.numberOfCells > 0 {
-                    return IndexPath(row: 0, section: i)
+                if let sm = collectionModel.sectionModel(at: i) {
+                    if sm.numberOfCells > 0 {
+                        return IndexPath(row: 0, section: i)
+                    }
                 }
             }
         }
