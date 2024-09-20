@@ -9,103 +9,27 @@ import Foundation
 
 class LUICollectionCellModel:LUICollectionModelObjectBase {
     weak var sectionModel: LUICollectionSectionModel?
-    var userInfo: Any?
+    var collectionModel: LUICollectionModel?
+    var userInfo: Any?//自定义的扩展对象
     var selected: Bool = false
-    var focused: Bool = false
+    var focused: Bool = false//是否获取焦点
+    var indexInSectionModel: Int?
+    var indexPathInModel: NSIndexPath?
     
-    var collectionModel: LUICollectionModel? {
-        return sectionModel?.collectionModel
+    //上一个单元格的indexpath
+    var indexPathOfPreCell: NSIndexPath? {
+        let row = sectionModel?.indexOfCellModel(self)
+        let section = sectionModel
     }
-    
-    var indexInSectionModel: Int {
-        return sectionModel?.indexOfCellModel(self) ?? NSNotFound
-    }
-    
-    var indexPathInModel: IndexPath? {
-        guard let sectionIndex = sectionModel?.indexInModel,
-              indexInSectionModel != NSNotFound else {
-            return nil
-        }
-        return IndexPath(row: indexInSectionModel, section: sectionIndex)
-    }
-    
-    var indexPathOfPreCell: IndexPath? {
-        guard let section = sectionModel, let collectionModel = collectionModel else { return nil }
-        let row = indexInSectionModel
-        let sectionIndex = section.indexInModel
-        
-        if row > 0 {
-            return IndexPath(row: row - 1, section: sectionIndex)
-        } else {
-            for i in stride(from: sectionIndex - 1, through: 0, by: -1) {
-                if let sm = collectionModel.sectionModel(at: i) {
-                    if sm.numberOfCells > 0 {
-                        return IndexPath(row: sm.numberOfCells - 1, section: i)
-                    }
-                }
-            }
-        }
-        return nil
-    }
-    
-    var indexPathOfNextCell: IndexPath? {
-        guard let section = sectionModel, let collectionModel = collectionModel else { return nil }
-        let row = indexInSectionModel
-        let sectionIndex = section.indexInModel
-        
-        if row + 1 < section.numberOfCells {
-            return IndexPath(row: row + 1, section: sectionIndex)
-        } else {
-            let sectionCount = collectionModel.numberOfSections
-            for i in (sectionIndex + 1)..<sectionCount {
-                if let sm = collectionModel.sectionModel(at: i) {
-                    if sm.numberOfCells > 0 {
-                        return IndexPath(row: 0, section: i)
-                    }
-                }
-            }
-        }
-        return nil
-    }
+    var indexPathOfNextCell: NSIndexPath?//下一个单元格的indexpath
     
     var isFirstInAllCellModels: Bool {
-        return indexPathOfPreCell == nil
+        return false
     }
     
     var isLastInAllCellModels: Bool {
-        return indexPathOfNextCell == nil
+        return false
     }
     
-    // NSCopying protocol method
-    override func copy(with zone: NSZone? = nil) -> Any {
-        let copy = LUICollectionCellModel()
-        copy.userInfo = self.userInfo
-        copy.selected = self.selected
-        copy.focused = self.focused
-        copy.sectionModel = self.sectionModel
-        return copy
-    }
-    
-    // Comparing two cell models
-    func compare(_ otherObject: LUICollectionCellModel) -> ComparisonResult {
-        guard let sectionModel1 = self.sectionModel,
-              let sectionModel2 = otherObject.sectionModel else {
-            return .orderedSame
-        }
-        
-        let sectionComparison = sectionModel1.compare(sectionModel2)
-        if sectionComparison == .orderedSame {
-            let row1 = sectionModel1.indexOfCellModel(self)
-            let row2 = sectionModel2.indexOfCellModel(otherObject)
-            
-            if row1 < row2 {
-                return .orderedAscending
-            } else if row1 > row2 {
-                return .orderedDescending
-            }
-        }
-        
-        return sectionComparison
-    }
 }
 

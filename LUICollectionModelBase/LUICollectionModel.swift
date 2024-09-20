@@ -48,7 +48,7 @@ class LUICollectionModel: LUICollectionModelObjectBase {
     func indexPathOfLastCellModel() -> IndexPath? {
         let sections = numberOfSections
         for i in (0..<sections).reversed() {
-            if let sectionModel = self.sectionModelAtIndex(i), sectionModel.numberOfCells > 0 {
+            if let sectionModel = sectionModelAtIndex(i), sectionModel.numberOfCells > 0 {
                 return IndexPath(item: sectionModel.numberOfCells - 1, section: i)
             }
         }
@@ -56,7 +56,47 @@ class LUICollectionModel: LUICollectionModelObjectBase {
     }
     
     func sectionModelAtIndex(_ index: Int) -> LUICollectionSectionModel? {
-        guard index >= 0 && index < self.sectionModels.count else { return nil }
+        guard index >= 0 && index < sectionModels.count else { return nil }
         return self.sectionModels[index]
+    }
+    
+    func createEmptySectionModel() -> LUICollectionSectionModel {
+        return LUICollectionSectionModel()
+    }
+    
+    func addCellModel(_ cellModel: LUICollectionCellModel) {
+        guard let section = sectionModels.last else {
+            let newSection = createEmptySectionModel()
+            addSectionModel(newSection)
+            newSection.addCellModel(cellModel)
+            return
+        }
+        section.addCellModel(cellModel)
+    }
+    
+    func addCellModelToFirst(_ cellModel: LUICollectionCellModel) {
+        guard let section = sectionModels.last else {
+            let newSection = createEmptySectionModel()
+            addSectionModel(newSection)
+            newSection.addCellModel(cellModel)
+            return
+        }
+        section.insertCellModel(cellModel, at: 0)
+    }
+    
+    func addCellModels(_ cellModels:[LUICollectionCellModel]) {
+        for LUICollectionCellModel in cellModels {
+            addCellModel(LUICollectionCellModel)
+        }
+    }
+    
+    func insertCellModel(_ cellModel: LUICollectionCellModel, atIndexPath indexPath: NSIndexPath) {
+//        guard let sectionModel = sectionModelAtIndex(indexPath.section) else { return }
+//        sectionModel.insertCellModel(cellModel, atIndexPath: indexPath.row)
+    }
+
+    func addSectionModel(_ sectionModel: LUICollectionSectionModel) {
+        sectionModel.collectionModel = self;
+        self.sectionModels.append(sectionModel)
     }
 }
