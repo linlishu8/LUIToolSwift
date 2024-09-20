@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		1F1B01732C9BAFC400C11B9D /* String+LUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1B016F2C9BAFC400C11B9D /* String+LUI.swift */; };
 		1F1B01742C9BAFC400C11B9D /* NSObject+LUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1B016E2C9BAFC400C11B9D /* NSObject+LUI.swift */; };
+		1F5FEBC72C9D1A180096D794 /* LUITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5FEBC62C9D1A180096D794 /* LUITableView.swift */; };
+		1F5FEBC92C9D1F0D0096D794 /* UITableView+LUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5FEBC82C9D1F0D0096D794 /* UITableView+LUI.swift */; };
+		1F5FEBCB2C9D222A0096D794 /* UIScrollView+LUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5FEBCA2C9D222A0096D794 /* UIScrollView+LUI.swift */; };
+		1F5FEBCD2C9D24970096D794 /* CGGeometry+LUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5FEBCC2C9D24970096D794 /* CGGeometry+LUI.swift */; };
 		1F716B507DBE51ADC2749CA436F39B53 /* Pods-LUIToolSwift_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328F059DD8B571BEC3A604A1248F5B7 /* Pods-LUIToolSwift_Tests-dummy.m */; };
 		1FB90CE02C9BB5B5007464A3 /* LUICollectionModelObjectBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB90CDF2C9BB5B5007464A3 /* LUICollectionModelObjectBase.swift */; };
 		1FB90CE22C9BBA94007464A3 /* LUICollectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB90CE12C9BBA94007464A3 /* LUICollectionModel.swift */; };
@@ -56,6 +60,10 @@
 		1ECF57F7E65C9B8FF06C46D20386A1DC /* Pods-LUIToolSwift_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-LUIToolSwift_Tests.modulemap"; sourceTree = "<group>"; };
 		1F1B016E2C9BAFC400C11B9D /* NSObject+LUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+LUI.swift"; sourceTree = "<group>"; };
 		1F1B016F2C9BAFC400C11B9D /* String+LUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+LUI.swift"; sourceTree = "<group>"; };
+		1F5FEBC62C9D1A180096D794 /* LUITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LUITableView.swift; sourceTree = "<group>"; };
+		1F5FEBC82C9D1F0D0096D794 /* UITableView+LUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+LUI.swift"; sourceTree = "<group>"; };
+		1F5FEBCA2C9D222A0096D794 /* UIScrollView+LUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+LUI.swift"; sourceTree = "<group>"; };
+		1F5FEBCC2C9D24970096D794 /* CGGeometry+LUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGGeometry+LUI.swift"; sourceTree = "<group>"; };
 		1FB90CDF2C9BB5B5007464A3 /* LUICollectionModelObjectBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LUICollectionModelObjectBase.swift; sourceTree = "<group>"; };
 		1FB90CE12C9BBA94007464A3 /* LUICollectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LUICollectionModel.swift; sourceTree = "<group>"; };
 		1FB90CE32C9BBC30007464A3 /* LUICollectionCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LUICollectionCellModel.swift; sourceTree = "<group>"; };
@@ -152,6 +160,8 @@
 			children = (
 				1F1B016E2C9BAFC400C11B9D /* NSObject+LUI.swift */,
 				1F1B016F2C9BAFC400C11B9D /* String+LUI.swift */,
+				1F5FEBC82C9D1F0D0096D794 /* UITableView+LUI.swift */,
+				1F5FEBCA2C9D222A0096D794 /* UIScrollView+LUI.swift */,
 			);
 			path = LUICategory;
 			sourceTree = "<group>";
@@ -170,6 +180,7 @@
 		1F1B01722C9BAFC400C11B9D /* LUICore */ = {
 			isa = PBXGroup;
 			children = (
+				1F5FEBCC2C9D24970096D794 /* CGGeometry+LUI.swift */,
 			);
 			path = LUICore;
 			sourceTree = "<group>";
@@ -183,6 +194,7 @@
 				1FB90CEA2C9BF647007464A3 /* LUITableViewSectionModel.swift */,
 				1FB90CEE2C9BFD52007464A3 /* LUITableViewCellModel.swift */,
 				1FB90CF02C9C000D007464A3 /* LUITableViewCellSwipeAction.swift */,
+				1F5FEBC62C9D1A180096D794 /* LUITableView.swift */,
 			);
 			path = LUITableView;
 			sourceTree = "<group>";
@@ -438,6 +450,7 @@
 				1FB90CE22C9BBA94007464A3 /* LUICollectionModel.swift in Sources */,
 				1FB90CEB2C9BF647007464A3 /* LUITableViewSectionModel.swift in Sources */,
 				F03EC81DDB092C44B6B5EFF3EF2DB446 /* LUIToolSwift-dummy.m in Sources */,
+				1F5FEBC72C9D1A180096D794 /* LUITableView.swift in Sources */,
 				1FB90CE42C9BBC30007464A3 /* LUICollectionCellModel.swift in Sources */,
 				1FB90CEF2C9BFD52007464A3 /* LUITableViewCellModel.swift in Sources */,
 				1FB90CE62C9BBCCB007464A3 /* LUICollectionSectionModel.swift in Sources */,
@@ -445,6 +458,9 @@
 				1FB90CED2C9BF8F2007464A3 /* LUITableViewSectionViewProtocol.swift in Sources */,
 				1FB90CE02C9BB5B5007464A3 /* LUICollectionModelObjectBase.swift in Sources */,
 				1F1B01742C9BAFC400C11B9D /* NSObject+LUI.swift in Sources */,
+				1F5FEBCB2C9D222A0096D794 /* UIScrollView+LUI.swift in Sources */,
+				1F5FEBC92C9D1F0D0096D794 /* UITableView+LUI.swift in Sources */,
+				1F5FEBCD2C9D24970096D794 /* CGGeometry+LUI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
