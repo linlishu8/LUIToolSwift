@@ -81,7 +81,7 @@ class LUICollectionModel: LUICollectionModelObjectBase {
             newSection.addCellModel(cellModel)
             return
         }
-        section.insertCellModel(cellModel, at: 0)
+        section.insertCellModel(cellModel, atIndex: 0)
     }
     
     func addCellModels(_ cellModels:[LUICollectionCellModel]) {
@@ -90,9 +90,10 @@ class LUICollectionModel: LUICollectionModelObjectBase {
         }
     }
     
-    func insertCellModel(_ cellModel: LUICollectionCellModel, atIndexPath indexPath: NSIndexPath) {
-//        guard let sectionModel = sectionModelAtIndex(indexPath.section) else { return }
-//        sectionModel.insertCellModel(cellModel, atIndexPath: indexPath.row)
+    func insertCellModel(_ cellModel: LUICollectionCellModel, atIndexPath indexPath: IndexPath) {
+        if let sectionModel = sectionModelAtIndex(indexPath.section) {
+            sectionModel.insertCellModel(cellModel, atIndex: indexPath.row)
+        }
     }
 
     func addSectionModel(_ sectionModel: LUICollectionSectionModel) {
