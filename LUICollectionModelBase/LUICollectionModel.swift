@@ -305,4 +305,90 @@ class LUICollectionModel: LUICollectionModelObjectBase {
     func selectCellModelsAtIndexPaths(_ indexPaths: [IndexPath]) {
         selectCellModels(cellModelsAtIndexPaths(indexPaths))
     }
+    
+    func selectAllCellModels() {
+        selectCellModels(allCellModels)
+    }
+    
+    func deselectCellModel(_ cellModel: LUICollectionCellModel) {
+        cellModel.selected = false
+    }
+    
+    func deselectCellModelAtIndexPath(_ indexPath: IndexPath) {
+        guard let cellModel = cellModelAtIndexPath(indexPath) else { return }
+        deselectCellModel(cellModel)
+    }
+    
+    func deselectCellModels(_ cellModels: [LUICollectionCellModel]) {
+        for cellModel in cellModels {
+            deselectCellModel(cellModel)
+        }
+    }
+    
+    func deselectAllCellModels() {
+        deselectCellModels(allCellModels)
+    }
+    
+    func indexPathForSelectedCellModel() -> IndexPath? {
+        for (sectionIdx, secionModel) in sectionModels.enumerated() {
+            let cellModels = secionModel.cellModels
+            for (cellIdx, cellModel) in cellModels.enumerated() {
+                if cellModel.selected {
+                    return IndexPath(item: cellIdx, section: sectionIdx)
+                }
+            }
+        }
+        return nil
+    }
+
+    func cellModelForSelectedCellModel() -> LUICollectionCellModel? {
+        for (sectionIdx, secionModel) in sectionModels.enumerated() {
+            let cellModels = secionModel.cellModels
+            for (cellIdx, cellModel) in cellModels.enumerated() {
+                if cellModel.selected {
+                    return cellModel
+                }
+            }
+        }
+        return nil
+    }
+    
+    func indexPathsForSelectedCellModels() -> [IndexPath] {
+        var indexPaths: [IndexPath] = []
+        for (sectionIdx, secionModel) in sectionModels.enumerated() {
+            let cellModels = secionModel.cellModels
+            for (cellIdx, cellModel) in cellModels.enumerated() {
+                if cellModel.selected {
+                    indexPaths.append(IndexPath(item: cellIdx, section: sectionIdx))
+                }
+            }
+        }
+        return indexPaths
+    }
+    
+    func cellModelsForSelectedCellModels() -> [LUICollectionCellModel] {
+        var models: [LUICollectionCellModel] = []
+        for sectionModel in sectionModels {
+            for cellModel in sectionModel.cellModels {
+                if cellModel.selected {
+                    models.append(cellModel)
+                }
+            }
+        }
+        return models
+    }
+}
+
+extension LUICollectionModel {
+    func indexPathForFocusedCellModel() -> IndexPath? {
+        for (sectionIdx, secionModel) in sectionModels.enumerated() {
+            let cellModels = secionModel.cellModels
+            for (cellIdx, cellModel) in cellModels.enumerated() {
+                if cellModel.selected {
+                    return IndexPath(item: cellIdx, section: sectionIdx)
+                }
+            }
+        }
+        return nil
+    }
 }
