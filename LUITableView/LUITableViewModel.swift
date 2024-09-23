@@ -93,4 +93,51 @@ class LUITableViewModel: LUICollectionModel, UITableViewDelegate, UITableViewDat
         sectionModel?.addCellModel(cellModel)
         return sectionModel
     }
+    
+    func reloadTableViewData() {
+        reloadTableViewDataWithAnimated(false)
+    }
+    
+    func reloadTableViewDataWithAnimated(_ animated: Bool) {
+        for sectionModel in self.sectionModels {
+            for cellModel in sectionModel.cellModels {
+                if let cm = cellModel as? LUITableViewCellModel {
+                    cm.needReloadCell = true
+                }
+            }
+        }
+        tableView?.reloadData()
+        if allowsSelection {
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                if self.allowsMultipleSelection {
+                    for indexPath in indexPathsForSelectedCellModels() {
+                        tableView?.selectRow(at: indexPath, animated: animated, scrollPosition: .none)
+                    }
+                } else {
+                    tableView?.selectRow(at: indexPathForFocusedCellModel(), animated: animated, scrollPosition: .none)
+                }
+            }
+        }
+        reloadTableViewBackgroundView()
+    }
+    
+    // empty background
+    func createEmptyBackgroundView() -> UIView? {
+        let viewClass = emptyBackgroundViewClass as? UIView.Type
+        return viewClass?.init()
+    }
+    
+    func reloadTableViewBackgroundView() {
+        guard emptyBackgroundViewClass != nil || emptyBackgroundView != nil else { return }
+        guard let tableView = self.tableView else { return }
+        if numberOfCells == 0 {
+            emptyBackgroundView = emptyBackgroundView ?? createEmptyBackgroundView()
+            tableView.backgroundView = emptyBackgroundView
+        } else {
+            tableView.backgroundView = nil
+        }
+        whenReloadBackgroundView?(self)
+    }
+
 }

@@ -106,7 +106,8 @@ class LUITableViewSectionModel: LUICollectionSectionModel {
         }
         guard let set = tableViewModel?.indexSetOfSectionModel(self) else { return }
         safeTableView.reloadSections(set, with: animated ? .none : .automatic )
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
             self.cellModels.forEach { cm in
                 if cm.selected {
                     safeTableView.selectRow(at: cm.indexPathInModel, animated: animated, scrollPosition: .none)
