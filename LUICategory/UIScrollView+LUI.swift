@@ -21,9 +21,9 @@ enum LUIScrollViewScrollPosition {
 
 extension UIScrollView {
     
-    func scrollToBottom(animated: Bool) {
-        var offsetYMax = self.contentOffsetOfMaxY
-        var offsetYMin = self.contentOffsetOfMinY
+    func l_scrollToBottomWithAnimated(_ animated: Bool) {
+        var offsetYMax = l_contentOffsetOfMaxY
+        var offsetYMin = l_contentOffsetOfMinY
         if offsetYMax < offsetYMin {
             offsetYMax = offsetYMin
         }
@@ -32,14 +32,14 @@ extension UIScrollView {
         setContentOffset(contentOffset, animated: animated)
     }
     
-    func scrollToTop(animated: Bool) {
-        let offsetYMin = self.contentOffsetOfMinY
+    func l_scrollToTopWithAnimated(_ animated: Bool) {
+        let offsetYMin = l_contentOffsetOfMinY
         var contentOffset = self.contentOffset
         contentOffset.y = offsetYMin
         setContentOffset(contentOffset, animated: animated)
     }
     
-    var contentOffsetOfRange: UIEdgeInsets {
+    var l_contentOffsetOfRange: UIEdgeInsets {
         let bounds = self.bounds
         let contentSize = self.contentSize
         let contentInset = self.adjustedContentInset
@@ -52,26 +52,26 @@ extension UIScrollView {
     
     func adjustContentOffset(in range: CGPoint) -> CGPoint {
         var offset = range
-        let contentRange = self.contentOffsetOfRange
+        let contentRange = self.l_contentOffsetOfRange
         offset.x = min(max(offset.x, contentRange.left), contentRange.right)
         offset.y = min(max(offset.y, contentRange.top), contentRange.bottom)
         return offset
     }
     
-    var contentOffsetOfMinX: CGFloat {
-        return self.contentOffsetOfRange.left
+    var l_contentOffsetOfMinX: CGFloat {
+        return self.l_contentOffsetOfRange.left
     }
     
-    var contentOffsetOfMaxX: CGFloat {
-        return self.contentOffsetOfRange.right
+    var l_contentOffsetOfMaxX: CGFloat {
+        return self.l_contentOffsetOfRange.right
     }
     
-    var contentOffsetOfMinY: CGFloat {
-        return self.contentOffsetOfRange.top
+    var l_contentOffsetOfMinY: CGFloat {
+        return self.l_contentOffsetOfRange.top
     }
     
-    var contentOffsetOfMaxY: CGFloat {
-        return self.contentOffsetOfRange.bottom
+    var l_contentOffsetOfMaxY: CGFloat {
+        return self.l_contentOffsetOfRange.bottom
     }
     
     var contentDisplayRect: CGRect {

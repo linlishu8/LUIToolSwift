@@ -139,5 +139,82 @@ class LUITableViewModel: LUICollectionModel, UITableViewDelegate, UITableViewDat
         }
         whenReloadBackgroundView?(self)
     }
-
+    
+    func addCellModel(_ cellModel: LUITableViewCellModel, animated: Bool) {
+        cellModel.needReloadCell = true
+        addCellModel(cellModel)
+        guard let sm = sectionModels.last else { return }
+        let indexPath = IndexPath(item: sm.numberOfCells - 1, section: sectionModels.count - 1)
+        guard let tableView = self.tableView else { return }
+        tableView.beginUpdates()
+        if tableView.numberOfSections == 0 {
+            tableView.insertSections(IndexSet(integer: 0), with: animated ? .automatic : .none)
+        }
+        tableView.insertRows(at: [indexPath], with: animated ? .automatic : .none)
+        tableView.endUpdates()
+        reloadTableViewBackgroundView()
+    }
+    
+    func insertCellModel(_ cellModel: LUITableViewCellModel, atIndexPath: IndexPath, animated: Bool) {
+        cellModel.needReloadCell = true
+        guard let sectionModel = sectionModelAtIndex(atIndexPath.section) else { return }
+        sectionModel.insertCellModel(cellModel, atIndex: atIndexPath.row)
+        guard let tableView = self.tableView else { return }
+        tableView.beginUpdates()
+        tableView.insertRows(at: [atIndexPath], with:  animated ? .automatic : .none)
+        tableView.endUpdates()
+        reloadTableViewBackgroundView()
+    }
+    
+    func insertCellModel(_ cellModel: LUITableViewCellModel, afterIndexPath: IndexPath, animated: Bool) {
+        insertCellModels([cellModel], afterIndexPath: afterIndexPath, animated: animated)
+    }
+    
+    func insertCellModels(_ cellModels: [LUITableViewCellModel], afterIndexPath: IndexPath, animated: Bool) {
+        guard let tableView = self.tableView else { return }
+        for cellModel in cellModels {
+            cellModel.needReloadCell = true
+        }
+        insertCellModels(cellModels, afterIndexPath: afterIndexPath)
+        var indexPaths: [IndexPath] = []
+        for index in 0...cellModels.count {
+            indexPaths.append(IndexPath(row: afterIndexPath.row + 1 + index, section: afterIndexPath.section))
+        }
+        tableView.beginUpdates()
+        tableView.insertRows(at: indexPaths, with: animated ? .automatic : .none)
+        tableView.endUpdates()
+        reloadTableViewBackgroundView()
+    }
+    
+    func insertCellModel(_ cellModels: [LUITableViewCellModel], beforeIndexPath: IndexPath, animated: Bool) {
+        insertCellModels(cellModels, beforeIndexPath: beforeIndexPath, animated: animated)
+    }
+    
+    func insertCellModels(_ cellModels: [LUITableViewCellModel], beforeIndexPath: IndexPath, animated: Bool) {
+        guard let tableView = self.tableView else { return }
+        for cellModel in cellModels {
+            cellModel.needReloadCell = true
+        }
+        insertCellModels(cellModels, beforeIndexPath: beforeIndexPath)
+        var indexPaths: [IndexPath] = []
+        for index in 0...cellModels.count {
+            indexPaths.append(IndexPath(row: beforeIndexPath.row + index, section: beforeIndexPath.section))
+        }
+        tableView.beginUpdates()
+        tableView.insertRows(at: indexPaths, with: animated ? .automatic : .none)
+        tableView.endUpdates()
+        reloadTableViewBackgroundView()
+    }
+    
+    func insertCellModelsToBottom(_ cellModels: [LUITableViewCellModel], scrollToBottom: Bool) {
+        let sm = sectionModels.last as? LUITableViewSectionModel ?? createEmptySectionModel()
+        if sm !== sectionModels.last {
+            addSectionModel(sm)
+        }
+        sm.insertCellModelsToBottom(cellModels)
+        reloadTableViewData()
+        if scrollToBottom {
+            tableView.l_scr
+        }
+    }
 }
