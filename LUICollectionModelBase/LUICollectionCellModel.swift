@@ -70,7 +70,19 @@ class LUICollectionCellModel:LUICollectionModelObjectBase {
     }
     
     func compare(_ otherObject: LUICollectionCellModel) -> ComparisonResult {
-//        let r: ComparisonResult = sectionModel.comp
+        var r: ComparisonResult = .orderedSame
+        guard let otherSectionModel = otherObject.sectionModel, let safeSectionModel = sectionModel else { return r }
+        r = safeSectionModel.compare(otherSectionModel)
+        if r == .orderedSame {
+            let row1: Int = safeSectionModel.indexOfCellModel(self)
+            let row2: Int = otherSectionModel.indexOfCellModel(otherObject)
+            if row1 < row2 {
+                r = .orderedAscending
+            } else if row1 > row2 {
+                r = .orderedDescending
+            }
+        }
+        return r
     }
 }
 

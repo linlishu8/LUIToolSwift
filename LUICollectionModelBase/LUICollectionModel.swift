@@ -232,7 +232,7 @@ class LUICollectionModel: LUICollectionModelObjectBase {
         return sectionModels.firstIndex(of: sectionModel)
     }
     
-    func indexOfSectionModel(_ sectionModel: LUICollectionSectionModel) -> NSIndexSet? {
+    func indexSetOfSectionModel(_ sectionModel: LUICollectionSectionModel) -> NSIndexSet? {
         if let index = sectionModels.firstIndex(of: sectionModel) {
             return NSIndexSet(index: index)
         }
@@ -390,5 +390,35 @@ extension LUICollectionModel {
             }
         }
         return nil
+    }
+    
+    func cellModelForFocusedCellModel() -> LUICollectionCellModel? {
+        for sectionModel in self.sectionModels {
+            for cellModel in sectionModel.cellModels {
+                if cellModel.focused {
+                    return cellModel
+                }
+            }
+        }
+        return nil
+    }
+    
+    func focusCellModel(_ cellModel: LUICollectionCellModel, focused: Bool) {
+        guard !allowsFocus else { return }
+        if focused {
+            cellModelForFocusedCellModel()?.focused = false
+        }
+        cellModel.focused = focused
+    }
+    
+    func focusCellModelAtIndexPath(_ indexPath: IndexPath, focused: Bool)  {
+        guard !allowsFocus else { return }
+        guard let cellModel = cellModelAtIndexPath(indexPath) else { return }
+        focusCellModel(cellModel, focused: focused)
+    }
+    
+    func focusNone() {
+        guard !allowsFocus else { return }
+        cellModelForFocusedCellModel()?.focused = false
     }
 }

@@ -137,10 +137,17 @@ class LUICollectionSectionModel: LUICollectionModelObjectBase {
         return nil
     }
     
-    //todo
-//    func indexPathsForSelectedCellModels() -> [NSIndexPath] {
-//        var indexPaths: [NSIndexPath] = []
-//    }
+    func indexPathsForSelectedCellModels() -> [IndexPath] {
+        var indexPaths: [IndexPath] = []
+        if let index = collectionModel?.indexOfSectionModel(self) {
+            for (idx, cellModel) in cellModels.enumerated() {
+                if cellModel.selected {
+                    indexPaths.append(IndexPath(row: idx, section: index))
+                }
+            }
+        }
+        return indexPaths
+    }
     
     func cellModelsForSelectedCellModels() -> [LUICollectionCellModel] {
         var selectedCellModels: [LUICollectionCellModel] = []
@@ -153,7 +160,15 @@ class LUICollectionSectionModel: LUICollectionModelObjectBase {
     }
     
     func compare(_ otherObject: LUICollectionSectionModel) -> ComparisonResult {
-        
+        var compareResult: ComparisonResult = .orderedSame
+        guard let section1 = collectionModel?.indexOfSectionModel(self) else { return compareResult }
+        guard let section2 = otherObject.collectionModel?.indexOfSectionModel(otherObject) else { return compareResult }
+        if section1 < section2 {
+            compareResult = .orderedAscending
+        } else if section1 > section2 {
+            compareResult = .orderedDescending
+        }
+        return compareResult
     }
 }
 
