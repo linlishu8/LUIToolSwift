@@ -106,33 +106,33 @@ extension UIScrollView {
         }
     }
     
-    func l_zoomToPoint(_ point: CGPoint, zoomScale: CGFloat, animated: Bool) {
+    func l_zoomToPoint(_ point: CGPoint, zoomScale scale: CGFloat, animated: Bool) {
         let zoomScale = self.zoomScale
-        var adjustedPoint = point
-        adjustedPoint.x /= zoomScale
-        adjustedPoint.y /= zoomScale
-        
-        var displayRect = l_contentDisplayRect
-        var transform = CGAffineTransform.identity
-        transform = transform.translatedBy(x: -displayRect.midX, y: -displayRect.midY)
-        transform = transform.scaledBy(x: zoomScale / scale, y: zoomScale / scale)
-        
-        let zoomPoint = adjustedPoint.applying(transform)
-        transform = transform.translatedBy(x: adjustedPoint.x - zoomPoint.x, y: adjustedPoint.y - zoomPoint.y)
+        let resultZoomScale = scale
+        var p = point // Adjust point to account for zoomScale
+        p.x /= zoomScale
+        p.y /= zoomScale
+
+        let displayRect = self.l_contentDisplayRect
+        var transform = CGAffineTransform(translationX: -displayRect.midX, y: -displayRect.midY)
+        transform = transform.scaledBy(x: zoomScale / resultZoomScale, y: zoomScale / resultZoomScale)
+
+        let zoomPoint = p.applying(transform)
+        transform = transform.translatedBy(x: p.x - zoomPoint.x, y: p.y - zoomPoint.y)
         let zoomRect = displayRect.applying(transform)
-        
+
         self.zoom(to: zoomRect, animated: true)
     }
     
-    func toggleZoomScale(gesture: UIGestureRecognizer) {
+    func l_toggleZoomScale(_ gesture: UIGestureRecognizer) {
         let maxScale = self.maximumZoomScale
         let zoomScale = self.zoomScale
         let resultZoomScale = (zoomScale == 1) ? maxScale : 1
         let point = gesture.location(in: self)
-        self.zoom(to: point, scale: resultZoomScale, animated: true)
+        l_zoomToPoint(point, zoomScale: resultZoomScale, animated: true)
     }
     
-    func adjustContent(forKeyboard notification: Notification, responderViewClass: AnyClass?, contentInsets: UIEdgeInsets, window: UIWindow) {
+    func l_adjustContentWithUIKeyboardDidShowNotification(_ notification: Notification, responderViewClass: AnyClass?, contentInsets: UIEdgeInsets, window: UIWindow) {
         guard let userInfo = notification.userInfo,
               let duration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? TimeInterval,
               let keyboardFrame = userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue else { return }
@@ -157,27 +157,32 @@ extension UIScrollView {
         }
     }
     
-    func contentOffset(forScrollTo viewFrame: CGRect, direction: LUIScrollViewScrollDirection, position: LUIScrollViewScrollPosition) -> CGPoint {
-        let axis: LUICGAxis = (direction == .vertical) ? .y : .x
+    func l_contentOffsetWithScrollTo(_ viewFrame: CGRect, direction: LUIScrollViewScrollDirection, position: LUIScrollViewScrollPosition) -> CGPoint {
+        let axis = direction == .vertical ? LUICGAxis : NSLayoutConstraint.Attribute.centerX
         var offset = self.contentOffset
         let bounds = self.bounds
         let contentInset = self.adjustedContentInset
         let visibleBounds = bounds.inset(by: contentInset)
         
+        let targetPosition: CGFloat
         switch position {
         case .head:
-            offset.setValue(LUICGRectGetMin(viewFrame, axis) - LUIEdgeInsetsGetEdge(contentInset, axis, .min), forAxis: axis)
+            targetPosition = axis == .centerY ? viewFrame.minY - contentInset.top : viewFrame.minX - contentInset.left
         case .middle:
-            offset.setValue(LUICGRectGetMid(viewFrame, axis) - LUIEdgeInsetsGetEdge(contentInset, axis, .min) - (visibleBounds.size.height * 0.5), forAxis: axis)
+            let visibleLength = axis == .centerY ? visibleBounds.height : visibleBounds.width
+            targetPosition = (axis == .centerY ? viewFrame.midY : viewFrame.midX) - contentInset.top - visibleLength * 0.5
         case .foot:
-            offset.setValue(LUICGRectGetMax(viewFrame, axis) - (bounds.size.height) + LUIEdgeInsetsGetEdge(contentInset, axis, .max), forAxis: axis)
-        default:
-            break
+            let boundsLength = axis == .centerY ? bounds.height : bounds.width
+            targetPosition = (axis == .centerY ? viewFrame.maxY : viewFrame.maxX) - boundsLength + (axis == .centerY ? contentInset.bottom : contentInset.right)
         }
         
-        // 限制 offset 范围
-        offset = adjustContentOffset(in: offset)
-        return offset
+        if axis == .centerY {
+            offset.y = targetPosition
+        } else {
+            offset.x = targetPosition
+        }
+        
+        return adjustContentOffsetInRange(offset)
     }
     
     func autoBounces() {

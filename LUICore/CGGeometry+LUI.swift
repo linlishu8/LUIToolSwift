@@ -7,198 +7,222 @@
 
 import UIKit
 import CoreGraphics
-import QuartzCore
-
-// MARK: - 枚举类型
 
 enum LUICGAxis {
     case x, y
 }
 
-enum LUICGRectAlignment {
-    case min, mid, max
-
-    func reversed() -> LUICGRectAlignment {
-        switch self {
-        case .min: return .max
-        case .max: return .min
-        default: return .mid
-        }
+extension LUICGAxis {
+    func LUICGAxisReverse(_ axis: LUICGAxis) -> LUICGAxis {
+        return axis == .x ? .y : .x
     }
 }
-
-enum LUIEdgeInsetsEdge {
-    case min, max
-}
-
-// MARK: - CGPoint 扩展
 
 extension CGPoint {
-    mutating func setValue(for axis: LUICGAxis, value: CGFloat) {
+    mutating func LUICGPointGetValue(_ point: CGPoint, axis: LUICGAxis) -> CGFloat {
         switch axis {
-        case .x: x = value
-        case .y: y = value
+        case .x:
+            return self.x
+        case .y:
+            return self.y
         }
     }
-
-    mutating func addValue(for axis: LUICGAxis, value: CGFloat) {
-        switch axis {
-        case .x: x += value
-        case .y: y += value
+    
+    mutating func LUICGPointSetValue(_ value: CGFloat, axis: LUICGAxis) {
+            switch axis {
+            case .x:
+                self.x = value
+            case .y:
+                self.y = value
+            }
         }
-    }
-
-    static func interpolate(from point1: CGPoint, to point2: CGPoint, progress: CGFloat) -> CGPoint {
-        return CGPoint(x: CGFloat.interpolate(from: point1.x, to: point2.x, progress: progress),
-                       y: CGFloat.interpolate(from: point1.y, to: point2.y, progress: progress))
-    }
-}
-
-// MARK: - CGFloat 扩展
-
-extension CGFloat {
-    static func interpolate(from value1: CGFloat, to value2: CGFloat, progress: CGFloat) -> CGFloat {
-        return value1 * (1 - progress) + value2 * progress
-    }
-}
-
-// MARK: - CGRect 扩展
-
-extension CGRect {
-    mutating func setMinX(_ value: CGFloat) { origin.x = value }
-    mutating func setMinY(_ value: CGFloat) { origin.y = value }
-    mutating func setMidX(_ value: CGFloat) { origin.x = value - size.width * 0.5 }
-    mutating func setMidY(_ value: CGFloat) { origin.y = value - size.height * 0.5 }
-    mutating func setMaxX(_ value: CGFloat) { origin.x = value - size.width }
-    mutating func setMaxY(_ value: CGFloat) { origin.y = value - size.height }
-
-    static func interpolate(from rect1: CGRect, to rect2: CGRect, progress: CGFloat) -> CGRect {
-        return CGRect(x: CGFloat.interpolate(from: rect1.origin.x, to: rect2.origin.x, progress: progress),
-                      y: CGFloat.interpolate(from: rect1.origin.y, to: rect2.origin.y, progress: progress),
-                      width: CGFloat.interpolate(from: rect1.size.width, to: rect2.size.width, progress: progress),
-                      height: CGFloat.interpolate(from: rect1.size.height, to: rect2.size.height, progress: progress))
-    }
-}
-
-// MARK: - CGAffineTransform 扩展
-
-extension CGAffineTransform {
-    static func interpolate(from t1: CGAffineTransform, to t2: CGAffineTransform, progress: CGFloat) -> CGAffineTransform {
-        return CGAffineTransform(a: CGFloat.interpolate(from: t1.a, to: t2.a, progress: progress),
-                                b: CGFloat.interpolate(from: t1.b, to: t2.b, progress: progress),
-                                c: CGFloat.interpolate(from: t1.c, to: t2.c, progress: progress),
-                                d: CGFloat.interpolate(from: t1.d, to: t2.d, progress: progress),
-                                tx: CGFloat.interpolate(from: t1.tx, to: t2.tx, progress: progress),
-                                ty: CGFloat.interpolate(from: t1.ty, to: t2.ty, progress: progress))
-    }
-}
-
-// MARK: - UIColor 扩展
-
-extension UIColor {
-    static func interpolate(from color1: UIColor, to color2: UIColor, progress: CGFloat) -> UIColor {
-        var red1: CGFloat = 0, green1: CGFloat = 0, blue1: CGFloat = 0, alpha1: CGFloat = 0
-        var red2: CGFloat = 0, green2: CGFloat = 0, blue2: CGFloat = 0, alpha2: CGFloat = 0
-        
-        color1.getRed(&red1, green: &green1, blue: &blue1, alpha: &alpha1)
-        color2.getRed(&red2, green: &green2, blue: &blue2, alpha: &alpha2)
-        
-        return UIColor(red: .interpolate(from: red1, to: red2, progress: progress),
-                       green: .interpolate(from: green1, to: green2, progress: progress),
-                       blue: .interpolate(from: blue1, to: blue2, progress: progress),
-                       alpha: .interpolate(from: alpha1, to: alpha2, progress: progress))
+    
+    mutating func LUICGPointAddValue(_ value: CGFloat, axis: LUICGAxis) {
+        switch axis {
+        case .x:
+            self.x += value
+        case .y:
+            self.y += value
+        }
     }
 }
 
 extension CGVector {
-    mutating func setValue(for axis: LUICGAxis, value: CGFloat) {
+    mutating func LUICGVectorSetValue(_ value: CGFloat, axis: LUICGAxis) {
         switch axis {
-        case .x: dx = value
-        case .y: dy = value
+        case .x:
+            self.dx = value
+        case .y:
+            self.dy = value
         }
     }
-
-    mutating func addValue(for axis: LUICGAxis, value: CGFloat) {
+    
+    mutating func LUICGVectorAddValue(_ value: CGFloat, axis: LUICGAxis) {
         switch axis {
-        case .x: dx += value
-        case .y: dy += value
+        case .x:
+            self.dx += value
+        case .y:
+            self.dy += value
         }
     }
-
-    static func interpolate(from vector1: CGVector, to vector2: CGVector, progress: CGFloat) -> CGVector {
-        return CGVector(dx: CGFloat.interpolate(from: vector1.dx, to: vector2.dx, progress: progress),
-                        dy: CGFloat.interpolate(from: vector1.dy, to: vector2.dy, progress: progress))
+    
+    func LUICGVectorGetValue(_ axis: LUICGAxis) -> CGFloat {
+        switch axis {
+        case .x:
+            return self.dx
+        case .y:
+            return self.dy
+        }
     }
 }
-
-// MARK: - CGSize 扩展
 
 extension CGSize {
-    mutating func setLength(for axis: LUICGAxis, length: CGFloat) {
+    mutating func LUICGSizeSetLength(_ value: CGFloat, axis: LUICGAxis) {
         switch axis {
-        case .x: width = length
-        case .y: height = length
+        case .x:
+            self.width = value
+        case .y:
+            self.height = value
         }
     }
-
-    mutating func addLength(for axis: LUICGAxis, length: CGFloat) {
+    
+    mutating func LUICGSizeAddLength(_ value: CGFloat, axis: LUICGAxis) {
         switch axis {
-        case .x: width += length
-        case .y: height += length
+        case .x:
+            self.width += value
+        case .y:
+            self.height += value
         }
     }
-
-    static func interpolate(from size1: CGSize, to size2: CGSize, progress: CGFloat) -> CGSize {
-        return CGSize(width: CGFloat.interpolate(from: size1.width, to: size2.width, progress: progress),
-                      height: CGFloat.interpolate(from: size1.height, to: size2.height, progress: progress))
+    
+    func LUICGSizeGetLength( axis: LUICGAxis) -> CGFloat {
+        switch axis {
+        case .x:
+            return self.width
+        case .y:
+            return self.height
+        }
     }
 }
 
-// MARK: - UIEdgeInsets 扩展
+enum LUICGRectAlignment {
+    case min, mid, max
+}
 
-extension UIEdgeInsets {
-    static func makeSameEdge(_ edge: CGFloat) -> UIEdgeInsets {
-        return UIEdgeInsets(top: edge, left: edge, bottom: edge, right: edge)
-    }
-
-    mutating func setEdge(for axis: LUICGAxis, edge: LUIEdgeInsetsEdge, value: CGFloat) {
-        switch axis {
-        case .x:
-            if edge == .min {
-                left = value
-            } else {
-                right = value
-            }
-        case .y:
-            if edge == .min {
-                top = value
-            } else {
-                bottom = value
-            }
+extension LUICGRectAlignment {
+    func reverse() -> LUICGRectAlignment {
+        switch self {
+        case .min:
+            return .max
+        case .max:
+            return .min
+        case .mid:
+            return .mid
         }
     }
+}
 
-    mutating func addEdge(for axis: LUICGAxis, edge: LUIEdgeInsetsEdge, value: CGFloat) {
-        switch axis {
-        case .x:
-            if edge == .min {
-                left += value
-            } else {
-                right += value
-            }
-        case .y:
-            if edge == .min {
-                top += value
-            } else {
-                bottom += value
-            }
-        }
+extension CGRect {
+    mutating func LUICGRectSetMinX(_ value: CGFloat) {
+        self.origin.x = value
     }
 
-    static func interpolate(from insets1: UIEdgeInsets, to insets2: UIEdgeInsets, progress: CGFloat) -> UIEdgeInsets {
-        return UIEdgeInsets(top: CGFloat.interpolate(from: insets1.top, to: insets2.top, progress: progress),
-                            left: CGFloat.interpolate(from: insets1.left, to: insets2.left, progress: progress),
-                            bottom: CGFloat.interpolate(from: insets1.bottom, to: insets2.bottom, progress: progress),
-                            right: CGFloat.interpolate(from: insets1.right, to: insets2.right, progress: progress))
+    mutating func LUICGRectSetMinY(_ value: CGFloat) {
+        self.origin.y = value
+    }
+
+    mutating func LUICGRectSetMidX(_ value: CGFloat) {
+        self.origin.x = value - self.size.width * 0.5
+    }
+
+    mutating func LUICGRectSetMidY(_ value: CGFloat) {
+        self.origin.y = value - self.size.height * 0.5
+    }
+
+    mutating func LUICGRectSetMaxX(_ value: CGFloat) {
+        self.origin.x = value - self.size.width
+    }
+
+    mutating func LUICGRectSetMaxY(_ value: CGFloat) {
+        self.origin.y = value - self.size.height
+    }
+
+    mutating func LUICGRectSetWidth(_ value: CGFloat) {
+        self.size.width = value
+    }
+
+    mutating func LUICGRectSetHeight(_ value: CGFloat) {
+        self.size.height = value
+    }
+
+    mutating func LUICGRectGetCenter() -> CGPoint {
+        return CGPoint(x: self.midX, y: self.midY)
+    }
+    
+    mutating func LUICGRectSetCenter(_ center: CGPoint) {
+        LUICGRectSetMidX(center.x)
+        LUICGRectSetMidY(center.y)
+    }
+    
+    func LUICGRectGetPercentX(_ percent: CGFloat) -> CGFloat {
+        return minX + percent * width
+    }
+    
+    func LUICGRectGetPercentY(_ percent: CGFloat) -> CGFloat {
+        return minY + percent * height
+    }
+    
+    mutating func LUICGRectSetMinXEdgeToRect(_ bounds: CGRect, edge: CGFloat) {
+        LUICGRectSetMinX(bounds.minX + edge)
+    }
+    
+    mutating func LUICGRectSetMaxXEdgeToRect(_ bounds: CGRect, edge: CGFloat) {
+        LUICGRectSetMaxX(bounds.maxX - edge)
+    }
+    
+    mutating func LUICGRectSetMinYEdgeToRect(_ bounds: CGRect, edge: CGFloat) {
+        LUICGRectSetMinY(bounds.minY + edge)
+    }
+    
+    mutating func LUICGRectSetMaxYEdgeToRect(_ bounds: CGRect, edge: CGFloat) {
+        LUICGRectSetMaxY(bounds.maxY - edge)
+    }
+    
+    mutating func LUICGRectAlignCenterToRect(_ bounds: CGRect) {
+        LUICGRectSetCenter(LUICGRectGetCenter())
+    }
+    
+    mutating func LUICGRectAlignMinXToRect(_ bounds: CGRect) {
+        LUICGRectSetMinX(bounds.minX)
+    }
+    
+    mutating func LUICGRectAlignMidXToRect(_ bounds: CGRect) {
+        LUICGRectSetMidX(bounds.midX)
+    }
+    
+    mutating func LUICGRectAlignMaxXToRect(_ bounds: CGRect) {
+        LUICGRectSetMaxX(bounds.maxX)
+    }
+    
+    mutating func LUICGRectAlignMinYToRect(_ bounds: CGRect) {
+        LUICGRectSetMinY(bounds.minY)
+    }
+    
+    mutating func LUICGRectAlignMidYToRect(_ bounds: CGRect) {
+        LUICGRectSetMidY(bounds.midY)
+    }
+    
+    mutating func LUICGRectAlignMaxYToRect(_ bounds: CGRect) {
+        LUICGRectSetMaxY(bounds.maxY)
+    }
+    
+    func LUICGRectGetMin(_ bounds: CGRect, axis: LUICGAxis) -> CGFloat {
+        switch axis {
+        case .x:
+            return self.minX
+        case .y:
+            return self.minY
+        }
+    
     }
 }
