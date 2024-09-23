@@ -24,10 +24,22 @@ class LUITableViewSectionModel: LUICollectionSectionModel {
     weak var tableView: UITableView? {
         return tableViewModel?.tableView
     }
-    weak var tableViewModel: LUITableViewModel?
+    weak var tableViewModel: LUITableViewModel? {
+        if let collectionModel = super.collectionModel as? LUITableViewModel {
+            return collectionModel
+        }
+        return nil
+    }
     
     var whenShowHeadView: ((LUITableViewSectionModel, UIView) -> Void)?
     var whenShowFootView: ((LUITableViewSectionModel, UIView) -> Void)?
+    
+    override func cellModelAtIndex(_ index: Int) -> LUICollectionCellModel? {
+        if let cellModel = super.cellModelAtIndex(index) as? LUITableViewCellModel {
+            return cellModel
+        }
+        return nil
+    }
     
     // 初始化显示空白头部
     init(blankHeadViewHeight: CGFloat) {
@@ -68,11 +80,6 @@ class LUITableViewSectionModel: LUICollectionSectionModel {
         footViewHeight = height
     }
     
-    // 返回指定索引的单元格模型
-    override func cellModel(at index: Int) -> LUITableViewCellModel? {
-        return super.cellModel(at: index) as? LUITableViewCellModel
-    }
-    
     // 显示自定义的头部视图
     func displayHeadView(_ view: UIView & LUITableViewSectionViewProtocol) {
         view.setSectionModel(self, kind: .head)
@@ -87,33 +94,24 @@ class LUITableViewSectionModel: LUICollectionSectionModel {
         view.setNeedsLayout()
     }
     
-    // 刷新 Section
-    func refresh(animated: Bool = false) {
-        guard let tableView = tableView else { return }
-        
-        for cellModel in cellModels as! [LUITableViewCellModel] {
+    func refresh() {
+        refreshWithAnimated(false)
+    }
+    
+    func refreshWithAnimated(_ animated: Bool) {
+        guard let safeTableView = tableView else { return }
+        guard let safeModels = cellModels as? [LUITableViewCellModel] else { return }
+        for cellModel in safeModels {
             cellModel.needReloadCell = true
         }
-        
-        if let indexSet = tableViewModel?.indexSet(of: self) {
-            tableView.reloadSections(indexSet, with: animated ? .none : .automatic)
-        }
-        
+        guard let set = tableViewModel?.indexSetOfSectionModel(self) else { return }
+        safeTableView.reloadSections(set, with: animated ? .none : .automatic )
         DispatchQueue.main.async {
-            for cellModel in self.cellModels as! [LUITableViewCellModel] {
-                if cellModel.selected {
-                    tableView.selectRow(at: cellModel.indexPathInModel, animated: animated, scrollPosition: .none)
+            self.cellModels.forEach { cm in
+                if cm.selected {
+                    safeTableView.selectRow(at: cm.indexPathInModel, animated: animated, scrollPosition: .none)
                 }
             }
         }
     }
-    
-    // Debug
-    override var description: String {
-        return "\(String(describing: type(of: self))): [indexTitle: \(indexTitle ?? ""), showHeadView: \(showHeadView), headTitle: \(headTitle ?? ""), headViewHeight: \(headViewHeight), showFootView: \(showFootView), footTitle: \(footTitle ?? ""), footViewHeight: \(footViewHeight), cells: \(cellModels), userInfo: \(userInfo)]"
-    }
-    
-    deinit {
-    }
-            
 }

@@ -251,11 +251,11 @@ class LUICollectionModel: LUICollectionModelObjectBase {
     func indexOfSectionModel(_ sectionModel: LUICollectionSectionModel) -> Int? {
         return sectionModels.firstIndex(of: sectionModel)
     }
-    func indexSetOfSectionModel(_ sectionModel: LUICollectionSectionModel) -> NSIndexSet? {
-        if let index = sectionModels.firstIndex(of: sectionModel) {
-            return NSIndexSet(index: index)
+    func indexSetOfSectionModel(_ sectionModel: LUICollectionSectionModel) -> IndexSet? {
+        guard let index = sectionModels.firstIndex(of: sectionModel) else {
+            return nil
         }
-        return nil
+        return IndexSet(integer: index)
     }
     
     //返回indexpath指定的单元格数据

@@ -32,9 +32,8 @@ class LUITableViewCellSwipeAction {
     }
 
     @available(iOS 11.0, *)
-    func contextualAction(with cellModel: LUITableViewCellModel) -> Any {
+    func contextualActionWithCellModel(_ cellModel: LUITableViewCellModel) -> UIContextualAction {
         let actionStyle: UIContextualAction.Style = (style == .destructive) ? .destructive : .normal
-        
         let contextualAction = UIContextualAction(style: actionStyle, title: title) { action, sourceView, completionHandler in
             self.handler?(self, cellModel)
             if self.autoCompletion {
@@ -47,9 +46,8 @@ class LUITableViewCellSwipeAction {
         return contextualAction
     }
 
-    func tableViewRowAction(with cellModel: LUITableViewCellModel) -> UITableViewRowAction {
+    func tableViewRowActionWithCellModel(_ cellModel: LUITableViewCellModel) -> UITableViewRowAction {
         let actionStyle: UITableViewRowAction.Style = (style == .destructive) ? .destructive : .normal
-        
         let rowAction = UITableViewRowAction(style: actionStyle, title: title) { action, indexPath in
             self.handler?(self, cellModel)
             if self.autoCompletion {

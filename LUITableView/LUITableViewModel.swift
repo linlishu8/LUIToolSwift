@@ -26,27 +26,6 @@ class LUITableViewModel: LUICollectionModel, UITableViewDelegate, UITableViewDat
     var hiddenSectionHeadView: Bool = false
     var hiddenSectionFootView: Bool = false
     
-    override func copy(with zone: NSZone? = nil) -> Any {
-        guard let tableView = self.tableView else {
-            fatalError("TableView is nil while copying model")
-        }
-        let obj = LUITableViewModel(tableView: tableView)
-        obj.defaultIndexTitleSectionModel = self.defaultIndexTitleSectionModel
-        obj.forwardDataSource = self.forwardDataSource
-        obj.forwardDelegate = self.forwardDelegate
-        obj.tableView = self.tableView
-        obj.showSectionIndexTitle = self.showSectionIndexTitle
-        obj.defaultSectionIndexTitle = self.defaultSectionIndexTitle
-        obj.isEditing = self.isEditing
-        obj.reuseCell = self.reuseCell
-        obj.emptyBackgroundViewClass = self.emptyBackgroundViewClass
-        obj.emptyBackgroundView = self.emptyBackgroundView
-        obj.whenReloadBackgroundView = self.whenReloadBackgroundView
-        obj.hiddenSectionHeadView = self.hiddenSectionHeadView
-        obj.hiddenSectionFootView = self.hiddenSectionFootView
-        return obj
-    }
-    
     init(tableView: UITableView) {
         super.init()
         self.setTableViewDataSourceAndDelegate(for: tableView)
@@ -62,25 +41,56 @@ class LUITableViewModel: LUICollectionModel, UITableViewDelegate, UITableViewDat
         fatalError("init() has not been implemented")
     }
     
-    override func createEmptySectionModel() -> LUICollectionSectionModel {
-        return LUICollectionSectionModel()
+    override func createEmptySectionModel() -> LUITableViewSectionModel {
+        return LUITableViewSectionModel()
     }
     
-    override func addCellModel(_ cellModel: LUICollectionCellModel?) {
-        guard let cellModel = cellModel else { return }
-        if let section = self.sectionModels?.last as? LUICollectionSectionModel {
-            section.addCellModel(cellModel)
-        } else {
-            let newSection = createEmptySectionModel()
-            newSection.addCellModel(cellModel)
-            self.addSectionModel(newSection)
-        }
+    override func addCellModel(_ cellModel: LUICollectionCellModel) {
+        var section = sectionModels.last as? LUITableViewSectionModel ?? createEmptySectionModel()
+        section.addCellModel(cellModel)
     }
     
-    override func cellModelAtIndexPath(_ indexpath: NSIndexPath) -> LUITableViewCellModel? {
-        if let cellModel = super.cellModel(at: indexpath as IndexPath) as? LUITableViewCellModel {
-            return cellModel
+    override func cellModelAtIndexPath(_ indexPath: IndexPath) -> LUICollectionCellModel? {
+        guard let cellModel = super.cellModelAtIndexPath(indexPath) as? LUITableViewCellModel else { return nil }
+        return cellModel
+    }
+    
+    override func cellModelForSelectedCellModel() -> LUICollectionCellModel? {
+        guard let cellModel = super.cellModelForSelectedCellModel() as? LUITableViewCellModel else { return nil }
+        return cellModel
+    }
+    
+    override func sectionModelAtIndex(_ index: Int) -> LUICollectionSectionModel? {
+        guard let sectionModel = super.sectionModelAtIndex(index) as? LUITableViewSectionModel else { return nil }
+        return sectionModel
+    }
+    
+    func sectionModelWithIndexTitle(_ indexTitle: String) -> LUITableViewSectionModel? {
+        for sectionModel in self.sectionModels {
+            if let tableSectionModel = sectionModel as? LUITableViewSectionModel, tableSectionModel.indexTitle == indexTitle {
+                return tableSectionModel
+            }
         }
         return nil
+    }
+    
+    func addAutoIndexedCellModel(_ cellModel: LUITableViewCellModel) -> LUITableViewSectionModel? {
+        var useDefaultIndexTitle: Bool = cellModel.indexTitle?.count == 0;
+        let indexTitle = useDefaultIndexTitle ? defaultSectionIndexTitle : cellModel.indexTitle ?? defaultSectionIndexTitle
+        var sectionModel = useDefaultIndexTitle ? defaultIndexTitleSectionModel : sectionModelWithIndexTitle(indexTitle)
+        if sectionModel == nil {
+            sectionModel = createEmptySectionModel()
+            sectionModel?.indexTitle = indexTitle
+            sectionModel?.headTitle = indexTitle
+            sectionModel?.showHeadView = true
+            sectionModel?.showDefaultHeadView = true
+            if useDefaultIndexTitle {
+                self.defaultIndexTitleSectionModel = sectionModel
+            }
+            guard let safeModel = sectionModel else { return nil }
+            addSectionModel(safeModel)
+        }
+        sectionModel?.addCellModel(cellModel)
+        return sectionModel
     }
 }

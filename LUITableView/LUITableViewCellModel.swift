@@ -45,26 +45,6 @@ class LUITableViewCellModel: LUICollectionCellModel {
         self.cellClass = UITableViewCell.self
     }
 
-    override func copy(with zone: NSZone? = nil) -> Any {
-        let copy = super.copy(with: zone) as! LUITableViewCellModel
-        copy.cellClass = self.cellClass
-        copy.indexTitle = self.indexTitle
-        copy.canEdit = self.canEdit
-        copy.canMove = self.canMove
-        copy.whenClick = self.whenClick
-        copy.whenSelected = self.whenSelected
-        copy.whenClickAccessory = self.whenClickAccessory
-        copy.whenDelete = self.whenDelete
-        copy.whenMove = self.whenMove
-        copy.whenShow = self.whenShow
-        copy.swipeActions = self.swipeActions
-        copy.performsFirstActionWithFullSwipe = self.performsFirstActionWithFullSwipe
-        copy.leadingSwipeActions = self.leadingSwipeActions
-        copy.tableViewCell = self.tableViewCell
-        copy.needReloadCell = self.needReloadCell
-        return copy
-    }
-
     var tableView: UITableView? {
         return tableViewModel?.tableView
     }
@@ -73,74 +53,106 @@ class LUITableViewCellModel: LUICollectionCellModel {
         return collectionModel as? LUITableViewModel
     }
 
-    func displayCell(_ cell: UITableViewCell) {
-        let isCellModelChanged = needReloadCell || (cell.tableViewCellModel !== self) || (self.tableViewCell !== cell)
-        cell.tableViewCellModel = self
+    func displayCell(_ cell: UITableViewCell & LUITableViewCellProtocol) {
+        let isCellModelChanged = self.needReloadCell
+                              || cell.cellModel !== self
+                              || self.tableViewCell !== cell
+
+        cell.cellModel = self
         self.tableViewCell = cell
-        whenShow?(self, cell)
+
+        self.whenShow?(self, cell)
+
         if isCellModelChanged {
             cell.setNeedsLayout()
         }
     }
 
     func refresh() {
-        guard let indexPath = tableViewModel?.indexPath(of: self) else { return }
-        needReloadCell = true
-        tableView?.reloadRows(at: [indexPath], with: .automatic)
+        //todo
+//        guard let indexPath = tableViewModel?.indexPath(of: self) else { return }
+//        needReloadCell = true
+//        tableView?.reloadRows(at: [indexPath], with: .automatic)
     }
 
     func refresh(animated: Bool) {
-        guard let indexPath = tableViewModel?.indexPath(of: self) else { return }
-        needReloadCell = true
-        tableView?.reloadRows(at: [indexPath], with: animated ? .automatic : .none)
-        if isSelected {
-            tableView?.selectRow(at: indexPath, animated: animated, scrollPosition: .none)
-        }
+        //todo
+//        guard let indexPath = tableViewModel?.indexPath(of: self) else { return }
+//        needReloadCell = true
+//        tableView?.reloadRows(at: [indexPath], with: animated ? .automatic : .none)
+//        if isSelected {
+//            tableView?.selectRow(at: indexPath, animated: animated, scrollPosition: .none)
+//        }
     }
 
-    func selectCell(animated: Bool) {
-        setSelected(true, animated: animated)
-    }
-
-    func deselectCell(animated: Bool) {
+    func deselectCellWithAnimated(_ animated: Bool) {
         setSelected(false, animated: animated)
     }
 
-    func setSelected(_ selected: Bool, animated: Bool) {
-        tableViewModel?.setCellModel(self, selected: selected, animated: animated)
+    func selectCellWithAnimated(_ animated: Bool) {
+        setSelected(true, animated: animated)
     }
 
-    func didClick() {
+    func setSelected(_ selected: Bool, animated: Bool) {
+        //todo
+//        tableViewModel?.setCellModel(self, selected: selected, animated: animated)
+    }
+
+    func didClickSelf() {
         whenClick?(self)
     }
 
-    func didClickAccessory() {
+    func didClickAccessorySelf() {
         whenClickAccessory?(self)
     }
 
-    func didSelect(_ selected: Bool) {
+    func didSelectedSelf(_ selected: Bool) {
         whenSelected?(self, selected)
     }
 
-    func didDelete() {
+    func didDeleteSelf() {
         whenDelete?(self)
     }
-
-    func removeFromModel(animated: Bool) {
-        tableViewModel?.removeCellModel(self, animated: animated)
+    
+    func setFocused(_ focused: Bool, refreshed: Bool) {
+        //todo
+//        guard let safeTableViewModel = tableViewModel else {
+//            self.focused = focused
+//            return
+//        }
+//        if focused {
+//            guard let oldCM = tableViewModel?.cellModelForFocusedCellModel() else { return }
+//            if oldCM == self {
+//                return
+//            }
+//            oldCM.focused = false
+//            oldCM.refreshWithAnimated(true)
+//        } else {
+//            
+//        }
     }
 
-    func swipeActionsConfiguration(for indexPath: IndexPath, leading: Bool) -> UISwipeActionsConfiguration? {
-        let actions = leading ? leadingSwipeActions : swipeActions
-        guard let swipeActions = actions, !swipeActions.isEmpty else { return nil }
+    func removeFromModelWithAnimated(_ animated: Bool) {
+        //todo
+//        tableViewModel?.removeCellModel(self, animated: animated)
+    }
+    
+    func editActions() -> [UITableViewRowAction]? {
+        var editActions: [UITableViewRowAction] = []
+        guard let swipeActions: [LUITableViewCellSwipeAction] = self.swipeActions else { return nil }
+        for swipeAction in swipeActions {
+            editActions.append(swipeAction.tableViewRowActionWithCellModel(self))
+        }
+        return editActions
+    }
 
-        let contextualActions = swipeActions.map { $0.contextualAction(with: self) }
+    @available(iOS 11.0, *)
+    func swipeActionsConfigurationWithIndexPath(_ indexPath: IndexPath, leading: Bool) -> UISwipeActionsConfiguration? {
+        guard let swipeActions = leading ? leadingSwipeActions : swipeActions else { return nil }
+
+        let contextualActions = swipeActions.map { $0.contextualActionWithCellModel(self) }
         let config = UISwipeActionsConfiguration(actions: contextualActions)
         config.performsFirstActionWithFullSwipe = performsFirstActionWithFullSwipe
         return config
-    }
-
-    override var description: String {
-        return "\(super.description):[cellClass: \(cellClass), userInfo: \(userInfo)]"
     }
 }
