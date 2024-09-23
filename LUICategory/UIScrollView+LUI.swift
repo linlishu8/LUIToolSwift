@@ -50,7 +50,7 @@ extension UIScrollView {
         return UIEdgeInsets(top: minY, left: minX, bottom: maxY, right: maxX)
     }
     
-    func adjustContentOffset(in range: CGPoint) -> CGPoint {
+    func l_adjustContentOffsetInRange(in range: CGPoint) -> CGPoint {
         var offset = range
         let contentRange = self.l_contentOffsetOfRange
         offset.x = min(max(offset.x, contentRange.left), contentRange.right)
@@ -74,7 +74,7 @@ extension UIScrollView {
         return self.l_contentOffsetOfRange.bottom
     }
     
-    var contentDisplayRect: CGRect {
+    var l_contentDisplayRect: CGRect {
         let zoomScale = self.zoomScale
         var displayRect = CGRect(origin: self.contentOffset, size: self.frame.size)
         displayRect.origin.x /= zoomScale
@@ -84,21 +84,21 @@ extension UIScrollView {
         return displayRect
     }
     
-    var contentBounds: CGRect {
-        let insets = self.adjustedContentInset
+    var l_contentBounds: CGRect {
+        let insets = l_adjustedContentInset
         var bounds = self.bounds
         bounds.origin = .zero
         return UIEdgeInsetsInsetRect(bounds, insets)
     }
     
-    var centerPointOfContent: CGPoint {
+    var l_centerPointOfContent: CGPoint {
         let bounds = self.bounds
-        let safeAreaInsets = self.adjustedContentInset
+        let safeAreaInsets = l_adjustedContentInset
         let contentFrame = UIEdgeInsetsInsetRect(bounds, safeAreaInsets)
         return CGPoint(x: contentFrame.midX, y: contentFrame.midY)
     }
     
-    var adjustedContentInset: UIEdgeInsets {
+    var l_adjustedContentInset: UIEdgeInsets {
         if #available(iOS 11.0, *) {
             return self.adjustedContentInset
         } else {
@@ -106,13 +106,13 @@ extension UIScrollView {
         }
     }
     
-    func zoom(to point: CGPoint, scale: CGFloat, animated: Bool) {
+    func l_zoomToPoint(_ point: CGPoint, zoomScale: CGFloat, animated: Bool) {
         let zoomScale = self.zoomScale
         var adjustedPoint = point
         adjustedPoint.x /= zoomScale
         adjustedPoint.y /= zoomScale
         
-        var displayRect = self.contentDisplayRect
+        var displayRect = l_contentDisplayRect
         var transform = CGAffineTransform.identity
         transform = transform.translatedBy(x: -displayRect.midX, y: -displayRect.midY)
         transform = transform.scaledBy(x: zoomScale / scale, y: zoomScale / scale)
