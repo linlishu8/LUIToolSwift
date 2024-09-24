@@ -14,6 +14,11 @@ class LUITableViewModel: LUICollectionModel, UITableViewDelegate, UITableViewDat
     weak var forwardDelegate: UITableViewDelegate?
     weak var tableView: UITableView?
     
+    func performIfTableViewAvailable(_ action: (UITableView) -> Void) {
+        guard let tableView = tableView else { return }
+        action(tableView)
+    }
+    
     var showSectionIndexTitle: Bool = false
     var defaultSectionIndexTitle: String = "#"
     var isEditing: Bool = false
@@ -119,7 +124,7 @@ class LUITableViewModel: LUICollectionModel, UITableViewDelegate, UITableViewDat
                 }
             }
         }
-        reloadTableViewBackgroundView()
+        self.reloadTableViewBackgroundView()
     }
     
     // empty background
@@ -130,12 +135,13 @@ class LUITableViewModel: LUICollectionModel, UITableViewDelegate, UITableViewDat
     
     func reloadTableViewBackgroundView() {
         guard emptyBackgroundViewClass != nil || emptyBackgroundView != nil else { return }
-        guard let tableView = self.tableView else { return }
-        if numberOfCells == 0 {
-            emptyBackgroundView = emptyBackgroundView ?? createEmptyBackgroundView()
-            tableView.backgroundView = emptyBackgroundView
-        } else {
-            tableView.backgroundView = nil
+        performIfTableViewAvailable { tableView in
+            if numberOfCells == 0 {
+                emptyBackgroundView = emptyBackgroundView ?? createEmptyBackgroundView()
+                tableView.backgroundView = emptyBackgroundView
+            } else {
+                tableView.backgroundView = nil
+            }
         }
         whenReloadBackgroundView?(self)
     }
@@ -145,25 +151,27 @@ class LUITableViewModel: LUICollectionModel, UITableViewDelegate, UITableViewDat
         addCellModel(cellModel)
         guard let sm = sectionModels.last else { return }
         let indexPath = IndexPath(item: sm.numberOfCells - 1, section: sectionModels.count - 1)
-        guard let tableView = self.tableView else { return }
-        tableView.beginUpdates()
-        if tableView.numberOfSections == 0 {
-            tableView.insertSections(IndexSet(integer: 0), with: animated ? .automatic : .none)
+        performIfTableViewAvailable { tableView in
+            tableView.beginUpdates()
+            if tableView.numberOfSections == 0 {
+                tableView.insertSections(IndexSet(integer: 0), with: animated ? .automatic : .none)
+            }
+            tableView.insertRows(at: [indexPath], with: animated ? .automatic : .none)
+            tableView.endUpdates()
         }
-        tableView.insertRows(at: [indexPath], with: animated ? .automatic : .none)
-        tableView.endUpdates()
-        reloadTableViewBackgroundView()
+        self.reloadTableViewBackgroundView()
     }
     
     func insertCellModel(_ cellModel: LUITableViewCellModel, atIndexPath: IndexPath, animated: Bool) {
         cellModel.needReloadCell = true
         guard let sectionModel = sectionModelAtIndex(atIndexPath.section) else { return }
         sectionModel.insertCellModel(cellModel, atIndex: atIndexPath.row)
-        guard let tableView = self.tableView else { return }
-        tableView.beginUpdates()
-        tableView.insertRows(at: [atIndexPath], with:  animated ? .automatic : .none)
-        tableView.endUpdates()
-        reloadTableViewBackgroundView()
+        performIfTableViewAvailable { tableView in
+            tableView.beginUpdates()
+            tableView.insertRows(at: [atIndexPath], with:  animated ? .automatic : .none)
+            tableView.endUpdates()
+        }
+        self.reloadTableViewBackgroundView()
     }
     
     func insertCellModel(_ cellModel: LUITableViewCellModel, afterIndexPath: IndexPath, animated: Bool) {
@@ -171,7 +179,6 @@ class LUITableViewModel: LUICollectionModel, UITableViewDelegate, UITableViewDat
     }
     
     func insertCellModels(_ cellModels: [LUITableViewCellModel], afterIndexPath: IndexPath, animated: Bool) {
-        guard let tableView = self.tableView else { return }
         for cellModel in cellModels {
             cellModel.needReloadCell = true
         }
@@ -180,10 +187,12 @@ class LUITableViewModel: LUICollectionModel, UITableViewDelegate, UITableViewDat
         for index in 0...cellModels.count {
             indexPaths.append(IndexPath(row: afterIndexPath.row + 1 + index, section: afterIndexPath.section))
         }
-        tableView.beginUpdates()
-        tableView.insertRows(at: indexPaths, with: animated ? .automatic : .none)
-        tableView.endUpdates()
-        reloadTableViewBackgroundView()
+        performIfTableViewAvailable { tableView in
+            tableView.beginUpdates()
+            tableView.insertRows(at: indexPaths, with: animated ? .automatic : .none)
+            tableView.endUpdates()
+        }
+        self.reloadTableViewBackgroundView()
     }
     
     func insertCellModel(_ cellModels: [LUITableViewCellModel], beforeIndexPath: IndexPath, animated: Bool) {
@@ -191,7 +200,6 @@ class LUITableViewModel: LUICollectionModel, UITableViewDelegate, UITableViewDat
     }
     
     func insertCellModels(_ cellModels: [LUITableViewCellModel], beforeIndexPath: IndexPath, animated: Bool) {
-        guard let tableView = self.tableView else { return }
         for cellModel in cellModels {
             cellModel.needReloadCell = true
         }
@@ -200,10 +208,12 @@ class LUITableViewModel: LUICollectionModel, UITableViewDelegate, UITableViewDat
         for index in 0...cellModels.count {
             indexPaths.append(IndexPath(row: beforeIndexPath.row + index, section: beforeIndexPath.section))
         }
-        tableView.beginUpdates()
-        tableView.insertRows(at: indexPaths, with: animated ? .automatic : .none)
-        tableView.endUpdates()
-        reloadTableViewBackgroundView()
+        performIfTableViewAvailable { tableView in
+            tableView.beginUpdates()
+            tableView.insertRows(at: indexPaths, with: animated ? .automatic : .none)
+            tableView.endUpdates()
+        }
+        self.reloadTableViewBackgroundView()
     }
     
     func insertCellModelsToBottom(_ cellModels: [LUITableViewCellModel], scrollToBottom: Bool) {
@@ -214,7 +224,139 @@ class LUITableViewModel: LUICollectionModel, UITableViewDelegate, UITableViewDat
         sm.insertCellModelsToBottom(cellModels)
         reloadTableViewData()
         if scrollToBottom {
-            tableView.l_scr
+            self.tableView?.l_scrollToBottomWithAnimated(true)
         }
     }
+    
+    func insertCellModelsToTop(_ cellModels: [LUITableViewCellModel], keepContentOffset: Bool) {
+        let sm = sectionModels.first as? LUITableViewSectionModel ?? createEmptySectionModel()
+        if sm !== sectionModels.first {
+            addSectionModel(sm)
+        }
+        sm.insertCellModelsToTop(cellModels)
+        guard let tableView = self.tableView else { return }
+        var contentOffset = tableView.contentOffset;
+        let contentSize1 = tableView.contentSize;
+        self.reloadTableViewData()
+        let contentSize2 = tableView.contentSize;
+        contentOffset.y += contentSize2.height-contentSize1.height;
+        if (keepContentOffset) {
+            tableView.setContentOffset(contentOffset, animated: false)
+        }
+    }
+    
+    func removeCellModel(_ cellModel: LUITableViewCellModel, animated: Bool) {
+        guard let indexPath = self.indexPathOfCellModel(cellModel) else { return }
+        cellModel.needReloadCell = false
+        self.removeCellModelAtIndexPath(indexPath)
+        performIfTableViewAvailable { tableView in
+            tableView.beginUpdates()
+            tableView.deleteRows(at: [indexPath], with: animated ? .automatic : .none)
+            tableView.endUpdates()
+        }
+        self.reloadTableViewBackgroundView()
+    }
+    
+    func removeCellModels(_ cellModels: [LUICollectionCellModel], animated: Bool) {
+        let indexPaths = self.indexPathsOfCellModels(cellModels)
+        self.removeCellModelsAtIndexPaths(indexPaths)
+    }
+    
+    func removeCellModelsAtIndexPaths(_ indexPaths: [IndexPath], animated: Bool) {
+        self.removeCellModelsAtIndexPaths(indexPaths)
+        performIfTableViewAvailable { tableView in
+            tableView.beginUpdates()
+            tableView.deleteRows(at: indexPaths, with: animated ? .automatic : .none)
+            tableView.endUpdates()
+        }
+        self.reloadTableViewBackgroundView()
+    }
+    
+    func insertSectionModel(_ sectionModel: LUITableViewSectionModel, index: Int, animated: Bool) {
+        for cellModel in sectionModel.cellModels {
+            if let tableCellModel = cellModel as? LUITableViewCellModel {
+                tableCellModel.needReloadCell = true
+            }
+        }
+        self.insertSectionModel(sectionModel, atIndex: index)
+        var indexPaths: [IndexPath] = []
+        for i in 0...sectionModel.numberOfCells {
+            indexPaths.append(IndexPath(row: index, section: index))
+        }
+        performIfTableViewAvailable { tableView in
+            tableView.beginUpdates()
+            tableView.insertSections(IndexSet(integer: index), with: animated ? .automatic : .none)
+            tableView.insertRows(at: indexPaths, with: animated ? .automatic : .none)
+            tableView.endUpdates()
+        }
+    }
+    
+    func removeSectionModel(_ sectionModel: LUITableViewSectionModel, animated: Bool) {
+        guard let index = sectionModel.indexInModel else { return }
+        let set = IndexSet(integer: index)
+        self.removeSectionModel(sectionModel)
+        var indexPaths: [IndexPath] = []
+        for i in 0...sectionModel.numberOfCells {
+            indexPaths.append(IndexPath(row: index, section: index))
+        }
+        performIfTableViewAvailable { tableView in
+            tableView.beginUpdates()
+            tableView.deleteSections(set, with: animated ? .automatic : .none)
+            tableView.deleteRows(at: indexPaths, with: animated ? .automatic : .none)
+            tableView.endUpdates()
+        }
+    }
+    
+    func deselectAllCellModelsWithAnimated(_ animated: Bool) {
+        guard let indexPaths = self.tableView?.indexPathsForSelectedRows else { return }
+        self.deselectAllCellModels()
+        for indexPath in indexPaths {
+            self.tableView?.deselectRow(at: indexPath, animated: animated)
+        }
+    }
+    
+    func deselectCellModels(_ cellModels: [LUICollectionCellModel], animated: Bool) {
+        super.deselectCellModels(cellModels)
+        for cellModel in cellModels {
+            if let tableViewCellModel = cellModel as? LUITableViewCellModel, let indexPathInModel = tableViewCellModel.indexPathInModel {
+                self.tableView?.deselectRow(at: indexPathInModel, animated: animated)
+            }
+        }
+    }
+    
+    func selectAllCellModelsWithAnimated(_ animated: Bool) {
+        self.selectAllCellModels()
+        for (i, sectionModel) in self.sectionModels.enumerated() {
+            for j in 0...sectionModel.numberOfCells {
+                self.tableView?.selectRow(at: IndexPath(row: j, section: i), animated: animated, scrollPosition: .none)
+            }
+        }
+        let allcellModels: [LUITableViewCellModel] = self.allCellModels.compactMap { $0 as? LUITableViewCellModel }
+        self.selectCellModels(allcellModels, animated: animated)
+    }
+    
+    func selectCellModels(_ cellModels: [LUITableViewCellModel], animated: Bool) {
+        super.selectCellModels(cellModels)
+        for cellModel in cellModels {
+            self.tableView?.selectRow(at: cellModel.indexPathInModel, animated: animated, scrollPosition: .none)
+        }
+    }
+    
+    func setCellModel(_ cellModel: LUITableViewCellModel, selected: Bool, animated: Bool) {
+        let offset = self.tableView?.contentOffset
+        if selected {
+            self.selectCellModel(cellModel)
+            self.tableView?.selectRow(at: cellModel.indexPathInModel, animated: animated, scrollPosition: .top)
+        } else {
+            self.deselectCellModel(cellModel)
+            if let modelIndexPath = cellModel.indexPathInModel {
+                self.tableView?.deselectRow(at: modelIndexPath, animated: animated)
+            }
+        }
+        if !animated, let offset = self.tableView?.contentOffset {
+            self.tableView?.contentOffset = offset
+        }
+    }
+    
+    //forward
 }

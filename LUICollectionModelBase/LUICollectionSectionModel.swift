@@ -20,9 +20,8 @@ class LUICollectionSectionModel: LUICollectionModelObjectBase {
     var numberOfCells: Int {
         return cellModels.count
     }
-    var indexInModel: Int {
-        //todo
-        return 0
+    var indexInModel: Int? {
+        return self.collectionModel?.indexOfSectionModel(self)
     }
     var mutableCellModels: [LUICollectionCellModel] = []
     weak var collectionModel: LUICollectionModel?
