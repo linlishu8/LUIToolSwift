@@ -42,7 +42,7 @@ extension UIScrollView {
     var l_contentOffsetOfRange: UIEdgeInsets {
         let bounds = self.bounds
         let contentSize = self.contentSize
-        let contentInset = self.adjustedContentInset
+        let contentInset = self.l_adjustedContentInset
         let minY = -contentInset.top
         let maxY = max(minY, contentSize.height - bounds.height + contentInset.bottom)
         let minX = -contentInset.left
@@ -144,7 +144,7 @@ extension UIScrollView {
         insets.bottom += keyboardRect.height - (windowRect.height - scrollViewFrame.maxY)
         self.contentInset = insets
         
-        guard let responderView = self.firstResponder(ofClass: responderViewClass) else { return }
+        guard let responderView = self.l_firstResponder else { return }
         let responderFrame = responderView.superview?.convert(responderView.frame, to: self) ?? .zero
         var contentOffset = self.contentOffset
         
@@ -158,36 +158,35 @@ extension UIScrollView {
     }
     
     func l_contentOffsetWithScrollTo(_ viewFrame: CGRect, direction: LUIScrollViewScrollDirection, position: LUIScrollViewScrollPosition) -> CGPoint {
-        let axis = direction == .vertical ? LUICGAxis : NSLayoutConstraint.Attribute.centerX
+        let axis: LUICGAxis = direction == .vertical ? .y : .x
         var offset = self.contentOffset
         let bounds = self.bounds
-        let contentInset = self.adjustedContentInset
-        let visibleBounds = bounds.inset(by: contentInset)
+        let contentInset = self.l_adjustedContentInset
+        let visibleBounds = UIEdgeInsetsInsetRect(bounds, contentInset)
+        let cellFrame = viewFrame
         
-        let targetPosition: CGFloat
         switch position {
         case .head:
-            targetPosition = axis == .centerY ? viewFrame.minY - contentInset.top : viewFrame.minX - contentInset.left
+            let edgeMin = LUIEdgeInsetsEdge.min
+            offset.LUICGPointSetValue(cellFrame.LUICGRectGetMin(axis) - edgeMin.LUIEdgeInsetsGetEdge(contentInset, axis: axis), axis: axis)
         case .middle:
-            let visibleLength = axis == .centerY ? visibleBounds.height : visibleBounds.width
-            targetPosition = (axis == .centerY ? viewFrame.midY : viewFrame.midX) - contentInset.top - visibleLength * 0.5
+            let edgeMin = LUIEdgeInsetsEdge.min
+            offset.LUICGPointSetValue(cellFrame.LUICGRectGetMid(axis) - edgeMin.LUIEdgeInsetsGetEdge(contentInset, axis: axis) - visibleBounds.LUICGRectGetLength(axis) * 0.5, axis: axis)
         case .foot:
-            let boundsLength = axis == .centerY ? bounds.height : bounds.width
-            targetPosition = (axis == .centerY ? viewFrame.maxY : viewFrame.maxX) - boundsLength + (axis == .centerY ? contentInset.bottom : contentInset.right)
+            let edgeMax = LUIEdgeInsetsEdge.max
+            offset.LUICGPointSetValue(cellFrame.LUICGRectGetMax(axis) - bounds.LUICGRectGetLength(axis) + edgeMax.LUIEdgeInsetsGetEdge(contentInset, axis: axis), axis: axis)
+        default:
+            break
         }
         
-        if axis == .centerY {
-            offset.y = targetPosition
-        } else {
-            offset.x = targetPosition
-        }
-        
-        return adjustContentOffsetInRange(offset)
+        // Restrict offset range
+        offset = self.l_adjustContentOffsetInRange(in: offset)
+        return offset
     }
     
-    func autoBounces() {
+    func l_autoBounces() {
         let contentSize = self.contentSize
-        let contentInset = self.adjustedContentInset
+        let contentInset = self.l_adjustedContentInset
         let bounds = self.bounds
         
         let delta: CGFloat = 0.0000001
@@ -195,18 +194,5 @@ extension UIScrollView {
                       (contentSize.height + contentInset.top + contentInset.bottom > bounds.size.height + delta)
         
         self.bounces = bounces
-    }
-    
-    // MARK: - Helper Method
-    private func firstResponder(ofClass responderViewClass: AnyClass?) -> UIView? {
-        guard let responderViewClass = responderViewClass else { return self.firstResponder }
-        var responder: UIView? = self.firstResponder
-        while let superview = responder?.superview {
-            if superview.isKind(of: responderViewClass) {
-                return superview
-            }
-            responder = superview
-        }
-        return responder
     }
 }

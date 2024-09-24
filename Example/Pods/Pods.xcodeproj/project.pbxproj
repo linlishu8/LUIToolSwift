@@ -13,6 +13,7 @@
 		1F5FEBC92C9D1F0D0096D794 /* UITableView+LUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5FEBC82C9D1F0D0096D794 /* UITableView+LUI.swift */; };
 		1F5FEBCB2C9D222A0096D794 /* UIScrollView+LUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5FEBCA2C9D222A0096D794 /* UIScrollView+LUI.swift */; };
 		1F5FEBCD2C9D24970096D794 /* CGGeometry+LUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5FEBCC2C9D24970096D794 /* CGGeometry+LUI.swift */; };
+		1F5FEBCF2CA29F510096D794 /* UIView+LUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5FEBCE2CA29F510096D794 /* UIView+LUI.swift */; };
 		1F716B507DBE51ADC2749CA436F39B53 /* Pods-LUIToolSwift_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328F059DD8B571BEC3A604A1248F5B7 /* Pods-LUIToolSwift_Tests-dummy.m */; };
 		1FB90CE02C9BB5B5007464A3 /* LUICollectionModelObjectBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB90CDF2C9BB5B5007464A3 /* LUICollectionModelObjectBase.swift */; };
 		1FB90CE22C9BBA94007464A3 /* LUICollectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB90CE12C9BBA94007464A3 /* LUICollectionModel.swift */; };
@@ -64,6 +65,7 @@
 		1F5FEBC82C9D1F0D0096D794 /* UITableView+LUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+LUI.swift"; sourceTree = "<group>"; };
 		1F5FEBCA2C9D222A0096D794 /* UIScrollView+LUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+LUI.swift"; sourceTree = "<group>"; };
 		1F5FEBCC2C9D24970096D794 /* CGGeometry+LUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGGeometry+LUI.swift"; sourceTree = "<group>"; };
+		1F5FEBCE2CA29F510096D794 /* UIView+LUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+LUI.swift"; sourceTree = "<group>"; };
 		1FB90CDF2C9BB5B5007464A3 /* LUICollectionModelObjectBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LUICollectionModelObjectBase.swift; sourceTree = "<group>"; };
 		1FB90CE12C9BBA94007464A3 /* LUICollectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LUICollectionModel.swift; sourceTree = "<group>"; };
 		1FB90CE32C9BBC30007464A3 /* LUICollectionCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LUICollectionCellModel.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 				1F1B016F2C9BAFC400C11B9D /* String+LUI.swift */,
 				1F5FEBC82C9D1F0D0096D794 /* UITableView+LUI.swift */,
 				1F5FEBCA2C9D222A0096D794 /* UIScrollView+LUI.swift */,
+				1F5FEBCE2CA29F510096D794 /* UIView+LUI.swift */,
 			);
 			path = LUICategory;
 			sourceTree = "<group>";
@@ -461,6 +464,7 @@
 				1F5FEBCB2C9D222A0096D794 /* UIScrollView+LUI.swift in Sources */,
 				1F5FEBC92C9D1F0D0096D794 /* UITableView+LUI.swift in Sources */,
 				1F5FEBCD2C9D24970096D794 /* CGGeometry+LUI.swift in Sources */,
+				1F5FEBCF2CA29F510096D794 /* UIView+LUI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

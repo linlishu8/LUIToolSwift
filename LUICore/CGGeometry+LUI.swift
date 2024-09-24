@@ -449,12 +449,12 @@ enum LUIEdgeInsetsEdge {
 }
 
 extension LUIEdgeInsetsEdge {
-    func LUIEdgeInsetsGetEdge(_ insets: UIEdgeInsets, axis: LUICGAxis, edge: LUIEdgeInsetsEdge) -> CGFloat {
+    func LUIEdgeInsetsGetEdge(_ insets: UIEdgeInsets, axis: LUICGAxis) -> CGFloat {
         switch axis {
         case .x:
-            return edge == .min ? insets.left : insets.right
+            return self == .min ? insets.left : insets.right
         case .y:
-            return edge == .min ? insets.top : insets.bottom
+            return self == .min ? insets.top : insets.bottom
         }
     }
     
@@ -467,8 +467,8 @@ extension LUIEdgeInsetsEdge {
         }
     }
     
-    func LUIEdgeInsetsSetEdge(_ insets: inout UIEdgeInsets, axis: LUICGAxis, edge: LUIEdgeInsetsEdge, value: CGFloat) {
-        switch (axis, edge) {
+    func LUIEdgeInsetsSetEdge(_ insets: inout UIEdgeInsets, axis: LUICGAxis, value: CGFloat) {
+        switch (axis, self) {
         case (.x, .min):
             insets.left = value
         case (.x, .max):
@@ -480,9 +480,9 @@ extension LUIEdgeInsetsEdge {
         }
     }
     
-    func LUIEdgeInsetsAddEdge(_ insets: inout UIEdgeInsets, axis: LUICGAxis, edge: LUIEdgeInsetsEdge, value: CGFloat) {
-        let currentEdgeValue = LUIEdgeInsetsGetEdge(insets, axis: axis, edge: edge)
-        LUIEdgeInsetsSetEdge(&insets, axis: axis, edge: edge, value: currentEdgeValue + value)
+    func LUIEdgeInsetsAddEdge(_ insets: inout UIEdgeInsets, axis: LUICGAxis, value: CGFloat) {
+        let currentEdgeValue = LUIEdgeInsetsGetEdge(insets, axis: axis)
+        LUIEdgeInsetsSetEdge(&insets, axis: axis, value: currentEdgeValue + value)
     }
     
     //CGAffineTransform
