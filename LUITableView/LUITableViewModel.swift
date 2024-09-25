@@ -58,17 +58,17 @@ class LUITableViewModel: LUICollectionModel, UITableViewDelegate, UITableViewDat
         section.addCellModel(cellModel)
     }
     
-    override func cellModelAtIndexPath(_ indexPath: IndexPath) -> LUICollectionCellModel? {
+    override func cellModelAtIndexPath(_ indexPath: IndexPath) -> LUITableViewCellModel? {
         guard let cellModel = super.cellModelAtIndexPath(indexPath) as? LUITableViewCellModel else { return nil }
         return cellModel
     }
     
-    override func cellModelForSelectedCellModel() -> LUICollectionCellModel? {
+    override func cellModelForSelectedCellModel() -> LUITableViewCellModel? {
         guard let cellModel = super.cellModelForSelectedCellModel() as? LUITableViewCellModel else { return nil }
         return cellModel
     }
     
-    override func sectionModelAtIndex(_ index: Int) -> LUICollectionSectionModel? {
+    override func sectionModelAtIndex(_ index: Int) -> LUITableViewSectionModel? {
         guard let sectionModel = super.sectionModelAtIndex(index) as? LUITableViewSectionModel else { return nil }
         return sectionModel
     }
@@ -346,7 +346,6 @@ class LUITableViewModel: LUICollectionModel, UITableViewDelegate, UITableViewDat
     }
     
     func setCellModel(_ cellModel: LUITableViewCellModel, selected: Bool, animated: Bool) {
-        let offset = self.tableView?.contentOffset
         if selected {
             self.selectCellModel(cellModel)
             self.tableView?.selectRow(at: cellModel.indexPathInModel, animated: animated, scrollPosition: .top)
@@ -369,18 +368,65 @@ class LUITableViewModel: LUICollectionModel, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cellModel = self.cellModelAtIndexPath(indexPath) as? LUITableViewCellModel {
-            let cellClass = cellModel.cellClass
-            let identity = self.reuseCell ? cellModel.reuseIdentity : String(format: "%@_%p", cellModel.reuseIdentity, cellModel)
-            var cell = tableView.dequeueReusableCell(withIdentifier: identity)
-            if cell == nil {
-                cell = LUITableViewCellClass.init(style: cellModel.cellStyle, reuseIdentifier: identity)
-            }
-            if let disCell = cell as? LUITableViewCellClass {
-                cellModel.displayCell(disCell)
-            }
+        guard let cellModel = self.cellModelAtIndexPath(indexPath) else {
+            return UITableViewCell()
         }
-        return UITableViewCell()
+        
+        let identity = self.reuseCell ? cellModel.reuseIdentity : "\(cellModel.reuseIdentity)_\(Unmanaged.passUnretained(cellModel).toOpaque())"
+        var cell = tableView.dequeueReusableCell(withIdentifier: identity)
+        
+        if cell == nil {
+            let cellClass = cellModel.cellClass ?? LUITableViewCellBase.self  // 提供默认类
+            cell = cellClass.init(style: .default, reuseIdentifier: identity)
+        }
+        
+        if let disCell = cell as? LUITableViewCellBase {
+            cellModel.displayCell(disCell)
+        }
+        
+        return cell ?? UITableViewCell()
     }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return self.numberOfSections
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt canEditRowAtIndexPath: IndexPath) -> Bool {
+        return self.cellModelAtIndexPath(canEditRowAtIndexPath)?.canEdit ?? false
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt editActionsForRowAtIndexPath: IndexPath) -> [UITableViewRowAction]? {
+        if let forwardDelegate = self.forwardDelegate, forwardDelegate.responds(to: #selector(tableView(_:editActionsForRowAt:))) {
+            return forwardDelegate.tableView?(tableView, editActionsForRowAt: editActionsForRowAtIndexPath)
+        }
+        return self.cellModelAtIndexPath(editActionsForRowAtIndexPath)?.editActions()
+    }
+    
+    @available(iOS 11.0, *)
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt leadingSwipeActionsConfigurationForRowAtIndexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        if let forwardDelegate = self.forwardDelegate, forwardDelegate.responds(to: #selector(tableView(_: leadingSwipeActionsConfigurationForRowAt:))) {
+            return forwardDelegate.tableView?(tableView, leadingSwipeActionsConfigurationForRowAt: leadingSwipeActionsConfigurationForRowAtIndexPath)
+        }
+        return self.cellModelAtIndexPath(leadingSwipeActionsConfigurationForRowAtIndexPath)?.swipeActionsConfigurationWithIndexPath(leadingSwipeActionsConfigurationForRowAtIndexPath, leading: true)
+    }
+    
+    @available(iOS 11.0, *)
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt trailingSwipeActionsConfigurationForRowAtIndexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        if let forwardDelegate = self.forwardDelegate, forwardDelegate.responds(to: #selector(tableView(_:trailingSwipeActionsConfigurationForRowAt:))) {
+            return forwardDelegate.tableView?(tableView, trailingSwipeActionsConfigurationForRowAt: trailingSwipeActionsConfigurationForRowAtIndexPath)
+        }
+        return self.cellModelAtIndexPath(trailingSwipeActionsConfigurationForRowAtIndexPath)?.swipeActionsConfigurationWithIndexPath(trailingSwipeActionsConfigurationForRowAtIndexPath, leading: false)
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 }

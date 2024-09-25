@@ -9,7 +9,7 @@ import Foundation
 
 class LUITableViewCellModel: LUICollectionCellModel {
     
-    var cellClass: LUITableViewCellClass?
+    var cellClass: LUITableViewCellBase.Type?
     var indexTitle: String?
     var canEdit: Bool = false
     var canMove: Bool = false
@@ -34,7 +34,7 @@ class LUITableViewCellModel: LUICollectionCellModel {
         return String(describing: cellClass)
     }
 
-    static func model(withValue modelValue: Any?, cellClass: LUITableViewCellClass, whenClick: ((LUITableViewCellModel) -> Void)? = nil) -> LUITableViewCellModel {
+    static func model(withValue modelValue: Any?, cellClass: LUITableViewCellBase.Type, whenClick: ((LUITableViewCellModel) -> Void)? = nil) -> LUITableViewCellModel {
         let model = LUITableViewCellModel()
         model.cellClass = cellClass
         model.whenClick = whenClick
@@ -42,8 +42,8 @@ class LUITableViewCellModel: LUICollectionCellModel {
     }
 
     required init() {
+        self.cellClass = LUITableViewCellBase.self
         super.init()
-        self.cellClass = LUITableViewCellClass()
     }
 
     var tableView: UITableView? {
@@ -54,7 +54,7 @@ class LUITableViewCellModel: LUICollectionCellModel {
         return collectionModel as? LUITableViewModel
     }
 
-    func displayCell(_ cell: LUITableViewCellClass) {
+    func displayCell(_ cell: LUITableViewCellBase) {
         let isCellModelChanged = self.needReloadCell
                               || cell.cellModel !== self
                               || self.tableViewCell !== cell
@@ -138,9 +138,9 @@ class LUITableViewCellModel: LUICollectionCellModel {
 //        tableViewModel?.removeCellModel(self, animated: animated)
     }
     
-    func editActions() -> [UITableViewRowAction]? {
+    func editActions() -> [UITableViewRowAction] {
         var editActions: [UITableViewRowAction] = []
-        guard let swipeActions: [LUITableViewCellSwipeAction] = self.swipeActions else { return nil }
+        guard let swipeActions: [LUITableViewCellSwipeAction] = self.swipeActions else { return editActions }
         for swipeAction in swipeActions {
             editActions.append(swipeAction.tableViewRowActionWithCellModel(self))
         }
