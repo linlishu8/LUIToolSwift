@@ -419,9 +419,22 @@ class LUITableViewModel: LUICollectionModel, UITableViewDelegate, UITableViewDat
     }
     
     
+    func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith accessoryButtonTappedForRowWithIndexPath: IndexPath) {
+        guard let cellModel = self.cellModelAtIndexPath(accessoryButtonTappedForRowWithIndexPath) else { return }
+        cellModel.whenClickAccessory?(cellModel)
+    }
     
-    
-    
+    private func _sectionIndexTitlesForTableView(_ tableView: UITableView) -> [[String : Any]] {
+        var sectionIndexTitles: [[String : Any]] = []
+        guard self.showSectionIndexTitle, !self.sectionModels.isEmpty else { return sectionIndexTitles }
+        for model in self.sectionModels {
+            if let sectionModel = model as? LUITableViewSectionModel {
+                let title = sectionModel.indexTitle ?? defaultSectionIndexTitle
+                sectionIndexTitles.append(["title": title, "model": sectionModel])
+            }
+        }
+        return sectionIndexTitles
+    }
     
     
     
