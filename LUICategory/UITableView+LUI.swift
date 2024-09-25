@@ -93,7 +93,7 @@ extension UITableView {
                 var contentViewBounds = cellBounds
                 
                 if #available(iOS 11.0, *) {
-                    contentViewBounds = contentViewBounds.inset(by: self.safeAreaInsets)
+                    contentViewBounds = UIEdgeInsetsInsetRect(cellBounds, safeAreaInsets)
                 }
                 
                 if cell.accessoryView == nil {

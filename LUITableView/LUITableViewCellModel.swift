@@ -9,7 +9,7 @@ import Foundation
 
 class LUITableViewCellModel: LUICollectionCellModel {
     
-    var cellClass: UITableViewCell.Type = UITableViewCell.self
+    var cellClass: LUITableViewCellClass?
     var indexTitle: String?
     var canEdit: Bool = false
     var canMove: Bool = false
@@ -26,6 +26,7 @@ class LUITableViewCellModel: LUICollectionCellModel {
     var leadingSwipeActions: [LUITableViewCellSwipeAction]?
 
     weak var tableViewCell: UITableViewCell?
+    var cellStyle: UITableViewCellStyle = .default
     
     var needReloadCell: Bool = false
 
@@ -33,7 +34,7 @@ class LUITableViewCellModel: LUICollectionCellModel {
         return String(describing: cellClass)
     }
 
-    static func model(withValue modelValue: Any?, cellClass: UITableViewCell.Type, whenClick: ((LUITableViewCellModel) -> Void)? = nil) -> LUITableViewCellModel {
+    static func model(withValue modelValue: Any?, cellClass: LUITableViewCellClass, whenClick: ((LUITableViewCellModel) -> Void)? = nil) -> LUITableViewCellModel {
         let model = LUITableViewCellModel()
         model.cellClass = cellClass
         model.whenClick = whenClick
@@ -42,7 +43,7 @@ class LUITableViewCellModel: LUICollectionCellModel {
 
     required init() {
         super.init()
-        self.cellClass = UITableViewCell.self
+        self.cellClass = LUITableViewCellClass()
     }
 
     var tableView: UITableView? {
@@ -53,7 +54,7 @@ class LUITableViewCellModel: LUICollectionCellModel {
         return collectionModel as? LUITableViewModel
     }
 
-    func displayCell(_ cell: UITableViewCell & LUITableViewCellProtocol) {
+    func displayCell(_ cell: LUITableViewCellClass) {
         let isCellModelChanged = self.needReloadCell
                               || cell.cellModel !== self
                               || self.tableViewCell !== cell

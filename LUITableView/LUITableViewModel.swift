@@ -51,7 +51,10 @@ class LUITableViewModel: LUICollectionModel, UITableViewDelegate, UITableViewDat
     }
     
     override func addCellModel(_ cellModel: LUICollectionCellModel) {
-        var section = sectionModels.last as? LUITableViewSectionModel ?? createEmptySectionModel()
+        let section = self.sectionModels.last as? LUITableViewSectionModel ?? self.createEmptySectionModel()
+        if section !== self.sectionModels.last {
+            self.addSectionModel(section)
+        }
         section.addCellModel(cellModel)
     }
     
@@ -80,7 +83,7 @@ class LUITableViewModel: LUICollectionModel, UITableViewDelegate, UITableViewDat
     }
     
     func addAutoIndexedCellModel(_ cellModel: LUITableViewCellModel) -> LUITableViewSectionModel? {
-        var useDefaultIndexTitle: Bool = cellModel.indexTitle?.count == 0;
+        let useDefaultIndexTitle: Bool = cellModel.indexTitle?.count == 0;
         let indexTitle = useDefaultIndexTitle ? defaultSectionIndexTitle : cellModel.indexTitle ?? defaultSectionIndexTitle
         var sectionModel = useDefaultIndexTitle ? defaultIndexTitleSectionModel : sectionModelWithIndexTitle(indexTitle)
         if sectionModel == nil {
@@ -127,7 +130,7 @@ class LUITableViewModel: LUICollectionModel, UITableViewDelegate, UITableViewDat
         self.reloadTableViewBackgroundView()
     }
     
-    // empty background
+    // MARK: -  empty background
     func createEmptyBackgroundView() -> UIView? {
         let viewClass = emptyBackgroundViewClass as? UIView.Type
         return viewClass?.init()
@@ -280,7 +283,7 @@ class LUITableViewModel: LUICollectionModel, UITableViewDelegate, UITableViewDat
         }
         self.insertSectionModel(sectionModel, atIndex: index)
         var indexPaths: [IndexPath] = []
-        for i in 0...sectionModel.numberOfCells {
+        for _ in 0..<sectionModel.numberOfCells {
             indexPaths.append(IndexPath(row: index, section: index))
         }
         performIfTableViewAvailable { tableView in
@@ -296,7 +299,7 @@ class LUITableViewModel: LUICollectionModel, UITableViewDelegate, UITableViewDat
         let set = IndexSet(integer: index)
         self.removeSectionModel(sectionModel)
         var indexPaths: [IndexPath] = []
-        for i in 0...sectionModel.numberOfCells {
+        for _ in 0..<sectionModel.numberOfCells {
             indexPaths.append(IndexPath(row: index, section: index))
         }
         performIfTableViewAvailable { tableView in
@@ -358,5 +361,26 @@ class LUITableViewModel: LUICollectionModel, UITableViewDelegate, UITableViewDat
         }
     }
     
-    //forward
+    // MARK: - UITableViewDataSource
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        self.tableView = tableView
+        return self.sectionModelAtIndex(section)?.numberOfCells ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let cellModel = self.cellModelAtIndexPath(indexPath) as? LUITableViewCellModel {
+            let cellClass = cellModel.cellClass
+            let identity = self.reuseCell ? cellModel.reuseIdentity : String(format: "%@_%p", cellModel.reuseIdentity, cellModel)
+            var cell = tableView.dequeueReusableCell(withIdentifier: identity)
+            if cell == nil {
+                cell = LUITableViewCellClass.init(style: cellModel.cellStyle, reuseIdentifier: identity)
+            }
+            if let disCell = cell as? LUITableViewCellClass {
+                cellModel.displayCell(disCell)
+            }
+        }
+        return UITableViewCell()
+    }
+    
 }
