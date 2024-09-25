@@ -436,9 +436,29 @@ class LUITableViewModel: LUICollectionModel, UITableViewDelegate, UITableViewDat
         return sectionIndexTitles
     }
     
+    func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+        var sectionIndexTitles: [String] = []
+        guard self.showSectionIndexTitle else { return sectionIndexTitles }
+        let map = self._sectionIndexTitlesForTableView(tableView)
+        for info in map {
+            if let title = info["title"] as? String {
+                sectionIndexTitles.append(title)
+            }
+        }
+        return sectionIndexTitles
+    }
     
-    
-    
+    func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
+        var sectionIndex = NSNotFound
+        guard self.showSectionIndexTitle else { return sectionIndex }
+        let map = self._sectionIndexTitlesForTableView(tableView)
+        guard map.count > index else { return sectionIndex }
+        let info = map[index]
+        if let sectionModel = info.l_valueForKeyPath("model") as? LUITableViewSectionModel {
+            sectionIndex = self.indexOfSectionModel(sectionModel) ?? NSNotFound
+        }
+        return sectionIndex
+    }
     
     
     
