@@ -70,20 +70,18 @@ class LUITableViewCellModel: LUICollectionCellModel {
     }
 
     func refresh() {
-        //todo
-//        guard let indexPath = tableViewModel?.indexPath(of: self) else { return }
-//        needReloadCell = true
-//        tableView?.reloadRows(at: [indexPath], with: .automatic)
+        guard let indexPath = self.tableViewModel?.indexPathOfCellModel(self) else { return }
+        self.needReloadCell = true
+        self.tableView?.reloadRows(at: [indexPath], with: .automatic)
     }
 
-    func refresh(animated: Bool) {
-        //todo
-//        guard let indexPath = tableViewModel?.indexPath(of: self) else { return }
-//        needReloadCell = true
-//        tableView?.reloadRows(at: [indexPath], with: animated ? .automatic : .none)
-//        if isSelected {
-//            tableView?.selectRow(at: indexPath, animated: animated, scrollPosition: .none)
-//        }
+    func refreshWithAnimated(_ animated: Bool) {
+        guard let indexPath = self.tableViewModel?.indexPathOfCellModel(self) else { return }
+        self.needReloadCell = true
+        self.tableView?.reloadRows(at: [indexPath], with: animated ? .automatic : .none)
+        if self.selected {
+            self.tableView?.selectRow(at: indexPath, animated: animated, scrollPosition: .none)
+        }
     }
 
     func deselectCellWithAnimated(_ animated: Bool) {
@@ -95,8 +93,7 @@ class LUITableViewCellModel: LUICollectionCellModel {
     }
 
     func setSelected(_ selected: Bool, animated: Bool) {
-        //todo
-//        tableViewModel?.setCellModel(self, selected: selected, animated: animated)
+        self.tableViewModel?.setCellModel(self, selected: selected, animated: animated)
     }
 
     func didClickSelf() {
@@ -116,21 +113,26 @@ class LUITableViewCellModel: LUICollectionCellModel {
     }
     
     func setFocused(_ focused: Bool, refreshed: Bool) {
-        //todo
-//        guard let safeTableViewModel = tableViewModel else {
-//            self.focused = focused
-//            return
-//        }
-//        if focused {
-//            guard let oldCM = tableViewModel?.cellModelForFocusedCellModel() else { return }
-//            if oldCM == self {
-//                return
-//            }
-//            oldCM.focused = false
-//            oldCM.refreshWithAnimated(true)
-//        } else {
-//            
-//        }
+        guard let tableViewModel = self.tableViewModel else {
+            self.focused = focused
+            return
+        }
+        if focused {
+            guard let oldCM = tableViewModel.cellModelForFocusedCellModel() as? LUITableViewCellModel, oldCM !== self else { return }
+            oldCM.focused = false
+            oldCM.refreshWithAnimated(true)
+            self.focused = true
+            if refreshed {
+                self.refreshWithAnimated(true)
+                guard let indexPathInModel = self.indexPathInModel else { return }
+                self.tableView?.scrollToRow(at: indexPathInModel, at: .middle, animated: true)
+            }
+        } else {
+            self.tableViewModel?.focusCellModel(self, focused: false)
+            if refreshed {
+                self.refreshWithAnimated(true)
+            }
+        }
     }
 
     func removeFromModelWithAnimated(_ animated: Bool) {
