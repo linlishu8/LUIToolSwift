@@ -43,12 +43,21 @@ class LUITableViewCellBase: UITableViewCell, LUITableViewCellProtocol {
         return CGFloat(cellModel.l_floatForKeyPath(self.estimatedHeightKey, otherwise: 44))
     }
     
-    var cellModel: LUITableViewCellModel? {
-        get {
-            
-        } set {
-            
+    var cellModel: LUITableViewCellModel?
+    
+    func setCellModel(_ cellModel: LUITableViewCellModel) {
+        isCellModelChanged = cellModel.needReloadCell ||
+                             self.cellModel !== cellModel ||
+                             cellModel.tableViewCell !== self
+        
+        self.cellModel = cellModel
+        if LUITableViewCellBase.useCachedFitedSize && cellModel.needReloadCell {
+            cellModel[LUITableViewCellBase.cachedFitedSizeKey] = nil
         }
+        cellModel.needReloadCell = false
+        if !self.isCellModelChanged { return }
+        self.isNeedLayoutCellSubviews = true
+        self.customReloadCellModel()
     }
     
     override func layoutSubviews() {
@@ -67,7 +76,15 @@ class LUITableViewCellBase: UITableViewCell, LUITableViewCellProtocol {
                 }
             }
         }
-        
+        var sizeFits = self.l_sizeThatFits(size: size) { blockSize in
+            return self.customSizeThatFits(size: blockSize)
+        }
+        sizeFits.width = size.width
+        if LUITableViewCellBase.useCachedFitedSize {
+            self.cellModel?[LUITableViewCellBase.cachedFitedSizeKey] = [NSValue (cgSize: sizeFits)]
+        }
+        self.cellModel?[LUITableViewCellBase.estimatedHeightKey] = sizeFits.height
+        return sizeFits
     }
     
     func tableView(_ tableView: UITableView, didSelectCell selected: Bool) {
