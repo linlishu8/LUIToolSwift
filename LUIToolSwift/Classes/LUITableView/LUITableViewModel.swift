@@ -460,6 +460,142 @@ class LUITableViewModel: LUICollectionModel, UITableViewDelegate, UITableViewDat
         return sectionIndex
     }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let sectionModel = self.sectionModelAtIndex(indexPath.section)
+            let model = sectionModel?.cellModelAtIndex(indexPath.row)
+            if let cellModel = model {
+                cellModel.whenDelete?(cellModel)
+            }
+        }
+        if let forwardDataSource = self.forwardDataSource, forwardDataSource.responds(to: #selector(tableView(_:commit:forRowAt:))) {
+            forwardDataSource.tableView?(tableView, commit: editingStyle, forRowAt: indexPath)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let scrTableCellModel = self.cellModelAtIndexPath(sourceIndexPath)
+        let dstTableCellModel = self.cellModelAtIndexPath(destinationIndexPath)
+        var handed = false
+        if let handler = scrTableCellModel?.whenMove ?? dstTableCellModel?.whenMove {
+            if let scrHander = scrTableCellModel, let dstHander = dstTableCellModel {
+                handler(scrHander, dstHander)
+                handed = true
+            }
+        }
+        if let forwardDataSource = self.forwardDataSource, forwardDataSource.responds(to: #selector(tableView(_:moveRowAt:to:))) {
+            self.forwardDataSource?.tableView?(tableView, moveRowAt: sourceIndexPath, to: destinationIndexPath)
+        }
+        if !handed {
+            self.moveCellModelAtIndexPath(sourceIndexPath, toIndexPath: destinationIndexPath)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if let cellModel = self.cellModelAtIndexPath(indexPath) {
+            let cellClass = cellModel.cellClass
+            return cellClass?.heightWithTableView(tableView, cellModel: cellModel) ?? 0
+        }
+        return 0
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        if let cellModel = self.cellModelAtIndexPath(indexPath) {
+            let cellClass = cellModel.cellClass
+            return cellClass?.estimatedHeightWithTableView(tableView, cellModel: cellModel) ?? 0
+        }
+        return 0
+    }
+    
+    private func __tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        var height: CGFloat = 0
+        if let sectionModel = self.sectionModelAtIndex(section), sectionModel.showHeadView {
+            if sectionModel.showDefaultHeadView {
+                let headHeight = sectionModel.headViewHeight
+                if headHeight == 0 {
+                    height = UITableViewAutomaticDimension
+                }
+            } else {
+                height = sectionModel.headViewClass?.heightWithTableView(tableView, sectionModel: sectionModel, kind: .head) ?? 0
+            }
+        }
+        return height
+    }
+    
+    private func __tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        var height: CGFloat = 0
+        if let sectionModel = self.sectionModelAtIndex(section), sectionModel.showFootView {
+            if sectionModel.showDefaultFootView {
+                let headHeight = sectionModel.footViewHeight
+                if headHeight == 0 {
+                    height = UITableViewAutomaticDimension
+                }
+            } else {
+                height = sectionModel.footViewClass?.heightWithTableView(tableView, sectionModel: sectionModel, kind: .foot) ?? 0
+            }
+        }
+        return height
+    }
+    
+    private func __tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String {
+        if let sectionModel = self.sectionModelAtIndex(section) {
+            var title = sectionModel.headTitle
+            if title?.count == 0 && sectionModel.showHeadView {
+                title = " "
+            }
+        }
+        return ""
+    }
+    
+    private func __tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String {
+        if let sectionModel = self.sectionModelAtIndex(section) {
+            var title = sectionModel.footTitle
+            if title?.count == 0 && sectionModel.showFootView {
+                title = " "
+            }
+        }
+        return ""
+    }
+    
+    private func __tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let sectionModel = self.sectionModelAtIndex(section), !sectionModel.showDefaultHeadView else { return nil }
+        if let viewType = sectionModel.headViewClass as? UIView.Type {
+            let height = __tableView(tableView, heightForHeaderInSection: section)
+            let frame = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: height >= 0 ? height : 40)
+            if let view = viewType.init(frame: frame) as? UIView & LUITableViewSectionViewProtocol {
+                sectionModel.displayHeadView(view)
+                return view
+            }
+        }
+        return nil
+    }
+    
+    private func __tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        guard let sectionModel = self.sectionModelAtIndex(section), !sectionModel.showDefaultFootView else { return nil }
+        if let viewType = sectionModel.footViewClass as? UIView.Type {
+            let height = __tableView(tableView, heightForFooterInSection: section)
+            let frame = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: height >= 0 ? height : 40)
+            if let view = viewType.init(frame: frame) as? UIView & LUITableViewSectionViewProtocol {
+                sectionModel.displayFootView(view)
+                return view
+            }
+        }
+        return nil
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) as? LUITableViewCellProtocol {
+            cell.tableView(tableView, didSelectCell: true)
+        }
+        if let cellModel = self.cellModelAtIndexPath(indexPath) {
+            self.selectCellModel(cellModel)
+            cellModel.whenSelected?(cellModel, true)
+            cellModel.whenClick?(cellModel)
+        }
+        if let forwardDelegate = self.forwardDelegate, forwardDelegate.responds(to: #selector(tableView(_:didSelectRowAt:))) {
+            forwardDelegate.tableView?(tableView, didSelectRowAt: indexPath)
+        }
+    }
     
     
 }

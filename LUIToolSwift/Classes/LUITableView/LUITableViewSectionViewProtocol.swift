@@ -13,11 +13,11 @@ enum LUITableViewSectionViewKind {
 }
 
 protocol LUITableViewSectionViewProtocol: AnyObject {
-    static func height(tableView: UITableView, sectionModel: LUITableViewSectionModel, kind: LUITableViewSectionViewKind) -> CGFloat
+    static func heightWithTableView(_: UITableView, sectionModel: LUITableViewSectionModel, kind: LUITableViewSectionViewKind) -> CGFloat
     
     func setSectionModel(_ sectionModel: LUITableViewSectionModel?, kind: LUITableViewSectionViewKind)
 
-    func willDisplaySection(tableView: UITableView, sectionModel: LUITableViewSectionModel, kind: LUITableViewSectionViewKind)
+    func tableView(_: UITableView, willDisplaySectionModel sectionModel: LUITableViewSectionModel, kind: LUITableViewSectionViewKind)
     
-    func didEndDisplayingSection(tableView: UITableView, sectionModel: LUITableViewSectionModel, kind: LUITableViewSectionViewKind)
+    func tableView(_: UITableView, didEndDisplayingSectionModel sectionModel: LUITableViewSectionModel, kind: LUITableViewSectionViewKind)
 }

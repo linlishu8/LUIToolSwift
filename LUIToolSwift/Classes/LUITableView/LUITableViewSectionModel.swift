@@ -34,7 +34,7 @@ class LUITableViewSectionModel: LUICollectionSectionModel {
     var whenShowHeadView: ((LUITableViewSectionModel, UIView) -> Void)?
     var whenShowFootView: ((LUITableViewSectionModel, UIView) -> Void)?
     
-    override func cellModelAtIndex(_ index: Int) -> LUICollectionCellModel? {
+    override func cellModelAtIndex(_ index: Int) -> LUITableViewCellModel? {
         if let cellModel = super.cellModelAtIndex(index) as? LUITableViewCellModel {
             return cellModel
         }
