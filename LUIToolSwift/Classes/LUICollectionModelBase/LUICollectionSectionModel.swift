@@ -123,7 +123,11 @@ class LUICollectionSectionModel: LUICollectionModelObjectBase {
     }
     
     func indexPathForSelectedCellModel() -> IndexPath? {
-        //todo
+        for (idx, cellModel) in self.cellModels.enumerated() {
+            if cellModel.selected, let section = self.collectionModel?.indexOfSectionModel(self) {
+                return IndexPath(row: idx, section:section)
+            }
+        }
         return nil
     }
     

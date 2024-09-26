@@ -136,8 +136,7 @@ class LUITableViewCellModel: LUICollectionCellModel {
     }
 
     func removeFromModelWithAnimated(_ animated: Bool) {
-        //todo
-//        tableViewModel?.removeCellModel(self, animated: animated)
+        self.tableViewModel?.removeCellModel(self, animated: animated)
     }
     
     func editActions() -> [UITableViewRowAction] {
