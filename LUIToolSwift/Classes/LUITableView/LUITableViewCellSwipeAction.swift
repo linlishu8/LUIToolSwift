@@ -51,7 +51,7 @@ class LUITableViewCellSwipeAction {
         let rowAction = UITableViewRowAction(style: actionStyle, title: title) { action, indexPath in
             self.handler?(self, cellModel)
             if self.autoCompletion {
-                cellModel.refresh(animated: true)
+                cellModel.refreshWithAnimated(true)
             }
         }
         

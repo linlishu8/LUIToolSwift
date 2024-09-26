@@ -10,18 +10,18 @@ import UIKit
 import LUIToolSwift
 
 class ViewController: UIViewController {
+    
+    private lazy var tableView: LUITableView = {
+        return LUITableView()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let obj = NSObject()
-        print(obj.l_objectAddress())
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
 }
 

@@ -8,9 +8,6 @@
 import Foundation
 
 extension UIView {
-    func l_screenshotsImageWithSize(_ size: CGSize, scale: CGFloat) -> UIImage {
-        
-    }
     
     func l_screenshotsImageWithScale(_ scale: CGFloat) -> UIImage? {
         return self.l_screenshotsImageWithScale(scale, opaque: false)
