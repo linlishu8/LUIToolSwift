@@ -14,8 +14,8 @@ protocol LUITableViewCellProtocol: AnyObject {
     var cellModel: LUITableViewCellModel? { get }
     
     func tableView(_ tableView: UITableView, didSelectCell selected: Bool)
-    func tableView(_ tableView: UITableView, willDisplay cellModel: LUITableViewCellModel)
-    func tableView(_ tableView: UITableView, didEndDisplaying cellModel: LUITableViewCellModel)
+    func tableView(_ tableView: UITableView, willDisplayCellModel cellModel: LUITableViewCellModel)
+    func tableView(_ tableView: UITableView, didEndDisplayingCellModel cellModel: LUITableViewCellModel)
 }
 
 class LUITableViewCellBase: UITableViewCell, LUITableViewCellProtocol {
@@ -42,11 +42,11 @@ class LUITableViewCellBase: UITableViewCell, LUITableViewCellProtocol {
         
     }
     
-    func tableView(_ tableView: UITableView, willDisplay cellModel: LUITableViewCellModel) {
+    func tableView(_ tableView: UITableView, willDisplayCellModel cellModel: LUITableViewCellModel) {
         
     }
     
-    func tableView(_ tableView: UITableView, didEndDisplaying cellModel: LUITableViewCellModel) {
+    func tableView(_ tableView: UITableView, didEndDisplayingCellModel cellModel: LUITableViewCellModel) {
         
     }
     

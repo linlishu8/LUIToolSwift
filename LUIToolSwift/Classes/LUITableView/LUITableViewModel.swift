@@ -597,5 +597,80 @@ class LUITableViewModel: LUICollectionModel, UITableViewDelegate, UITableViewDat
         }
     }
     
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) as? LUITableViewCellProtocol {
+            cell.tableView(tableView, didSelectCell: false)
+        }
+        if let cellModel = self.cellModelAtIndexPath(indexPath) {
+            self.deselectCellModel(cellModel)
+            cellModel.whenSelected?(cellModel, false)
+            if tableView.allowsMultipleSelection {
+                cellModel.whenClick?(cellModel)
+            }
+        }
+        if let forwardDelegate = self.forwardDelegate, forwardDelegate.responds(to: #selector(tableView(_:didDeselectRowAt:))) {
+            forwardDelegate.tableView?(tableView, didDeselectRowAt: indexPath)
+        }
+    }
+    
+    // MARK: - Display customization
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if let cellModel = self.cellModelAtIndexPath(indexPath), let tableCell = cell as? LUITableViewCellProtocol {
+            tableCell.tableView(tableView, willDisplayCellModel: cellModel)
+        }
+        if let forwardDelegate = self.forwardDelegate, forwardDelegate.responds(to: #selector(tableView(_:willDisplay:forRowAt:))) {
+            forwardDelegate.tableView?(tableView, willDisplay: cell, forRowAt: indexPath)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        if let headerView = view as? LUITableViewSectionViewProtocol, let sectionModel = self.sectionModelAtIndex(section) {
+            headerView.tableView(tableView, willDisplaySectionModel: sectionModel, kind: .head)
+        }
+        if let forwardDelegate = self.forwardDelegate, forwardDelegate.responds(to: #selector(tableView(_:willDisplayHeaderView:forSection:))) {
+            forwardDelegate.tableView?(tableView, willDisplayHeaderView: view, forSection: section)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
+        if let footView = view as? LUITableViewSectionViewProtocol, let sectionModel = self.sectionModelAtIndex(section) {
+            footView.tableView(tableView, willDisplaySectionModel: sectionModel, kind: .foot)
+        }
+        if let forwardDelegate = self.forwardDelegate, forwardDelegate.responds(to: #selector(tableView(_:willDisplayHeaderView:forSection:))) {
+            forwardDelegate.tableView?(tableView, willDisplayFooterView: view, forSection: section)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if let cellModel = self.cellModelAtIndexPath(indexPath), let tableCell = cell as? LUITableViewCellProtocol {
+            tableCell.tableView(tableView, didEndDisplayingCellModel: cellModel)
+        }
+        if let forwardDelegate = self.forwardDelegate, forwardDelegate.responds(to: #selector(tableView(_:didEndDisplaying:forRowAt:))) {
+            forwardDelegate.tableView?(tableView, didEndDisplaying: cell, forRowAt: indexPath)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didEndDisplayingHeaderView view: UIView, forSection section: Int) {
+        if let headView = view as? LUITableViewSectionViewProtocol, let sectionModel = self.sectionModelAtIndex(section) {
+            headView.tableView(tableView, didEndDisplayingSectionModel: sectionModel, kind: .head)
+        }
+        if let forwardDelegate = self.forwardDelegate, forwardDelegate.responds(to: #selector(tableView(_:willDisplayHeaderView:forSection:))) {
+            forwardDelegate.tableView?(tableView, didEndDisplayingHeaderView: view, forSection: section)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didEndDisplayingFooterView view: UIView, forSection section: Int) {
+        if let footView = view as? LUITableViewSectionViewProtocol, let sectionModel = self.sectionModelAtIndex(section) {
+            footView.tableView(tableView, didEndDisplayingSectionModel: sectionModel, kind: .foot)
+        }
+        if let forwardDelegate = self.forwardDelegate, forwardDelegate.responds(to: #selector(tableView(_:willDisplayHeaderView:forSection:))) {
+            forwardDelegate.tableView?(tableView, didEndDisplayingHeaderView: view, forSection: section)
+        }
+    }
+    
+    
+    
+    
     
 }
