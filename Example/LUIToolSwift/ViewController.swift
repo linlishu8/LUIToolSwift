@@ -33,6 +33,19 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.tableView.frame = self.safeBounds()
+    }
+    
+    func safeBounds() -> CGRect {
+        var bounds = self.view.bounds
+        if #available(iOS 11.0, *) {
+            bounds = self.view.safeAreaLayoutGuide.layoutFrame
+        }
+        return bounds
+    }
+    
     func __reloadData() {
         let testModel1 = self.addCellModelWithCellTitle("测试1")
         let testModel2 = self.addCellModelWithCellTitle("测试2")
