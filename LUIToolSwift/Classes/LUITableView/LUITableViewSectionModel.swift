@@ -41,6 +41,10 @@ public class LUITableViewSectionModel: LUICollectionSectionModel {
         return nil
     }
     
+    init() {
+        super.init()
+    }
+    
     // 初始化显示空白头部
     init(blankHeadViewHeight: CGFloat) {
         super.init()

@@ -536,7 +536,7 @@ public class LUITableViewModel: LUICollectionModel, UITableViewDelegate, UITable
     private func __tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String {
         if let sectionModel = self.sectionModelAtIndex(section) {
             var title = sectionModel.headTitle
-            if title?.count == 0 && sectionModel.showHeadView {
+            if title.count == 0 && sectionModel.showHeadView {
                 title = " "
             }
         }
@@ -546,7 +546,7 @@ public class LUITableViewModel: LUICollectionModel, UITableViewDelegate, UITable
     private func __tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String {
         if let sectionModel = self.sectionModelAtIndex(section) {
             var title = sectionModel.footTitle
-            if title?.count == 0 && sectionModel.showFootView {
+            if title.count == 0 && sectionModel.showFootView {
                 title = " "
             }
         }
