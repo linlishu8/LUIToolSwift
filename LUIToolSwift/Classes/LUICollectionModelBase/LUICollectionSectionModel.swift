@@ -7,7 +7,7 @@
 
 import Foundation
 
-class LUICollectionSectionModel: LUICollectionModelObjectBase {
+public class LUICollectionSectionModel: LUICollectionModelObjectBase {
     //含有的单元格
     var cellModels: [LUICollectionCellModel] = [] {
         didSet {

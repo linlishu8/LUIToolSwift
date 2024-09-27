@@ -7,7 +7,7 @@
 
 import Foundation
 
-class LUITableViewSectionModel: LUICollectionSectionModel {
+public class LUITableViewSectionModel: LUICollectionSectionModel {
     var indexTitle: String?
     var headViewClass: LUITableViewSectionViewProtocol.Type?
     var footViewClass: LUITableViewSectionViewProtocol.Type?

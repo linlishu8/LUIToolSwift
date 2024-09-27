@@ -7,7 +7,7 @@
 
 import Foundation
 
-class LUITableViewCellBase: UITableViewCell, LUITableViewCellProtocol {
+public class LUITableViewCellBase: UITableViewCell, LUITableViewCellProtocol {
     
     static var useCachedFitedSize: Bool = true //是否缓存sizeThatFits:的结果，默认为YES
     var isCellModelChanged: Bool = false//cellmodel是否有变化
@@ -60,14 +60,14 @@ class LUITableViewCellBase: UITableViewCell, LUITableViewCellProtocol {
         self.customReloadCellModel()
     }
     
-    override func layoutSubviews() {
+    public override func layoutSubviews() {
         super.layoutSubviews()
         if !self.isCellModelChanged && !self.isNeedLayoutCellSubviews { return }
         self.customLayoutSubviews()
         self.isNeedLayoutCellSubviews = false
     }
     
-    override func sizeThatFits(_ size: CGSize) -> CGSize {
+    public override func sizeThatFits(_ size: CGSize) -> CGSize {
         if LUITableViewCellBase.useCachedFitedSize {
             if let cellModel = self.cellModel, let cacheSizeValue = cellModel.l_NSValueForKeyPath(LUITableViewCellBase.cachedFitedSizeKey) {
                 let cacheSize = cacheSizeValue.cgSizeValue

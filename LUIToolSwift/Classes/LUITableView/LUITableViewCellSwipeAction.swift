@@ -12,7 +12,7 @@ enum LUITableViewCellSwipeActionStyle: Int {
     case destructive = 1
 }
 
-class LUITableViewCellSwipeAction {
+public class LUITableViewCellSwipeAction {
 
     let style: LUITableViewCellSwipeActionStyle
     var title: String?

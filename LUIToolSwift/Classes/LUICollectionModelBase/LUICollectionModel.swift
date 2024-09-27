@@ -7,7 +7,7 @@
 
 import Foundation
 
-class LUICollectionModel: LUICollectionModelObjectBase {
+public class LUICollectionModel: LUICollectionModelObjectBase {
     //分组
     var sectionModels: [LUICollectionSectionModel] = [] {
         didSet {

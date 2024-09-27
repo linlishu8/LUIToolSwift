@@ -7,7 +7,7 @@
 
 import Foundation
 
-class LUITableViewCellModel: LUICollectionCellModel {
+public class LUITableViewCellModel: LUICollectionCellModel {
     
     var cellClass: LUITableViewCellBase.Type?
     var indexTitle: String?

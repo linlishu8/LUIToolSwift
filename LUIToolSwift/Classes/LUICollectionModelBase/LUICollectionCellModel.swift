@@ -7,7 +7,7 @@
 
 import Foundation
 
-class LUICollectionCellModel:LUICollectionModelObjectBase {
+public class LUICollectionCellModel:LUICollectionModelObjectBase {
     weak var sectionModel: LUICollectionSectionModel?
     var collectionModel: LUICollectionModel? {
         return sectionModel?.collectionModel

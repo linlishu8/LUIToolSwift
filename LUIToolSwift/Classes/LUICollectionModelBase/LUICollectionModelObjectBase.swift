@@ -7,7 +7,7 @@
 
 import Foundation
 
-class LUICollectionModelObjectBase: NSObject {
+public class LUICollectionModelObjectBase: NSObject {
     var modelValue: Any?
     private var dynamicProperties: [AnyHashable: Any] = [:]
 
