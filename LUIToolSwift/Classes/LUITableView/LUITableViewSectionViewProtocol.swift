@@ -8,7 +8,7 @@
 import Foundation
 
 enum LUITableViewSectionViewKind {
-    case head // 头部
+    case head // 头部   
     case foot // 尾部
 }
 

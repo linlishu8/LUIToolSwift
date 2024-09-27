@@ -8,9 +8,9 @@
 import Foundation
 
 public class LUITableViewSectionModel: LUICollectionSectionModel {
-    var indexTitle: String?
-    var headViewClass: LUITableViewSectionViewProtocol.Type?
-    var footViewClass: LUITableViewSectionViewProtocol.Type?
+    var indexTitle: String = ""
+    var headViewClass: LUITableViewSectionViewProtocol.Type
+    var footViewClass: LUITableViewSectionViewProtocol.Type
     
     var showHeadView: Bool = false
     var showFootView: Bool = false
@@ -18,8 +18,8 @@ public class LUITableViewSectionModel: LUICollectionSectionModel {
     var showDefaultFootView: Bool = false
     var headViewHeight: CGFloat = 0
     var footViewHeight: CGFloat = 0
-    var headTitle: String?
-    var footTitle: String?
+    var headTitle: String = ""
+    var footTitle: String = ""
     
     weak var tableView: UITableView? {
         return tableViewModel?.tableView
@@ -43,27 +43,21 @@ public class LUITableViewSectionModel: LUICollectionSectionModel {
     
     // 初始化显示空白头部
     init(blankHeadViewHeight: CGFloat) {
-        super.init()
-        showDefaultHeadViewWithHeight(height: blankHeadViewHeight)
-        showDefaultFootViewWithHeight(height: 0.1)
+        self.showDefaultHeadViewWithHeight(height: blankHeadViewHeight)
+        self.showDefaultFootViewWithHeight(height: 0.1)
     }
     
     // 初始化显示空白尾部
     init(blankFootViewHeight: CGFloat) {
-        super.init()
-        showDefaultHeadViewWithHeight(height: 0.1)
-        showDefaultFootViewWithHeight(height: blankFootViewHeight)
+        self.showDefaultHeadViewWithHeight(height: 0.1)
+        self.showDefaultFootViewWithHeight(height: blankFootViewHeight)
     }
     
     // 初始化显示空白头部/尾部
     init(blankHeadViewHeight: CGFloat, blankFootViewHeight: CGFloat) {
         super.init()
-        showDefaultHeadViewWithHeight(height: blankHeadViewHeight)
-        showDefaultFootViewWithHeight(height: blankFootViewHeight)
-    }
-    
-    required init() {
-        fatalError("init() has not been implemented")
+        self.showDefaultHeadViewWithHeight(height: blankHeadViewHeight)
+        self.showDefaultFootViewWithHeight(height: blankFootViewHeight)
     }
     
     // 设置默认的头部视图高度

@@ -42,10 +42,6 @@ public class LUITableViewModel: LUICollectionModel, UITableViewDelegate, UITable
         tableView.dataSource = self
     }
     
-    required init() {
-        fatalError("init() has not been implemented")
-    }
-    
     override func createEmptySectionModel() -> LUITableViewSectionModel {
         return LUITableViewSectionModel.init()
     }
@@ -516,7 +512,7 @@ public class LUITableViewModel: LUICollectionModel, UITableViewDelegate, UITable
                     height = UITableViewAutomaticDimension
                 }
             } else {
-                height = sectionModel.headViewClass?.heightWithTableView(tableView, sectionModel: sectionModel, kind: .head) ?? 0
+                height = sectionModel.headViewClass.heightWithTableView(tableView, sectionModel: sectionModel, kind: .head)
             }
         }
         return height
@@ -531,7 +527,7 @@ public class LUITableViewModel: LUICollectionModel, UITableViewDelegate, UITable
                     height = UITableViewAutomaticDimension
                 }
             } else {
-                height = sectionModel.footViewClass?.heightWithTableView(tableView, sectionModel: sectionModel, kind: .foot) ?? 0
+                height = sectionModel.footViewClass.heightWithTableView(tableView, sectionModel: sectionModel, kind: .foot)
             }
         }
         return height

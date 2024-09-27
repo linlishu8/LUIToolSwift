@@ -363,9 +363,8 @@ public class LUICollectionModel: LUICollectionModelObjectBase {
     }
 
     func cellModelForSelectedCellModel() -> LUICollectionCellModel? {
-        for (sectionIdx, secionModel) in sectionModels.enumerated() {
-            let cellModels = secionModel.cellModels
-            for (cellIdx, cellModel) in cellModels.enumerated() {
+        for sectionModel in sectionModels {
+            for cellModel in sectionModel.cellModels {
                 if cellModel.selected {
                     return cellModel
                 }
