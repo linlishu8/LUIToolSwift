@@ -8,7 +8,7 @@
 import Foundation
 
 public class LUICollectionModelObjectBase: NSObject {
-    var modelValue: Any?
+    open var modelValue: Any?
     private var dynamicProperties: [AnyHashable: Any] = [:]
 
     required override init() {

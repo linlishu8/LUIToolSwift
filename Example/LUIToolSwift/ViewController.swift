@@ -34,8 +34,18 @@ class ViewController: UIViewController {
     }
     
     func __reloadData() {
-        
+        let testModel1 = self.addCellModelWithCellTitle("测试1")
+        let testModel2 = self.addCellModelWithCellTitle("测试2")
+        let testModel3 = self.addCellModelWithCellTitle("测试3")
+        self.tableView.model.reloadTableViewData()
     }
     
+    func addCellModelWithCellTitle(_ cellTitle: String) -> LUITableViewCellModel {
+        let cellModel = LUITableViewCellModel.init()
+        cellModel.cellClass = LUIMainViewTableViewCell.self
+        cellModel.modelValue = cellTitle
+        self.tableView.model.addCellModel(cellModel)
+        return cellModel
+    }
 }
 

@@ -9,7 +9,7 @@ import Foundation
 
 public class LUITableViewCellModel: LUICollectionCellModel {
     
-    var cellClass: LUITableViewCellBase.Type?
+    open var cellClass: LUITableViewCellBase.Type?
     var indexTitle: String?
     var canEdit: Bool = false
     var canMove: Bool = false
@@ -41,7 +41,7 @@ public class LUITableViewCellModel: LUICollectionCellModel {
         return model
     }
 
-    required init() {
+    public required init() {
         self.cellClass = LUITableViewCellBase.self
         super.init()
     }

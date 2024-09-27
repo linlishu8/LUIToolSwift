@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class LUITableViewCellBase: UITableViewCell, LUITableViewCellProtocol {
+open class LUITableViewCellBase: UITableViewCell, LUITableViewCellProtocol {
     
     static var useCachedFitedSize: Bool = true //是否缓存sizeThatFits:的结果，默认为YES
     var isCellModelChanged: Bool = false//cellmodel是否有变化
@@ -15,12 +15,12 @@ public class LUITableViewCellBase: UITableViewCell, LUITableViewCellProtocol {
     static let estimatedHeightKey: String = "\(String(describing: type(of: LUITableViewCellBase.self)))_estimatedHeight"
     static let cachedFitedSizeKey: String = "\(String(describing: type(of: LUITableViewCellBase.self)))_cachedFitedSize"
     
-    required override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+    required public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     

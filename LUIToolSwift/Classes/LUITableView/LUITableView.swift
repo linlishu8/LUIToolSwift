@@ -8,10 +8,10 @@
 import UIKit
 
 public class LUITableView: UITableView {
-    var model: LUITableViewModel? {
+    open var model: LUITableViewModel! {
         didSet {
             if model != oldValue {
-                model?.setTableViewDataSourceAndDelegate(for: self)
+                model.setTableViewDataSourceAndDelegate(for: self)
             }
         }
     }

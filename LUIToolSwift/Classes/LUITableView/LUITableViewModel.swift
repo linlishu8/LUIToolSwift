@@ -47,10 +47,10 @@ public class LUITableViewModel: LUICollectionModel, UITableViewDelegate, UITable
     }
     
     override func createEmptySectionModel() -> LUITableViewSectionModel {
-        return LUITableViewSectionModel()
+        return LUITableViewSectionModel.init()
     }
     
-    override func addCellModel(_ cellModel: LUICollectionCellModel) {
+    public override func addCellModel(_ cellModel: LUICollectionCellModel) {
         let section = self.sectionModels.last as? LUITableViewSectionModel ?? self.createEmptySectionModel()
         if section !== self.sectionModels.last {
             self.addSectionModel(section)
@@ -102,7 +102,7 @@ public class LUITableViewModel: LUICollectionModel, UITableViewDelegate, UITable
         return sectionModel
     }
     
-    func reloadTableViewData() {
+    public func reloadTableViewData() {
         reloadTableViewDataWithAnimated(false)
     }
     
