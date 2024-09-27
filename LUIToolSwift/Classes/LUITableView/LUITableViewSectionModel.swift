@@ -9,8 +9,8 @@ import Foundation
 
 public class LUITableViewSectionModel: LUICollectionSectionModel {
     var indexTitle: String = ""
-    var headViewClass: LUITableViewSectionViewProtocol.Type
-    var footViewClass: LUITableViewSectionViewProtocol.Type
+    var headViewClass: LUITableViewSectionViewProtocol.Type = LUITableViewSectionView.self
+    var footViewClass: LUITableViewSectionViewProtocol.Type = LUITableViewSectionView.self
     
     var showHeadView: Bool = false
     var showFootView: Bool = false
@@ -43,12 +43,14 @@ public class LUITableViewSectionModel: LUICollectionSectionModel {
     
     // 初始化显示空白头部
     init(blankHeadViewHeight: CGFloat) {
+        super.init()
         self.showDefaultHeadViewWithHeight(height: blankHeadViewHeight)
         self.showDefaultFootViewWithHeight(height: 0.1)
     }
     
     // 初始化显示空白尾部
     init(blankFootViewHeight: CGFloat) {
+        super.init()
         self.showDefaultHeadViewWithHeight(height: 0.1)
         self.showDefaultFootViewWithHeight(height: blankFootViewHeight)
     }
