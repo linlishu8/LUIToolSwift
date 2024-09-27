@@ -26,7 +26,7 @@ Pod::Spec.new do |s|
   * 主题，自定义tabbar，简化tableView，collectionView，自定义alertView，actionSheetView, 可扩大点击范围的按钮，有内边距的label，聊天界面，搜索，自定义键盘，
                        DESC
 
-  s.homepage         = 'https://github.com/Your Name/LUIToolSwift'
+  s.homepage         = 'https://github.com/linlishu8/LUIToolSwift'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'linlishu8' => 'linlishu8@163.com' }

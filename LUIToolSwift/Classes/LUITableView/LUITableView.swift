@@ -5,7 +5,8 @@
 //  Created by 六月 on 2024/9/20.
 //
 
-import Foundation
+import UIKit
+
 class LUITableView: UITableView {
     var model: LUITableViewModel? {
         didSet {

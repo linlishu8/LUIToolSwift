@@ -10,13 +10,9 @@ import UIKit
 import LUIToolSwift
 
 class ViewController: UIViewController {
-    
-    private lazy var tableView: LUITableView = {
-        return LUITableView()
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
+        
     }
 
     override func didReceiveMemoryWarning() {
