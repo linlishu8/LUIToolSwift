@@ -9,21 +9,21 @@ import Foundation
 
 public class LUICollectionModelObjectBase: NSObject {
     open var modelValue: Any?
-    private var dynamicProperties: [AnyHashable: Any] = [:]
-
-    required override init() {
-        super.init()
+    private var dynamicProperties: [String: Any]
+    
+    public init(modelValue: Any? = nil) {
+        self.modelValue = modelValue
+        self.dynamicProperties = [:]
     }
-
+    
     // 创建模型方法
-    class func modelWithValue(_ modelValue: Any?) -> LUICollectionModelObjectBase {
-        let model = self.init()
-        model.modelValue = modelValue
+    static func modelWithValue(_ modelValue: Any?) -> LUICollectionModelObjectBase {
+        let model = LUICollectionModelObjectBase.init(modelValue: modelValue)
         return model
     }
 
     // 设置动态属性
-    subscript(key: AnyHashable) -> Any? {
+    subscript(key: String) -> Any? {
         get {
             return dynamicProperties[key]
         }
