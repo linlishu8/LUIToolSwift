@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LUITableView: UITableView {
+public class LUITableView: UITableView {
     var model: LUITableViewModel? {
         didSet {
             if model != oldValue {
@@ -16,7 +16,7 @@ class LUITableView: UITableView {
         }
     }
     
-    override init(frame: CGRect, style: UITableViewStyle) {
+    public override init(frame: CGRect, style: UITableViewStyle) {
         super.init(frame: frame, style: style)
         self.model = LUITableViewModel(tableView: self)
     }
@@ -26,7 +26,7 @@ class LUITableView: UITableView {
         self.model = LUITableViewModel(tableView: self)
     }
     
-    override func sizeThatFits(_ size: CGSize) -> CGSize {
+    public override func sizeThatFits(_ size: CGSize) -> CGSize {
         return size
     }
 }

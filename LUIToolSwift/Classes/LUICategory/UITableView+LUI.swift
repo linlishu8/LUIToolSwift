@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension UITableView {
+public extension UITableView {
     
     // 隐藏 header 区域空白
     func l_hiddenHeaderAreaBlank() {
