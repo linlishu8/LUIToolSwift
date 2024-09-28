@@ -22,7 +22,7 @@ extension LUILayoutConstraintItemProtocol {
         return .zero
     }
     
-    func layoutItems(withResizeItems resizeItems: Bool) {
+    func layoutItemsWithResizeItems(resizeItems: Bool) {
         
     }
 }
@@ -53,6 +53,8 @@ enum LUILayoutConstraintDirection: Int {
 }
 
 class LUILayoutConstraint: NSObject, LUILayoutConstraintItemProtocol {
+    var layoutFrame: CGRect
+    
     // MARK: LUILayoutConstraintItemProtocol
     var isHidden: Bool = false
     var visiableItems: [LUILayoutConstraintItemProtocol] {
