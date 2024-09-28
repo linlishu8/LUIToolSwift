@@ -21,4 +21,10 @@ class LUIMainViewTableViewCell: LUITableViewCellBase {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    override func customSizeThatFits(size: CGSize) -> CGSize {
+        var s = size
+        s.height = 44
+        return s
+    }
 }

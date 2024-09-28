@@ -29,7 +29,7 @@ open class LUITableViewCellBase: UITableViewCell, LUITableViewCellProtocol {
     static func heightWithTableView(_ tableView: UITableView, cellModel: LUITableViewCellModel) -> CGFloat {
         if useCachedFitedSize {
             let bounds = tableView.bounds
-            if let cacheSizeValue = cellModel.l_NSValueForKeyPath(self.cachedFitedSizeKey) {
+            if let cacheSizeValue = cellModel[LUITableViewCellBase.cachedFitedSizeKey] as? NSValue {
                 let cacheSize = cacheSizeValue.cgSizeValue
                 if cacheSize.width == bounds.size.width {
                     return cacheSize.height
@@ -69,10 +69,12 @@ open class LUITableViewCellBase: UITableViewCell, LUITableViewCellProtocol {
     
     public override func sizeThatFits(_ size: CGSize) -> CGSize {
         if LUITableViewCellBase.useCachedFitedSize {
-            if let cellModel = self.cellModel, let cacheSizeValue = cellModel.l_NSValueForKeyPath(LUITableViewCellBase.cachedFitedSizeKey) {
-                let cacheSize = cacheSizeValue.cgSizeValue
-                if cacheSize.width == size.width {
-                    return cacheSize
+            if let cellModel = self.cellModel {
+                if let cacheSizeValue = cellModel[LUITableViewCellBase.cachedFitedSizeKey] as? NSValue {
+                    let cacheSize = cacheSizeValue.cgSizeValue
+                    if cacheSize.width == size.width {
+                        return cacheSize
+                    }
                 }
             }
         }
@@ -100,15 +102,15 @@ open class LUITableViewCellBase: UITableViewCell, LUITableViewCellProtocol {
     }
     
     // MARK: - override
-    func customReloadCellModel() {
+    open func customReloadCellModel() {
         
     }
     
-    func customLayoutSubviews() {
+    open func customLayoutSubviews() {
         
     }
     
-    func customSizeThatFits(size: CGSize) -> CGSize {
+    open func customSizeThatFits(size: CGSize) -> CGSize {
         return size
     }
 }
