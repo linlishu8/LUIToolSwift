@@ -54,16 +54,17 @@ class LUILayoutConstraintItemWrapper: NSObject, LUILayoutConstraintItemProtocol 
     }
     
     var layoutFrame: CGRect {
-        var f = self.originItem.layoutFrame
-        f.origin.x -= margin.left
-        f.origin.y -= margin.top
-        f.size.width += margin.left + margin.right
-        f.size.height += margin.top + margin.bottom
-        return f
-    }
-    
-    func setLayoutFrame(_ frame: CGRect) {
-        self.originItem.setLayoutFrame(UIEdgeInsetsInsetRect(frame, self.margin))
+        set {
+            self.originItem.layoutFrame = UIEdgeInsetsInsetRect(newValue, self.margin)
+        } get {
+            var f = self.originItem.layoutFrame
+            f.origin.x -= margin.left
+            f.origin.y -= margin.top
+            f.size.width += margin.left + margin.right
+            f.size.height += margin.top + margin.bottom
+            return f
+        }
+        
     }
     //
     func sizeThatFits(_ size: CGSize) -> CGSize {

@@ -53,8 +53,6 @@ enum LUILayoutConstraintDirection: Int {
 }
 
 class LUILayoutConstraint: NSObject, LUILayoutConstraintItemProtocol {
-    var layoutFrame: CGRect
-    
     // MARK: LUILayoutConstraintItemProtocol
     var isHidden: Bool = false
     var visiableItems: [LUILayoutConstraintItemProtocol] {
@@ -97,12 +95,12 @@ class LUILayoutConstraint: NSObject, LUILayoutConstraintItemProtocol {
     }
     
     var layoutFrame: CGRect {
-        return self.bounds
-    }
-    
-    func setLayoutFrame(_ frame: CGRect) {
-        self.bounds = frame
-        self.layoutItems()
+        get {
+            return self.bounds
+        } set {
+            self.bounds = newValue
+            self.layoutItems()
+        }
     }
     
     func sizeThatFits(_ size: CGSize) -> CGSize {
@@ -158,8 +156,4 @@ class LUILayoutConstraint: NSObject, LUILayoutConstraintItemProtocol {
             items[index] = newItem
         }
     }
-    
-    
-    
-    
 }

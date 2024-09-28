@@ -9,30 +9,25 @@ import Foundation
 
 protocol LUILayoutConstraintItemAttributeProtocol: AnyObject {
     var layoutFrame: CGRect { get set }
-    func setLayoutFrame(_ frame: CGRect)
 }
 
 class LUILayoutConstraintItemAttributeBase: LUILayoutConstraintItemAttributeProtocol {
     var layoutFrame: CGRect = .zero {
-            didSet {
-                size = layoutFrame.size
-                origin = layoutFrame.origin
-            }
+        didSet {
+            size = layoutFrame.size
+            origin = layoutFrame.origin
         }
-
-        var size: CGSize {
-            get { return layoutFrame.size }
-            set { layoutFrame.size = newValue }
-        }
-
-        var origin: CGPoint {
-            get { return layoutFrame.origin }
-            set { layoutFrame.origin = newValue }
-        }
-
-        func setLayoutFrame(_ frame: CGRect) {
-            layoutFrame = frame
-        }
+    }
+    
+    var size: CGSize {
+        get { return layoutFrame.size }
+        set { layoutFrame.size = newValue }
+    }
+    
+    var origin: CGPoint {
+        get { return layoutFrame.origin }
+        set { layoutFrame.origin = newValue }
+    }
 }
 
 class LUILayoutConstraintItemAttribute: LUILayoutConstraintItemAttributeBase {
