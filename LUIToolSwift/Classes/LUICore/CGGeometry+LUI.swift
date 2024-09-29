@@ -13,7 +13,7 @@ enum LUICGAxis {
 }
 
 extension LUICGAxis {
-    func LUICGAxisReverse(_ axis: LUICGAxis) -> LUICGAxis {
+    static func LUICGAxisReverse(_ axis: LUICGAxis) -> LUICGAxis {
         return axis == .x ? .y : .x
     }
     
