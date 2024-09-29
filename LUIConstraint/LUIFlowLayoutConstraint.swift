@@ -167,6 +167,16 @@ extension LUIFlowLayoutConstraint {
             LUILayoutConstraintVerticalAlignment.verticalCenter.rawValue,
             LUILayoutConstraintHorizontalAlignment.horizontalCenter.rawValue
         ]
+        map[LUIFlowLayoutConstraintParam.H_C_L.rawValue] = [
+            LUILayoutConstraintDirection.constraintHorizontal.rawValue,
+            LUILayoutConstraintVerticalAlignment.verticalCenter.rawValue,
+            LUILayoutConstraintHorizontalAlignment.horizontalLeft.rawValue
+        ]
+        map[LUIFlowLayoutConstraintParam.H_C_R.rawValue] = [
+            LUILayoutConstraintDirection.constraintHorizontal.rawValue,
+            LUILayoutConstraintVerticalAlignment.verticalCenter.rawValue,
+            LUILayoutConstraintHorizontalAlignment.horizontalRight.rawValue
+        ]
         return map
     }()
     
