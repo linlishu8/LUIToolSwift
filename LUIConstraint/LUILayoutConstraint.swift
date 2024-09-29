@@ -11,20 +11,8 @@ protocol LUILayoutConstraintItemProtocol: LUILayoutConstraintItemAttributeProtoc
     var isHidden: Bool { get }//是否隐藏,默认为NO
     func sizeOfLayout() -> CGSize//返回尺寸信息
     func setLayoutTransform(transform: CGAffineTransform) //以布局bounds为中心点,对布局作为一个整体,设置底下元素的仿射矩阵
-}
-
-extension LUILayoutConstraintItemProtocol {
-    func sizeThatFits(_ size: CGSize) -> CGSize {
-        return .zero
-    }
-    
-    func sizeThatFits(_ size: CGSize, resizeItems: Bool) -> CGSize {
-        return .zero
-    }
-    
-    func layoutItemsWithResizeItems(resizeItems: Bool) {
-        
-    }
+    func sizeThatFits(_ size: CGSize, resizeItems: Bool) -> CGSize//适合于容器
+    func layoutItemsWithResizeItems(resizeItems: Bool)//适合于容器
 }
 
 enum LUILayoutConstraintVerticalAlignment: Int {
@@ -103,12 +91,16 @@ class LUILayoutConstraint: NSObject, LUILayoutConstraintItemProtocol {
         }
     }
     
-    func sizeThatFits(_ size: CGSize) -> CGSize {
+    func layoutItemsWithResizeItems(resizeItems: Bool) {
+        
+    }
+
+    func sizeThatFits(_ size: CGSize, resizeItems: Bool) -> CGSize {
         return self.isHidden ? .zero : size
     }
     //
     
-    open func layoutItems() {
+    func layoutItems() {
         
     }
     
