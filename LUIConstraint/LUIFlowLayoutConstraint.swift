@@ -7,27 +7,6 @@
 
 import Foundation
 
-enum LUIFlowLayoutConstraintParam {
-    case LUIFlowLayoutConstraintParam_H_C_C
-    case LUIFlowLayoutConstraintParam_H_C_L
-    case LUIFlowLayoutConstraintParam_H_C_R
-    case LUIFlowLayoutConstraintParam_H_T_C
-    case LUIFlowLayoutConstraintParam_H_T_L
-    case LUIFlowLayoutConstraintParam_H_T_R
-    case LUIFlowLayoutConstraintParam_H_B_L
-    case LUIFlowLayoutConstraintParam_H_B_C
-    case LUIFlowLayoutConstraintParam_H_B_R
-    case LUIFlowLayoutConstraintParam_V_C_C
-    case LUIFlowLayoutConstraintParam_V_C_L
-    case LUIFlowLayoutConstraintParam_V_C_R
-    case LUIFlowLayoutConstraintParam_V_T_C
-    case LUIFlowLayoutConstraintParam_V_T_L
-    case LUIFlowLayoutConstraintParam_V_T_R
-    case LUIFlowLayoutConstraintParam_V_B_C
-    case LUIFlowLayoutConstraintParam_V_B_L
-    case LUIFlowLayoutConstraintParam_V_B_R
-}
-
 class LUIFlowLayoutConstraint: LUILayoutConstraint {
     open var layoutDirection: LUILayoutConstraintDirection = .constraintVertical
     open var layoutVerticalAlignment: LUILayoutConstraintVerticalAlignment = .verticalCenter
@@ -116,26 +95,82 @@ class LUIFlowLayoutConstraint: LUILayoutConstraint {
     
     override func layoutItemsWithResizeItems(resizeItems: Bool) {
         let size = self.bounds.size
-        let line = self.itemAttributeSectionThatFits(size, resizeItems: resizeItems, needLimitSize: !self.unLimitItemSizeInBounds)
+        guard let line = self.itemAttributeSectionThatFits(size, resizeItems: resizeItems, needLimitSize: !self.unLimitItemSizeInBounds) else { return }
         let X = self.layoutDirectionAxis()
         let Y = LUICGAxis.LUICGAxisReverse(X)
         
         let contentInsets = self.contentInsets
         let xSpacing = self.interitemSpacing
-//        let alignX = self.layoutDirection == .constraintVertical ? 
+        let alignX = self.layoutDirection == .constraintVertical ? LUICGRectAlignmentFromLUILayoutConstraintVerticalAlignment(align: self.layoutVerticalAlignment) : LUICGRectAlignmentFromLUILayoutConstraintHorizontalAlignment(align: self.layoutHorizontalAlignment)
+        
+        let alignY = self.layoutDirection == .constraintHorizontal ? LUICGRectAlignmentFromLUILayoutConstraintVerticalAlignment(align: self.layoutVerticalAlignment) : LUICGRectAlignmentFromLUILayoutConstraintHorizontalAlignment(align: self.layoutHorizontalAlignment)
+        
+        let bounds = UIEdgeInsetsInsetRect(self.bounds, contentInsets)
+        var f1 = line.layoutFrame
+        f1.LUICGRectAlignToRect(Y, alignment: alignY, bounds: bounds)
+        f1.LUICGRectAlignToRect(X, alignment: alignX, bounds: bounds)
+        line.layoutFrame = f1
+        line.flowLayoutItemsWithSpacing(xSpacing, axis: X, alignment: alignY, needRevert: false)
+        for itemAttribut in line.itemAttributs {
+            if let item = itemAttribut as? LUILayoutConstraintItemAttribute {
+                item.applyAttributeWithResizeItems(resizeItems: resizeItems)
+            }
+        }
+        self.itemAttributeSection = line
     }
     
+    func isEmptyBounds(_ bounds: CGRect, resizeItems: Bool) -> Bool {
+        var isEmpty: Bool = false
+        let items = self.layoutedItems
+        if !items.isEmpty {
+            let b = UIEdgeInsetsInsetRect(bounds, self.contentInsets)
+            let interitemSpacing = self.interitemSpacing
+            var limitSize = b.size
+            let axis: LUICGAxis = self.layoutDirection == .constraintHorizontal ? .x : .y
+            isEmpty = true
+            for item in items {
+                var f1 = b
+                var f1_size: CGSize = .zero
+                if resizeItems {
+                    f1_size = item.sizeThatFits(limitSize, resizeItems: resizeItems)
+                } else {
+                    f1_size = item.sizeOfLayout()
+                }
+                if !CGSizeEqualToSize(f1_size, .zero) {
+                    isEmpty = false
+                    break
+                }
+                f1.size.width = min(f1.size.width, f1_size.width)
+                f1.size.height = min(f1.size.height, f1_size.height)
+                f1.LUICGRectSetLength(axis, value: min(limitSize.LUICGSizeGetLength(axis: axis), f1.LUICGRectGetLength(axis)))
+                limitSize.LUICGSizeSetLength(limitSize.LUICGSizeGetLength(axis: axis) - f1.LUICGRectGetLength(axis) + interitemSpacing, axis: axis)
+                limitSize.LUICGSizeSetLength(max(0, limitSize.LUICGSizeGetLength(axis: axis)), axis: axis)
+            }
+        } else {
+            isEmpty = true
+        }
+        return isEmpty
+    }
+}
+
+enum LUIFlowLayoutConstraintParam: String {
+    case H_C_C = "H_C_C", H_C_L = "H_C_L", H_C_R = "H_C_R", H_T_C = "H_T_C", H_T_L = "H_T_L", H_T_R = "H_T_R"
+    case H_B_L = "H_B_L", H_B_C = "H_B_C", H_B_R = "H_B_R", V_C_C = "V_C_C", V_C_L = "V_C_L", V_C_R = "V_C_R"
+    case V_T_C = "V_T_C", V_T_L = "V_T_L", V_T_R = "V_T_R", V_B_C = "V_B_C", V_B_L = "V_B_L", V_B_R = "V_B_R"
+}
+
+extension LUIFlowLayoutConstraint {
+    static let constraintParamMap: [String: [Int]] = {
+        var map = [String: [Int]]()
+        map[LUIFlowLayoutConstraintParam.H_C_C.rawValue] = [
+            LUILayoutConstraintDirection.constraintHorizontal.rawValue,
+            LUILayoutConstraintVerticalAlignment.verticalCenter.rawValue,
+            LUILayoutConstraintHorizontalAlignment.horizontalCenter.rawValue
+        ]
+        return map
+    }()
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    func initWithItems(_ items: [LUILayoutConstraintItemProtocol], param: LUIFlowLayoutConstraintParam, contentInsets: UIEdgeInsets, interitemSpacing: CGFloat) -> LUIFlowLayoutConstraint {
+        
+    }
 }
