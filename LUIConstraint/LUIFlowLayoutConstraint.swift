@@ -49,7 +49,7 @@ public class LUIFlowLayoutConstraint: LUILayoutConstraint {
         limitSize.height = max(0, limitSize.height)
         
         let line = LUILayoutConstraintItemAttributeSection()
-        for (_, item) in items.enumerated() {
+        for item in items {
             var limitWidth = limitSize.LUICGSizeGetLength(axis: X)
             var itemSize = self.itemSizeForItem(item, thatFits: limitSize, resizeItems: resizeItems)
             let itemAttr = LUILayoutConstraintItemAttribute.init(item: item)
