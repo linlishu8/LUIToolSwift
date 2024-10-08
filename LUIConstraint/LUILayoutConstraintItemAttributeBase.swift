@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol LUILayoutConstraintItemAttributeProtocol: AnyObject {
+public protocol LUILayoutConstraintItemAttributeProtocol: AnyObject {
     var layoutFrame: CGRect { get set }
 }
 
