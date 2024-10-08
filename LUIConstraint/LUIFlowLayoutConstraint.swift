@@ -177,10 +177,126 @@ extension LUIFlowLayoutConstraint {
             LUILayoutConstraintVerticalAlignment.verticalCenter.rawValue,
             LUILayoutConstraintHorizontalAlignment.horizontalRight.rawValue
         ]
+        map[LUIFlowLayoutConstraintParam.H_T_C.rawValue] = [
+            LUILayoutConstraintDirection.constraintHorizontal.rawValue,
+            LUILayoutConstraintVerticalAlignment.verticalTop.rawValue,
+            LUILayoutConstraintHorizontalAlignment.horizontalCenter.rawValue
+        ]
+        map[LUIFlowLayoutConstraintParam.H_T_L.rawValue] = [
+            LUILayoutConstraintDirection.constraintHorizontal.rawValue,
+            LUILayoutConstraintVerticalAlignment.verticalTop.rawValue,
+            LUILayoutConstraintHorizontalAlignment.horizontalLeft.rawValue
+        ]
+        map[LUIFlowLayoutConstraintParam.H_T_R.rawValue] = [
+            LUILayoutConstraintDirection.constraintHorizontal.rawValue,
+            LUILayoutConstraintVerticalAlignment.verticalTop.rawValue,
+            LUILayoutConstraintHorizontalAlignment.horizontalRight.rawValue
+        ]
+        map[LUIFlowLayoutConstraintParam.H_B_L.rawValue] = [
+            LUILayoutConstraintDirection.constraintHorizontal.rawValue,
+            LUILayoutConstraintVerticalAlignment.verticalBottom.rawValue,
+            LUILayoutConstraintHorizontalAlignment.horizontalLeft.rawValue
+        ]
+        map[LUIFlowLayoutConstraintParam.H_B_C.rawValue] = [
+            LUILayoutConstraintDirection.constraintHorizontal.rawValue,
+            LUILayoutConstraintVerticalAlignment.verticalBottom.rawValue,
+            LUILayoutConstraintHorizontalAlignment.horizontalCenter.rawValue
+        ]
+        map[LUIFlowLayoutConstraintParam.H_B_R.rawValue] = [
+            LUILayoutConstraintDirection.constraintHorizontal.rawValue,
+            LUILayoutConstraintVerticalAlignment.verticalBottom.rawValue,
+            LUILayoutConstraintHorizontalAlignment.horizontalRight.rawValue
+        ]
+        map[LUIFlowLayoutConstraintParam.V_C_C.rawValue] = [
+            LUILayoutConstraintDirection.constraintVertical.rawValue,
+            LUILayoutConstraintVerticalAlignment.verticalCenter.rawValue,
+            LUILayoutConstraintHorizontalAlignment.horizontalCenter.rawValue
+        ]
+        map[LUIFlowLayoutConstraintParam.V_C_L.rawValue] = [
+            LUILayoutConstraintDirection.constraintVertical.rawValue,
+            LUILayoutConstraintVerticalAlignment.verticalCenter.rawValue,
+            LUILayoutConstraintHorizontalAlignment.horizontalLeft.rawValue
+        ]
+        map[LUIFlowLayoutConstraintParam.V_C_R.rawValue] = [
+            LUILayoutConstraintDirection.constraintVertical.rawValue,
+            LUILayoutConstraintVerticalAlignment.verticalCenter.rawValue,
+            LUILayoutConstraintHorizontalAlignment.horizontalLeft.rawValue
+        ]
+        map[LUIFlowLayoutConstraintParam.V_T_C.rawValue] = [
+            LUILayoutConstraintDirection.constraintVertical.rawValue,
+            LUILayoutConstraintVerticalAlignment.verticalTop.rawValue,
+            LUILayoutConstraintHorizontalAlignment.horizontalCenter.rawValue
+        ]
+        map[LUIFlowLayoutConstraintParam.V_T_L.rawValue] = [
+            LUILayoutConstraintDirection.constraintVertical.rawValue,
+            LUILayoutConstraintVerticalAlignment.verticalTop.rawValue,
+            LUILayoutConstraintHorizontalAlignment.horizontalLeft.rawValue
+        ]
+        map[LUIFlowLayoutConstraintParam.V_T_R.rawValue] = [
+            LUILayoutConstraintDirection.constraintVertical.rawValue,
+            LUILayoutConstraintVerticalAlignment.verticalTop.rawValue,
+            LUILayoutConstraintHorizontalAlignment.horizontalRight.rawValue
+        ]
+        map[LUIFlowLayoutConstraintParam.V_B_C.rawValue] = [
+            LUILayoutConstraintDirection.constraintVertical.rawValue,
+            LUILayoutConstraintVerticalAlignment.verticalBottom.rawValue,
+            LUILayoutConstraintHorizontalAlignment.horizontalCenter.rawValue
+        ]
+        map[LUIFlowLayoutConstraintParam.V_B_L.rawValue] = [
+            LUILayoutConstraintDirection.constraintVertical.rawValue,
+            LUILayoutConstraintVerticalAlignment.verticalBottom.rawValue,
+            LUILayoutConstraintHorizontalAlignment.horizontalLeft.rawValue
+        ]
+        map[LUIFlowLayoutConstraintParam.V_B_R.rawValue] = [
+            LUILayoutConstraintDirection.constraintVertical.rawValue,
+            LUILayoutConstraintVerticalAlignment.verticalBottom.rawValue,
+            LUILayoutConstraintHorizontalAlignment.horizontalRight.rawValue
+        ]
         return map
     }()
     
-    func initWithItems(_ items: [LUILayoutConstraintItemProtocol], param: LUIFlowLayoutConstraintParam, contentInsets: UIEdgeInsets, interitemSpacing: CGFloat) -> LUIFlowLayoutConstraint {
-        
+    static var constraintParamRevertMap: [Array<Int>: String] = {
+        var map = [Array<Int>: String]()
+        let constraintParamMap = LUIFlowLayoutConstraint.constraintParamMap
+        for (key, value) in constraintParamMap {
+            map[value] = key
+        }
+        return map
+    }()
+    
+    static func constraintParamWithLayoutDirection(_ layoutDirection:LUILayoutConstraintDirection, layoutVerticalAlignment: LUILayoutConstraintVerticalAlignment, layoutHorizontalAlignment: LUILayoutConstraintHorizontalAlignment) -> LUIFlowLayoutConstraintParam {
+        let key = [layoutDirection.rawValue, layoutVerticalAlignment.rawValue, layoutHorizontalAlignment.rawValue] as [Int]
+        if let param = constraintParamRevertMap[key] {
+            return LUIFlowLayoutConstraintParam(rawValue: param) ?? .H_C_C
+        } else {
+            return .H_C_C
+        }
+    }
+    
+    var constraintParam: LUIFlowLayoutConstraintParam {
+        get {
+            return LUIFlowLayoutConstraint.constraintParamWithLayoutDirection(self.layoutDirection, layoutVerticalAlignment: self.layoutVerticalAlignment, layoutHorizontalAlignment: self.layoutHorizontalAlignment)
+        } set {
+            self.configWithConstraintParam(newValue)
+        }
+    }
+    
+    func initWithItems(_ items: [LUILayoutConstraintItemProtocol], param: LUIFlowLayoutConstraintParam, contentInsets: UIEdgeInsets, interitemSpacing: CGFloat) {
+        self.items = items
+        self.contentInsets = contentInsets
+        self.interitemSpacing = interitemSpacing
+        self.configWithConstraintParam(param)
+    }
+    
+    func configWithConstraintParam(_ param: LUIFlowLayoutConstraintParam) {
+        let constraintParamMap: [String: [Int]] = LUIFlowLayoutConstraint.constraintParamMap
+        self.layoutDirection = .constraintHorizontal
+        self.layoutVerticalAlignment = .verticalCenter
+        self.layoutHorizontalAlignment = .horizontalCenter
+        if let enums = constraintParamMap[param.rawValue] {
+            self.layoutDirection = LUILayoutConstraintDirection(rawValue: enums[0]) ?? .constraintHorizontal
+            self.layoutVerticalAlignment = LUILayoutConstraintVerticalAlignment(rawValue: enums[1]) ?? .verticalCenter
+            self.layoutHorizontalAlignment = LUILayoutConstraintHorizontalAlignment(rawValue: enums[2]) ?? .horizontalCenter
+        }
     }
 }
