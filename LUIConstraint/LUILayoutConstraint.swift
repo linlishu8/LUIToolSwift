@@ -104,7 +104,7 @@ open class LUILayoutConstraint: NSObject, LUILayoutConstraintItemProtocol {
     public var visiableItems: [LUILayoutConstraintItemProtocol] {
         get {
             var items: [LUILayoutConstraintItemProtocol] = []
-            for item in items {
+            for item in self.internalItems {
                 if !item.hidden() {
                     items.append(item)
                 }

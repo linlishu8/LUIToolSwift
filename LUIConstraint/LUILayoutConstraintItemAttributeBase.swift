@@ -12,12 +12,7 @@ public protocol LUILayoutConstraintItemAttributeProtocol: AnyObject {
 }
 
 public class LUILayoutConstraintItemAttributeBase: LUILayoutConstraintItemAttributeProtocol {
-    public var layoutFrame: CGRect = .zero {
-        didSet {
-            size = layoutFrame.size
-            origin = layoutFrame.origin
-        }
-    }
+    public var layoutFrame: CGRect = .zero 
     
     var size: CGSize {
         get { return layoutFrame.size }

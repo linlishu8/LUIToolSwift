@@ -122,7 +122,7 @@ extension UITableViewCell {
     
     func l_accessoryViewLeftMargin() -> CGFloat {
         var cellMargin: CGFloat = 0
-        if let view = accessoryView {
+        if accessoryView != nil {
             cellMargin = self.l_accessorySystemTypeViewLeftMargin()
         } else {
             cellMargin = self.l_accessoryCustomViewLeftMargin()
@@ -132,7 +132,7 @@ extension UITableViewCell {
     
     func l_accessoryViewRightMargin() -> CGFloat {
         var cellMargin: CGFloat = 0
-        if let view = accessoryView {
+        if accessoryView != nil {
             cellMargin = self.l_accessorySystemTypeViewRightMargin()
         } else {
             cellMargin = self.l_accessoryCustomViewRightMargin()
