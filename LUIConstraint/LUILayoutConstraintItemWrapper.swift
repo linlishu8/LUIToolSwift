@@ -38,8 +38,8 @@ class LUILayoutConstraintItemWrapper: NSObject, LUILayoutConstraintItemProtocol 
     }
     
     // MARK: LUILayoutConstraintItemProtocol
-    var isHidden: Bool {
-        return self.originItem.isHidden
+    func hidden() -> Bool {
+        return self.originItem.hidden()
     }
     
     func sizeOfLayout() -> CGSize {

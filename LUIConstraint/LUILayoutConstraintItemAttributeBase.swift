@@ -11,8 +11,8 @@ public protocol LUILayoutConstraintItemAttributeProtocol: AnyObject {
     var layoutFrame: CGRect { get set }
 }
 
-class LUILayoutConstraintItemAttributeBase: LUILayoutConstraintItemAttributeProtocol {
-    var layoutFrame: CGRect = .zero {
+public class LUILayoutConstraintItemAttributeBase: LUILayoutConstraintItemAttributeProtocol {
+    public var layoutFrame: CGRect = .zero {
         didSet {
             size = layoutFrame.size
             origin = layoutFrame.origin
@@ -54,7 +54,7 @@ class LUILayoutConstraintItemAttribute: LUILayoutConstraintItemAttributeBase {
     }
 }
 
-class LUILayoutConstraintItemAttributeSection: LUILayoutConstraintItemAttributeBase {
+public class LUILayoutConstraintItemAttributeSection: LUILayoutConstraintItemAttributeBase {
     var itemAttributs: [LUILayoutConstraintItemAttributeProtocol] {
         get {
             return self.allItemAttributes

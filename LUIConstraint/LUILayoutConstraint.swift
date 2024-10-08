@@ -8,7 +8,7 @@
 import Foundation
 
 public protocol LUILayoutConstraintItemProtocol: LUILayoutConstraintItemAttributeProtocol {
-    var isHidden: Bool { get }//是否隐藏,默认为NO
+    func hidden() -> Bool//是否隐藏,默认为NO
     func sizeOfLayout() -> CGSize//返回尺寸信息
     func setLayoutTransform(transform: CGAffineTransform) //以布局bounds为中心点,对布局作为一个整体,设置底下元素的仿射矩阵
     func sizeThatFits(_ size: CGSize, resizeItems: Bool) -> CGSize//适合于容器
@@ -41,7 +41,9 @@ public enum LUILayoutConstraintDirection: Int {
 }
 
 open class LUILayoutConstraint: NSObject, LUILayoutConstraintItemProtocol {
-    open var isHidden: Bool = false//是否隐藏,默认为NO
+    public func hidden() -> Bool {
+        return false
+    }//是否隐藏,默认为NO
     
     private var internalItems: [LUILayoutConstraintItemProtocol] = []
     open var items: [LUILayoutConstraintItemProtocol] {
@@ -55,12 +57,6 @@ open class LUILayoutConstraint: NSObject, LUILayoutConstraintItemProtocol {
     
     open var bounds: CGRect = .zero//在bounds的区域内布局
     open var layoutHiddenItem: Bool = false//是否布局隐藏元素,默认为NO
-    
-    init(items: [LUILayoutConstraintItemProtocol], bounds: CGRect) {
-        super.init()
-        self.items = items
-        self.bounds = bounds
-    }
     
     public func addItem(item: LUILayoutConstraintItemProtocol) {
         if items.contains(where: { $0 === item }) {
@@ -109,7 +105,7 @@ open class LUILayoutConstraint: NSObject, LUILayoutConstraintItemProtocol {
         get {
             var items: [LUILayoutConstraintItemProtocol] = []
             for item in items {
-                if !item.isHidden {
+                if !item.hidden() {
                     items.append(item)
                 }
             }
@@ -118,7 +114,7 @@ open class LUILayoutConstraint: NSObject, LUILayoutConstraintItemProtocol {
     }
     
     public func sizeThatFits(_ size: CGSize, resizeItems: Bool) -> CGSize {
-        return self.isHidden ? .zero : size
+        return self.hidden() ? .zero : size
     }
     
     public func setLayoutTransform(transform: CGAffineTransform) {
@@ -155,5 +151,51 @@ open class LUILayoutConstraint: NSObject, LUILayoutConstraintItemProtocol {
     func initWithItems(items: [LUILayoutConstraintItemProtocol], bounds: CGRect) {
         self.items = items
         self.bounds = bounds
+    }
+}
+
+extension UIView: LUILayoutConstraintItemProtocol {
+    public func hidden() -> Bool {
+        return self.isHidden
+    }
+    
+    public func sizeOfLayout() -> CGSize {
+        return self.bounds.size
+    }
+    
+    public func setLayoutTransform(transform: CGAffineTransform) {
+        self.transform = transform
+    }
+    
+    public func sizeThatFits(_ size: CGSize, resizeItems: Bool) -> CGSize {
+        return self.hidden() ? .zero : size
+    }
+    
+    public func layoutItemsWithResizeItems(resizeItems: Bool) {
+        
+    }
+    
+    public var layoutFrame: CGRect {
+        get {
+            var frame = self.bounds
+            let center = self.center
+            frame.origin.x = center.x - frame.size.width / 2
+            frame.origin.y = center.y - frame.size.height / 2
+            return frame
+        }
+        set {
+            if CGAffineTransformIsIdentity(self.transform) {
+                self.frame = newValue
+            } else {
+                var bounds = self.bounds
+                bounds.size = newValue.size
+                self.bounds = bounds
+                
+                var center = newValue.origin
+                center.x += newValue.size.width / 2
+                center.y += newValue.size.height / 2
+                self.center = center
+            }
+        }
     }
 }

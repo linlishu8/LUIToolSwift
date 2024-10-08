@@ -8,13 +8,13 @@
 import Foundation
 
 public class LUIFlowLayoutConstraint: LUILayoutConstraint {
-    var layoutDirection: LUILayoutConstraintDirection = .constraintVertical
-    var layoutVerticalAlignment: LUILayoutConstraintVerticalAlignment = .verticalCenter
-    var layoutHorizontalAlignment: LUILayoutConstraintHorizontalAlignment = .horizontalCenter
+    open var layoutDirection: LUILayoutConstraintDirection = .constraintVertical
+    open var layoutVerticalAlignment: LUILayoutConstraintVerticalAlignment = .verticalCenter
+    open var layoutHorizontalAlignment: LUILayoutConstraintHorizontalAlignment = .horizontalCenter
     public var contentInsets: UIEdgeInsets = .zero
     public var interitemSpacing: CGFloat = 0
-    var unLimitItemSizeInBounds: Bool = false
-    var itemAttributeSection: LUILayoutConstraintItemAttributeSection?
+    open var unLimitItemSizeInBounds: Bool = false
+    open var itemAttributeSection: LUILayoutConstraintItemAttributeSection?
 
     private func layoutDirectionAxis() -> LUICGAxis {
         return self.layoutDirection == .constraintHorizontal ? .x : .y
@@ -273,31 +273,31 @@ public extension LUIFlowLayoutConstraint {
         }
     }
     
-//    var constraintParam: LUIFlowLayoutConstraintParam {
-//        get {
-//            return LUIFlowLayoutConstraint.constraintParamWithLayoutDirection(self.layoutDirection, layoutVerticalAlignment: self.layoutVerticalAlignment, layoutHorizontalAlignment: self.layoutHorizontalAlignment)
-//        } set {
-//            self.configWithConstraintParam(newValue)
-//        }
-//    }
-//    
-//    convenience init(_ items: [LUILayoutConstraintItemProtocol], param: LUIFlowLayoutConstraintParam, contentInsets: UIEdgeInsets, interitemSpacing: CGFloat) {
-//        self.init()
-//        self.items = items
-//        self.contentInsets = contentInsets
-//        self.interitemSpacing = interitemSpacing
-//        self.configWithConstraintParam(param)
-//    }
-//    
-//    func configWithConstraintParam(_ param: LUIFlowLayoutConstraintParam) {
-//        let constraintParamMap: [String: [Int]] = LUIFlowLayoutConstraint.constraintParamMap
-//        self.layoutDirection = .constraintHorizontal
-//        self.layoutVerticalAlignment = .verticalCenter
-//        self.layoutHorizontalAlignment = .horizontalCenter
-//        if let enums = constraintParamMap[param.rawValue] {
-//            self.layoutDirection = LUILayoutConstraintDirection(rawValue: enums[0]) ?? .constraintHorizontal
-//            self.layoutVerticalAlignment = LUILayoutConstraintVerticalAlignment(rawValue: enums[1]) ?? .verticalCenter
-//            self.layoutHorizontalAlignment = LUILayoutConstraintHorizontalAlignment(rawValue: enums[2]) ?? .horizontalCenter
-//        }
-//    }
+    var constraintParam: LUIFlowLayoutConstraintParam {
+        get {
+            return LUIFlowLayoutConstraint.constraintParamWithLayoutDirection(self.layoutDirection, layoutVerticalAlignment: self.layoutVerticalAlignment, layoutHorizontalAlignment: self.layoutHorizontalAlignment)
+        } set {
+            self.configWithConstraintParam(newValue)
+        }
+    }
+    
+    convenience init(_ items: [LUILayoutConstraintItemProtocol], param: LUIFlowLayoutConstraintParam, contentInsets: UIEdgeInsets, interitemSpacing: CGFloat) {
+        self.init()
+        self.items = items
+        self.contentInsets = contentInsets
+        self.interitemSpacing = interitemSpacing
+        self.configWithConstraintParam(param)
+    }
+    
+    func configWithConstraintParam(_ param: LUIFlowLayoutConstraintParam) {
+        let constraintParamMap: [String: [Int]] = LUIFlowLayoutConstraint.constraintParamMap
+        self.layoutDirection = .constraintHorizontal
+        self.layoutVerticalAlignment = .verticalCenter
+        self.layoutHorizontalAlignment = .horizontalCenter
+        if let enums = constraintParamMap[param.rawValue] {
+            self.layoutDirection = LUILayoutConstraintDirection(rawValue: enums[0]) ?? .constraintHorizontal
+            self.layoutVerticalAlignment = LUILayoutConstraintVerticalAlignment(rawValue: enums[1]) ?? .verticalCenter
+            self.layoutHorizontalAlignment = LUILayoutConstraintHorizontalAlignment(rawValue: enums[2]) ?? .horizontalCenter
+        }
+    }
 }
