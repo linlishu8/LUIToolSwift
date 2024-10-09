@@ -168,7 +168,7 @@ extension UIView: LUILayoutConstraintItemProtocol {
     }
     
     public func sizeThatFits(_ size: CGSize, resizeItems: Bool) -> CGSize {
-        return self.hidden() ? .zero : size
+        return self.sizeThatFits(size)
     }
     
     public func layoutItemsWithResizeItems(resizeItems: Bool) {

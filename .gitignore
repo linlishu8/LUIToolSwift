@@ -1,1 +1,3 @@
 *.xcuserstate
+# 忽略 .xcworkspace 目录
+*.xcworkspace
