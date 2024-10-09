@@ -21,10 +21,10 @@ class LUIMainViewTableViewCell: LUITableViewCellBase {
         
         let titleLebel2 = UILabel()
         titleLebel2.numberOfLines = 0
-        titleLebel2.text = "我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2"
+        titleLebel2.text = "我是测试的文字2s"
         self.contentView.addSubview(titleLebel2)
         
-        self.flowlayout = LUIFlowLayoutConstraint.init([titleLebel1, titleLebel2], param: .H_C_C, contentInsets: .zero, interitemSpacing: 10)
+        self.flowlayout = LUIFlowLayoutConstraint.init([titleLebel1, titleLebel2], param: .H_C_L, contentInsets: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10), interitemSpacing: 10)
     }
     
     required init?(coder aDecoder: NSCoder) {
