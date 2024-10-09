@@ -12,7 +12,7 @@ public enum LUILayoutButtonContentStyle: Int {
     case vertical
 }
 
-class LUILayoutButton: UIButton {
+public class LUILayoutButton: UIButton {
     open var contentStyle: LUILayoutButtonContentStyle = .horizontal //图标和文字的位置，默认横着放
     open var interitemSpacing: Int = 3 //图标与文字之间的间距,默认是3px
     open var reverseContent: Bool = false //是否逆转图标与文字的顺序,默认是NO:图标在左/上,文本在右/下
@@ -30,6 +30,7 @@ class LUILayoutButton: UIButton {
     
     lazy private var sizeFitTitleLabel: UILabel = {
         let titleLabel = self.titleLabel
+        return titleLabel ?? UILabel()
     }()
     
     required init?(coder: NSCoder) {
