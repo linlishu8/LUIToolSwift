@@ -16,8 +16,8 @@ open class LUITableViewCellBase: UITableViewCell, LUITableViewCellProtocol {
     static let cachedFitedSizeKey: String = "\(String(describing: type(of: LUITableViewCellBase.self)))_cachedFitedSize"
     
     required public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        self.cellModel = LUITableViewCellModel()
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
     }
     
     required public init?(coder aDecoder: NSCoder) {
@@ -43,7 +43,7 @@ open class LUITableViewCellBase: UITableViewCell, LUITableViewCellProtocol {
         return CGFloat(cellModel.l_floatForKeyPath(self.estimatedHeightKey, otherwise: 44))
     }
     
-    var cellModel: LUITableViewCellModel? {
+    var cellModel: LUITableViewCellModel {
         didSet {
             self.isCellModelChanged = cellModel.needReloadCell || oldValue !== cellModel || cellModel.tableViewCell !== self
             if LUITableViewCellBase.useCachedFitedSize && cellModel.needReloadCell {
@@ -65,12 +65,10 @@ open class LUITableViewCellBase: UITableViewCell, LUITableViewCellProtocol {
     
     public override func sizeThatFits(_ size: CGSize) -> CGSize {
         if LUITableViewCellBase.useCachedFitedSize {
-            if let cellModel = self.cellModel {
-                if let cacheSizeValue = cellModel[LUITableViewCellBase.cachedFitedSizeKey] as? NSValue {
-                    let cacheSize = cacheSizeValue.cgSizeValue
-                    if cacheSize.width == size.width {
-                        return cacheSize
-                    }
+            if let cacheSizeValue = cellModel[LUITableViewCellBase.cachedFitedSizeKey] as? NSValue {
+                let cacheSize = cacheSizeValue.cgSizeValue
+                if cacheSize.width == size.width {
+                    return cacheSize
                 }
             }
         }
@@ -79,9 +77,9 @@ open class LUITableViewCellBase: UITableViewCell, LUITableViewCellProtocol {
         }
         sizeFits.width = size.width
         if LUITableViewCellBase.useCachedFitedSize {
-            self.cellModel?[LUITableViewCellBase.cachedFitedSizeKey] = [NSValue (cgSize: sizeFits)]
+            self.cellModel[LUITableViewCellBase.cachedFitedSizeKey] = [NSValue (cgSize: sizeFits)]
         }
-        self.cellModel?[LUITableViewCellBase.estimatedHeightKey] = sizeFits.height
+        self.cellModel[LUITableViewCellBase.estimatedHeightKey] = sizeFits.height
         return sizeFits
     }
     
