@@ -48,7 +48,8 @@ class ViewController: UIViewController {
     func __reloadData() {
         let testModel1 = self.addCellModelWithCellTitle("客服")
         testModel1.whenClick = { cellModel in
-            
+            let chatView = LUIChatViewController.init()
+            self.navigationController?.pushViewController(chatView, animated: true)
         }
         let testModel2 = self.addCellModelWithCellTitle("测试2")
         let testModel3 = self.addCellModelWithCellTitle("测试3")

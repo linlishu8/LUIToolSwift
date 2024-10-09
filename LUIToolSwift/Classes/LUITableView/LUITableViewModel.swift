@@ -425,7 +425,7 @@ public class LUITableViewModel: LUICollectionModel, UITableViewDelegate, UITable
         guard self.showSectionIndexTitle, !self.sectionModels.isEmpty else { return sectionIndexTitles }
         for model in self.sectionModels {
             if let sectionModel = model as? LUITableViewSectionModel {
-                let title = sectionModel.indexTitle ?? defaultSectionIndexTitle
+                let title = sectionModel.indexTitle
                 sectionIndexTitles.append(["title": title, "model": sectionModel])
             }
         }
@@ -480,7 +480,7 @@ public class LUITableViewModel: LUICollectionModel, UITableViewDelegate, UITable
             }
         }
         if let forwardDataSource = self.forwardDataSource {
-            self.forwardDataSource?.tableView?(tableView, moveRowAt: sourceIndexPath, to: destinationIndexPath)
+            forwardDataSource.tableView?(tableView, moveRowAt: sourceIndexPath, to: destinationIndexPath)
         }
         if !handed {
             self.moveCellModelAtIndexPath(sourceIndexPath, toIndexPath: destinationIndexPath)
@@ -608,8 +608,6 @@ public class LUITableViewModel: LUICollectionModel, UITableViewDelegate, UITable
             forwardDelegate.tableView?(tableView, didDeselectRowAt: indexPath)
         }
     }
-    
-    // MARK: - Display customization
     
     private func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if let cellModel = self.cellModelAtIndexPath(indexPath), let tableCell = cell as? LUITableViewCellProtocol {
