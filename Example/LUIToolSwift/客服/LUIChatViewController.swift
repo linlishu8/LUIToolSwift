@@ -7,7 +7,31 @@
 //
 
 import UIKit
+import LUIToolSwift
 
 class LUIChatViewController: UIViewController {
+    private lazy var chatTableView: LUITableView = {
+        let tableView = LUITableView(frame: .zero, style: .plain)
+        tableView.backgroundColor = .clear
+        tableView.separatorStyle = .none
+        tableView.bounces = false
+        tableView.showsVerticalScrollIndicator = false
+        tableView.l_hiddenFooterAreaSeparators()
+        return tableView
+    }()
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.navigationItem.title = "智能小兴";
+        self.view.addSubview(self.chatTableView)
+        
+        
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        self.chatTableView.frame = self.view.bounds
+    }
 }
