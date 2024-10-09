@@ -23,7 +23,7 @@ class LUIChatViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.title = "智能小兴";
+        self.navigationItem.title = "在线客服";
         self.view.addSubview(self.chatTableView)
         
         
