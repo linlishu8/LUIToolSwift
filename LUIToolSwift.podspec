@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'LUIToolSwift'
-  s.version          = '0.1.0'
+  s.version          = '0.1.2'
   s.summary          = 'LUITool的Swift版'
   
   # 本地测试pod库：pod lib lint --allow-warnings --verbose --no-clean
