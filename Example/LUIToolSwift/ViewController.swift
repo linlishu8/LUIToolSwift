@@ -22,6 +22,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = "钱X项目"
         
         view.addSubview(tableView)
         self.__reloadData()
