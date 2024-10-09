@@ -105,7 +105,7 @@ public class LUILayoutConstraintItemAttributeSection: LUILayoutConstraintItemAtt
         let bounds = self.layoutFrame
         var f1: CGRect = .zero
         f1.origin = bounds.origin
-        let allItemAttributes = needRevert ? self.allItemAttributes : self.allItemAttributes.reversed()
+        let allItemAttributes = needRevert ? self.allItemAttributes.reversed() : self.allItemAttributes 
         for allItemAttribute in allItemAttributes {
             f1.size = allItemAttribute.layoutFrame.size
             f1.LUICGRectAlignToRect(Y, alignment: alignY, bounds: bounds)
