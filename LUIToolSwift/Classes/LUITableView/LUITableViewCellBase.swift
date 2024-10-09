@@ -40,7 +40,7 @@ open class LUITableViewCellBase: UITableViewCell, LUITableViewCellProtocol {
     }
     
     static func estimatedHeightWithTableView(_ tableView: UITableView, cellModel: LUITableViewCellModel) -> CGFloat {
-        return CGFloat(cellModel.l_floatForKeyPath(self.estimatedHeightKey, otherwise: 44))
+        return CGFloat(cellModel.l_cellHeightForKeyPath(self.estimatedHeightKey, otherwise: 44))
     }
     
     open var cellModel: LUITableViewCellModel {

@@ -383,15 +383,15 @@ public class LUITableViewModel: LUICollectionModel, UITableViewDelegate, UITable
         return cell ?? UITableViewCell()
     }
     
-    private func numberOfSections(in tableView: UITableView) -> Int {
+    public func numberOfSections(in tableView: UITableView) -> Int {
         return self.numberOfSections
     }
     
-    private func tableView(_ tableView: UITableView, canEditRowAt canEditRowAtIndexPath: IndexPath) -> Bool {
+    public func tableView(_ tableView: UITableView, canEditRowAt canEditRowAtIndexPath: IndexPath) -> Bool {
         return self.cellModelAtIndexPath(canEditRowAtIndexPath)?.canEdit ?? false
     }
     
-    private func tableView(_ tableView: UITableView, editActionsForRowAt editActionsForRowAtIndexPath: IndexPath) -> [UITableViewRowAction]? {
+    public func tableView(_ tableView: UITableView, editActionsForRowAt editActionsForRowAtIndexPath: IndexPath) -> [UITableViewRowAction]? {
         if let forwardDelegate = self.forwardDelegate {
             return forwardDelegate.tableView?(tableView, editActionsForRowAt: editActionsForRowAtIndexPath)
         }
@@ -399,7 +399,7 @@ public class LUITableViewModel: LUICollectionModel, UITableViewDelegate, UITable
     }
     
     @available(iOS 11.0, *)
-    private func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt leadingSwipeActionsConfigurationForRowAtIndexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    public func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt leadingSwipeActionsConfigurationForRowAtIndexPath: IndexPath) -> UISwipeActionsConfiguration? {
         if let forwardDelegate = self.forwardDelegate {
             return forwardDelegate.tableView?(tableView, leadingSwipeActionsConfigurationForRowAt: leadingSwipeActionsConfigurationForRowAtIndexPath)
         }
@@ -407,7 +407,7 @@ public class LUITableViewModel: LUICollectionModel, UITableViewDelegate, UITable
     }
     
     @available(iOS 11.0, *)
-    private func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt trailingSwipeActionsConfigurationForRowAtIndexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    public func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt trailingSwipeActionsConfigurationForRowAtIndexPath: IndexPath) -> UISwipeActionsConfiguration? {
         if let forwardDelegate = self.forwardDelegate {
             return forwardDelegate.tableView?(tableView, trailingSwipeActionsConfigurationForRowAt: trailingSwipeActionsConfigurationForRowAtIndexPath)
         }
@@ -415,12 +415,12 @@ public class LUITableViewModel: LUICollectionModel, UITableViewDelegate, UITable
     }
     
     
-    private func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith accessoryButtonTappedForRowWithIndexPath: IndexPath) {
+    public func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith accessoryButtonTappedForRowWithIndexPath: IndexPath) {
         guard let cellModel = self.cellModelAtIndexPath(accessoryButtonTappedForRowWithIndexPath) else { return }
         cellModel.whenClickAccessory?(cellModel)
     }
     
-    private func _sectionIndexTitlesForTableView(_ tableView: UITableView) -> [[String : Any]] {
+    public func _sectionIndexTitlesForTableView(_ tableView: UITableView) -> [[String : Any]] {
         var sectionIndexTitles: [[String : Any]] = []
         guard self.showSectionIndexTitle, !self.sectionModels.isEmpty else { return sectionIndexTitles }
         for model in self.sectionModels {
@@ -432,7 +432,7 @@ public class LUITableViewModel: LUICollectionModel, UITableViewDelegate, UITable
         return sectionIndexTitles
     }
     
-    private func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+    public func sectionIndexTitles(for tableView: UITableView) -> [String]? {
         var sectionIndexTitles: [String] = []
         guard self.showSectionIndexTitle else { return sectionIndexTitles }
         let map = self._sectionIndexTitlesForTableView(tableView)
@@ -444,7 +444,7 @@ public class LUITableViewModel: LUICollectionModel, UITableViewDelegate, UITable
         return sectionIndexTitles
     }
     
-    private func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
+    public func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
         var sectionIndex = NSNotFound
         guard self.showSectionIndexTitle else { return sectionIndex }
         let map = self._sectionIndexTitlesForTableView(tableView)
@@ -456,7 +456,7 @@ public class LUITableViewModel: LUICollectionModel, UITableViewDelegate, UITable
         return sectionIndex
     }
     
-    private func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    public func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let sectionModel = self.sectionModelAtIndex(indexPath.section)
             let model = sectionModel?.cellModelAtIndex(indexPath.row)
@@ -469,7 +469,7 @@ public class LUITableViewModel: LUICollectionModel, UITableViewDelegate, UITable
         }
     }
     
-    private func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+    public func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         let scrTableCellModel = self.cellModelAtIndexPath(sourceIndexPath)
         let dstTableCellModel = self.cellModelAtIndexPath(destinationIndexPath)
         var handed = false
@@ -487,7 +487,7 @@ public class LUITableViewModel: LUICollectionModel, UITableViewDelegate, UITable
         }
     }
     
-    private func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if let cellModel = self.cellModelAtIndexPath(indexPath) {
             let cellClass = cellModel.cellClass
             return cellClass?.heightWithTableView(tableView, cellModel: cellModel) ?? 0
@@ -495,7 +495,7 @@ public class LUITableViewModel: LUICollectionModel, UITableViewDelegate, UITable
         return 0
     }
     
-    private func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+    public func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         if let cellModel = self.cellModelAtIndexPath(indexPath) {
             let cellClass = cellModel.cellClass
             return cellClass?.estimatedHeightWithTableView(tableView, cellModel: cellModel) ?? 0
@@ -579,7 +579,7 @@ public class LUITableViewModel: LUICollectionModel, UITableViewDelegate, UITable
         return nil
     }
     
-    private func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) as? LUITableViewCellProtocol {
             cell.tableView(tableView, didSelectCell: true)
         }
@@ -593,7 +593,7 @@ public class LUITableViewModel: LUICollectionModel, UITableViewDelegate, UITable
         }
     }
     
-    private func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+    public func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) as? LUITableViewCellProtocol {
             cell.tableView(tableView, didSelectCell: false)
         }
@@ -609,7 +609,7 @@ public class LUITableViewModel: LUICollectionModel, UITableViewDelegate, UITable
         }
     }
     
-    private func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if let cellModel = self.cellModelAtIndexPath(indexPath), let tableCell = cell as? LUITableViewCellProtocol {
             tableCell.tableView(tableView, willDisplayCellModel: cellModel)
         }
@@ -618,7 +618,7 @@ public class LUITableViewModel: LUICollectionModel, UITableViewDelegate, UITable
         }
     }
     
-    private func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+    public func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         if let headerView = view as? LUITableViewSectionViewProtocol, let sectionModel = self.sectionModelAtIndex(section) {
             headerView.tableView(tableView, willDisplaySectionModel: sectionModel, kind: .head)
         }
@@ -627,7 +627,7 @@ public class LUITableViewModel: LUICollectionModel, UITableViewDelegate, UITable
         }
     }
     
-    private func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
+    public func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
         if let footView = view as? LUITableViewSectionViewProtocol, let sectionModel = self.sectionModelAtIndex(section) {
             footView.tableView(tableView, willDisplaySectionModel: sectionModel, kind: .foot)
         }
@@ -636,7 +636,7 @@ public class LUITableViewModel: LUICollectionModel, UITableViewDelegate, UITable
         }
     }
     
-    private func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    public func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if let cellModel = self.cellModelAtIndexPath(indexPath), let tableCell = cell as? LUITableViewCellProtocol {
             tableCell.tableView(tableView, didEndDisplayingCellModel: cellModel)
         }
@@ -645,7 +645,7 @@ public class LUITableViewModel: LUICollectionModel, UITableViewDelegate, UITable
         }
     }
     
-    private func tableView(_ tableView: UITableView, didEndDisplayingHeaderView view: UIView, forSection section: Int) {
+    public func tableView(_ tableView: UITableView, didEndDisplayingHeaderView view: UIView, forSection section: Int) {
         if let headView = view as? LUITableViewSectionViewProtocol, let sectionModel = self.sectionModelAtIndex(section) {
             headView.tableView(tableView, didEndDisplayingSectionModel: sectionModel, kind: .head)
         }
@@ -654,7 +654,7 @@ public class LUITableViewModel: LUICollectionModel, UITableViewDelegate, UITable
         }
     }
     
-    private func tableView(_ tableView: UITableView, didEndDisplayingFooterView view: UIView, forSection section: Int) {
+    public func tableView(_ tableView: UITableView, didEndDisplayingFooterView view: UIView, forSection section: Int) {
         if let footView = view as? LUITableViewSectionViewProtocol, let sectionModel = self.sectionModelAtIndex(section) {
             footView.tableView(tableView, didEndDisplayingSectionModel: sectionModel, kind: .foot)
         }
