@@ -15,7 +15,6 @@ class ViewController: UIViewController {
         tableView.separatorStyle = .none
         tableView.bounces = false
         tableView.showsVerticalScrollIndicator = false
-        tableView.isScrollEnabled = false
         tableView.l_hiddenFooterAreaSeparators()
         return tableView
     }()

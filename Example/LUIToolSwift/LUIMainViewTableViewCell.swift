@@ -14,11 +14,17 @@ class LUIMainViewTableViewCell: LUITableViewCellBase {
     
     required init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        let titleLebel = UILabel()
-        titleLebel.text = "我是测试的文字"
         
-        self.flowlayout = LUIFlowLayoutConstraint.init([titleLebel], param: .H_C_C, contentInsets: .zero, interitemSpacing: 0)
-        self.contentView.addSubview(titleLebel)
+        let titleLebel1 = UILabel()
+        titleLebel1.text = "我是测试的文字"
+        self.contentView.addSubview(titleLebel1)
+        
+        let titleLebel2 = UILabel()
+        titleLebel2.numberOfLines = 0
+        titleLebel2.text = "我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2我是测试的文字2"
+        self.contentView.addSubview(titleLebel2)
+        
+        self.flowlayout = LUIFlowLayoutConstraint.init([titleLebel1, titleLebel2], param: .H_C_C, contentInsets: .zero, interitemSpacing: 10)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -34,7 +40,8 @@ class LUIMainViewTableViewCell: LUITableViewCellBase {
     }
     
     override func customSizeThatFits(size: CGSize) -> CGSize {
-        let size = self.flowlayout?.sizeThatFits(size, resizeItems: true) ?? .zero
+        var size = self.flowlayout?.sizeThatFits(size, resizeItems: true) ?? .zero
+        size.height = max(size.height, 44)
         return size
     }
 }
