@@ -1,0 +1,16 @@
+PODS:
+  - LUIToolSwift (0.1.0)
+
+DEPENDENCIES:
+  - LUIToolSwift (from `../`)
+
+EXTERNAL SOURCES:
+  LUIToolSwift:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  LUIToolSwift: b128af16228178e0fecf0720cb7e1a54cb2270b1
+
+PODFILE CHECKSUM: 90268595a1d372515b527b06b47b363cf6328001
+
+COCOAPODS: 1.15.2
