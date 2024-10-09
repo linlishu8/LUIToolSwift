@@ -43,7 +43,7 @@ open class LUITableViewCellBase: UITableViewCell, LUITableViewCellProtocol {
         return CGFloat(cellModel.l_floatForKeyPath(self.estimatedHeightKey, otherwise: 44))
     }
     
-    var cellModel: LUITableViewCellModel {
+    open var cellModel: LUITableViewCellModel {
         didSet {
             self.isCellModelChanged = cellModel.needReloadCell || oldValue !== cellModel || cellModel.tableViewCell !== self
             if LUITableViewCellBase.useCachedFitedSize && cellModel.needReloadCell {

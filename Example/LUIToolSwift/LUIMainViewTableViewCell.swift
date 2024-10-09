@@ -11,24 +11,26 @@ import LUIToolSwift
 
 class LUIMainViewTableViewCell: LUITableViewCellBase {
     var flowlayout: LUIFlowLayoutConstraint?
+    private lazy var titleLebel1: UILabel = {
+        return UILabel()
+    }()
     
     required init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        let titleLebel1 = UILabel()
-        titleLebel1.text = "我是测试的文字"
-        self.contentView.addSubview(titleLebel1)
+        self.contentView.addSubview(self.titleLebel1)
         
-        let titleLebel2 = UILabel()
-        titleLebel2.numberOfLines = 0
-        titleLebel2.text = "我是测试的文字2s"
-        self.contentView.addSubview(titleLebel2)
-        
-        self.flowlayout = LUIFlowLayoutConstraint.init([titleLebel1, titleLebel2], param: .H_C_L, contentInsets: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10), interitemSpacing: 10)
+        self.flowlayout = LUIFlowLayoutConstraint.init([self.titleLebel1], param: .V_C_C, contentInsets: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10), interitemSpacing: 10)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func customReloadCellModel() {
+        if let title = self.cellModel.modelValue as? String {
+            self.titleLebel1.text = title
+        }
     }
     
     override func customLayoutSubviews() {

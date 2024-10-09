@@ -9,28 +9,28 @@ import Foundation
 
 public class LUITableViewCellModel: LUICollectionCellModel {
     
-    open var cellClass: LUITableViewCellBase.Type?
-    var indexTitle: String?
-    var canEdit: Bool = false
-    var canMove: Bool = false
+    open var cellClass: LUITableViewCellBase.Type?//对应的cell类,实例化时默认设置为UITableViewCell
+    public var indexTitle: String?//自动进行分组时,使用的索引值
+    public var canEdit: Bool = false
+    public var canMove: Bool = false
 
-    var whenClick: ((LUITableViewCellModel) -> Void)?
-    var whenSelected: ((LUITableViewCellModel, Bool) -> Void)?
-    var whenClickAccessory: ((LUITableViewCellModel) -> Void)?
-    var whenDelete: ((LUITableViewCellModel) -> Void)?
-    var whenMove: ((LUITableViewCellModel, LUITableViewCellModel) -> Void)?
-    var whenShow: ((LUITableViewCellModel, UITableViewCell) -> Void)?
+    public var whenClick: ((LUITableViewCellModel) -> Void)?
+    public var whenSelected: ((LUITableViewCellModel, Bool) -> Void)?
+    public var whenClickAccessory: ((LUITableViewCellModel) -> Void)?
+    public var whenDelete: ((LUITableViewCellModel) -> Void)?
+    public var whenMove: ((LUITableViewCellModel, LUITableViewCellModel) -> Void)?
+    public var whenShow: ((LUITableViewCellModel, UITableViewCell) -> Void)?
 
-    var swipeActions: [LUITableViewCellSwipeAction]?
-    var performsFirstActionWithFullSwipe: Bool = true
-    var leadingSwipeActions: [LUITableViewCellSwipeAction]?
+    public var swipeActions: [LUITableViewCellSwipeAction]?//左滑显示更多按钮
+    public var performsFirstActionWithFullSwipe: Bool = true
+    public var leadingSwipeActions: [LUITableViewCellSwipeAction]?//右滑显示的按钮
 
-    weak var tableViewCell: UITableViewCell?
-    var cellStyle: UITableViewCellStyle = .default
+    public weak var tableViewCell: UITableViewCell?
+    public  var cellStyle: UITableViewCellStyle = .default
     
-    var needReloadCell: Bool = false
+    public var needReloadCell: Bool = false
 
-    var reuseIdentity: String {
+    public var reuseIdentity: String {
         return String(describing: cellClass)
     }
 
@@ -46,11 +46,11 @@ public class LUITableViewCellModel: LUICollectionCellModel {
         super.init()
     }
 
-    var tableView: UITableView? {
+    public var tableView: UITableView? {
         return tableViewModel?.tableView
     }
 
-    var tableViewModel: LUITableViewModel? {
+    public var tableViewModel: LUITableViewModel? {
         return collectionModel as? LUITableViewModel
     }
 
@@ -139,7 +139,7 @@ public class LUITableViewCellModel: LUICollectionCellModel {
         self.tableViewModel?.removeCellModel(self, animated: animated)
     }
     
-    func editActions() -> [UITableViewRowAction] {
+    public func editActions() -> [UITableViewRowAction] {
         var editActions: [UITableViewRowAction] = []
         guard let swipeActions: [LUITableViewCellSwipeAction] = self.swipeActions else { return editActions }
         for swipeAction in swipeActions {
