@@ -18,6 +18,7 @@ open class LUITableViewCellBase: UITableViewCell, LUITableViewCellProtocol {
     required public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         self.cellModel = LUITableViewCellModel()
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        self.selectionStyle = .none
     }
     
     required public init?(coder aDecoder: NSCoder) {

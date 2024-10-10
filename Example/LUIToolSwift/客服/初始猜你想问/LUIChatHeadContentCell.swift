@@ -28,8 +28,15 @@ class LUIChatHeadContentCell: LUIChatMsgTableViewCellBase {
         self.contentView.addSubview(self.arrowImageView)
         self.contentView.addSubview(self.titleLabel)
         
+        let titlelayout = LUIFlowLayoutConstraint([self.titleLabel], param: .H_C_L, contentInsets: .zero, interitemSpacing: 0)
+        let titleWrapper = LUILayoutConstraintItemWrapper.wrapItem(titlelayout) { titleWrapper, size, rest in
+            var s = titleWrapper.originItem.sizeThatFits(size, resizeItems: true)
+            s.width = size.width
+            return s
+        }
+        
         let imageWrapper = LUILayoutConstraintItemWrapper.wrapItem(self.arrowImageView, fixedSize: CGSizeMake(12, 12))
-        self.flowlayout = LUIFlowLayoutConstraint.init([self.titleLabel, imageWrapper], param: .H_C_R, contentInsets: UIEdgeInsets.LUIEdgeInsetsMakeSameEdge(5), interitemSpacing: 10)
+        self.flowlayout = LUIFlowLayoutConstraint.init([titleWrapper, imageWrapper], param: .H_C_R, contentInsets: UIEdgeInsets.LUIEdgeInsetsMakeSameEdge(5), interitemSpacing: 10)
     }
     
     @MainActor required init?(coder aDecoder: NSCoder) {
