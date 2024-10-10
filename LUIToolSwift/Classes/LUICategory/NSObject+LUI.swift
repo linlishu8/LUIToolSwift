@@ -98,12 +98,12 @@ extension NSObject {
         return self.l_integerForKeyPath(path, otherwise: 0)
     }
     
-    func l_floatForKeyPath(_ path: String, otherwise other: Float) -> Float {
+    func l_floatForKeyPath(_ path: String, otherwise other: CGFloat) -> CGFloat {
         let obj = self.l_numberForKeyPath(path, otherwise: nil)
         guard let value = obj else { return other }
-        return value.floatValue
+        return CGFloat(value.doubleValue) 
     }
-    func l_floatForKeyPath(_ path: String) -> Float {
+    func l_floatForKeyPath(_ path: String) -> CGFloat {
         return self.l_floatForKeyPath(path, otherwise: 0.0)
     }
     

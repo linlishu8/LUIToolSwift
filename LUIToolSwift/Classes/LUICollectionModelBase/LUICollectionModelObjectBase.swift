@@ -38,9 +38,9 @@ public class LUICollectionModelObjectBase: NSObject {
 }
 
 extension LUICollectionModelObjectBase {
-    func l_cellHeightForKeyPath(_ path: String, otherwise other: Float) -> Float {
+    func l_cellHeightForKeyPath(_ path: String, otherwise other: CGFloat) -> CGFloat {
         let obj = dynamicProperties[path]
         guard let value = obj else { return other }
-        return value as? Float ?? 0
+        return value as? CGFloat ?? 0
     }
 }

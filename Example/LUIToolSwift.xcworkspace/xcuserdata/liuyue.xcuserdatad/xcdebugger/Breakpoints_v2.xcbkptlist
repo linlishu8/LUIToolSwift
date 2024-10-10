@@ -23,17 +23,159 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "7C518665-919B-4A0C-A370-FCDF882B80FA"
+            uuid = "AE7CCC6E-6458-4F29-BC01-FB989F95A4E0"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../LUIToolSwift/Classes/LUICategory/UITableView+LUI.swift"
+            filePath = "LUIToolSwift/&#x5ba2;&#x670d;/&#x521d;&#x59cb;&#x731c;&#x4f60;&#x60f3;&#x95ee;/LUIChatHeaderView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "187"
-            endingLineNumber = "187"
-            landmarkName = "l_heightThatFits(_:)"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
+            landmarkName = "sizeThatFits(_:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "41E718F1-CC22-4FF9-83AA-21580E98D45C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LUIToolSwift/&#x5ba2;&#x670d;/&#x521d;&#x59cb;&#x731c;&#x4f60;&#x60f3;&#x95ee;/LUIChatHeaderView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "layoutSubviews()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "65E6AE9C-44FB-4D7E-BAEA-0C43914182DC"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../LUIToolSwift/Classes/LUITableView/LUITableViewCellBase.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "heightWithTableView(_:cellModel:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3C2C7715-62A9-459B-8940-D5CD6E57E42C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../LUIToolSwift/Classes/LUITableView/LUITableViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "495"
+            endingLineNumber = "495"
+            landmarkName = "tableView(_:heightForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "64D08A32-7F2E-4729-B3A2-B2830B105687"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../LUIToolSwift/Classes/LUITableView/LUITableViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "491"
+            endingLineNumber = "491"
+            landmarkName = "tableView(_:heightForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "16680BB5-285C-4811-BE5C-4EB1A5786F93"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../LUIToolSwift/Classes/LUITableView/LUITableViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "499"
+            endingLineNumber = "499"
+            landmarkName = "tableView(_:estimatedHeightForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "ACFFEE8B-F995-47D9-A175-674B19EFB949"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../LUIToolSwift/Classes/LUITableView/LUITableViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "503"
+            endingLineNumber = "503"
+            landmarkName = "tableView(_:estimatedHeightForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "68A95829-0281-4656-AC2C-6B5278F1121F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../LUIToolSwift/Classes/LUICollectionModelBase/LUICollectionModelObjectBase.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "l_cellHeightForKeyPath(_:otherwise:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "68A95829-0281-4656-AC2C-6B5278F1121F - 1591ba29fa7a6e58"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LUIToolSwift.LUICollectionModelObjectBase.l_cellHeightForKeyPath(_: Swift.String, otherwise: Swift.Float) -&gt; Swift.Float"
+                  moduleName = "LUIToolSwift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/liuyue/LUIToolSwift/LUIToolSwift/Classes/LUICollectionModelBase/LUICollectionModelObjectBase.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42">
+               </Location>
+               <Location
+                  uuid = "68A95829-0281-4656-AC2C-6B5278F1121F - 4208f0a47a2df019"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LUIToolSwift.LUICollectionModelObjectBase.l_cellHeightForKeyPath(_: Swift.String, otherwise: CoreGraphics.CGFloat) -&gt; CoreGraphics.CGFloat"
+                  moduleName = "LUIToolSwift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/liuyue/LUIToolSwift/LUIToolSwift/Classes/LUICollectionModelBase/LUICollectionModelObjectBase.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

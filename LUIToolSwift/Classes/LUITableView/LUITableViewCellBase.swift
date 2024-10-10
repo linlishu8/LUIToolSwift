@@ -24,8 +24,6 @@ open class LUITableViewCellBase: UITableViewCell, LUITableViewCellProtocol {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK LUITableViewCellProtocol
-    
     static func heightWithTableView(_ tableView: UITableView, cellModel: LUITableViewCellModel) -> CGFloat {
         if useCachedFitedSize {
             let bounds = tableView.bounds
