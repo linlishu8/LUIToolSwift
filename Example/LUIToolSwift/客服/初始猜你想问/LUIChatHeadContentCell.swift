@@ -20,7 +20,7 @@ class LUIChatHeadContentCell: LUIChatMsgTableViewCellBase {
         label.numberOfLines = 2
         return label
     }()
-    var flowlayout: LUIFlowLayoutConstraint?
+    private var flowlayout: LUIFlowLayoutConstraint?
     
     required init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

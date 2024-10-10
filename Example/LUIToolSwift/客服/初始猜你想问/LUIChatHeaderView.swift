@@ -48,6 +48,8 @@ class LUIChatHeaderView: LUIChatBaseView {
         
         let leftFlowlayout = LUIFlowLayoutConstraint([self.leftLabel, self.changeButton], param: .V_C_C, contentInsets: .zero, interitemSpacing: 5)
         self.flowlayout = LUIFlowLayoutConstraint([leftFlowlayout, self.tableView], param: .H_C_C, contentInsets: .zero, interitemSpacing: 10)
+        
+        self.__reloadData()
     }
     
     @MainActor required init?(coder: NSCoder) {
