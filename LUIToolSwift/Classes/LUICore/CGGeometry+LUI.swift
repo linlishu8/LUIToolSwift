@@ -584,7 +584,7 @@ struct LUICGRange {
 }
 
 public extension UIEdgeInsets {
-     static func LUIEdgeInsetsMakeSameEdge(_ edge: CGFloat) -> UIEdgeInsets {
+    static func LUIEdgeInsetsMakeSameEdge(_ edge: CGFloat) -> UIEdgeInsets {
         UIEdgeInsets(top: edge, left: edge, bottom: edge, right: edge)
     }
 }

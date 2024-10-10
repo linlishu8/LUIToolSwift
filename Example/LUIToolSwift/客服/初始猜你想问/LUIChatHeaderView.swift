@@ -69,4 +69,8 @@ class LUIChatHeaderView: LUIChatBaseView {
     override func sizeThatFits(_ size: CGSize) -> CGSize {
         return self.flowlayout?.sizeThatFits(size, resizeItems: true) ?? .zero
     }
+    
+    private func __reloadData() {
+        self.tableView.model.removeAllSectionModels()
+    }
 }
