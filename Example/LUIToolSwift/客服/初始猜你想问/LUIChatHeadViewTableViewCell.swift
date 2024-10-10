@@ -37,6 +37,6 @@ class LUIChatHeadViewTableViewCell: LUIChatMsgTableViewCellBase {
     }
     
     override func customSizeThatFits(size: CGSize) -> CGSize {
-        return self.sizeThatFits(size, resizeItems: true)
+        return self.flowlayout?.sizeThatFits(size, resizeItems: true) ?? .zero
     }
 }
