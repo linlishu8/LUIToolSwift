@@ -164,10 +164,22 @@ public extension UITableView {
     }
     
     func l_heightThatFits(_ boundsWidth: CGFloat) -> CGFloat {
-        var totalHeight: CGFloat = contentInset.top + contentInset.bottom
+        var totalHeight: CGFloat = 0
+        let originBounds = self.bounds
+        if originBounds.size.width != boundsWidth {
+            var bounds = originBounds
+            bounds.size.width = boundsWidth
+            self.bounds = bounds
+        }
+        
+        let insets = self.contentInset
+        totalHeight += insets.top + insets.bottom
         
         totalHeight += __l_tableHeadFootViewHeightThatFits(boundsWidth: boundsWidth, isHead: true)
         totalHeight += __l_tableHeadFootViewHeightThatFits(boundsWidth: boundsWidth, isHead: false)
+        
+        let separatorHeight = self.l_separatorHeight()
+        var separatorCount: CGFloat = 0
         
         for section in 0..<numberOfSections {
 //            totalHeight += __l_sectionHeightInSection(section: section, isHeader: true)
@@ -175,11 +187,29 @@ public extension UITableView {
             
             for row in 0..<numberOfRows(inSection: section) {
                 let indexPath = IndexPath(row: row, section: section)
-                totalHeight += l_cellHeightForIndexPath(indexPath)
+                let cellHeight = l_cellHeightForIndexPath(indexPath)
+                if cellHeight > 0 {separatorCount += 1}
+                
+                totalHeight += cellHeight
             }
         }
         
-        return ceil(totalHeight)
+        if UITableView.l_isAutoAddSeparatorHeightToCell() {
+            totalHeight += separatorCount * separatorHeight
+            totalHeight += separatorHeight
+        }
+        
+        if self.style == .grouped && self.separatorStyle == .none {
+            totalHeight += 20//group且没有分隔线时，tableview会自动添加20的contentSize
+        }
+        
+        totalHeight = ceil(totalHeight)
+        
+        if originBounds.size.width != boundsWidth {
+            self.bounds = originBounds
+        }
+        
+        return totalHeight
     }
     
     func __l_tableHeadFootViewHeightThatFits(boundsWidth: CGFloat, isHead: Bool) -> CGFloat {
