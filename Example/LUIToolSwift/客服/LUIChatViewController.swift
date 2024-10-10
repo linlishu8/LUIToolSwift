@@ -26,12 +26,23 @@ class LUIChatViewController: UIViewController {
         self.navigationItem.title = "在线客服";
         self.view.addSubview(self.chatTableView)
         
-        
+        self.reloadTableView()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
         self.chatTableView.frame = self.view.bounds
+    }
+    
+    private func reloadTableView() {
+        self.chatTableView.model.addCellModel(self.setupTableViewCellModel(modelCellClass: LUIChatHeadContentCell.self))
+        self.chatTableView.model.reloadTableViewData()
+    }
+    
+    private func setupTableViewCellModel(modelCellClass: LUITableViewCellBase.Type) -> LUITableViewCellModel {
+        let cellModel = LUITableViewCellModel.init()
+        cellModel.cellClass = modelCellClass.self
+        return cellModel
     }
 }

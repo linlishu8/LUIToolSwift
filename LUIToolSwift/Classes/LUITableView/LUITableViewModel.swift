@@ -42,7 +42,7 @@ public class LUITableViewModel: LUICollectionModel, UITableViewDelegate, UITable
         tableView.dataSource = self
     }
     
-    override func createEmptySectionModel() -> LUITableViewSectionModel {
+    public override func createEmptySectionModel() -> LUITableViewSectionModel {
         return LUITableViewSectionModel.init()
     }
     
@@ -54,17 +54,17 @@ public class LUITableViewModel: LUICollectionModel, UITableViewDelegate, UITable
         section.addCellModel(cellModel)
     }
     
-    override func cellModelAtIndexPath(_ indexPath: IndexPath) -> LUITableViewCellModel? {
+    public override func cellModelAtIndexPath(_ indexPath: IndexPath) -> LUITableViewCellModel? {
         guard let cellModel = super.cellModelAtIndexPath(indexPath) as? LUITableViewCellModel else { return nil }
         return cellModel
     }
     
-    override func cellModelForSelectedCellModel() -> LUITableViewCellModel? {
+    public override func cellModelForSelectedCellModel() -> LUITableViewCellModel? {
         guard let cellModel = super.cellModelForSelectedCellModel() as? LUITableViewCellModel else { return nil }
         return cellModel
     }
     
-    override func sectionModelAtIndex(_ index: Int) -> LUITableViewSectionModel? {
+    public override func sectionModelAtIndex(_ index: Int) -> LUITableViewSectionModel? {
         guard let sectionModel = super.sectionModelAtIndex(index) as? LUITableViewSectionModel else { return nil }
         return sectionModel
     }

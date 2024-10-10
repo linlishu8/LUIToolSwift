@@ -72,5 +72,13 @@ class LUIChatHeaderView: LUIChatBaseView {
     
     private func __reloadData() {
         self.tableView.model.removeAllSectionModels()
+        let dataList = ["钱大掌柜是什么", "钱大掌柜产品持有后能否通过兴业银行柜台查询", "我购买钱大掌柜上销售的各家机构提供的各类产品是否纳入该我购买钱大掌柜上销售的各家机构提供的各类产品是否纳入该", "非身份证能否签约钱大掌柜？"]
+        for string in dataList {
+            let cellModel = LUITableViewCellModel.init()
+            cellModel.cellClass = LUIChatHeadContentCell.self
+            cellModel.modelValue = string
+            self.tableView.model.addCellModel(cellModel)
+        }
+        self.tableView.model.reloadTableViewData()
     }
 }
