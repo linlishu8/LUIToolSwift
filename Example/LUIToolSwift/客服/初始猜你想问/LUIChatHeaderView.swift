@@ -45,6 +45,7 @@ class LUIChatHeaderView: LUIChatBaseView {
         self.addSubview(self.backgroundImageView)
         self.addSubview(self.leftLabel)
         self.addSubview(self.changeButton)
+        self.addSubview(self.tableView)
         
         let leftFlowlayout = LUIFlowLayoutConstraint([self.leftLabel, self.changeButton], param: .V_C_C, contentInsets: .zero, interitemSpacing: 5)
         let tableWrapper = LUILayoutConstraintItemWrapper.wrapItem(self.tableView) { wrapper, size, resizeItems in

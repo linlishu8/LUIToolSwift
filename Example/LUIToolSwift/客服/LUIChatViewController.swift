@@ -12,7 +12,7 @@ import LUIToolSwift
 class LUIChatViewController: UIViewController {
     private lazy var chatTableView: LUITableView = {
         let tableView = LUITableView(frame: .zero, style: .plain)
-        tableView.backgroundColor = .clear
+        tableView.backgroundColor = UIColor(hex: "F9F9F9")
         tableView.separatorStyle = .none
         tableView.bounces = false
         tableView.showsVerticalScrollIndicator = false
