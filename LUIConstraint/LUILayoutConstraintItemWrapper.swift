@@ -11,11 +11,11 @@ public typealias LUILayoutConstraintItemWrapperBlock = (LUILayoutConstraintItemW
 
 public class LUILayoutConstraintItemWrapper: NSObject, LUILayoutConstraintItemProtocol {
     
-    var originItem: LUILayoutConstraintItemProtocol
-    var fixedSize: CGSize = .zero
-    var sizeThatFitsBlock: LUILayoutConstraintItemWrapperBlock?
-    var margin: UIEdgeInsets = .zero
-    var paddingSize: CGSize = .zero
+    public var originItem: LUILayoutConstraintItemProtocol
+    public var fixedSize: CGSize = .zero
+    public var sizeThatFitsBlock: LUILayoutConstraintItemWrapperBlock?
+    public var margin: UIEdgeInsets = .zero
+    public var paddingSize: CGSize = .zero
     
     public static func wrapItem(_ originItem: LUILayoutConstraintItemProtocol) -> LUILayoutConstraintItemWrapper {
         return LUILayoutConstraintItemWrapper(originItem: originItem)

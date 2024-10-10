@@ -181,7 +181,7 @@ public extension UITableView {
         return ceil(totalHeight)
     }
     
-    private func __l_tableHeadFootViewHeightThatFits(boundsWidth: CGFloat, isHead: Bool) -> CGFloat {
+    func __l_tableHeadFootViewHeightThatFits(boundsWidth: CGFloat, isHead: Bool) -> CGFloat {
         let view = isHead ? tableHeaderView : tableFooterView
         return view?.sizeThatFits(CGSize(width: boundsWidth, height: .greatestFiniteMagnitude)).height ?? 0
     }

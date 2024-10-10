@@ -47,6 +47,10 @@ class LUIChatHeaderView: LUIChatBaseView {
         self.addSubview(self.changeButton)
         
         let leftFlowlayout = LUIFlowLayoutConstraint([self.leftLabel, self.changeButton], param: .V_C_C, contentInsets: .zero, interitemSpacing: 5)
+//        let tableWrapper = LUILayoutConstraintItemWrapper.wrapItem(self.tableView) { wrapper, size, resizeItems in
+////            let height = wrapper.originItem.l_heightThatFits(size.width)
+//            return CGSize(width: size.width, height: height)
+//        }
         self.flowlayout = LUIFlowLayoutConstraint([leftFlowlayout, self.tableView], param: .H_C_C, contentInsets: .zero, interitemSpacing: 10)
         
         self.__reloadData()
@@ -69,7 +73,8 @@ class LUIChatHeaderView: LUIChatBaseView {
     }
     
     override func sizeThatFits(_ size: CGSize) -> CGSize {
-        return self.flowlayout?.sizeThatFits(size, resizeItems: true) ?? .zero
+        let s = self.flowlayout?.sizeThatFits(size, resizeItems: true) ?? .zero
+        return s
     }
     
     private func __reloadData() {
