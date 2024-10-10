@@ -16,7 +16,7 @@ extension UITableViewCell {
     }
     
     //系统操作区域视图宽度
-    func l_accessorySystemTypeViewWidth() -> CGFloat {
+    public func l_accessorySystemTypeViewWidth() -> CGFloat {
         var cellWidth: CGFloat = 0
         switch accessoryType {
         case .none:
@@ -51,7 +51,7 @@ extension UITableViewCell {
     }
     
     //系统操作区域视图与contentView的左边距
-    func l_accessorySystemTypeViewLeftMargin() -> CGFloat {
+    public func l_accessorySystemTypeViewLeftMargin() -> CGFloat {
         var cellMargin: CGFloat = kLUIAccessoryTypeDefaultLeftMargin
         switch accessoryType {
         case .none:
@@ -78,7 +78,7 @@ extension UITableViewCell {
     }
     
     //系统操作区域视图与UITableViewCell的右边距
-    func l_accessorySystemTypeViewRightMargin() -> CGFloat {
+    public func l_accessorySystemTypeViewRightMargin() -> CGFloat {
         var cellMargin: CGFloat = kLUIAccessoryTypeDefaultRightMargin
         switch accessoryType {
         case .none:
@@ -104,7 +104,7 @@ extension UITableViewCell {
         return cellMargin
     }
     
-    func l_accessoryCustomViewLeftMargin() -> CGFloat {
+    public func l_accessoryCustomViewLeftMargin() -> CGFloat {
         var cellWidth: CGFloat = kLUIAccessoryTypeDefaultLeftMargin;
         if #available(iOS 13.0, *) {
             cellWidth = 0;
@@ -112,7 +112,7 @@ extension UITableViewCell {
         return cellWidth;
     }
     
-    func l_accessoryCustomViewRightMargin() -> CGFloat {
+    public func l_accessoryCustomViewRightMargin() -> CGFloat {
         var cellWidth: CGFloat = kLUIAccessoryTypeDefaultRightMargin;
         if #available(iOS 13.0, *) {
             cellWidth = 20;
@@ -120,7 +120,7 @@ extension UITableViewCell {
         return cellWidth;
     }
     
-    func l_accessoryViewLeftMargin() -> CGFloat {
+    public func l_accessoryViewLeftMargin() -> CGFloat {
         var cellMargin: CGFloat = 0
         if accessoryView != nil {
             cellMargin = self.l_accessorySystemTypeViewLeftMargin()
@@ -130,7 +130,7 @@ extension UITableViewCell {
         return cellMargin
     }
     
-    func l_accessoryViewRightMargin() -> CGFloat {
+    public func l_accessoryViewRightMargin() -> CGFloat {
         var cellMargin: CGFloat = 0
         if accessoryView != nil {
             cellMargin = self.l_accessorySystemTypeViewRightMargin()
@@ -140,7 +140,7 @@ extension UITableViewCell {
         return cellMargin
     }
     
-    func l_sizeThatFits(size: CGSize, sizeFitsBlock block:(CGSize) -> CGSize) -> CGSize {
+    public func l_sizeThatFits(size: CGSize, sizeFitsBlock block:(CGSize) -> CGSize) -> CGSize {
         var cellSize = size
         cellSize.height = 99999999
         let view = self.l_firstSuperViewWithClass(UITableView.self)

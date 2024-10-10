@@ -29,7 +29,7 @@ class LUIChatHeadContentCell: LUIChatMsgTableViewCellBase {
         self.contentView.addSubview(self.titleLabel)
         
         let imageWrapper = LUILayoutConstraintItemWrapper.wrapItem(self.arrowImageView, fixedSize: CGSizeMake(12, 12))
-        self.flowlayout = LUIFlowLayoutConstraint.init([self.titleLabel, imageWrapper], param: .H_C_C, contentInsets: UIEdgeInsets.LUIEdgeInsetsMakeSameEdge(5), interitemSpacing: 10)
+        self.flowlayout = LUIFlowLayoutConstraint.init([self.titleLabel, imageWrapper], param: .H_C_R, contentInsets: UIEdgeInsets.LUIEdgeInsetsMakeSameEdge(5), interitemSpacing: 10)
     }
     
     @MainActor required init?(coder aDecoder: NSCoder) {
@@ -44,6 +44,7 @@ class LUIChatHeadContentCell: LUIChatMsgTableViewCellBase {
     }
     
     override func customSizeThatFits(size: CGSize) -> CGSize {
+        let ss = self.flowlayout?.sizeThatFits(size, resizeItems: true)
         guard var s = self.flowlayout?.sizeThatFits(size, resizeItems: true) else { return .zero }
         s.height = max(s.height, 30)
         return s

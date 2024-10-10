@@ -88,7 +88,9 @@ extension UIScrollView {
         let insets = l_adjustedContentInset
         var bounds = self.bounds
         bounds.origin = .zero
-        return UIEdgeInsetsInsetRect(bounds, insets)
+        var b = UIEdgeInsetsInsetRect(bounds, insets)
+        b.origin = .zero
+        return b
     }
     
     var l_centerPointOfContent: CGPoint {
@@ -175,8 +177,6 @@ extension UIScrollView {
         case .foot:
             let edgeMax = LUIEdgeInsetsEdge.max
             offset.LUICGPointSetValue(cellFrame.LUICGRectGetMax(axis) - bounds.LUICGRectGetLength(axis) + edgeMax.LUIEdgeInsetsGetEdge(contentInset, axis: axis), axis: axis)
-        default:
-            break
         }
         
         // Restrict offset range

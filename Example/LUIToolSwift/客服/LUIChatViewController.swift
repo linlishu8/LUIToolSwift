@@ -14,8 +14,6 @@ class LUIChatViewController: UIViewController {
         let tableView = LUITableView(frame: .zero, style: .plain)
         tableView.backgroundColor = UIColor(hex: "F9F9F9")
         tableView.separatorStyle = .none
-        tableView.bounces = false
-        tableView.showsVerticalScrollIndicator = false
         tableView.l_hiddenFooterAreaSeparators()
         return tableView
     }()

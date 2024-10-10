@@ -67,7 +67,7 @@ public extension UITableView {
         return visibleCells.compactMap { $0 as? T }
     }
     
-    func l_cellHeight(for indexPath: IndexPath) -> CGFloat {
+    func l_cellHeightForIndexPath(_ indexPath: IndexPath) -> CGFloat {
         var cellHeight: CGFloat = 0
         
         // 调用代理方法获取 cell 的高度
@@ -78,26 +78,27 @@ public extension UITableView {
         if cellHeight == UITableViewAutomaticDimension {
             if let cell = dataSource?.tableView(self, cellForRowAt: indexPath) {
                 let noSuperview = cell.superview == nil
-                if noSuperview {
-                    addSubview(cell)
+                if noSuperview {//在计算动态高度时，会用到tableView.l_separatorHeight,因此cell必须临时添加到tableView中
+                    self.addSubview(cell)
                 }
                 
                 let originalBounds = cell.frame
                 let originalContentBounds = cell.contentView.frame
+                var safeAreInsets: UIEdgeInsets = .zero
+                if #available(iOS 11.0, *) {
+                    safeAreInsets = self.safeAreaInsets
+                }
                 
                 let bounds = l_contentBounds
                 var cellBounds = bounds
                 cellBounds.size.height = .greatestFiniteMagnitude
                 cellBounds.origin = .zero
-                
-                var contentViewBounds = cellBounds
-                
-                if #available(iOS 11.0, *) {
-                    contentViewBounds = UIEdgeInsetsInsetRect(cellBounds, safeAreaInsets)
-                }
-                
-                if cell.accessoryView == nil {
-                    contentViewBounds.size.width -= cell.accessoryView?.bounds.size.width ?? 0
+                var contentViewBounds = UIEdgeInsetsInsetRect(cellBounds, safeAreInsets)
+
+                if let view = cell.accessoryView {
+                    contentViewBounds.size.width -= view.bounds.size.width + cell.l_accessoryCustomViewLeftMargin() + cell.l_accessoryCustomViewRightMargin();//扣掉自定义accessoryView的宽度
+                } else {
+                    contentViewBounds.size.width -= cell.l_accessorySystemTypeViewWidth() + cell.l_accessorySystemTypeViewLeftMargin() + cell.l_accessorySystemTypeViewRightMargin()//扣掉系统的accessoryType视图宽度
                 }
                 
                 cell.frame = cellBounds
@@ -118,7 +119,7 @@ public extension UITableView {
         return cellHeight
     }
     
-    func __l_sectionHeight(in section: Int, isHeader: Bool) -> CGFloat {
+    func __l_sectionHeightInSection(section: Int, isHeader: Bool) -> CGFloat {
         var sectionHeight: CGFloat = 0
         
         if isHeader {
@@ -169,12 +170,12 @@ public extension UITableView {
         totalHeight += __l_tableHeadFootViewHeightThatFits(boundsWidth: boundsWidth, isHead: false)
         
         for section in 0..<numberOfSections {
-            totalHeight += __l_sectionHeight(in: section, isHeader: true)
-            totalHeight += __l_sectionHeight(in: section, isHeader: false)
+            totalHeight += __l_sectionHeightInSection(section: section, isHeader: true)
+            totalHeight += __l_sectionHeightInSection(section: section, isHeader: false)
             
             for row in 0..<numberOfRows(inSection: section) {
                 let indexPath = IndexPath(row: row, section: section)
-                totalHeight += l_cellHeight(for: indexPath)
+                totalHeight += l_cellHeightForIndexPath(indexPath)
             }
         }
         
@@ -183,7 +184,7 @@ public extension UITableView {
     
     func __l_tableHeadFootViewHeightThatFits(boundsWidth: CGFloat, isHead: Bool) -> CGFloat {
         let view = isHead ? tableHeaderView : tableFooterView
-        return view?.sizeThatFits(CGSize(width: boundsWidth, height: .greatestFiniteMagnitude)).height ?? 0
+        return view?.sizeThatFits(CGSize(width: self.l_contentBounds.width, height: .greatestFiniteMagnitude)).height ?? 0
     }
 }
 
