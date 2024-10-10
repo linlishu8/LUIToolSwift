@@ -7,9 +7,9 @@
 
 import Foundation
 
-typealias LUILayoutConstraintItemWrapperBlock = (LUILayoutConstraintItemWrapper, CGSize, Bool) -> CGSize
+public typealias LUILayoutConstraintItemWrapperBlock = (LUILayoutConstraintItemWrapper, CGSize, Bool) -> CGSize
 
-class LUILayoutConstraintItemWrapper: NSObject, LUILayoutConstraintItemProtocol {
+public class LUILayoutConstraintItemWrapper: NSObject, LUILayoutConstraintItemProtocol {
     
     var originItem: LUILayoutConstraintItemProtocol
     var fixedSize: CGSize = .zero
@@ -38,22 +38,22 @@ class LUILayoutConstraintItemWrapper: NSObject, LUILayoutConstraintItemProtocol 
     }
     
     // MARK: LUILayoutConstraintItemProtocol
-    func hidden() -> Bool {
+    public func hidden() -> Bool {
         return self.originItem.hidden()
     }
     
-    func sizeOfLayout() -> CGSize {
+    public func sizeOfLayout() -> CGSize {
         var size = self.originItem.sizeOfLayout()
         size.width += margin.left + margin.right
         size.height += margin.top + margin.bottom
         return size
     }
     
-    func setLayoutTransform(transform: CGAffineTransform) {
+    public func setLayoutTransform(transform: CGAffineTransform) {
         self.originItem.setLayoutTransform(transform: transform)
     }
     
-    var layoutFrame: CGRect {
+    public var layoutFrame: CGRect {
         set {
             self.originItem.layoutFrame = UIEdgeInsetsInsetRect(newValue, self.margin)
         } get {
@@ -67,7 +67,7 @@ class LUILayoutConstraintItemWrapper: NSObject, LUILayoutConstraintItemProtocol 
     }
     //
     
-    func sizeThatFits(_ size: CGSize, resizeItems: Bool) -> CGSize {
+    public func sizeThatFits(_ size: CGSize, resizeItems: Bool) -> CGSize {
         var sizeFits = size
         if let sizeThatFitsBlock = self.sizeThatFitsBlock {
             sizeFits = sizeThatFitsBlock(self, size, false)
@@ -104,7 +104,7 @@ class LUILayoutConstraintItemWrapper: NSObject, LUILayoutConstraintItemProtocol 
         return sizeFits
     }
     
-    func layoutItemsWithResizeItems(resizeItems: Bool) {
+    public func layoutItemsWithResizeItems(resizeItems: Bool) {
         self.originItem.layoutItemsWithResizeItems(resizeItems: resizeItems)
     }
 }

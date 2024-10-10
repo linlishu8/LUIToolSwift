@@ -11,6 +11,8 @@
 		1F6072292CB6592D007E4FBD /* LUIChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6072282CB6592D007E4FBD /* LUIChatViewController.swift */; };
 		1F6072302CB6742A007E4FBD /* LUIChatBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F60722F2CB6742A007E4FBD /* LUIChatBaseView.swift */; };
 		1F6072332CB678BA007E4FBD /* LUIChatHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6072322CB678BA007E4FBD /* LUIChatHeaderView.swift */; };
+		1F6072382CB75EAC007E4FBD /* LUIChatMsgTableViewCellBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6072372CB75EAC007E4FBD /* LUIChatMsgTableViewCellBase.swift */; };
+		1F60723A2CB75FDE007E4FBD /* LUIChatHeadViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6072392CB75FDE007E4FBD /* LUIChatHeadViewTableViewCell.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
@@ -39,6 +41,8 @@
 		1F6072282CB6592D007E4FBD /* LUIChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LUIChatViewController.swift; sourceTree = "<group>"; };
 		1F60722F2CB6742A007E4FBD /* LUIChatBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LUIChatBaseView.swift; sourceTree = "<group>"; };
 		1F6072322CB678BA007E4FBD /* LUIChatHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LUIChatHeaderView.swift; sourceTree = "<group>"; };
+		1F6072372CB75EAC007E4FBD /* LUIChatMsgTableViewCellBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LUIChatMsgTableViewCellBase.swift; sourceTree = "<group>"; };
+		1F6072392CB75FDE007E4FBD /* LUIChatHeadViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LUIChatHeadViewTableViewCell.swift; sourceTree = "<group>"; };
 		39D71DA1159AD903A7E07C6A /* Pods_LUIToolSwift_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LUIToolSwift_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3ED39C6AF08CC4F7223907FF /* Pods-LUIToolSwift_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LUIToolSwift_Example.debug.xcconfig"; path = "Target Support Files/Pods-LUIToolSwift_Example/Pods-LUIToolSwift_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* LUIToolSwift_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LUIToolSwift_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -80,7 +84,7 @@
 		1F6072272CB6590C007E4FBD /* 客服 */ = {
 			isa = PBXGroup;
 			children = (
-				1F6072312CB6789E007E4FBD /* 猜你想问 */,
+				1F6072312CB6789E007E4FBD /* 初始猜你想问 */,
 				1F60722C2CB673FB007E4FBD /* LUIChatBaseView */,
 				1F6072282CB6592D007E4FBD /* LUIChatViewController.swift */,
 			);
@@ -91,16 +95,18 @@
 			isa = PBXGroup;
 			children = (
 				1F60722F2CB6742A007E4FBD /* LUIChatBaseView.swift */,
+				1F6072372CB75EAC007E4FBD /* LUIChatMsgTableViewCellBase.swift */,
 			);
 			path = LUIChatBaseView;
 			sourceTree = "<group>";
 		};
-		1F6072312CB6789E007E4FBD /* 猜你想问 */ = {
+		1F6072312CB6789E007E4FBD /* 初始猜你想问 */ = {
 			isa = PBXGroup;
 			children = (
 				1F6072322CB678BA007E4FBD /* LUIChatHeaderView.swift */,
+				1F6072392CB75FDE007E4FBD /* LUIChatHeadViewTableViewCell.swift */,
 			);
-			path = "猜你想问";
+			path = "初始猜你想问";
 			sourceTree = "<group>";
 		};
 		607FACC71AFB9204008FA782 = {
@@ -372,6 +378,8 @@
 				1F6072332CB678BA007E4FBD /* LUIChatHeaderView.swift in Sources */,
 				1F6072302CB6742A007E4FBD /* LUIChatBaseView.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				1F60723A2CB75FDE007E4FBD /* LUIChatHeadViewTableViewCell.swift in Sources */,
+				1F6072382CB75EAC007E4FBD /* LUIChatMsgTableViewCellBase.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				1F05BA172CA659BE003750FD /* LUIMainViewTableViewCell.swift in Sources */,
 				1F6072292CB6592D007E4FBD /* LUIChatViewController.swift in Sources */,

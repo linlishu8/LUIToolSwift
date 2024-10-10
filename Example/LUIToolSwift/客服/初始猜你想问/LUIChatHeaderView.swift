@@ -11,7 +11,7 @@ import LUIToolSwift
 
 class LUIChatHeaderView: LUIChatBaseView {
     private lazy var backgroundImageView: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "lui_aiservice_header_tablebg"))
+        let imageView = UIImageView(image: UIImage(named: "lui_chat_header_tablebg"))
         return imageView
     }()
     
@@ -56,6 +56,14 @@ class LUIChatHeaderView: LUIChatBaseView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        
+        let bounds = self.bounds
+        let chatMargin = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
+        let backbounds = UIEdgeInsetsInsetRect(bounds, chatMargin)
+        self.backgroundImageView.frame = backbounds
+        
+        self.flowlayout?.bounds = bounds
+        self.flowlayout?.layoutItemsWithResizeItems(resizeItems: true)
     }
     
     override func sizeThatFits(_ size: CGSize) -> CGSize {
