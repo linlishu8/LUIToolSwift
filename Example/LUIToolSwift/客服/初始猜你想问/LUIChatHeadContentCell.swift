@@ -44,7 +44,6 @@ class LUIChatHeadContentCell: LUIChatMsgTableViewCellBase {
     }
     
     override func customSizeThatFits(size: CGSize) -> CGSize {
-        let ss = self.flowlayout?.sizeThatFits(size, resizeItems: true)
         guard var s = self.flowlayout?.sizeThatFits(size, resizeItems: true) else { return .zero }
         s.height = max(s.height, 30)
         return s

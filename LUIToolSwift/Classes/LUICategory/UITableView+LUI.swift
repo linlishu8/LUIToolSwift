@@ -170,8 +170,8 @@ public extension UITableView {
         totalHeight += __l_tableHeadFootViewHeightThatFits(boundsWidth: boundsWidth, isHead: false)
         
         for section in 0..<numberOfSections {
-            totalHeight += __l_sectionHeightInSection(section: section, isHeader: true)
-            totalHeight += __l_sectionHeightInSection(section: section, isHeader: false)
+//            totalHeight += __l_sectionHeightInSection(section: section, isHeader: true)
+//            totalHeight += __l_sectionHeightInSection(section: section, isHeader: false)
             
             for row in 0..<numberOfRows(inSection: section) {
                 let indexPath = IndexPath(row: row, section: section)

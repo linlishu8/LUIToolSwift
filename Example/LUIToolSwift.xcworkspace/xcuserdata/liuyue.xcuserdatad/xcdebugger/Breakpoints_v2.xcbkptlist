@@ -7,32 +7,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "3CFD914B-4CE9-40F2-A0CF-1D7E5D2C24E2"
+            uuid = "F2EE300F-46C9-49E0-AF8F-2AA078C645BB"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../LUIToolSwift/Classes/LUICategory/UITableView+LUI.swift"
+            filePath = "LUIToolSwift/&#x5ba2;&#x670d;/&#x521d;&#x59cb;&#x731c;&#x4f60;&#x60f3;&#x95ee;/LUIChatHeaderView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "119"
-            endingLineNumber = "119"
-            landmarkName = "l_cellHeightForIndexPath(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "7FFBAD71-8273-4956-A6AC-30688F38B2B7"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../LUIToolSwift/Classes/LUICategory/UITableView+LUI.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "178"
-            endingLineNumber = "178"
-            landmarkName = "l_heightThatFits(_:)"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
+            landmarkName = "init(frame:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
