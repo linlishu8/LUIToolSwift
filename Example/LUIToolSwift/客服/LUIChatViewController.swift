@@ -53,4 +53,8 @@ class LUIChatViewController: UIViewController {
         cellModel.cellClass = modelCellClass.self
         return cellModel
     }
+    
+    deinit {
+        
+    }
 }

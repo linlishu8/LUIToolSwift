@@ -105,8 +105,8 @@
 		1F6072312CB6789E007E4FBD /* 初始猜你想问 */ = {
 			isa = PBXGroup;
 			children = (
-				1F6072322CB678BA007E4FBD /* LUIChatHeaderView.swift */,
 				1F6072392CB75FDE007E4FBD /* LUIChatHeadViewTableViewCell.swift */,
+				1F6072322CB678BA007E4FBD /* LUIChatHeaderView.swift */,
 				1F60723B2CB76828007E4FBD /* LUIChatHeadContentCell.swift */,
 			);
 			path = "初始猜你想问";

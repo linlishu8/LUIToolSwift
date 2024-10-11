@@ -10,6 +10,7 @@ import UIKit
 import LUIToolSwift
 
 class LUIChatBaseView: UIView {
+    weak var cellModel: LUITableViewCellModel?
     open var chatMargin: UIEdgeInsets = UIEdgeInsets.LUIEdgeInsetsMakeSameEdge(15)
     
     override init(frame: CGRect) {
@@ -19,5 +20,9 @@ class LUIChatBaseView: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func loadDataWithCellModel(cellModel: LUITableViewCellModel) {
+        
     }
 }

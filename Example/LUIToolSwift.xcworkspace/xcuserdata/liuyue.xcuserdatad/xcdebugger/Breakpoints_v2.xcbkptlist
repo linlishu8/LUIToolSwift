@@ -3,4 +3,22 @@
    uuid = "9B34EF67-CB58-4EC8-9863-0652EC650014"
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D0511229-CABD-44E2-AA3C-38F601A3FB8D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LUIToolSwift/&#x5ba2;&#x670d;/&#x521d;&#x59cb;&#x731c;&#x4f60;&#x60f3;&#x95ee;/LUIChatHeaderView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "115"
+            endingLineNumber = "115"
+            landmarkName = "LUIChatHeaderView"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

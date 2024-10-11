@@ -69,13 +69,13 @@ public class LUITableViewCellModel: LUICollectionCellModel {
         }
     }
 
-    func refresh() {
+    public func refresh() {
         guard let indexPath = self.tableViewModel?.indexPathOfCellModel(self) else { return }
         self.needReloadCell = true
-        self.tableView?.reloadRows(at: [indexPath], with: .automatic)
+        self.tableView?.reloadRows(at: [indexPath], with: .none)
     }
 
-    func refreshWithAnimated(_ animated: Bool) {
+    public func refreshWithAnimated(_ animated: Bool) {
         guard let indexPath = self.tableViewModel?.indexPathOfCellModel(self) else { return }
         self.needReloadCell = true
         self.tableView?.reloadRows(at: [indexPath], with: animated ? .automatic : .none)

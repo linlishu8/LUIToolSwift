@@ -33,7 +33,7 @@ class LUIChatHeadViewTableViewCell: LUIChatMsgTableViewCellBase {
     }
     
     override func customReloadCellModel() {
-        
+        self.chatHeaderView.loadDataWithCellModel(cellModel: self.cellModel)
     }
     
     override func customSizeThatFits(size: CGSize) -> CGSize {

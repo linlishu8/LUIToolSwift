@@ -42,6 +42,7 @@ class LUIChatHeaderView: LUIChatBaseView {
     
     @objc func buttonTapped() {
         self.__reloadData()
+        self.cellModel?.refresh()
     }
     
     private lazy var tableView: LUITableView = {
@@ -104,5 +105,13 @@ class LUIChatHeaderView: LUIChatBaseView {
             self.tableView.model.addCellModel(cellModel)
         }
         self.tableView.model.reloadTableViewData()
+    }
+    
+    override func loadDataWithCellModel(cellModel: LUITableViewCellModel) {
+        self.cellModel = cellModel
+    }
+    
+    deinit {
+        
     }
 }
