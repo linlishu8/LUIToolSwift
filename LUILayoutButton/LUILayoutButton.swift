@@ -165,11 +165,78 @@ public class LUILayoutButton: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func filterState(_ originState: UIControl.State?) -> UIControl.State {
+        if var state = originState {
+            let allStates: [UIControl.State] = [.normal, .highlighted, .disabled, .selected, .focused, .application, .reserved]
+            
+            if allStates.allSatisfy({ state != $0 }) {
+                state.remove(.highlighted)  // 去掉高亮状态
+            }
+            
+            return state
+        }
+        return .normal
+    }
+    
     private func setupButton() {
         self.imageView?.contentMode = .scaleAspectFit
-//        self.titleLabelLayoutConstraint = LUILayoutConstraintItemWrapper.wrapItem(self.titleLabel, sizeThatFitsBlock: { <#LUILayoutConstraintItemWrapper#>, <#CGSize#>, <#Bool#> in
-//            <#code#>
-//        })
+        guard let titleLabel = self.titleLabel, let imageView = self.imageView else { return }
+        self.imageViewLayoutConstraint = LUILayoutConstraintItemWrapper.wrapItem(imageView, sizeThatFitsBlock: { [weak self] wrapper, size, resizeItems  in
+            var superSize = size
+            if let imageSize = self?.imageSize, let hideImageViewForNoImage = self?.hideImageViewForNoImage {
+                if !hideImageViewForNoImage && imageSize.width > 0 && imageSize.height > 0 {
+                    return imageSize
+                }
+            }
+            var imageView = wrapper.originItem as? UIImageView ?? UIImageView()
+            let oldeImage = imageView.image
+            if let state = self?.filterState(self?.state), let hideImageViewForNoImage = self?.hideImageViewForNoImage {
+                let stateImage = self?.image(for: state)
+                if stateImage == nil && hideImageViewForNoImage {
+                    return .zero
+                }
+                if oldeImage !== stateImage {
+                    if let sizeFitImageView = self?.sizeFitImageView {
+                        sizeFitImageView.image = stateImage
+                        imageView = sizeFitImageView
+                    }
+                }
+                if let imageSize = self?.imageSize {
+                    if imageSize.width > 0 && imageSize.height > 0 {
+                        return imageSize
+                    }
+                    if imageSize.width > 0 {
+                        superSize.width = imageSize.width
+                    }
+                    if imageSize.height > 0 {
+                        superSize.height = imageSize.height
+                    }
+                    var s = imageView.l_sizeThatFits(size: superSize)
+                    if s.width > 0 && imageSize.width > 0 {
+                        s.height = imageSize.width * s.height / s.width
+                        s.width = imageSize.width
+                    }
+                    if s.height > 0 && imageSize.height > 0 {
+                        s.width = imageSize.height * s.width / s.height
+                        s.height = imageSize.height
+                    }
+                    return s
+                }
+            } else {
+                return .zero
+            }
+            return .zero
+        })
+    }
+    
+    public override func layoutSubviews() {
+        super.layoutSubviews()
+        self.flowlayout.bounds = bounds
+        self.flowlayout.layoutItemsWithResizeItems(resizeItems: true)
+    }
+    
+    public override func sizeThatFits(_ size: CGSize) -> CGSize {
+        return self.flowlayout .sizeThatFits(size, resizeItems: true)
     }
     
     public override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
