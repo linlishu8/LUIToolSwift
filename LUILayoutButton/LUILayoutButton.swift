@@ -264,7 +264,6 @@ public class LUILayoutButton: UIButton {
         }
         
         self.interitemSpacing = 3
-        self.contentStyle = .horizontal
         self.minHitSize = CGSize(width: 30, height: 30)
     }
     

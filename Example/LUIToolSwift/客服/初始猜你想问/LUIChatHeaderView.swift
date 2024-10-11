@@ -15,12 +15,15 @@ class LUIChatHeaderView: LUIChatBaseView {
         return imageView
     }()
     
-    private lazy var leftLabel: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 2
-        label.text = "猜你\n要问"
-        label.textAlignment = .center
-        return label
+    private lazy var headTitleView: LUILayoutButton = {
+        let view = LUILayoutButton(contentStyle: .vertical)
+        view.imageSize = CGSize(width: 30, height: 30)
+        view.interitemSpacing = 5
+        view.setImage(UIImage(named: "lui_chat_head_head"), for: .normal)
+        view.setTitle("猜你想问", for: .normal)
+        view.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        view.setTitleColor(UIColor.black, for: .normal)
+        return view
     }()
     
     private lazy var changeButton: LUILayoutButton = {
@@ -43,11 +46,11 @@ class LUIChatHeaderView: LUIChatBaseView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.addSubview(self.backgroundImageView)
-        self.addSubview(self.leftLabel)
+        self.addSubview(self.headTitleView)
         self.addSubview(self.changeButton)
         self.addSubview(self.tableView)
         
-        let leftFlowlayout = LUIFlowLayoutConstraint([self.leftLabel, self.changeButton], param: .V_C_C, contentInsets: .zero, interitemSpacing: 5)
+        let leftFlowlayout = LUIFlowLayoutConstraint([self.headTitleView, self.changeButton], param: .V_C_C, contentInsets: .zero, interitemSpacing: 5)
         let tableWrapper = LUILayoutConstraintItemWrapper.wrapItem(self.tableView) { wrapper, size, resizeItems in
             guard let tableView = wrapper.originItem as? UITableView else { return .zero }
             let height = tableView.l_heightThatFits(size.width)
