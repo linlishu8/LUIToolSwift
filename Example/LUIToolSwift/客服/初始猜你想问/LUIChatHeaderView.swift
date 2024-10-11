@@ -53,7 +53,7 @@ class LUIChatHeaderView: LUIChatBaseView {
             let height = tableView.l_heightThatFits(size.width)
             return CGSize(width: size.width, height: height)
         }
-        self.flowlayout = LUIFlowLayoutConstraint([leftFlowlayout, tableWrapper], param: .H_C_C, contentInsets: UIEdgeInsets(top: 10, left: 25, bottom: 10, right: 25), interitemSpacing: 10)
+        self.flowlayout = LUIFlowLayoutConstraint([leftFlowlayout, tableWrapper], param: .H_C_C, contentInsets: UIEdgeInsets(top: 15, left: 25, bottom: 10, right: 30), interitemSpacing: 10)
         
         self.__reloadData()
     }

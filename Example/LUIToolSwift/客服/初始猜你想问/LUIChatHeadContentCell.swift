@@ -10,6 +10,12 @@ import Foundation
 import LUIToolSwift
 
 class LUIChatHeadContentCell: LUIChatMsgTableViewCellBase {
+    private lazy var backImageView = {
+        let imageView = UIImageView(image: UIImage(named: "lui_chat_head_tablecell_bg"))
+        imageView.layer.cornerRadius = 8
+        imageView.layer.masksToBounds = true
+        return imageView
+    }()
     private lazy var arrowImageView = {
         return UIImageView(image: UIImage(named: "lui_chat_headerview_tableviewmore"))
     }()
@@ -24,7 +30,7 @@ class LUIChatHeadContentCell: LUIChatMsgTableViewCellBase {
     
     required init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
+        self.contentView.addSubview(self.backImageView)
         self.contentView.addSubview(self.arrowImageView)
         self.contentView.addSubview(self.titleLabel)
         
@@ -36,7 +42,7 @@ class LUIChatHeadContentCell: LUIChatMsgTableViewCellBase {
         }
         
         let imageWrapper = LUILayoutConstraintItemWrapper.wrapItem(self.arrowImageView, fixedSize: CGSizeMake(12, 12))
-        self.flowlayout = LUIFlowLayoutConstraint.init([titleWrapper, imageWrapper], param: .H_C_R, contentInsets: UIEdgeInsets.LUIEdgeInsetsMakeSameEdge(5), interitemSpacing: 10)
+        self.flowlayout = LUIFlowLayoutConstraint.init([titleWrapper, imageWrapper], param: .H_C_R, contentInsets: UIEdgeInsets(top: 10, left: 10, bottom: 15, right: 10), interitemSpacing: 10)
     }
     
     @MainActor required init?(coder aDecoder: NSCoder) {
@@ -46,13 +52,17 @@ class LUIChatHeadContentCell: LUIChatMsgTableViewCellBase {
     override func customLayoutSubviews() {
         super.customLayoutSubviews()
         
-        self.flowlayout?.bounds = self.contentView.bounds
+        let bounds = self.contentView.bounds
+        let imageMargin = UIEdgeInsets(top: 0, left: 0, bottom: 5, right: 0)
+        let imageBounds = UIEdgeInsetsInsetRect(bounds, imageMargin)
+        self.backImageView.frame = imageBounds
+        self.flowlayout?.bounds = bounds
         self.flowlayout?.layoutItemsWithResizeItems(resizeItems: true)
     }
     
     override func customSizeThatFits(size: CGSize) -> CGSize {
         guard var s = self.flowlayout?.sizeThatFits(size, resizeItems: true) else { return .zero }
-        s.height = max(s.height, 30)
+        s.height = max(s.height, 55)
         return s
     }
     
