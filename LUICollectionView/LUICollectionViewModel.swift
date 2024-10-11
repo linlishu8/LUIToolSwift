@@ -67,4 +67,16 @@ public class LUICollectionViewModel: LUICollectionModel, UICollectionViewDataSou
     public func insertCellModels(cellModels: [LUICollectionViewCellModel], afterIndexPath: IndexPath, animated: Bool, completion: ((Bool) -> Void)) {
         
     }
+    
+    public func insertCellModels(cellModels: [LUICollectionViewCellModel], beforeIndexPath: IndexPath, animated: Bool, completion: ((Bool) -> Void)) {
+        
+    }
+    
+    public func removeCellModel(cellModel: LUICollectionViewCellModel, animated: Bool, completion: ((Bool) -> Void)) {
+        
+    }
+    
+    public func removeCellModels(cellModel: [LUICollectionViewCellModel], animated: Bool, completion: ((Bool) -> Void)) {
+        
+    }
 }
