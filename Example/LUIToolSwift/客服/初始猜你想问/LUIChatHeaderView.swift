@@ -69,8 +69,6 @@ class LUIChatHeaderView: LUIChatBaseView {
             return CGSize(width: size.width, height: height)
         }
         self.flowlayout = LUIFlowLayoutConstraint([leftFlowlayout, tableWrapper], param: .H_T_C, contentInsets: UIEdgeInsets(top: 15, left: 25, bottom: 10, right: 30), interitemSpacing: 10)
-        
-        self.__reloadData()
     }
     
     @MainActor required init?(coder: NSCoder) {
@@ -109,6 +107,7 @@ class LUIChatHeaderView: LUIChatBaseView {
     
     override func loadDataWithCellModel(cellModel: LUITableViewCellModel) {
         self.cellModel = cellModel
+        self.__reloadData()
     }
     
     deinit {
