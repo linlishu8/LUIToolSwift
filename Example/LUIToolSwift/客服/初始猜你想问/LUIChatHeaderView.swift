@@ -53,7 +53,7 @@ class LUIChatHeaderView: LUIChatBaseView {
             let height = tableView.l_heightThatFits(size.width)
             return CGSize(width: size.width, height: height)
         }
-        self.flowlayout = LUIFlowLayoutConstraint([leftFlowlayout, tableWrapper], param: .H_C_C, contentInsets: UIEdgeInsets.LUIEdgeInsetsMakeSameEdge(10), interitemSpacing: 10)
+        self.flowlayout = LUIFlowLayoutConstraint([leftFlowlayout, tableWrapper], param: .H_C_C, contentInsets: UIEdgeInsets(top: 10, left: 25, bottom: 10, right: 25), interitemSpacing: 10)
         
         self.__reloadData()
     }
@@ -70,7 +70,7 @@ class LUIChatHeaderView: LUIChatBaseView {
         let backbounds = UIEdgeInsetsInsetRect(bounds, chatMargin)
         self.backgroundImageView.frame = backbounds
         
-        self.flowlayout?.bounds = backbounds
+        self.flowlayout?.bounds = bounds
         self.flowlayout?.layoutItemsWithResizeItems(resizeItems: true)
     }
     
