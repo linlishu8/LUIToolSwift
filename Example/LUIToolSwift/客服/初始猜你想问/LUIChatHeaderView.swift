@@ -10,6 +10,8 @@ import UIKit
 import LUIToolSwift
 
 class LUIChatHeaderView: LUIChatBaseView {
+    private let dataList = ["钱大掌柜是什么", "钱大掌柜产品持有后能否通过兴业银行柜台查询", "我购买钱大掌柜上销售的各家机构提供的各类产品是否纳入该我购买钱大掌柜上销售的各家机构提供的各类产品是否纳入该", "非身份证能否签约钱大掌柜？", "钱大掌柜是什么钱大掌柜是什么钱大掌柜是什么", "猜你想问猜你想问猜你想问猜你想问猜你想问"]
+    
     private lazy var backgroundImageView: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "lui_chat_header_tablebg"))
         return imageView
@@ -34,8 +36,13 @@ class LUIChatHeaderView: LUIChatBaseView {
         button.setTitle("换一批", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         button.setTitleColor(UIColor.blue, for: .normal)
+        button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         return button
     }()
+    
+    @objc func buttonTapped() {
+        self.__reloadData()
+    }
     
     private lazy var tableView: LUITableView = {
         let tableView = LUITableView(frame: .zero, style: .plain)
@@ -88,8 +95,9 @@ class LUIChatHeaderView: LUIChatBaseView {
     
     private func __reloadData() {
         self.tableView.model.removeAllSectionModels()
-        let dataList = ["钱大掌柜是什么", "钱大掌柜产品持有后能否通过兴业银行柜台查询", "我购买钱大掌柜上销售的各家机构提供的各类产品是否纳入该我购买钱大掌柜上销售的各家机构提供的各类产品是否纳入该", "非身份证能否签约钱大掌柜？"]
-        for string in dataList {
+        let randomElements = self.dataList.shuffled().prefix(4)
+        let result = Array(randomElements)
+        for string in result {
             let cellModel = LUITableViewCellModel.init()
             cellModel.cellClass = LUIChatHeadContentCell.self
             cellModel.modelValue = string
