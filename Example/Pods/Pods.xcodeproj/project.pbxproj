@@ -9,12 +9,13 @@
 /* Begin PBXBuildFile section */
 		0508EF6E33E23795F18824136F3BB8B7 /* LUITableViewSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC70D1A47262DAE7F535B899DFD337C7 /* LUITableViewSectionModel.swift */; };
 		0B9443F57F622CC31BFFB1AF1FF94963 /* LUITableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAAFB10440BF8F8E3F70EF4D4BA05B7 /* LUITableViewModel.swift */; };
-		14C996F81D0594933BB48BE7926811BD /* LUICollectionSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85774B6B24C49B403D869CEE09CD79C5 /* LUICollectionSectionModel.swift */; };
 		1F05BA192CA69DF1003750FD /* LUITableViewSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F05BA182CA69DF1003750FD /* LUITableViewSectionView.swift */; };
 		1F05BA1C2CA79880003750FD /* LUILayoutConstraintItemAttributeBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F05BA1B2CA79880003750FD /* LUILayoutConstraintItemAttributeBase.swift */; };
 		1F05BA1E2CA7A2C2003750FD /* LUILayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F05BA1D2CA7A2C2003750FD /* LUILayoutConstraint.swift */; };
 		1F05BA202CA7DEFC003750FD /* LUILayoutConstraintItemWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F05BA1F2CA7DEFC003750FD /* LUILayoutConstraintItemWrapper.swift */; };
 		1F05BA222CA8E340003750FD /* LUIFlowLayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F05BA212CA8E340003750FD /* LUIFlowLayoutConstraint.swift */; };
+		1F4CB0A72CB952D000E61CD5 /* LUICollectionSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4CB0A62CB952D000E61CD5 /* LUICollectionSectionModel.swift */; };
+		1F4CB0A92CB956C000E61CD5 /* LUICollectionViewCellBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4CB0A82CB956C000E61CD5 /* LUICollectionViewCellBase.swift */; };
 		1F6072362CB67A32007E4FBD /* LUILayoutButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6072352CB67A32007E4FBD /* LUILayoutButton.swift */; };
 		1F716B507DBE51ADC2749CA436F39B53 /* Pods-LUIToolSwift_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328F059DD8B571BEC3A604A1248F5B7 /* Pods-LUIToolSwift_Tests-dummy.m */; };
 		1FD566582CB8FF0700959D77 /* UIImageView+LUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD566572CB8FF0700959D77 /* UIImageView+LUI.swift */; };
@@ -78,6 +79,8 @@
 		1F05BA1D2CA7A2C2003750FD /* LUILayoutConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LUILayoutConstraint.swift; sourceTree = "<group>"; };
 		1F05BA1F2CA7DEFC003750FD /* LUILayoutConstraintItemWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LUILayoutConstraintItemWrapper.swift; sourceTree = "<group>"; };
 		1F05BA212CA8E340003750FD /* LUIFlowLayoutConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LUIFlowLayoutConstraint.swift; sourceTree = "<group>"; };
+		1F4CB0A62CB952D000E61CD5 /* LUICollectionSectionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LUICollectionSectionModel.swift; sourceTree = "<group>"; };
+		1F4CB0A82CB956C000E61CD5 /* LUICollectionViewCellBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LUICollectionViewCellBase.swift; sourceTree = "<group>"; };
 		1F6072352CB67A32007E4FBD /* LUILayoutButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LUILayoutButton.swift; sourceTree = "<group>"; };
 		1FD566572CB8FF0700959D77 /* UIImageView+LUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+LUI.swift"; sourceTree = "<group>"; };
 		1FD566592CB900CE00959D77 /* LUICGRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LUICGRect.swift; sourceTree = "<group>"; };
@@ -103,7 +106,6 @@
 		7EAAFB10440BF8F8E3F70EF4D4BA05B7 /* LUITableViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LUITableViewModel.swift; sourceTree = "<group>"; };
 		8184CC285747602B50FFC54035ADAB15 /* Pods-LUIToolSwift_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-LUIToolSwift_Tests-umbrella.h"; sourceTree = "<group>"; };
 		8328F059DD8B571BEC3A604A1248F5B7 /* Pods-LUIToolSwift_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-LUIToolSwift_Tests-dummy.m"; sourceTree = "<group>"; };
-		85774B6B24C49B403D869CEE09CD79C5 /* LUICollectionSectionModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LUICollectionSectionModel.swift; sourceTree = "<group>"; };
 		8997CAE696241485648B9012DB2D8600 /* LUICollectionCellModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LUICollectionCellModel.swift; sourceTree = "<group>"; };
 		8B128AB8B63455554602489FC6F8F202 /* UIScrollView+LUI.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIScrollView+LUI.swift"; sourceTree = "<group>"; };
 		8FBEC00D1C87EEAB47D94ED0E308617B /* Pods-LUIToolSwift_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-LUIToolSwift_Example-frameworks.sh"; sourceTree = "<group>"; };
@@ -243,6 +245,7 @@
 				1FD5665C2CB9183100959D77 /* LUICollectionViewModel.swift */,
 				1FD5665E2CB924C100959D77 /* LUICollectionViewCellModel.swift */,
 				1FD566602CB924CE00959D77 /* LUICollectionViewSectionModel.swift */,
+				1F4CB0A82CB956C000E61CD5 /* LUICollectionViewCellBase.swift */,
 			);
 			path = LUICollectionView;
 			sourceTree = "<group>";
@@ -361,10 +364,10 @@
 		E967983E5FBD91FB95E2C3DDF06342F0 /* LUICollectionModelBase */ = {
 			isa = PBXGroup;
 			children = (
+				1F4CB0A62CB952D000E61CD5 /* LUICollectionSectionModel.swift */,
 				8997CAE696241485648B9012DB2D8600 /* LUICollectionCellModel.swift */,
 				A04EA15C7178E7029CEF6FE89D93F210 /* LUICollectionModel.swift */,
 				EE46A44FD531B7AF1ADEDE3696410069 /* LUICollectionModelObjectBase.swift */,
-				85774B6B24C49B403D869CEE09CD79C5 /* LUICollectionSectionModel.swift */,
 			);
 			name = LUICollectionModelBase;
 			path = LUIToolSwift/Classes/LUICollectionModelBase;
@@ -520,8 +523,9 @@
 				2438E1C11EEE6739BCD314694C2D9F9F /* LUICollectionModel.swift in Sources */,
 				1F05BA1E2CA7A2C2003750FD /* LUILayoutConstraint.swift in Sources */,
 				42827799AB3820DC6AE170E9135CE031 /* LUICollectionModelObjectBase.swift in Sources */,
-				14C996F81D0594933BB48BE7926811BD /* LUICollectionSectionModel.swift in Sources */,
+				1F4CB0A92CB956C000E61CD5 /* LUICollectionViewCellBase.swift in Sources */,
 				1F05BA222CA8E340003750FD /* LUIFlowLayoutConstraint.swift in Sources */,
+				1F4CB0A72CB952D000E61CD5 /* LUICollectionSectionModel.swift in Sources */,
 				1F6072362CB67A32007E4FBD /* LUILayoutButton.swift in Sources */,
 				EE28853A3B3DED13F98A9E0766968BB4 /* LUITableView.swift in Sources */,
 				E3AE906E52E6EA0833FE8F6677B43296 /* LUITableViewCellBase.swift in Sources */,
