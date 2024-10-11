@@ -16,20 +16,24 @@ class LUIChatHeaderView: LUIChatBaseView {
     }()
     
     private lazy var headTitleView: LUILayoutButton = {
-        let view = LUILayoutButton(contentStyle: .vertical)
-        view.imageSize = CGSize(width: 30, height: 30)
-        view.interitemSpacing = 5
-        view.setImage(UIImage(named: "lui_chat_head_head"), for: .normal)
-        view.setTitle("猜你想问", for: .normal)
-        view.titleLabel?.font = UIFont.systemFont(ofSize: 14)
-        view.setTitleColor(UIColor.black, for: .normal)
-        return view
+        let button = LUILayoutButton(contentStyle: .vertical)
+        button.imageSize = CGSize(width: 40, height: 40)
+        button.interitemSpacing = 5
+        button.setImage(UIImage(named: "lui_chat_head_head"), for: .normal)
+        button.setTitle("猜你想问", for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        button.setTitleColor(UIColor.black, for: .normal)
+        return button
     }()
     
     private lazy var changeButton: LUILayoutButton = {
         let button = LUILayoutButton(contentStyle: .vertical)
-        button.setTitle("换一换", for: .normal)
-        button.setTitleColor(UIColor.black, for: .normal)
+        button.imageSize = CGSize(width: 20, height: 20)
+        button.interitemSpacing = 5
+        button.setImage(UIImage(named: "lui_chat_head_change"), for: .normal)
+        button.setTitle("换一批", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        button.setTitleColor(UIColor.blue, for: .normal)
         return button
     }()
     
@@ -50,13 +54,13 @@ class LUIChatHeaderView: LUIChatBaseView {
         self.addSubview(self.changeButton)
         self.addSubview(self.tableView)
         
-        let leftFlowlayout = LUIFlowLayoutConstraint([self.headTitleView, self.changeButton], param: .V_C_C, contentInsets: .zero, interitemSpacing: 5)
+        let leftFlowlayout = LUIFlowLayoutConstraint([self.headTitleView, self.changeButton], param: .V_C_C, contentInsets: .zero, interitemSpacing: 20)
         let tableWrapper = LUILayoutConstraintItemWrapper.wrapItem(self.tableView) { wrapper, size, resizeItems in
             guard let tableView = wrapper.originItem as? UITableView else { return .zero }
             let height = tableView.l_heightThatFits(size.width)
             return CGSize(width: size.width, height: height)
         }
-        self.flowlayout = LUIFlowLayoutConstraint([leftFlowlayout, tableWrapper], param: .H_C_C, contentInsets: UIEdgeInsets(top: 15, left: 25, bottom: 10, right: 30), interitemSpacing: 10)
+        self.flowlayout = LUIFlowLayoutConstraint([leftFlowlayout, tableWrapper], param: .H_T_C, contentInsets: UIEdgeInsets(top: 15, left: 25, bottom: 10, right: 30), interitemSpacing: 10)
         
         self.__reloadData()
     }
