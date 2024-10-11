@@ -227,6 +227,45 @@ public class LUILayoutButton: UIButton {
             }
             return .zero
         })
+        
+        self.titleLabelLayoutConstraint = LUILayoutConstraintItemWrapper.wrapItem(titleLabel, sizeThatFitsBlock: {[weak self] wrapper, size, resizeItems in
+            var titleLabel = wrapper.originItem as? UILabel ?? UILabel()
+            let oldTitle = titleLabel.text
+            
+            if let state = self?.filterState(self?.state) {
+                
+                if let stateAttrText = self?.attributedTitle(for: state), let oldAttrString = titleLabel.attributedText {
+                    if stateAttrText == oldAttrString || stateAttrText .isEqual(to: oldAttrString) {
+                        
+                    } else {
+                        if let sizeFitTitleLabel = self?.sizeFitTitleLabel {
+                            sizeFitTitleLabel.attributedText = stateAttrText
+                            titleLabel = sizeFitTitleLabel
+                        }
+                    }
+                } else if let stateTitle = self?.title(for: state) {
+                    if stateTitle == oldTitle {
+                        
+                    } else {
+                        if let sizeFitTitleLabel = self?.sizeFitTitleLabel {
+                            sizeFitTitleLabel.text = stateTitle
+                            titleLabel = sizeFitTitleLabel
+                        }
+                    }
+                } else {
+                    return .zero
+                }
+            }
+            return titleLabel.sizeThatFits(size)
+        })
+        
+        if let titleLabelLayoutConstraint = self.titleLabelLayoutConstraint, let imageViewLayoutConstraint = self.imageViewLayoutConstraint {
+            self.flowlayout.items = self.reverseContent ? [titleLabelLayoutConstraint, imageViewLayoutConstraint] : [imageViewLayoutConstraint, titleLabelLayoutConstraint]
+        }
+        
+        self.interitemSpacing = 3
+        self.contentStyle = .horizontal
+        self.minHitSize = CGSize(width: 30, height: 30)
     }
     
     public override func layoutSubviews() {
