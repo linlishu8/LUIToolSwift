@@ -47,8 +47,35 @@ public class LUILayoutButton: UIButton {
             self.setNeedsLayout()
         }
     }
-    open var reverseContent: Bool = false //是否逆转图标与文字的顺序,默认是NO:图标在左/上,文本在右/下
-    open var imageSize: CGSize = .zero //imageView尺寸,如果某一边为0，代表不限制。默认为(0,0),代表自动根据图片大小计算
+    
+    private var titleLabelLayoutConstraint: LUILayoutConstraintItemWrapper?
+    private var imageViewLayoutConstraint: LUILayoutConstraintItemWrapper?
+    //是否逆转图标与文字的顺序,默认是NO:图标在左/上,文本在右/下
+    private var _reverseContent: Bool = false
+    open var reverseContent: Bool {
+        get {
+            return _reverseContent
+        }
+        set {
+            if _reverseContent == newValue { return }
+            guard let titleLabelLayoutConstraint = self.titleLabelLayoutConstraint, let imageViewLayoutConstraint = self.imageViewLayoutConstraint else { return }
+            self.flowlayout.items = _reverseContent ? [titleLabelLayoutConstraint, imageViewLayoutConstraint] : [imageViewLayoutConstraint, titleLabelLayoutConstraint]
+            self.setNeedsLayout()
+        }
+    }
+    
+    //imageView尺寸,如果某一边为0，代表不限制。默认为(0,0),代表自动根据图片大小计算
+    private var _imageSize: CGSize = .zero
+    open var imageSize: CGSize {
+        get {
+            return _imageSize
+        }
+        set {
+            if CGSizeEqualToSize(newValue, _imageSize) { return }
+            _imageSize = newValue
+            self.setNeedsLayout()
+        }
+    }
     open var hideImageViewForNoImage: Bool = false //当没有图片时，是否隐藏imageView。默认为NO，不隐藏imageView，如果imageSize不为(0,0),imageView将继续占用空间
     open var layoutVerticalAlignment: LUILayoutConstraintVerticalAlignment {
         get {
@@ -140,6 +167,9 @@ public class LUILayoutButton: UIButton {
     
     private func setupButton() {
         self.imageView?.contentMode = .scaleAspectFit
+//        self.titleLabelLayoutConstraint = LUILayoutConstraintItemWrapper.wrapItem(self.titleLabel, sizeThatFitsBlock: { <#LUILayoutConstraintItemWrapper#>, <#CGSize#>, <#Bool#> in
+//            <#code#>
+//        })
     }
     
     public override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
