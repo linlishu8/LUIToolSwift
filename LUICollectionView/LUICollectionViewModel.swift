@@ -34,6 +34,10 @@ public class LUICollectionViewModel: LUICollectionModel, UICollectionViewDataSou
     var whenReloadBackgroundView: ((LUICollectionViewModel) -> Void)?
     var reuseCell: Bool = true//是否重用cell，默认为YES
     
+    init() {
+        super.init()
+    }
+    
     init(collectionView: UICollectionView) {
         super.init()
         self.setCollectionViewDataSourceAndDelegate(collectionView: collectionView)
