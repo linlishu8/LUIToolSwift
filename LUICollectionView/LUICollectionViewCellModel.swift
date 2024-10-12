@@ -9,7 +9,9 @@ import Foundation
 
 public class LUICollectionViewCellModel: LUICollectionCellModel {
     public var cellClass: AnyClass?
-    public var reuseIdentity: String = ""
+    public lazy var reuseIdentity: String = {
+        return NSStringFromClass(self.cellClass ?? UICollectionViewCell.self)
+    }()//用于列表重用单元格视图时的标志符,默认为NSStringFromCGClass(self.class)
     public var canDelete: Bool = false//是否可以被删除,默认为NO
     public var canMove: Bool = false//是否可以被移動,默认为 NO
     public var whenMove: ((LUICollectionViewCellModel, LUICollectionViewCellModel) -> Bool)?//移动数据时触发
@@ -18,7 +20,12 @@ public class LUICollectionViewCellModel: LUICollectionCellModel {
     public var whenSelected: ((LUICollectionViewCellModel, Bool) -> Void)?//被触控事件选中时触发
     
     public weak var collectionViewCell: LUICollectionViewCellBase?
-    public var collectionView: UICollectionView?
+    public var collectionView: UICollectionView? {
+        get {
+            guard let collectionView = self.collectionModel().collectionView else { return nil }
+            return collectionView
+        }
+    }
     public var needReloadCell: Bool?//是否需要更新cell的视图内容
     
     init() {
@@ -41,34 +48,44 @@ public class LUICollectionViewCellModel: LUICollectionCellModel {
     }
     
     public func didClickSelf() {
-        
+        self.whenClick?(self)
     }
     
     public func didSelectedSelf(selected: Bool) {
-        
+        self.whenSelected?(self, selected)
     }
     
-    public func didDeleteSelf() {
-        
+    public func didDeleteSelf() -> Bool {
+        return self.whenDelete?(self) ?? false
     }
     
     public func sectionModel() -> LUICollectionViewSectionModel {
-        return LUICollectionViewSectionModel()
+        guard let sectionModel = super.sectionModel as? LUICollectionViewSectionModel else { return LUICollectionViewSectionModel() }
+        return sectionModel
     }
     
     public func collectionModel() -> LUICollectionViewModel {
-        return LUICollectionViewModel()
+        guard let cellModel = super.collectionModel as? LUICollectionViewModel else { return LUICollectionViewModel() }
+        return cellModel
     }
     
     public func displayCell(cell: LUICollectionViewCellBase) {
-        
+        cell.collectionCellModel = self
+        self.collectionViewCell = cell
+        cell.setNeedsLayout()
     }
     
     public func refresh() {
-        
+        if let indexPath = self.collectionModel().indexPathOfCellModel(self) {
+            self.needReloadCell = true
+            self.collectionView?.reloadItems(at: [indexPath])
+            if self.selected {
+                self.collectionView?.selectItem(at: indexPath, animated: false, scrollPosition: .top)
+            }
+        }
     }
     
     public func removeCellModelWithAnimated(animated: Bool, completion: ((Bool) -> Void)) {
-        
+        self.collectionModel().removeCellModel(cellModel: self, animated: animated, completion: completion)
     }
 }
