@@ -381,4 +381,30 @@ public class LUICollectionViewModel: LUICollectionModel, UICollectionViewDataSou
         cm.whenClick?(cm)
         self.forwardDelegate?.collectionView?(collectionView, didSelectItemAt: indexPath)
     }
+    
+    public func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        if let cell = collectionView.cellForItem(at: indexPath) as? LUICollectionViewCellBase {
+            cell.collectionView(collectionView: collectionView, didSelectCell: false)
+        }
+        let cm = self.cellModelAtIndexPath(indexpath: indexPath)
+        self.deselectCellModel(cm)
+        cm.whenSelected?(cm, false)
+        if collectionView.allowsMultipleSelection {
+            cm.whenClick?(cm)
+        }
+        self.forwardDelegate?.collectionView?(collectionView, didDeselectItemAt: indexPath)
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if let cell = collectionView.cellForItem(at: indexPath) as? LUICollectionViewCellBase {
+            let cm = self.cellModelAtIndexPath(indexpath: indexPath)
+            cell.collectionView(collectionView: collectionView, willDisplayCellModel: cm)
+        }
+        self.forwardDelegate?.collectionView?(collectionView, willDisplay: cell, forItemAt: indexPath)
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, willDisplaySupplementaryView view: UICollectionReusableView, forElementKind elementKind: String, at indexPath: IndexPath) {
+        let sm = self.sectionModelAtIndex(index: indexPath.section)
+        view.collectionView(collectionView: collectionView, willDisplaySectionModel: sm, kind: elementKind)
+    }
 }
