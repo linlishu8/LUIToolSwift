@@ -175,16 +175,84 @@ public class LUICollectionViewModel: LUICollectionModel, UICollectionViewDataSou
         }
     }
     
-    public func insertCellModels(cellModels: [LUICollectionViewCellModel], beforeIndexPath: IndexPath, animated: Bool, completion: ((Bool) -> Void)) {
-        
+    public func insertCellModels(cellModels: [LUICollectionViewCellModel], beforeIndexPath indexPath: IndexPath, animated: Bool, completion: ((Bool) -> Void)?) {
+        for cellModel in cellModels {
+            cellModel.needReloadCell = true
+        }
+        self.insertCellModels(cellModels, beforeIndexPath: indexPath)
+        if let collectionView = self.collectionView, animated {
+            collectionView.performBatchUpdates {
+                if collectionView.numberOfSections == 0 {
+                    collectionView.insertSections(IndexSet(integer: 0))
+                }
+                var indexPaths: [IndexPath] = []
+                for i in 0..<cellModels.count {
+                    let ip = IndexPath(item: indexPath.item + i, section: indexPath.section)
+                    indexPaths.append(ip)
+                }
+                collectionView.insertItems(at: indexPaths)
+            } completion: { finished in
+                self.reloadCollectionViewBackgroundView()
+                completion?(true)
+            }
+        } else {
+            self.reloadCollectionViewData()
+            completion?(true)
+        }
     }
     
-    public func removeCellModel(cellModel: LUICollectionViewCellModel, animated: Bool, completion: ((Bool) -> Void)) {
-        
+    public func removeCellModel(cellModel: LUICollectionViewCellModel, animated: Bool, completion: ((Bool) -> Void)?) {
+        if let indexPath = self.indexPathOfCellModel(cellModel) {
+            let sm = self.sectionModelAtIndex(index: indexPath.section)
+            self.removeCellModelAtIndexPath(indexPath)
+            if sm.numberOfCells == 0 {
+                self.removeCellModelAtIndexPath(indexPath)
+            }
+            if let collectionView = self.collectionView, animated {
+                collectionView.performBatchUpdates {
+                    if sm.numberOfCells == 0 {
+                        collectionView.deleteSections(IndexSet(integer: indexPath.section))
+                    }
+                    collectionView.deleteItems(at: [indexPath])
+                } completion: { finished in
+                    self.reloadCollectionViewBackgroundView()
+                    completion?(true)
+                }
+            } else {
+                self.reloadCollectionViewData()
+                completion?(true)
+            }
+        }
     }
     
-    public func removeCellModels(cellModel: [LUICollectionViewCellModel], animated: Bool, completion: ((Bool) -> Void)) {
-        
+    public func removeCellModels(cellModels: [LUICollectionViewCellModel], animated: Bool, completion: ((Bool) -> Void)?) {
+        let indexPaths: [IndexPath] = self.indexPathsOfCellModels(cellModels)
+        if indexPaths.count > 0 {
+            var deletedSectionIndexs: IndexSet = IndexSet()
+            for cellModel in cellModels {
+                let sm = cellModel.sectionModel()
+                sm.removeCellModel(cellModel: cellModel)
+                if sm.numberOfCells == 0, let idx = sm.indexInModel {
+                    deletedSectionIndexs.insert(idx)
+                    self.removeSectionModel(sm)
+                }
+            }
+            
+            if let collectionView = self.collectionView, animated {
+                collectionView.performBatchUpdates {
+                    if deletedSectionIndexs.count != 0 {
+                        collectionView.deleteSections(deletedSectionIndexs)
+                    }
+                    collectionView.deleteItems(at: indexPaths)
+                } completion: { finished in
+                    self.reloadCollectionViewBackgroundView()
+                    completion?(true)
+                }
+            } else {
+                self.reloadCollectionViewData()
+                completion?(true)
+            }
+        }
     }
     
     public func moveCellModelAtIndexPath(sourceIndexPath: IndexPath, toIndexPath: IndexPath, isBatchUpdates: Bool) {
