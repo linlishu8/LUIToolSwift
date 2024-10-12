@@ -41,7 +41,7 @@ public extension UICollectionReusableView {
         
     }
     
-    func collectionView(collectionView: UICollectionView, didEndDisplayingSectionModel sectionModel: LUICollectionViewSectionModel, kind: NSString) {
+    func collectionView(collectionView: UICollectionView, didEndDisplayingSectionModel sectionModel: LUICollectionViewSectionModel, kind: String) {
         
     }
 }

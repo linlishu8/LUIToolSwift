@@ -406,5 +406,20 @@ public class LUICollectionViewModel: LUICollectionModel, UICollectionViewDataSou
     public func collectionView(_ collectionView: UICollectionView, willDisplaySupplementaryView view: UICollectionReusableView, forElementKind elementKind: String, at indexPath: IndexPath) {
         let sm = self.sectionModelAtIndex(index: indexPath.section)
         view.collectionView(collectionView: collectionView, willDisplaySectionModel: sm, kind: elementKind)
+        self.forwardDelegate?.collectionView?(collectionView, willDisplaySupplementaryView: view, forElementKind: elementKind, at: indexPath)
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if let cell = collectionView.cellForItem(at: indexPath) as? LUICollectionViewCellBase {
+            let cm = self.cellModelAtIndexPath(indexpath: indexPath)
+            cell.collectionView(collectionView: collectionView, didEndDisplayingCellModel: cm)
+        }
+        self.forwardDelegate?.collectionView?(collectionView, didEndDisplaying: cell, forItemAt: indexPath)
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, didEndDisplayingSupplementaryView view: UICollectionReusableView, forElementOfKind elementKind: String, at indexPath: IndexPath) {
+        let sm = self.sectionModelAtIndex(index: indexPath.section)
+        view.collectionView(collectionView: collectionView, didEndDisplayingSectionModel: sm, kind: elementKind)
+        self.forwardDelegate?.collectionView?(collectionView, didEndDisplayingSupplementaryView: view, forElementOfKind: elementKind, at: indexPath)
     }
 }
