@@ -80,7 +80,7 @@ public class LUICollectionViewCellModel: LUICollectionCellModel {
             self.needReloadCell = true
             self.collectionView?.reloadItems(at: [indexPath])
             if self.selected {
-                self.collectionView?.selectItem(at: indexPath, animated: false, scrollPosition: .top)
+                self.collectionView?.selectItem(at: indexPath, animated: false, scrollPosition: [])
             }
         }
     }

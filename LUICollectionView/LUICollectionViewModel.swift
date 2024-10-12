@@ -87,17 +87,48 @@ public class LUICollectionViewModel: LUICollectionModel, UICollectionViewDataSou
             collectionView.reloadData()
             for sectionModel in self.sectionModels {
                 for cellModel in sectionModel.cellModels {
-                    cellModel.needReloadCell = true
+                    if let model = cellModel as? LUICollectionViewCellModel {
+                        model.needReloadCell = true
+                    }
                 }
             }
             if self.allowsSelection {
-                
+                if self.allowsMultipleSelection {
+                    let indexPaths = self.indexPathsForSelectedCellModels()
+                    for indexPath in indexPaths {
+                        self.collectionView?.selectItem(at: indexPath, animated: false, scrollPosition: [])
+                    }
+                } else {
+                    let indexPath = self.indexPathForSelectedCellModel()
+                    self.collectionView?.selectItem(at: indexPath, animated: false, scrollPosition: [])
+                }
             }
         }
+        self.reloadCollectionViewBackgroundView()
     }
     
-    public func addCellModel(cellModel: LUICollectionViewCellModel, animated: Bool, completion: ((Bool) -> Void)) {
-        
+    public func addCellModel(cellModel: LUICollectionViewCellModel, animated: Bool, completion: ((Bool) -> Void)?) {
+        cellModel.needReloadCell = true
+        self.addCellModel(cellModel)
+        if let collectionView = self.collectionView, animated {
+            if let sm = self.sectionModels.last {
+                let indexPath = IndexPath(item: sm.numberOfCells - 1, section: self.sectionModels.count - 1)
+                collectionView.performBatchUpdates {
+                    if collectionView.numberOfSections == 0 {
+                        collectionView.insertSections(IndexSet(integer: 0))
+                    }
+                    collectionView .insertItems(at: [indexPath])
+                } completion: { finished in
+                    self.reloadCollectionViewBackgroundView()
+                    completion?(finished)
+                }
+
+            }
+            
+        } else {
+            self.reloadCollectionViewData()
+            completion?(true)
+        }
     }
     
     public func insertCellModel(cellModel: LUICollectionViewCellModel, indexPath: IndexPath, animated: Bool, completion: ((Bool) -> Void)) {
