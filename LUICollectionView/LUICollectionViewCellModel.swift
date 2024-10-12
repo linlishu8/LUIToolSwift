@@ -8,9 +8,9 @@
 import Foundation
 
 public class LUICollectionViewCellModel: LUICollectionCellModel {
-    public var cellClass: AnyClass?
+    public var cellClass: AnyClass = LUICollectionViewCellBase.self
     public lazy var reuseIdentity: String = {
-        return NSStringFromClass(self.cellClass ?? UICollectionViewCell.self)
+        return NSStringFromClass(self.cellClass)
     }()//用于列表重用单元格视图时的标志符,默认为NSStringFromCGClass(self.class)
     public var canDelete: Bool = false//是否可以被删除,默认为NO
     public var canMove: Bool = false//是否可以被移動,默认为 NO
@@ -85,7 +85,7 @@ public class LUICollectionViewCellModel: LUICollectionCellModel {
         }
     }
     
-    public func removeCellModelWithAnimated(animated: Bool, completion: ((Bool) -> Void)) {
+    public func removeCellModelWithAnimated(animated: Bool, completion: @escaping ((Bool) -> Void)) {
         self.collectionModel().removeCellModel(cellModel: self, animated: animated, completion: completion)
     }
 }
