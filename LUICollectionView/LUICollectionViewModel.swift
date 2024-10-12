@@ -122,7 +122,6 @@ public class LUICollectionViewModel: LUICollectionModel, UICollectionViewDataSou
                     self.reloadCollectionViewBackgroundView()
                     completion?(finished)
                 }
-
             }
             
         } else {
@@ -131,12 +130,49 @@ public class LUICollectionViewModel: LUICollectionModel, UICollectionViewDataSou
         }
     }
     
-    public func insertCellModel(cellModel: LUICollectionViewCellModel, indexPath: IndexPath, animated: Bool, completion: ((Bool) -> Void)) {
-        
+    public func insertCellModel(cellModel: LUICollectionViewCellModel, indexPath: IndexPath, animated: Bool, completion: ((Bool) -> Void)?) {
+        cellModel.needReloadCell = true
+        self.insertCellModel(cellModel, atIndexPath: indexPath)
+        if let collectionView = self.collectionView, animated {
+            collectionView.performBatchUpdates {
+                if collectionView.numberOfSections == 0 {
+                    collectionView.insertSections(IndexSet(integer: 0))
+                }
+                collectionView .insertItems(at: [indexPath])
+            } completion: { finished in
+                self.reloadCollectionViewBackgroundView()
+                completion?(finished)
+            }
+        } else {
+            self.reloadCollectionViewData()
+            completion?(true)
+        }
     }
     
-    public func insertCellModels(cellModels: [LUICollectionViewCellModel], afterIndexPath: IndexPath, animated: Bool, completion: ((Bool) -> Void)) {
-        
+    public func insertCellModels(cellModels: [LUICollectionViewCellModel], afterIndexPath indexPath: IndexPath, animated: Bool, completion: ((Bool) -> Void)?) {
+        for cellModel in cellModels {
+            cellModel.needReloadCell = true
+        }
+        self.insertCellModels(cellModels, afterIndexPath: indexPath)
+        if let collectionView = self.collectionView, animated {
+            collectionView.performBatchUpdates {
+                if collectionView.numberOfSections == 0 {
+                    collectionView.insertSections(IndexSet(integer: 0))
+                }
+                var indexPaths: [IndexPath] = []
+                for i in 0..<cellModels.count {
+                    let ip = IndexPath(item: indexPath.item + i + 1, section: indexPath.section)
+                    indexPaths.append(ip)
+                }
+                collectionView.insertItems(at: indexPaths)
+            } completion: { finished in
+                self.reloadCollectionViewBackgroundView()
+                completion?(true)
+            }
+        } else {
+            self.reloadCollectionViewData()
+            completion?(true)
+        }
     }
     
     public func insertCellModels(cellModels: [LUICollectionViewCellModel], beforeIndexPath: IndexPath, animated: Bool, completion: ((Bool) -> Void)) {
