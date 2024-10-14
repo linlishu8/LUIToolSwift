@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension NSObject {
+public extension NSObject {
     
     func l_valueForKeyPath(_ path: String, otherwise other: Any?) -> Any? {
         let obj = self.value(forKeyPath: path);
@@ -200,12 +200,12 @@ extension NSObject {
         return self.l_dateSince1970MillisecondForKeyPath(path, dateMatterString: matterString, otherwise: nil)
     }
     
-    public func l_objectAddress() -> String {
+    func l_objectAddress() -> String {
         return "\(type(of: self)):\(Unmanaged.passUnretained(self).toOpaque())"
     }
 }
 
-extension Dictionary where Key == String {
+public extension Dictionary where Key == String {
     
     func l_valueForKeyPath(_ path: String, otherwise other: Any?) -> Any? {
         let keys = path.split(separator: ".").map(String.init)
@@ -225,5 +225,13 @@ extension Dictionary where Key == String {
     }
     func l_valueForKeyPath(_ path: String) -> Any? {
         return self.l_valueForKeyPath(path, otherwise: nil)
+    }
+}
+
+public extension UICollectionViewLayout {
+    /// 指定collectionview的最大尺寸，返回collectionview最合适的尺寸值
+    /// @param size 外层最大尺寸
+    func l_sizeThatFits(size: CGSize) -> CGSize {
+        return .zero
     }
 }

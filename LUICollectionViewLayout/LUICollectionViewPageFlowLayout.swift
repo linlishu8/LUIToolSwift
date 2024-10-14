@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class LUICollectionViewPageFlowLayout {
+public class LUICollectionViewPageFlowLayout: UICollectionViewLayout {
     public var interitemSpacing: CGFloat = 0
     public var itemSize: CGSize = .zero
     public var scrollDirection: UICollectionViewScrollDirection = .horizontal
@@ -84,11 +84,5 @@ public class LUICollectionViewPageFlowLayout {
     
     public func highlightPagingCellAttributes(cellAttr: UICollectionViewLayoutAttributes) {
         
-    }
-}
-
-public extension LUICollectionViewPageFlowLayout {
-    func l_sizeThatFits(size: CGSize) -> CGSize {
-        return .zero
     }
 }

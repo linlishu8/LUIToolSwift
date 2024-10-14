@@ -25,6 +25,7 @@
 		1FD5665A2CB900CE00959D77 /* LUICGRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD566592CB900CE00959D77 /* LUICGRect.swift */; };
 		1FD566632CBA620700959D77 /* UICollectionReusableView+LUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD566622CBA620700959D77 /* UICollectionReusableView+LUI.swift */; };
 		1FD566662CBCABD100959D77 /* LUICollectionViewPageFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD566652CBCABD100959D77 /* LUICollectionViewPageFlowLayout.swift */; };
+		1FD5666A2CBCBAF800959D77 /* LUICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD566692CBCBAF800959D77 /* LUICollectionView.swift */; };
 		21D00E7BA3D069AF26552BBF2184D2AB /* UITableViewCell+LUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11491248B7E266AE74DFDE794D90F68C /* UITableViewCell+LUI.swift */; };
 		2438E1C11EEE6739BCD314694C2D9F9F /* LUICollectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04EA15C7178E7029CEF6FE89D93F210 /* LUICollectionModel.swift */; };
 		2F26923936102C02059518624239565A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
@@ -91,6 +92,7 @@
 		1FD566592CB900CE00959D77 /* LUICGRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LUICGRect.swift; sourceTree = "<group>"; };
 		1FD566622CBA620700959D77 /* UICollectionReusableView+LUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionReusableView+LUI.swift"; sourceTree = "<group>"; };
 		1FD566652CBCABD100959D77 /* LUICollectionViewPageFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LUICollectionViewPageFlowLayout.swift; sourceTree = "<group>"; };
+		1FD566692CBCBAF800959D77 /* LUICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LUICollectionView.swift; sourceTree = "<group>"; };
 		2746CD20E3A29A7DEE6CBB4CF106E47A /* LUIToolSwift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = LUIToolSwift.modulemap; sourceTree = "<group>"; };
 		2763022547E3C3DF5B0762954E00462A /* LUIToolSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LUIToolSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CD546427EF522A45F5F1CC7E24D2379 /* LUIToolSwift-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "LUIToolSwift-Info.plist"; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 				1F4CB0AB2CBA9FBD00E61CD5 /* LUICollectionViewCellModel.swift */,
 				1F4CB0AC2CBA9FBD00E61CD5 /* LUICollectionViewModel.swift */,
 				1F4CB0AD2CBA9FBD00E61CD5 /* LUICollectionViewSectionModel.swift */,
+				1FD566692CBCBAF800959D77 /* LUICollectionView.swift */,
 			);
 			name = LUICollectionView;
 			path = LUIToolSwift/Classes/LUICollectionView;
@@ -549,6 +552,7 @@
 				FA34E6572099B0E2CBE198D59F44A994 /* LUITableViewCellProtocol.swift in Sources */,
 				1F4CB0BC2CBA9FE200E61CD5 /* LUILayoutConstraint.swift in Sources */,
 				A1549A5D8D5C50460EB2D655B59BEC5B /* LUITableViewCellSwipeAction.swift in Sources */,
+				1FD5666A2CBCBAF800959D77 /* LUICollectionView.swift in Sources */,
 				1F05BA192CA69DF1003750FD /* LUITableViewSectionView.swift in Sources */,
 				1F4CB0BD2CBA9FE200E61CD5 /* LUILayoutConstraintItemAttributeBase.swift in Sources */,
 				0B9443F57F622CC31BFFB1AF1FF94963 /* LUITableViewModel.swift in Sources */,
