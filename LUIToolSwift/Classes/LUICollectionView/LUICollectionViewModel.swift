@@ -35,16 +35,34 @@ public class LUICollectionViewModel: LUICollectionModel, UICollectionViewDataSou
         self.setCollectionViewDataSourceAndDelegate(collectionView: collectionView)
     }
     
-    //刷新collectionView的backgroundView
-    public func reloadCollectionViewBackgroundView() {
-        if let emptyBackgroundViewClass = self.emptyBackgroundViewClass, let emptyBackgroundView = self.emptyBackgroundView {
-            if self.numberOfCells == 0 {
-                self.collectionView?.backgroundView = self.emptyBackgroundView ?? self.createEmptyBackgroundView()
-            } else {
-                self.collectionView?.backgroundView = nil
-            }
-            self.whenReloadBackgroundView?(self)
+    public override func createEmptySectionModel() -> LUICollectionSectionModel {
+        return LUICollectionSectionModel()
+    }
+    
+    public override func addCellModel(_ cellModel: LUICollectionCellModel) {
+        let section = self.sectionModels.last as? LUICollectionViewSectionModel ?? self.createEmptySectionModel()
+        if section !== self.sectionModels.last {
+            self.addSectionModel(section)
         }
+        section.addCellModel(cellModel)
+    }
+    
+    //刷新collectionView的backgroundView
+    func reloadCollectionViewBackgroundView() {
+        // 确保有需要显示的背景视图类或已存在的背景视图
+        guard emptyBackgroundViewClass != nil || emptyBackgroundView != nil else { return }
+        
+        // 根据单元格数量决定是否显示背景视图
+        if numberOfCells == 0 {
+            if emptyBackgroundView == nil {
+                emptyBackgroundView = createEmptyBackgroundView()
+            }
+            self.collectionView?.backgroundView = emptyBackgroundView
+        } else {
+            self.collectionView?.backgroundView = nil
+        }
+        
+        self.whenReloadBackgroundView?(self)
     }
     
     public func cellModelAtIndexPath(indexpath: IndexPath) -> LUICollectionViewCellModel {
