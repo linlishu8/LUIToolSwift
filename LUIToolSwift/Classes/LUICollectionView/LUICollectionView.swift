@@ -8,10 +8,10 @@
 import UIKit
 
 public class LUICollectionView: UICollectionView {
-    public var model: LUICollectionViewModel? {
+    public var model: LUICollectionViewModel! {
         didSet {
             if oldValue !== model {
-                model?.setCollectionViewDataSourceAndDelegate(collectionView: self)
+                model.setCollectionViewDataSourceAndDelegate(collectionView: self)
             }
         }
     }
@@ -30,16 +30,10 @@ public class LUICollectionView: UICollectionView {
     }
 }
 
-public class LUICollectionFlowLayoutView: LUICollectionView {
-    public var collectionViewFlowLayout: UICollectionViewFlowLayout {
-        get {
-            return self.collectionViewLayout as? UICollectionViewFlowLayout ?? UICollectionViewFlowLayout()
-        }
-    }
-    
-    public override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
+public class LUICollectionFlowLayoutView: LUICollectionView {    
+    public init(frame: CGRect) {
+        let layout = UICollectionViewFlowLayout.init()
         super.init(frame: frame, collectionViewLayout: layout)
-        
     }
     
     @MainActor required init?(coder: NSCoder) {

@@ -13,13 +13,17 @@ class LUIChatHeadViewTableViewCell: LUIChatMsgTableViewCellBase {
     private lazy var chatHeaderView: LUIChatHeaderView = {
         return LUIChatHeaderView.init()
     }()
+    private lazy var chatHeaderCollectionView: LUIChatHeaderCollectionView = {
+        return LUIChatHeaderCollectionView.init()
+    }()
     private var flowlayout: LUIFlowLayoutConstraint?
     
     required init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.contentView.addSubview(self.chatHeaderView)
+        self.contentView.addSubview(self.chatHeaderCollectionView)
         
-        self.flowlayout = LUIFlowLayoutConstraint([self.chatHeaderView], param: .V_T_C, contentInsets: .zero, interitemSpacing: 10)
+        self.flowlayout = LUIFlowLayoutConstraint([self.chatHeaderView, self.chatHeaderCollectionView], param: .V_T_C, contentInsets: .zero, interitemSpacing: 10)
     }
     
     @MainActor required init?(coder aDecoder: NSCoder) {
@@ -34,6 +38,7 @@ class LUIChatHeadViewTableViewCell: LUIChatMsgTableViewCellBase {
     
     override func customReloadCellModel() {
         self.chatHeaderView.loadDataWithCellModel(cellModel: self.cellModel)
+        self.chatHeaderCollectionView.loadDataWithCellModel(cellModel: self.cellModel)
     }
     
     override func customSizeThatFits(size: CGSize) -> CGSize {

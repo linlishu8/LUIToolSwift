@@ -28,7 +28,7 @@ public class LUICollectionViewCellModel: LUICollectionCellModel {
     }
     public var needReloadCell: Bool?//是否需要更新cell的视图内容
     
-    init() {
+    public init() {
         super.init()
     }
     

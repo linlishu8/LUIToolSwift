@@ -12,8 +12,12 @@ open class LUITableViewCellBase: UITableViewCell, LUITableViewCellProtocol {
     static var useCachedFitedSize: Bool = true //是否缓存sizeThatFits:的结果，默认为YES
     var isCellModelChanged: Bool = false//cellmodel是否有变化
     var isNeedLayoutCellSubviews: Bool = false//是否要重新布局视图
-    static let estimatedHeightKey: String = "\(String(describing: type(of: LUITableViewCellBase.self)))_estimatedHeight"
-    static let cachedFitedSizeKey: String = "\(String(describing: type(of: LUITableViewCellBase.self)))_cachedFitedSize"
+    static var estimatedHeightKey: String {
+        return "\(self)_estimatedHeight"
+    }
+    static var cachedFitedSizeKey: String {
+        return "\(self)_cachedFittedSize"
+    }
     
     required public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         self.cellModel = LUITableViewCellModel()
