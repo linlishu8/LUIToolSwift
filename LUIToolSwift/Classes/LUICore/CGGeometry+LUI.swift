@@ -8,7 +8,7 @@
 import UIKit
 import CoreGraphics
 
-enum LUICGAxis {
+public enum LUICGAxis {
     case x, y
 }
 
@@ -179,7 +179,7 @@ extension CGSize {
     }
 }
 
-enum LUICGRectAlignment {
+public enum LUICGRectAlignment {
     case min, mid, max
 }
 
