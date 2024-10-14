@@ -36,7 +36,7 @@ public class LUICollectionViewModel: LUICollectionModel, UICollectionViewDataSou
     }
     
     public override func createEmptySectionModel() -> LUICollectionSectionModel {
-        return LUICollectionSectionModel()
+        return LUICollectionViewSectionModel.init()
     }
     
     public override func addCellModel(_ cellModel: LUICollectionCellModel) {
