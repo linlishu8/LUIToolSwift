@@ -8,21 +8,6 @@
 import Foundation
 
 open class LUICollectionViewCellBase: UICollectionViewCell {
-    private static var instances: [String: Any] = [:]
-    private static let queue = DispatchQueue(label: "com.lui.singleton")
-    
-    public class func sharedInstance<T: LUICollectionViewCellBase>() -> T {
-        let key = String(describing: T.self)
-        return queue.sync {
-            if let instance = instances[key] as? T {
-                return instance
-            }
-            let instance = T.init()
-            instances[key] = instance
-            return instance
-        }
-    }
-    
     static var cachedFitedSizeKey: String {
         return "\(self)_cachedFitedSize"
     }
@@ -48,13 +33,9 @@ open class LUICollectionViewCellBase: UICollectionViewCell {
     } //是否缓存sizeThatFits:的结果，默认为YES
     private var isNeedLayoutCellSubviews: Bool = false //是否要重新布局视图
     
-    private var isSharedInstance: Bool {
-        return self === LUICollectionViewCellBase.sharedInstance()
-    }
-    
     open override func layoutSubviews() {
         super.layoutSubviews()
-        if !self.isCellModelChanged && !self.isNeedLayoutCellSubviews && !isSharedInstance {
+        if !self.isCellModelChanged && !self.isNeedLayoutCellSubviews {
             return
         }
         self.customLayoutSubviews()
@@ -86,7 +67,7 @@ public extension LUICollectionViewCellBase {
                 return cacheSize
             }
         }
-        let sizeFits = dynamicSizeWithCollectionView(collectionView: collectionView, collectionCellModel: collectionCellModel, cell: self.sharedInstance()) { collectionView, cellModel, cell in
+        let sizeFits = dynamicSizeWithCollectionView(collectionView: collectionView, collectionCellModel: collectionCellModel, cell: self.init()) { collectionView, cellModel, cell in
             let bounds = cell.bounds
             return cell.sizeThatFits(bounds.size)
         }
