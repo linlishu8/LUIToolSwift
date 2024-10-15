@@ -455,7 +455,6 @@ extension LUICollectionViewModel: UICollectionViewDelegateFlowLayout {
         }
         
         if let delegate = self.forwardDelegate as? UICollectionViewDelegateFlowLayout {
-            // 使用安全的方法调用方式
             if delegate.responds(to: #selector(UICollectionViewDelegateFlowLayout.collectionView(_:layout:sizeForItemAt:))) {
                 size = delegate.collectionView?(collectionView, layout: collectionViewLayout, sizeForItemAt: indexPath) ?? .zero
             }

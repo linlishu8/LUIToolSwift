@@ -7,21 +7,20 @@
 
 import UIKit
 
-protocol LUICollectionViewDelegatePageFlowLayout: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, pageFlowLayout layout: LUICollectionViewPageFlowLayout, itemSizeForItemAt indexPath: IndexPath) -> CGSize?
-    func collectionView(_ collectionView: UICollectionView, pageFlowLayout layout: LUICollectionViewPageFlowLayout, insetForSectionAt section: Int) -> UIEdgeInsets?
-    func collectionView(_ collectionView: UICollectionView, pageFlowLayout layout: LUICollectionViewPageFlowLayout, interitemSpacingForSectionAt section: Int) -> CGFloat?
-    func pagingBoundsPositionForCollectionView(_ collectionView: UICollectionView, pageFlowLayout layout: LUICollectionViewPageFlowLayout) -> CGFloat?
-    func collectionView(_ collectionView: UICollectionView, pageFlowLayout layout: LUICollectionViewPageFlowLayout, didScrollToPagingCellAt indexPath: IndexPath)
+public protocol LUICollectionViewDelegatePageFlowLayout: UICollectionViewDelegate {
+    func collectionView(collectionView: UICollectionView, pageFlowLayout collectionViewLayout: LUICollectionViewPageFlowLayout, itemSizeForItemAtIndexPath indexPath: IndexPath) -> CGSize
+    func collectionView(collectionView: UICollectionView, pageFlowLayout collectionViewLayout: LUICollectionViewPageFlowLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets
+    func collectionView(collectionView: UICollectionView, pageFlowLayout collectionViewLayout: LUICollectionViewPageFlowLayout, interitemSpacingForSectionAtIndex section: Int) -> CGFloat
+    func pagingBoundsPositionForCollectionView(collectionView: UICollectionView, pageFlowLayout collectionViewLayout: LUICollectionViewPageFlowLayout) -> CGFloat
+    func collectionView(collectionView: UICollectionView, pageFlowLayout collectionViewLayout: LUICollectionViewPageFlowLayout, didScrollToPagingCell indexPathAtPagingCell: IndexPath)
 }
 
-// 协议扩展，为方法提供默认实现（使方法变成可选）
 extension LUICollectionViewDelegatePageFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, pageFlowLayout layout: LUICollectionViewPageFlowLayout, itemSizeForItemAt indexPath: IndexPath) -> CGSize? { nil }
-    func collectionView(_ collectionView: UICollectionView, pageFlowLayout layout: LUICollectionViewPageFlowLayout, insetForSectionAt section: Int) -> UIEdgeInsets? { nil }
-    func collectionView(_ collectionView: UICollectionView, pageFlowLayout layout: LUICollectionViewPageFlowLayout, interitemSpacingForSectionAt section: Int) -> CGFloat? { nil }
-    func pagingBoundsPositionForCollectionView(_ collectionView: UICollectionView, pageFlowLayout layout: LUICollectionViewPageFlowLayout) -> CGFloat? { nil }
-    func collectionView(_ collectionView: UICollectionView, pageFlowLayout layout: LUICollectionViewPageFlowLayout, didScrollToPagingCellAt indexPath: IndexPath) {}
+    func collectionView(collectionView: UICollectionView, pageFlowLayout collectionViewLayout: LUICollectionViewPageFlowLayout, itemSizeForItemAtIndexPath indexPath: IndexPath) -> CGSize { return .zero }
+    func collectionView(_ collectionView: UICollectionView, pageFlowLayout layout: LUICollectionViewPageFlowLayout, insetForSectionAt section: Int) -> UIEdgeInsets { return .zero }
+    func collectionView(collectionView: UICollectionView, pageFlowLayout collectionViewLayout: LUICollectionViewPageFlowLayout, interitemSpacingForSectionAtIndex section: Int) -> CGFloat { return 0 }
+    func pagingBoundsPositionForCollectionView(collectionView: UICollectionView, pageFlowLayout collectionViewLayout: LUICollectionViewPageFlowLayout) -> CGFloat { return 0 }
+    func collectionView(collectionView: UICollectionView, pageFlowLayout collectionViewLayout: LUICollectionViewPageFlowLayout, didScrollToPagingCell indexPathAtPagingCell: IndexPath) {}
 }
 
 public class LUICollectionViewPageFlowLayout: UICollectionViewLayout {
@@ -112,8 +111,7 @@ public class LUICollectionViewPageFlowLayout: UICollectionViewLayout {
         let contentSize = _contentSize
         let contentInset = self.collectionView?.l_adjustedContentInset ?? .zero
         let X = self.scrollAxis
-        var max = max(self.minContentoffset(), contentSize.LUICGSizeGetLength(axis: X) - bounds.LUICGRectGetLength(X) + LUIEdgeInsetsEdge.LUIEdgeInsetsGetEdge(contentInset, axis: X, edge: .max))
-        return max
+        return max(self.minContentoffset(), contentSize.LUICGSizeGetLength(axis: X) - bounds.LUICGRectGetLength(X) + LUIEdgeInsetsEdge.LUIEdgeInsetsGetEdge(contentInset, axis: X, edge: .max))
     }
     
     private func minContentoffset() -> CGFloat {
@@ -128,13 +126,64 @@ public class LUICollectionViewPageFlowLayout: UICollectionViewLayout {
     }
     
     private func pagingOffsetForCellFrame(frame: CGRect) -> CGFloat {
+        var offset: CGFloat = 0
         let X = self.scrollAxis
         let bounds = self.collectionView?.bounds ?? .zero
-        return frame.LUICGRectGetMin(X) + frame.LUICGRectGetLength(X) * self.pagingCellPosition - bounds.LUICGRectGetLength(X) * self.paginfor
+        offset = frame.LUICGRectGetMin(X) + frame.LUICGRectGetLength(X) * self.pagingCellPosition - bounds.LUICGRectGetLength(X) * self.pagingBoundsPositionForCollectionView()
+        return offset
+    }
+    private func pagingOffsetForCellIndexPath(indexPath: IndexPath) -> CGFloat {
+        var offset: CGFloat = 0
+        if let attr = self.layoutAttributesForItem(at: indexPath) {
+            let frame = attr.l_frameSafety
+            offset = self.pagingOffsetForCellFrame(frame: frame)
+        }
+        return offset
     }
     
-    private var pagingBoundsPositionForCollectionView: CGFloat {
+    private func _cellIndexForCellNearToOffset(position: CGFloat, scrollVelocity velocity: CGPoint) -> Int {
+        let X = self.scrollAxis
+        let offset = self.collectionView?.contentOffset ?? .zero
+        let result: Int = Int.max
+        
+        let range = self.pagableCellIndexRangeNearToOffset(position: position)
+    }
+}
+
+public extension LUICollectionViewPageFlowLayout {
+    var pageFlowDelegate: LUICollectionViewDelegatePageFlowLayout? {
+        return self.collectionView?.delegate as? LUICollectionViewDelegatePageFlowLayout
+    }
+    
+    func itemSizeForSectionAtIndexPath(indexPath: IndexPath) -> CGSize {
+        var value = self.itemSize
+        if let delegate = self.pageFlowDelegate, let collectionView = self.collectionView {
+            value = delegate.collectionView(collectionView: collectionView, pageFlowLayout: self, itemSizeForItemAtIndexPath: indexPath)
+        }
+        return value
+    }
+    
+    func insetForSectionAtIndex(section: Int) -> UIEdgeInsets {
+        var value = self.sectionInset
+        if let delegate = self.pageFlowDelegate, let collectionView = self.collectionView {
+            value = delegate.collectionView(collectionView: collectionView, pageFlowLayout: self, insetForSectionAtIndex: section)
+        }
+        return value
+    }
+    
+    func interitemSpacingForSectionAtIndex(section: Int) -> CGFloat {
+        var value = self.interitemSpacing
+        if let delegate = self.pageFlowDelegate, let collectionView = self.collectionView {
+            value = delegate.collectionView(collectionView: collectionView, pageFlowLayout: self, interitemSpacingForSectionAtIndex: section)
+        }
+        return value
+    }
+    
+    func pagingBoundsPositionForCollectionView() -> CGFloat {
         var value = self.pagingBoundsPosition
-        if
+        if let delegate = self.pageFlowDelegate, let collectionView = self.collectionView {
+            value = delegate.pagingBoundsPositionForCollectionView(collectionView: collectionView, pageFlowLayout: self)
+        }
+        return value
     }
 }
