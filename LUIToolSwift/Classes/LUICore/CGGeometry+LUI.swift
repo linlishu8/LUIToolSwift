@@ -12,7 +12,7 @@ public enum LUICGAxis {
     case x, y
 }
 
-extension LUICGAxis {
+public extension LUICGAxis {
     static func LUICGAxisReverse(_ axis: LUICGAxis) -> LUICGAxis {
         return axis == .x ? .y : .x
     }
@@ -150,7 +150,7 @@ extension CGVector {
     }
 }
 
-extension CGSize {
+public extension CGSize {
     mutating func LUICGSizeSetLength(_ value: CGFloat, axis: LUICGAxis) {
         switch axis {
         case .x:
@@ -443,18 +443,18 @@ extension CGRect {
 }
 
 // UIRectEdge
-enum LUIEdgeInsetsEdge {
+public enum LUIEdgeInsetsEdge {
     case min  // 对应于top, left
     case max  // 对应于bottom, right
 }
 
-extension LUIEdgeInsetsEdge {
-    func LUIEdgeInsetsGetEdge(_ insets: UIEdgeInsets, axis: LUICGAxis) -> CGFloat {
+public extension LUIEdgeInsetsEdge {
+    static func LUIEdgeInsetsGetEdge(_ insets: UIEdgeInsets, axis: LUICGAxis, edge: LUIEdgeInsetsEdge) -> CGFloat {
         switch axis {
         case .x:
-            return self == .min ? insets.left : insets.right
+            return edge == .min ? insets.left : insets.right
         case .y:
-            return self == .min ? insets.top : insets.bottom
+            return edge == .min ? insets.top : insets.bottom
         }
     }
     
@@ -480,8 +480,8 @@ extension LUIEdgeInsetsEdge {
         }
     }
     
-    func LUIEdgeInsetsAddEdge(_ insets: inout UIEdgeInsets, axis: LUICGAxis, value: CGFloat) {
-        let currentEdgeValue = LUIEdgeInsetsGetEdge(insets, axis: axis)
+    func LUIEdgeInsetsAddEdge(_ insets: inout UIEdgeInsets, axis: LUICGAxis, edge: LUIEdgeInsetsEdge, value: CGFloat) {
+        let currentEdgeValue = LUIEdgeInsetsEdge.LUIEdgeInsetsGetEdge(insets, axis: axis, edge: edge)
         LUIEdgeInsetsSetEdge(&insets, axis: axis, value: currentEdgeValue + value)
     }
     

@@ -227,11 +227,3 @@ public extension Dictionary where Key == String {
         return self.l_valueForKeyPath(path, otherwise: nil)
     }
 }
-
-public extension UICollectionViewLayout {
-    /// 指定collectionview的最大尺寸，返回collectionview最合适的尺寸值
-    /// @param size 外层最大尺寸
-    func l_sizeThatFits(size: CGSize) -> CGSize {
-        return .zero
-    }
-}
