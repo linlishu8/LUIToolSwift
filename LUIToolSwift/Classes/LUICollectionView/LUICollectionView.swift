@@ -26,11 +26,14 @@ public class LUICollectionView: UICollectionView {
     }
     
     public override func sizeThatFits(_ size: CGSize) -> CGSize {
-        return self.collectionViewLayout .l_sizeThatFits(size: size)
+        if let layout = self.collectionViewLayout as? UICollectionViewFlowLayout {
+            return layout.l_sizeThatFits(originBoundsSize: size)
+        }
+        return self.collectionViewLayout.collectionViewContentSize
     }
 }
 
-public class LUICollectionFlowLayoutView: LUICollectionView {    
+public class LUICollectionFlowLayoutView: LUICollectionView {
     public init(frame: CGRect) {
         let layout = UICollectionViewFlowLayout.init()
         super.init(frame: frame, collectionViewLayout: layout)

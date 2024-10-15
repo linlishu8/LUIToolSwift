@@ -80,8 +80,8 @@ public extension UICollectionViewFlowLayout {
         guard let collectionView = self.collectionView else { return .zero }
         var size = originBoundsSize
         let direction = self.scrollDirection
-        var axis: LUICGAxis = direction == .vertical ? .x : .y
-        var axisR = LUICGAxis.LUICGAxisReverse(axis)
+        let axis: LUICGAxis = direction == .vertical ? .x : .y
+        let axisR = LUICGAxis.LUICGAxisReverse(axis)
         size.LUICGSizeSetLength(CGFloat(Int.max), axis: axisR)
         
         let originBounds = collectionView.bounds
@@ -90,7 +90,7 @@ public extension UICollectionViewFlowLayout {
         collectionView.bounds = bounds
         
         var sizeFits: CGSize = .zero
-        var insets = collectionView.l_adjustedContentInset
+        let insets = collectionView.l_adjustedContentInset
         size.width -= insets.left + insets.right
         size.height -= insets.top + insets.bottom
         
@@ -120,8 +120,8 @@ public extension UICollectionViewFlowLayout {
         collectionView.bounds = bounds
         
         for i in 0..<collectionView.numberOfSections {
-            var headerReferenceSize = self.l_referenceSizeForHeaderInSection(i)
-            var footerReferenceSize = self.l_referenceSizeForFooterInSection(i)
+            let headerReferenceSize = self.l_referenceSizeForHeaderInSection(i)
+            let footerReferenceSize = self.l_referenceSizeForFooterInSection(i)
             
             sizeFits.LUICGSizeSetLength(sizeFits.LUICGSizeGetLength(axis: axisR) + headerReferenceSize.LUICGSizeGetLength(axis: axisR) + footerReferenceSize.LUICGSizeGetLength(axis: axisR), axis: axisR)
         }
@@ -142,16 +142,15 @@ public extension UICollectionViewFlowLayout {
         
         var allCellsSize: CGSize = .zero
         for i in 0..<collectionView.numberOfSections {
-            var minimumLineSpacing = self.l_minimumLineSpacingForSectionAtIndex(i)
-            var minimumInteritemSpacing = self.l_minimumInteritemSpacingForSectionAtIndex(i)
-            var sectionInset = self.l_insetForSectionAtIndex(i)
+            let minimumLineSpacing = self.l_minimumLineSpacingForSectionAtIndex(i)
+            let minimumInteritemSpacing = self.l_minimumInteritemSpacingForSectionAtIndex(i)
+            let sectionInset = self.l_insetForSectionAtIndex(i)
             var boundSize = size
             boundSize.width -= sectionInset.left + sectionInset.right
             boundSize.height -= sectionInset.top + sectionInset.bottom
             
-            var interitemSpacing = X == .x ? minimumInteritemSpacing : minimumLineSpacing
-            var lineSpacing = X == .x ? minimumLineSpacing : minimumInteritemSpacing
-            let itemCount = collectionView.numberOfItems(inSection: i)
+            let interitemSpacing = X == .x ? minimumInteritemSpacing : minimumLineSpacing
+            let lineSpacing = X == .x ? minimumLineSpacing : minimumInteritemSpacing
             var sectionFitSize: CGSize = .zero
             var limitSize = boundSize
             var maxHeight: CGFloat = 0//元素的最大高度

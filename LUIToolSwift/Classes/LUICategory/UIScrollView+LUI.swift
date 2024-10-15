@@ -169,14 +169,11 @@ extension UIScrollView {
         
         switch position {
         case .head:
-            let edgeMin = LUIEdgeInsetsEdge.min
-            offset.LUICGPointSetValue(cellFrame.LUICGRectGetMin(axis) - edgeMin.LUIEdgeInsetsGetEdge(contentInset, axis: axis), axis: axis)
+            offset.LUICGPointSetValue(cellFrame.LUICGRectGetMin(axis) - LUIEdgeInsetsEdge.LUIEdgeInsetsGetEdge(contentInset, axis: axis, edge: .min), axis: axis)
         case .middle:
-            let edgeMin = LUIEdgeInsetsEdge.min
-            offset.LUICGPointSetValue(cellFrame.LUICGRectGetMid(axis) - edgeMin.LUIEdgeInsetsGetEdge(contentInset, axis: axis) - visibleBounds.LUICGRectGetLength(axis) * 0.5, axis: axis)
+            offset.LUICGPointSetValue(cellFrame.LUICGRectGetMid(axis) - LUIEdgeInsetsEdge.LUIEdgeInsetsGetEdge(contentInset, axis: axis, edge: .min) - visibleBounds.LUICGRectGetLength(axis) * 0.5, axis: axis)
         case .foot:
-            let edgeMax = LUIEdgeInsetsEdge.max
-            offset.LUICGPointSetValue(cellFrame.LUICGRectGetMax(axis) - bounds.LUICGRectGetLength(axis) + edgeMax.LUIEdgeInsetsGetEdge(contentInset, axis: axis), axis: axis)
+            offset.LUICGPointSetValue(cellFrame.LUICGRectGetMax(axis) - bounds.LUICGRectGetLength(axis) + LUIEdgeInsetsEdge.LUIEdgeInsetsGetEdge(contentInset, axis: axis, edge: .max), axis: axis)
         }
         
         // Restrict offset range
