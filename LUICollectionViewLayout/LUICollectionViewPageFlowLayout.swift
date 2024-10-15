@@ -5,14 +5,33 @@
 //  Created by 六月 on 2024/10/14.
 //
 
-import Foundation
+import UIKit
+
+protocol LUICollectionViewDelegatePageFlowLayout: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, pageFlowLayout layout: LUICollectionViewPageFlowLayout, itemSizeForItemAt indexPath: IndexPath) -> CGSize?
+    func collectionView(_ collectionView: UICollectionView, pageFlowLayout layout: LUICollectionViewPageFlowLayout, insetForSectionAt section: Int) -> UIEdgeInsets?
+    func collectionView(_ collectionView: UICollectionView, pageFlowLayout layout: LUICollectionViewPageFlowLayout, interitemSpacingForSectionAt section: Int) -> CGFloat?
+    func pagingBoundsPositionForCollectionView(_ collectionView: UICollectionView, pageFlowLayout layout: LUICollectionViewPageFlowLayout) -> CGFloat?
+    func collectionView(_ collectionView: UICollectionView, pageFlowLayout layout: LUICollectionViewPageFlowLayout, didScrollToPagingCellAt indexPath: IndexPath)
+}
+
+// 协议扩展，为方法提供默认实现（使方法变成可选）
+extension LUICollectionViewDelegatePageFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, pageFlowLayout layout: LUICollectionViewPageFlowLayout, itemSizeForItemAt indexPath: IndexPath) -> CGSize? { nil }
+    func collectionView(_ collectionView: UICollectionView, pageFlowLayout layout: LUICollectionViewPageFlowLayout, insetForSectionAt section: Int) -> UIEdgeInsets? { nil }
+    func collectionView(_ collectionView: UICollectionView, pageFlowLayout layout: LUICollectionViewPageFlowLayout, interitemSpacingForSectionAt section: Int) -> CGFloat? { nil }
+    func pagingBoundsPositionForCollectionView(_ collectionView: UICollectionView, pageFlowLayout layout: LUICollectionViewPageFlowLayout) -> CGFloat? { nil }
+    func collectionView(_ collectionView: UICollectionView, pageFlowLayout layout: LUICollectionViewPageFlowLayout, didScrollToPagingCellAt indexPath: IndexPath) {}
+}
 
 public class LUICollectionViewPageFlowLayout: UICollectionViewLayout {
     public var interitemSpacing: CGFloat = 0
     public var itemSize: CGSize = .zero
     public var scrollDirection: UICollectionViewScrollDirection = .horizontal
     public var itemAlignment: LUICGRectAlignment = .mid
-    public var scrollAxis: LUICGAxis?
+    public var scrollAxis: LUICGAxis {
+        return self.scrollDirection == .horizontal ? .x : .y
+    }
     public var sectionInset: UIEdgeInsets = .zero
     public var enableCycleScroll: Bool = false //是否允许循环滚动，默认为false
     
@@ -84,5 +103,38 @@ public class LUICollectionViewPageFlowLayout: UICollectionViewLayout {
     
     public func highlightPagingCellAttributes(cellAttr: UICollectionViewLayoutAttributes) {
         
+    }
+    
+    private var _contentSize:CGSize = .zero
+    
+    private func maxContentoffset() -> CGFloat {
+        let bounds = self.collectionView?.bounds ?? .zero
+        let contentSize = _contentSize
+        let contentInset = self.collectionView?.l_adjustedContentInset ?? .zero
+        let X = self.scrollAxis
+        var max = max(self.minContentoffset(), contentSize.LUICGSizeGetLength(axis: X) - bounds.LUICGRectGetLength(X) + LUIEdgeInsetsEdge.LUIEdgeInsetsGetEdge(contentInset, axis: X, edge: .max))
+        return max
+    }
+    
+    private func minContentoffset() -> CGFloat {
+        let contentInset = self.collectionView?.l_adjustedContentInset ?? .zero
+        let X = self.scrollAxis
+        return -LUIEdgeInsetsEdge.LUIEdgeInsetsGetEdge(contentInset, axis: X, edge: .max)
+    }
+    
+    private func pagingPositionForCellFrame(frame: CGRect) -> CGFloat {
+        let X = self.scrollAxis
+        return frame.LUICGRectGetMin(X) + frame.LUICGRectGetLength(X) * self.pagingCellPosition
+    }
+    
+    private func pagingOffsetForCellFrame(frame: CGRect) -> CGFloat {
+        let X = self.scrollAxis
+        let bounds = self.collectionView?.bounds ?? .zero
+        return frame.LUICGRectGetMin(X) + frame.LUICGRectGetLength(X) * self.pagingCellPosition - bounds.LUICGRectGetLength(X) * self.paginfor
+    }
+    
+    private var pagingBoundsPositionForCollectionView: CGFloat {
+        var value = self.pagingBoundsPosition
+        if
     }
 }
