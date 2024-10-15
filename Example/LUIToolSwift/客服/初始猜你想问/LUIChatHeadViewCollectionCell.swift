@@ -11,14 +11,14 @@ import LUIToolSwift
 
 class LUIChatHeadViewCollectionCell: LUICollectionViewCellBase {
     private lazy var backgroundImageView: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "lui_chat_header_tablebg"))
+        let imageView = UIImageView(image: UIImage(named: "lui_chat_head_collection_bg"))
         return imageView
     }()
     
     private lazy var iconButton: LUILayoutButton = {
         let button = LUILayoutButton(contentStyle: .vertical)
         button.imageSize = CGSize(width: 40, height: 40)
-        button.interitemSpacing = 5
+        button.interitemSpacing = 10
         button.setImage(UIImage(named: "lui_chat_head_head"), for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         button.setTitleColor(UIColor.black, for: .normal)
@@ -30,10 +30,11 @@ class LUIChatHeadViewCollectionCell: LUICollectionViewCellBase {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.contentView.backgroundColor = .clear
         self.contentView.addSubview(self.backgroundImageView)
         self.contentView.addSubview(self.iconButton)
         
-        self.flowlayout = LUIFlowLayoutConstraint([self.iconButton], param: .H_C_C, contentInsets: .zero, interitemSpacing: 0)
+        self.flowlayout = LUIFlowLayoutConstraint([self.iconButton], param: .H_C_C, contentInsets: UIEdgeInsets(top: 10, left: 15, bottom: 10, right: 15), interitemSpacing: 0)
     }
     
     @MainActor required init?(coder: NSCoder) {

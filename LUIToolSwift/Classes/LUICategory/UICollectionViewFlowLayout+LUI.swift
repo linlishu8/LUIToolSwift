@@ -132,6 +132,7 @@ public extension UICollectionViewFlowLayout {
         return sizeFits
     }
     
+    //每个item的size
     private func l_allCellsSizeThatFitsCellBoundsSize(size: CGSize) -> CGSize {
         guard let collectionView = self.collectionView else { return .zero }
         let direction = self.scrollDirection
@@ -206,5 +207,11 @@ public extension UICollectionViewFlowLayout {
             allCellsSize.LUICGSizeSetLength(allCellsSize.LUICGSizeGetLength(axis: Y) + sectionFitSize.LUICGSizeGetLength(axis: Y), axis: Y)
         }
         return allCellsSize
+    }
+}
+
+public extension UICollectionView {
+    var l_collectionViewFlowLayout: UICollectionViewFlowLayout? {
+        return self.collectionViewLayout as? UICollectionViewFlowLayout
     }
 }

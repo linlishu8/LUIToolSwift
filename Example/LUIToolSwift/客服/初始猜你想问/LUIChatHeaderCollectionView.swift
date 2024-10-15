@@ -12,6 +12,10 @@ import LUIToolSwift
 class LUIChatHeaderCollectionView: LUIChatBaseView {
     private lazy var collectionView: LUICollectionFlowLayoutView = {
         let collectionView = LUICollectionFlowLayoutView.init(frame: .zero)
+        collectionView.backgroundColor = .clear
+        collectionView.collectionViewFlowLayout?.minimumLineSpacing = 10;
+        collectionView.collectionViewFlowLayout?.minimumInteritemSpacing = 10;
+        collectionView.collectionViewFlowLayout?.itemSize = CGSizeMake(80, 100)
         return collectionView
     }()
     
@@ -20,6 +24,7 @@ class LUIChatHeaderCollectionView: LUIChatBaseView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.addSubview(self.collectionView)
+        
         self.flowlayout = LUIFlowLayoutConstraint([self.collectionView], param: .H_C_C, contentInsets: .zero, interitemSpacing: 0)
     }
     

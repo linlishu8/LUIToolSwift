@@ -34,9 +34,11 @@ public class LUICollectionView: UICollectionView {
 }
 
 public class LUICollectionFlowLayoutView: LUICollectionView {
+    public var collectionViewFlowLayout: UICollectionViewFlowLayout
+    
     public init(frame: CGRect) {
-        let layout = UICollectionViewFlowLayout.init()
-        super.init(frame: frame, collectionViewLayout: layout)
+        self.collectionViewFlowLayout = UICollectionViewFlowLayout.init()
+        super.init(frame: frame, collectionViewLayout: self.collectionViewFlowLayout)
     }
     
     @MainActor required init?(coder: NSCoder) {
