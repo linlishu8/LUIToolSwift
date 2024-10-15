@@ -142,7 +142,70 @@ public extension UICollectionViewFlowLayout {
         
         var allCellsSize: CGSize = .zero
         for i in 0..<collectionView.numberOfSections {
+            var minimumLineSpacing = self.l_minimumLineSpacingForSectionAtIndex(i)
+            var minimumInteritemSpacing = self.l_minimumInteritemSpacingForSectionAtIndex(i)
+            var sectionInset = self.l_insetForSectionAtIndex(i)
+            var boundSize = size
+            boundSize.width -= sectionInset.left + sectionInset.right
+            boundSize.height -= sectionInset.top + sectionInset.bottom
             
+            var interitemSpacing = X == .x ? minimumInteritemSpacing : minimumLineSpacing
+            var lineSpacing = X == .x ? minimumLineSpacing : minimumInteritemSpacing
+            let itemCount = collectionView.numberOfItems(inSection: i)
+            var sectionFitSize: CGSize = .zero
+            var limitSize = boundSize
+            var maxHeight: CGFloat = 0//元素的最大高度
+            var widths: [NSNumber] = []
+            var maxWidth: CGFloat = 0//每行的最大宽度
+            var heights: [NSNumber] = []
+            for j in 0..<collectionView.numberOfItems(inSection: i) {
+                let p = IndexPath(row: j, section: i)
+                var itemSize = self.l_sizeForItemAtIndexPath(p)
+                itemSize.width = ceil(itemSize.width)
+                itemSize.height = ceil(itemSize.height)
+                let w = itemSize.LUICGSizeGetLength(axis: X)
+                if w > 0 {
+                    limitSize.LUICGSizeSetLength(limitSize.LUICGSizeGetLength(axis: X) - w, axis: X)
+                    if limitSize.LUICGSizeGetLength(axis: X) < 0 {//当前行已经放不了，需要另起一行
+                        var sumWidth = CGFloat(widths.count - 1) * interitemSpacing
+                        for width in widths {
+                            sumWidth += CGFloat(truncating: width)
+                        }
+                        maxWidth = max(maxWidth, sumWidth)
+                        heights.append(NSNumber(value: maxHeight))
+                        
+                        limitSize.LUICGSizeSetLength(boundSize.LUICGSizeGetLength(axis: X) - w, axis: X)
+                        limitSize.LUICGSizeSetLength(limitSize.LUICGSizeGetLength(axis: Y) - maxHeight - lineSpacing, axis: Y)
+                        maxHeight = 0
+                        widths.removeAll()
+                    }
+                    limitSize.LUICGSizeSetLength(limitSize.LUICGSizeGetLength(axis: X) - interitemSpacing, axis: X)
+                    maxHeight = max(maxHeight, itemSize.LUICGSizeGetLength(axis: Y))
+                    widths.append(NSNumber(value: w))
+                }
+            }
+            if !widths.isEmpty {//处理最后一行
+                var sumWidth = CGFloat(widths.count - 1) * interitemSpacing
+                for width in widths {
+                    sumWidth += CGFloat(truncating: width)
+                }
+                maxWidth = max(maxWidth, sumWidth)
+                heights.append(NSNumber(value: maxHeight))
+            }
+            if !heights.isEmpty {
+                var sumHeight = CGFloat(heights.count - 1) * interitemSpacing
+                for height in heights {
+                    sumHeight += CGFloat(truncating: height)
+                }
+                sectionFitSize.LUICGSizeSetLength(maxWidth, axis: X)
+                sectionFitSize.LUICGSizeSetLength(sumHeight, axis: Y)
+            }
+            sectionFitSize.width += sectionInset.left + sectionInset.right
+            sectionFitSize.height += sectionInset.top + sectionInset.bottom
+            
+            allCellsSize.LUICGSizeSetLength(max(allCellsSize.LUICGSizeGetLength(axis: X), sectionFitSize.LUICGSizeGetLength(axis: X)), axis: X)
+            allCellsSize.LUICGSizeSetLength(allCellsSize.LUICGSizeGetLength(axis: Y) + sectionFitSize.LUICGSizeGetLength(axis: Y), axis: Y)
         }
+        return allCellsSize
     }
 }
