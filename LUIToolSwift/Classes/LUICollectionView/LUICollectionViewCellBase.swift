@@ -88,7 +88,7 @@ public extension LUICollectionViewCellBase {
         }
         let sizeFits = dynamicSizeWithCollectionView(collectionView: collectionView, collectionCellModel: collectionCellModel, cell: self.sharedInstance()) { collectionView, cellModel, cell in
             let bounds = cell.bounds
-            return cell .sizeThatFits(bounds.size)
+            return cell.sizeThatFits(bounds.size)
         }
         if useCachedFitedSize {
             collectionCellModel[LUICollectionViewCellBase.cachedFitedSizeKey] = [NSValue (cgSize: sizeFits)]

@@ -444,7 +444,7 @@ public class LUICollectionViewModel: LUICollectionModel, UICollectionViewDataSou
 
 extension LUICollectionViewModel: UICollectionViewDelegateFlowLayout {
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        var bounds = collectionView.bounds
+        let bounds = collectionView.bounds
         var size: CGSize = .zero
         if let flowLayout = collectionViewLayout as? UICollectionViewFlowLayout {
             if bounds.size == .zero {
@@ -458,11 +458,11 @@ extension LUICollectionViewModel: UICollectionViewDelegateFlowLayout {
             // 使用安全的方法调用方式
             if delegate.responds(to: #selector(UICollectionViewDelegateFlowLayout.collectionView(_:layout:sizeForItemAt:))) {
                 size = delegate.collectionView?(collectionView, layout: collectionViewLayout, sizeForItemAt: indexPath) ?? .zero
-            } else {
-                let cm = self.cellModelAtIndexPath(indexpath: indexPath)
-                if let cellClass = cm.cellClass as? LUICollectionViewCellBase.Type {
-                    size = cellClass.sizeWithCollectionView(collectionView: collectionView, collectionCellModel: cm)
-                }
+            }
+        } else {
+            let cm = self.cellModelAtIndexPath(indexpath: indexPath)
+            if let cellClass = cm.cellClass as? LUICollectionViewCellBase.Type {
+                size = cellClass.sizeWithCollectionView(collectionView: collectionView, collectionCellModel: cm)
             }
         }
         return size
