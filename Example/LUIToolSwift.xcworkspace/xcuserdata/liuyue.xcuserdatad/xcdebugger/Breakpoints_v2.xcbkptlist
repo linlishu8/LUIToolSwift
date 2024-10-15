@@ -23,16 +23,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "D118491E-71A5-4F6B-AED3-F115B011D85C"
+            uuid = "4C4BAB94-195C-42D9-AE80-66E6E119BE12"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../LUIToolSwift/Classes/LUICategory/UICollectionViewFlowLayout+LUI.swift"
+            filePath = "../LUIToolSwift/Classes/LUICollectionView/LUICollectionViewCellBase.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "16"
-            endingLineNumber = "16"
-            landmarkName = "l_sizeForItemAtIndexPath(_:)"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
+            landmarkName = "sizeThatFits(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

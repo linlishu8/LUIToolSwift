@@ -441,3 +441,45 @@ public class LUICollectionViewModel: LUICollectionModel, UICollectionViewDataSou
         self.forwardDelegate?.collectionView?(collectionView, didEndDisplayingSupplementaryView: view, forElementOfKind: elementKind, at: indexPath)
     }
 }
+
+extension LUICollectionViewModel: UICollectionViewDelegateFlowLayout {
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        var bounds = collectionView.bounds
+        var size: CGSize = .zero
+        if let flowLayout = collectionViewLayout as? UICollectionViewFlowLayout {
+            if bounds.size == .zero {
+                size = .zero
+            } else {
+                size = flowLayout.itemSize
+            }
+        }
+        
+        if let delegate = self.forwardDelegate as? UICollectionViewDelegateFlowLayout {
+            // 使用安全的方法调用方式
+            if delegate.responds(to: #selector(UICollectionViewDelegateFlowLayout.collectionView(_:layout:sizeForItemAt:))) {
+                size = delegate.collectionView?(collectionView, layout: collectionViewLayout, sizeForItemAt: indexPath) ?? .zero
+            } else {
+                let cm = self.cellModelAtIndexPath(indexpath: indexPath)
+                if let cellClass = cm.cellClass as? LUICollectionViewCellBase.Type {
+                    size = cellClass.sizeWithCollectionView(collectionView: collectionView, collectionCellModel: cm)
+                }
+            }
+        }
+        return size
+    }
+
+//    @available(iOS 6.0, *)
+//    optional func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets
+//
+//    @available(iOS 6.0, *)
+//    optional func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat
+//
+//    @available(iOS 6.0, *)
+//    optional func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat
+//
+//    @available(iOS 6.0, *)
+//    optional func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize
+//
+//    @available(iOS 6.0, *)
+//    optional func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize
+}

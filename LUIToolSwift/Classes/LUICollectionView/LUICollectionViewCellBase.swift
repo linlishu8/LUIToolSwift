@@ -8,6 +8,20 @@
 import Foundation
 
 open class LUICollectionViewCellBase: UICollectionViewCell {
+    private static var instances: [String: Any] = [:]
+    private static let queue = DispatchQueue(label: "com.lui.singleton")
+    
+    public class func sharedInstance<T: LUICollectionViewCellBase>() -> T {
+        let key = String(describing: T.self)
+        return queue.sync {
+            if let instance = instances[key] as? T {
+                return instance
+            }
+            let instance = T.init()
+            instances[key] = instance
+            return instance
+        }
+    }
     
     static var cachedFitedSizeKey: String {
         return "\(self)_cachedFitedSize"
@@ -16,7 +30,7 @@ open class LUICollectionViewCellBase: UICollectionViewCell {
     public var collectionCellModel: LUICollectionViewCellModel? {
         didSet {
             self.isCellModelChanged = collectionCellModel?.needReloadCell ?? false || oldValue !== collectionCellModel || collectionCellModel?.collectionViewCell !== self
-            if self.useCachedFitedSize && collectionCellModel?.needReloadCell ?? false {
+            if LUICollectionViewCellBase.useCachedFitedSize && collectionCellModel?.needReloadCell ?? false {
                 collectionCellModel?[LUICollectionViewCellBase.cachedFitedSizeKey] = nil
             }
             
@@ -29,12 +43,18 @@ open class LUICollectionViewCellBase: UICollectionViewCell {
         }
     }
     public var isCellModelChanged: Bool = false //cellmodel是否有变化
-    public let useCachedFitedSize: Bool = true //是否缓存sizeThatFits:的结果，默认为YES
+    static var useCachedFitedSize: Bool {
+        return true
+    } //是否缓存sizeThatFits:的结果，默认为YES
     private var isNeedLayoutCellSubviews: Bool = false //是否要重新布局视图
+    
+    private var isSharedInstance: Bool {
+        return self === LUICollectionViewCellBase.sharedInstance()
+    }
     
     open override func layoutSubviews() {
         super.layoutSubviews()
-        if !self.isCellModelChanged && !self.isNeedLayoutCellSubviews {
+        if !self.isCellModelChanged && !self.isNeedLayoutCellSubviews && !isSharedInstance {
             return
         }
         self.customLayoutSubviews()
@@ -59,6 +79,55 @@ open class LUICollectionViewCellBase: UICollectionViewCell {
 }
 
 public extension LUICollectionViewCellBase {
+    static func sizeWithCollectionView(collectionView: UICollectionView, collectionCellModel: LUICollectionViewCellModel) -> CGSize {
+        if useCachedFitedSize {
+            if let cacheSizeValue = collectionCellModel[LUICollectionViewCellBase.cachedFitedSizeKey] as? NSValue {
+                let cacheSize = cacheSizeValue.cgSizeValue
+                return cacheSize
+            }
+        }
+        let sizeFits = dynamicSizeWithCollectionView(collectionView: collectionView, collectionCellModel: collectionCellModel, cell: self.sharedInstance()) { collectionView, cellModel, cell in
+            let bounds = cell.bounds
+            return cell .sizeThatFits(bounds.size)
+        }
+        if useCachedFitedSize {
+            collectionCellModel[LUICollectionViewCellBase.cachedFitedSizeKey] = [NSValue (cgSize: sizeFits)]
+        }
+        
+        return sizeFits
+    }
+    
+    static func dynamicSizeWithCollectionView(collectionView: UICollectionView, collectionCellModel: LUICollectionViewCellModel, cell: LUICollectionViewCellBase, calBlock: (UICollectionView, LUICollectionViewCellModel, LUICollectionViewCellBase) -> CGSize) -> CGSize {
+        var size: CGSize = .zero
+        var bounds = collectionView.l_contentBounds
+        let originBounds = cell.bounds
+        var sectionInsets: UIEdgeInsets = .zero
+        if let flowlayout = collectionView.l_collectionViewFlowLayout {
+            let sectionIndex = collectionCellModel.indexPathInModel?.section ?? 0
+            sectionInsets = flowlayout.l_insetForSectionAtIndex(sectionIndex)
+            bounds = UIEdgeInsetsInsetRect(bounds, sectionInsets)
+        }
+        bounds.origin = .zero
+        cell.bounds = bounds
+        cell.collectionCellModel = collectionCellModel
+        cell.setNeedsLayout()
+        cell.layoutIfNeeded()
+        size = calBlock(collectionView, collectionCellModel, cell)
+        cell.collectionCellModel = nil
+        cell.bounds = originBounds
+        if let flowlayout = collectionView.l_collectionViewFlowLayout {
+            if flowlayout.scrollDirection == .vertical {
+                size.width = min(size.width, bounds.size.width)
+            } else {
+                size.height = min(size.height, bounds.size.height)
+            }
+        }
+        
+        size.width = ceil(size.width)
+        size.height = ceil(size.height)
+        
+        return size
+    }
     
     //选中/取消选中单元格
     func collectionView(collectionView: UICollectionView, didSelectCell selected: Bool) {
