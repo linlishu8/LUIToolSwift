@@ -251,13 +251,17 @@ public class LUICollectionViewPageFlowLayout: UICollectionViewLayout, UICollecti
     
     //MARK: 定时滚动
     
-    public var isAutoScrolling: Bool = false
+    public var isAutoScrolling: Bool {
+        return _autoScrollingState?.isAutoScorlling ?? false
+    }
     /// 设置定时滚动。注意，如果collectionView没有被展示（比如viewcontroller被推到navigation的底部堆栈），定时滚动只会修改contentOffset，prepareLayout、shouldInvalidateLayoutForBoundsChange方法不会被调用，会导致循环滚动失效。如果开启了定时滚动功能，那么调用collectionView的reloadData方法时，也要同步调用本对象的reloadData方法，用来清除循环滚动中的中间状态。否则如果reloadData会修改cell数量，那么会出现contentSize计算错误的问题。
     /// - Parameters:
     ///   - distance: 滚动方向与步进距离，正值为向右，负值为向左
     ///   - duration: 间隔时长
     public func startAutoScrollingWithDistance(distance: Int, duration: TimeInterval) {
-        
+        if let autoScrollingState = _autoScrollingState, autoScrollingState.isAutoScorlling && autoScrollingState.distance == distance && autoScrollingState.duration == duration { return }
+        _autoScrollingState = AutoScrollingState(isAutoScorlling: true, distance: distance, duration: duration)
+        self.autoScrollingTimer?.invalidate()
     }
     
     public func stopAutoScrolling() {
@@ -266,7 +270,7 @@ public class LUICollectionViewPageFlowLayout: UICollectionViewLayout, UICollecti
     
     //由于highlightPagingCell，可能导致cell位置偏移，从而将bounds之外的元素，也移到了bounds内部，造成bounds里，实际显示元素大于bounds。该方法返回指定bounds时，其显示cell原本所占用的区域。目前用于循环滚动时，获取到当前视图内，真正的显示元素区域。默认直接返回bounds，子类可定制重载。
     public func visibleRectForOriginBounds(bounds: CGRect) -> CGRect {
-        return.zero
+        return bounds
     }
     
     public var cellAttributes: [UICollectionViewLayoutAttributes] = []
@@ -332,7 +336,12 @@ public class LUICollectionViewPageFlowLayout: UICollectionViewLayout, UICollecti
     
     //返回指定cell，距离bounds的paging对齐位置的距离。0代表就位于paging位置上,负值位于左侧，正值位于右侧
     public func distanceToPagingPositionForCellLayoutAttributes(cellAttr: UICollectionViewLayoutAttributes) -> CGFloat {
-        return 0
+        let X = self.scrollAxis
+        var dis: CGFloat = 0
+        guard let collectionView = self.collectionView else { return dis }
+        let position = self.positionOfPagingForRect(bounds: collectionView.bounds)
+        let frame = cellAttr.l_frameSafety
+        dis = (frame.LUICGRectGetMin(X) + frame.LUICGRectGetLength(X) * self.pagingCellPosition) - position
     }
     
     public func highlightPagingCellAttributes(cellAttr: UICollectionViewLayoutAttributes) {
