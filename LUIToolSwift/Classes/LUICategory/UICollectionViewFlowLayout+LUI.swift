@@ -7,7 +7,12 @@
 
 import Foundation
 
-public extension UICollectionViewFlowLayout {
+public protocol LUICollectionViewLayoutSizeFitsProtocol: AnyObject {
+    /// 指定collectionView的最大尺寸，返回collectionView最合适的尺寸值
+    func l_sizeThatFits(size: CGSize) -> CGSize
+}
+
+extension UICollectionViewFlowLayout: LUICollectionViewLayoutSizeFitsProtocol {
     var l_flowLayoutDelegate: UICollectionViewDelegateFlowLayout? {
             return self.collectionView?.delegate as? UICollectionViewDelegateFlowLayout
     }
@@ -76,9 +81,9 @@ public extension UICollectionViewFlowLayout {
     
     /// 指定collectionview的最大尺寸，返回collectionview最合适的尺寸值
     /// @param size 外层最大尺寸
-    func l_sizeThatFits(originBoundsSize: CGSize) -> CGSize {
+    public func l_sizeThatFits(size: CGSize) -> CGSize {
         guard let collectionView = self.collectionView else { return .zero }
-        var size = originBoundsSize
+        var size = size
         let direction = self.scrollDirection
         let axis: LUICGAxis = direction == .vertical ? .x : .y
         let axisR = LUICGAxis.LUICGAxisReverse(axis)
@@ -86,7 +91,7 @@ public extension UICollectionViewFlowLayout {
         
         let originBounds = collectionView.bounds
         var bounds = originBounds
-        bounds.size = originBoundsSize
+        bounds.size = size
         collectionView.bounds = bounds
         
         var sizeFits: CGSize = .zero
@@ -105,7 +110,7 @@ public extension UICollectionViewFlowLayout {
             
             //更新collectionView的尺寸
             var newBounds = originBounds
-            newBounds.size = originBoundsSize
+            newBounds.size = size
             newBounds.LUICGRectSetLength(axis, value: allCellsSize.LUICGSizeGetLength(axis: axis) + insets.LUIEdgeInsetsGetEdge(axis: axis, edge: .min) + insets.LUIEdgeInsetsGetEdge(axis: axis, edge: .max))
             collectionView.bounds = newBounds
             allCellsSize = self.l_allCellsSizeThatFitsCellBoundsSize(size: boundsSize)

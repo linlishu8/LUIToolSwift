@@ -9,7 +9,7 @@
 import UIKit
 import LUIToolSwift
 
-class LUIChatHeaderCollectionView: LUIChatBaseView {
+class LUIChatHeaderCollectionView: LUIChatBaseView, LUICollectionViewDelegatePageFlowLayout {
     private lazy var collectionView: LUICollectionView = {
         let layout = LUICollectionViewPageFlowLayout.init()
         layout.pagingCellPosition = 0;

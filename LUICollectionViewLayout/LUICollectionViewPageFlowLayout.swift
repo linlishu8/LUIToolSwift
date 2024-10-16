@@ -21,17 +21,17 @@ public protocol LUICollectionViewDelegatePageFlowLayout: UICollectionViewDelegat
     func collectionView(collectionView: UICollectionView, pageFlowLayout collectionViewLayout: LUICollectionViewPageFlowLayout, didScrollToPagingCell indexPathAtPagingCell: IndexPath)
 }
 
-extension LUICollectionViewDelegatePageFlowLayout {
+public extension LUICollectionViewDelegatePageFlowLayout {
     func collectionView(collectionView: UICollectionView, pageFlowLayout collectionViewLayout: LUICollectionViewPageFlowLayout, itemSizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
         return .zero
     }
-    func collectionView(_ collectionView: UICollectionView, pageFlowLayout layout: LUICollectionViewPageFlowLayout, insetForSectionAt section: Int) -> UIEdgeInsets { return .zero }
+    func collectionView(collectionView: UICollectionView, pageFlowLayout collectionViewLayout: LUICollectionViewPageFlowLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets { return .zero }
     func collectionView(collectionView: UICollectionView, pageFlowLayout collectionViewLayout: LUICollectionViewPageFlowLayout, interitemSpacingForSectionAtIndex section: Int) -> CGFloat { return 0 }
     func pagingBoundsPositionForCollectionView(collectionView: UICollectionView, pageFlowLayout collectionViewLayout: LUICollectionViewPageFlowLayout) -> CGFloat { return 0 }
     func collectionView(collectionView: UICollectionView, pageFlowLayout collectionViewLayout: LUICollectionViewPageFlowLayout, didScrollToPagingCell indexPathAtPagingCell: IndexPath) {}
 }
 
-public class LUICollectionViewPageFlowLayout: UICollectionViewLayout, UICollectionViewDelegate {
+public class LUICollectionViewPageFlowLayout: UICollectionViewLayout, UICollectionViewDelegate, LUICollectionViewLayoutSizeFitsProtocol {
     public var interitemSpacing: CGFloat = 0
     public var itemSize: CGSize = .zero
     public var scrollDirection: UICollectionViewScrollDirection = .horizontal

@@ -26,8 +26,8 @@ public class LUICollectionView: UICollectionView {
     }
     
     public override func sizeThatFits(_ size: CGSize) -> CGSize {
-        if let layout = self.collectionViewLayout as? UICollectionViewFlowLayout {
-            return layout.l_sizeThatFits(originBoundsSize: size)
+        if let layout = self.collectionViewLayout as? LUICollectionViewLayoutSizeFitsProtocol {
+            return layout.l_sizeThatFits(size: size)
         }
         return self.collectionViewLayout.collectionViewContentSize
     }
