@@ -458,7 +458,7 @@ public extension LUIEdgeInsetsEdge {
         }
     }
     
-    func LUIEdgeInsetsGetEdgeSum(_ insets: UIEdgeInsets, axis: LUICGAxis) -> CGFloat {
+    static func LUIEdgeInsetsGetEdgeSum(_ insets: UIEdgeInsets, axis: LUICGAxis) -> CGFloat {
         switch axis {
         case .x:
             return insets.left + insets.right

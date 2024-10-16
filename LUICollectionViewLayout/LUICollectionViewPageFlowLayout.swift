@@ -601,8 +601,101 @@ public class LUICollectionViewPageFlowLayout: UICollectionViewLayout, UICollecti
         }
     }
     
-    private func _prepareCellLayouts(cellAttributes: [UICollectionViewLayoutAttributes], cellAttributeMap: [IndexPath : UICollectionViewLayoutAttributes], cycleCellAttributes: [UICollectionViewLayoutAttributes], sectionModels: [_LUICollectionViewPageFlowSectionModel], shouldCycleScroll shouldCycleScrollRef: Bool, isSizeFit: Bool) -> CGSize {
+    private func _prepareCellLayouts(cellAttributeMap: [IndexPath : UICollectionViewLayoutAttributes], shouldCycleScroll shouldCycleScrollRef: Bool, isSizeFit: Bool) -> CGSize {
+        guard let collectionView = self.collectionView else { return .zero }
+        var cellAttributes: [UICollectionViewLayoutAttributes] = []
+        var sectionModels: [_LUICollectionViewPageFlowSectionModel] = []
+        var cycleCellAttributes: [UICollectionViewLayoutAttributes] = []
+        var cellAttributeMap = cellAttributeMap
+        
+        let X = self.scrollAxis
+        let Y = LUICGAxis.LUICGAxisReverse(X)
+        let sc = collectionView.numberOfSections
+        let bounds = collectionView.bounds
+        var f: CGRect = .zero
+        for i in 0..<sc {
+            let sm = _LUICollectionViewPageFlowSectionModel()
+            let cellCount = collectionView.numberOfItems(inSection: i)
+            let sectionInsets = self.insetForSectionAtIndex(section: i)
+            let interitemSpacing = self.interitemSpacingForSectionAtIndex(section: i)
+            let sectionBounds = UIEdgeInsetsInsetRect(bounds, sectionInsets)
+            var hadFirstVisibleCell = false
+            var tmp = f.LUICGRectGetMin(X)
+            f.LUICGRectSetMin(X, value: f.LUICGRectGetMin(X) + LUIEdgeInsetsEdge.LUIEdgeInsetsGetEdge(sectionInsets, axis: X, edge: .min))
+            for j in 0..<cellCount {
+                let p = IndexPath(item: j, section: i)
+                f.size = self.itemSizeForSectionAtIndexPath(indexPath: p)
+                if f.size.LUICGSizeGetLength(axis: X) > 0 {
+                    if !hadFirstVisibleCell {
+                        hadFirstVisibleCell = true
+                    } else {
+                        f.LUICGRectSetMin(X, value: f.LUICGRectGetMin(X) + interitemSpacing)
+                    }
+                }
+                f.LUICGRectAlignToRect(Y, alignment: self.itemAlignment, bounds: sectionBounds)
+                if let layoutClass = type(of: self).layoutAttributesClass as? UICollectionViewLayoutAttributes.Type {
+                    let cellAttr = layoutClass.init(forCellWith: p)
+                    cellAttr.l_frameSafety = f
+                    cellAttributes.append(cellAttr)
+                    if f.LUICGRectGetLength(X) > 0 {
+                        f.LUICGRectSetMin(X, value: f.LUICGRectGetMin(X) + f.LUICGRectGetLength(X))
+                    }
+                }
+            }
+            f.LUICGRectSetMin(X, value: f.LUICGRectGetMin(X) + LUIEdgeInsetsEdge.LUIEdgeInsetsGetEdge(sectionInsets, axis: X, edge: .max))
+            if (tmp + LUIEdgeInsetsEdge.LUIEdgeInsetsGetEdgeSum(sectionInsets, axis: X)) == f.LUICGRectGetMin(X) {
+                f.LUICGRectSetMin(X, value: tmp)
+            }
+            sm.sectionInsets = sectionInsets
+            sm.itemCount = cellCount
+            sectionModels.append(sm)
+        }
+        for cellAttribute in cellAttributes {
+            cellAttributeMap[cellAttribute.indexPath] = cellAttribute
+        }
+        var size: CGSize = .zero
+        size.LUICGSizeSetLength(bounds.LUICGRectGetLength(Y), axis: Y)
+        if let lastCell = self.lastVisibleCellAttributeIn(cellAttributes: cellAttributes) {
+            let frame = lastCell.l_frameSafety
+            let sectionInsets = sectionModels[lastCell.indexPath.section].sectionInsets
+            size.LUICGSizeSetLength(frame.LUICGRectGetMax(X) + LUIEdgeInsetsEdge.LUIEdgeInsetsGetEdge(sectionInset, axis: X, edge: .max), axis: X)
+        }
+        if self.enableCycleScroll {
+            cycleCellAttributes.append(contentsOf: self.__genCycleCellAttributesWithCellAttributes(cellAttributes: cellAttributes, contentSize: size))
+            var tryCells: [UICollectionViewLayoutAttributes] = []
+            let firstCell = self.firstVisibleCellAttributeIn(cellAttributes: cellAttributes)
+            if let lastCell = self.lastVisibleCellAttributeIn(cellAttributes: cellAttributes), tryCells.contains(where: lastCell) {
+                
+            }
+            
+        }
+        
         return .zero
+    }
+    
+    private func __genCycleCellAttributesWithCellAttributes(cellAttributes: [UICollectionViewLayoutAttributes], contentSize: CGSize) -> [UICollectionViewLayoutAttributes] {
+        var cycleCellAttributes: [UICollectionViewLayoutAttributes] = []
+        let X = self.scrollAxis
+        for cellAttribute in cellAttributes {
+            if let newCellAttr = cellAttribute.copy() as? UICollectionViewLayoutAttributes {
+                var f1 = cellAttribute.l_frameSafety
+                f1.LUICGRectSetMin(X, value: f1.LUICGRectGetMin(X) - contentSize.LUICGSizeGetLength(axis: X))
+                newCellAttr.l_frameSafety = f1
+                cycleCellAttributes.append(newCellAttr)
+            }
+        }
+        cycleCellAttributes.append(contentsOf: cellAttributes)
+        
+        for cellAttribute in cellAttributes {
+            if let newCellAttr = cellAttribute.copy() as? UICollectionViewLayoutAttributes {
+                var f1 = cellAttribute.l_frameSafety
+                f1.LUICGRectSetMin(X, value: f1.LUICGRectGetMin(X) + contentSize.LUICGSizeGetLength(axis: X))
+                newCellAttr.l_frameSafety = f1
+                cycleCellAttributes.append(newCellAttr)
+            }
+        }
+        
+        return cycleCellAttributes
     }
 }
 
