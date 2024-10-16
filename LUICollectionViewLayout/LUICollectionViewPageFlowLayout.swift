@@ -625,7 +625,7 @@ public class LUICollectionViewPageFlowLayout: UICollectionViewLayout, UICollecti
         }
     }
     
-    private func _prepareCellLayouts(cellAttributeMap: [IndexPath : UICollectionViewLayoutAttributes], shouldCycleScroll shouldCycleScrollRef: inout Bool, isSizeFit: Bool) -> CGSize {
+    private func _prepareCellLayouts(cellAttributeMap: [IndexPath : UICollectionViewLayoutAttributes]?, shouldCycleScroll shouldCycleScrollRef: inout Bool?, isSizeFit: Bool) -> CGSize {
         guard let collectionView = self.collectionView else { return .zero }
         var cellAttributes: [UICollectionViewLayoutAttributes] = []
         var sectionModels: [_LUICollectionViewPageFlowSectionModel] = []
@@ -675,7 +675,7 @@ public class LUICollectionViewPageFlowLayout: UICollectionViewLayout, UICollecti
             sectionModels.append(sm)
         }
         for cellAttribute in cellAttributes {
-            cellAttributeMap[cellAttribute.indexPath] = cellAttribute
+            cellAttributeMap?[cellAttribute.indexPath] = cellAttribute
         }
         var size: CGSize = .zero
         size.LUICGSizeSetLength(bounds.LUICGRectGetLength(Y), axis: Y)
@@ -708,6 +708,9 @@ public class LUICollectionViewPageFlowLayout: UICollectionViewLayout, UICollecti
                 shouldCycleScroll = false
             }
         }
+        
+        shouldCycleScrollRef? = shouldCycleScroll
+        
         //调整collectionView的contentInset，使得paging时，contentOffset能够超出原始的范围
         if !isSizeFit {
             collectionView.contentInset = self.__calContentInsetsWithCellAttributes(cellAttributes: cellAttributes, contentSize: size)
@@ -816,20 +819,35 @@ public extension LUICollectionViewPageFlowLayout {
     /// @param size 外层最大尺寸
     func l_sizeThatFits(size: CGSize) -> CGSize {
         guard let collectionView = self.collectionView else { return .zero }
-        let sizeFit: CGSize = .zero
+        var sizeFits: CGSize = .zero
         let originBounds = collectionView.bounds
         var bounds = collectionView.bounds
         let X = self.scrollAxis
         let Y = LUICGAxis.LUICGAxisReverse(X)
         _isSizeFitting = true
-        if !CGSizeEqualToSize(originBounds.size, size) {
+        let sizeChange = !CGSizeEqualToSize(originBounds.size, size)
+        if sizeChange {
             bounds.size = size
             collectionView.bounds = bounds
         }
-        var cellAttributes: [UICollectionViewLayoutAttributes] = []
-        var cycleCellAttributes: [UICollectionViewLayoutAttributes] = []
-        var sectionModels: [_LUICollectionViewPageFlowSectionModel] = []
-        let contentSize = self._prepareCellLayouts(cellAttributeMap: nil, shouldCycleScroll: <#T##Bool#>, isSizeFit: true)
-        return .zero
+        var shouldCycleScroll: Bool? = nil
+        var contentSize = self._prepareCellLayouts(cellAttributeMap: nil, shouldCycleScroll: &shouldCycleScroll, isSizeFit: true)
+        var maxHeight: CGFloat = 0
+        for cellAttribute in self.cellAttributes {
+            let frame = cellAttribute.l_frameSafety
+            if self.isCellAttributesVisible(cellAttr: cellAttribute), let sectionInsets = sectionModels[cellAttribute.indexPath.section].sectionInsets {
+                let height = frame.LUICGRectGetLength(Y) + sectionInsets.LUIEdgeInsetsGetEdgeSum(axis: Y)
+                maxHeight = max(maxHeight, height)
+            }
+        }
+        contentSize.LUICGSizeSetLength(maxHeight, axis: Y)
+        if sizeChange {
+            collectionView.bounds = originBounds
+        }
+        sizeFits = contentSize
+        sizeFits.width = ceil(sizeFits.width)
+        sizeFits.height = ceil(sizeFits.height)
+        _isSizeFitting = false
+        return sizeFits
     }
 }

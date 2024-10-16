@@ -169,11 +169,11 @@ extension UIScrollView {
         
         switch position {
         case .head:
-            offset.LUICGPointSetValue(cellFrame.LUICGRectGetMin(axis) - LUIEdgeInsetsEdge.LUIEdgeInsetsGetEdge(contentInset, axis: axis, edge: .min), axis: axis)
+            offset.LUICGPointSetValue(cellFrame.LUICGRectGetMin(axis) - contentInset.LUIEdgeInsetsGetEdge(axis: axis, edge: .min), axis: axis)
         case .middle:
-            offset.LUICGPointSetValue(cellFrame.LUICGRectGetMid(axis) - LUIEdgeInsetsEdge.LUIEdgeInsetsGetEdge(contentInset, axis: axis, edge: .min) - visibleBounds.LUICGRectGetLength(axis) * 0.5, axis: axis)
+            offset.LUICGPointSetValue(cellFrame.LUICGRectGetMid(axis) - contentInset.LUIEdgeInsetsGetEdge(axis: axis, edge: .min) - visibleBounds.LUICGRectGetLength(axis) * 0.5, axis: axis)
         case .foot:
-            offset.LUICGPointSetValue(cellFrame.LUICGRectGetMax(axis) - bounds.LUICGRectGetLength(axis) + LUIEdgeInsetsEdge.LUIEdgeInsetsGetEdge(contentInset, axis: axis, edge: .max), axis: axis)
+            offset.LUICGPointSetValue(cellFrame.LUICGRectGetMax(axis) - bounds.LUICGRectGetLength(axis) + contentInset.LUIEdgeInsetsGetEdge(axis: axis, edge: .max), axis: axis)
         }
         
         // Restrict offset range

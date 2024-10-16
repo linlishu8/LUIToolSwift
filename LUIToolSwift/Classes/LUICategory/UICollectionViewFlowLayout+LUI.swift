@@ -106,7 +106,7 @@ public extension UICollectionViewFlowLayout {
             //更新collectionView的尺寸
             var newBounds = originBounds
             newBounds.size = originBoundsSize
-            newBounds.LUICGRectSetLength(axis, value: allCellsSize.LUICGSizeGetLength(axis: axis) + LUIEdgeInsetsEdge.LUIEdgeInsetsGetEdge(insets, axis: axis, edge: .min) + LUIEdgeInsetsEdge.LUIEdgeInsetsGetEdge(insets, axis: axis, edge: .max))
+            newBounds.LUICGRectSetLength(axis, value: allCellsSize.LUICGSizeGetLength(axis: axis) + insets.LUIEdgeInsetsGetEdge(axis: axis, edge: .min) + insets.LUIEdgeInsetsGetEdge(axis: axis, edge: .max))
             collectionView.bounds = newBounds
             allCellsSize = self.l_allCellsSizeThatFitsCellBoundsSize(size: boundsSize)
         }
