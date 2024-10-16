@@ -10,12 +10,16 @@ import UIKit
 import LUIToolSwift
 
 class LUIChatHeaderCollectionView: LUIChatBaseView {
-    private lazy var collectionView: LUICollectionFlowLayoutView = {
-        let collectionView = LUICollectionFlowLayoutView.init(frame: .zero)
+    private lazy var collectionView: LUICollectionView = {
+        let layout = LUICollectionViewPageFlowLayout.init()
+        layout.pagingCellPosition = 0;
+        layout.pagingBoundsPosition = 0;
+        layout.interitemSpacing = 10;
+        layout.sectionInset = UIEdgeInsetsMake(0, 15, 0, 15);
+        
+        let collectionView = LUICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .clear
-        collectionView.collectionViewFlowLayout.minimumLineSpacing = 10
-        collectionView.collectionViewFlowLayout.minimumInteritemSpacing = 10
-        collectionView.collectionViewFlowLayout.scrollDirection = .horizontal
+        
         return collectionView
     }()
     

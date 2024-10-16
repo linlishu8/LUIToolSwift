@@ -22,7 +22,9 @@ public protocol LUICollectionViewDelegatePageFlowLayout: UICollectionViewDelegat
 }
 
 extension LUICollectionViewDelegatePageFlowLayout {
-    func collectionView(collectionView: UICollectionView, pageFlowLayout collectionViewLayout: LUICollectionViewPageFlowLayout, itemSizeForItemAtIndexPath indexPath: IndexPath) -> CGSize { return .zero }
+    func collectionView(collectionView: UICollectionView, pageFlowLayout collectionViewLayout: LUICollectionViewPageFlowLayout, itemSizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
+        return .zero
+    }
     func collectionView(_ collectionView: UICollectionView, pageFlowLayout layout: LUICollectionViewPageFlowLayout, insetForSectionAt section: Int) -> UIEdgeInsets { return .zero }
     func collectionView(collectionView: UICollectionView, pageFlowLayout collectionViewLayout: LUICollectionViewPageFlowLayout, interitemSpacingForSectionAtIndex section: Int) -> CGFloat { return 0 }
     func pagingBoundsPositionForCollectionView(collectionView: UICollectionView, pageFlowLayout collectionViewLayout: LUICollectionViewPageFlowLayout) -> CGFloat { return 0 }
@@ -687,7 +689,9 @@ public class LUICollectionViewPageFlowLayout: UICollectionViewLayout, UICollecti
         if self.enableCycleScroll {
             cycleCellAttributes.append(contentsOf: self.__genCycleCellAttributesWithCellAttributes(cellAttributes: cellAttributes, contentSize: size))
             var tryCells: [UICollectionViewLayoutAttributes] = []
-            let firstCell = self.firstVisibleCellAttributeIn(cellAttributes: cellAttributes)
+            if let firstCell = self.firstVisibleCellAttributeIn(cellAttributes: cellAttributes), !tryCells.contains(firstCell) {
+                tryCells.append(firstCell)
+            }
             if let lastCell = self.lastVisibleCellAttributeIn(cellAttributes: cellAttributes), !tryCells.contains(lastCell) {
                 tryCells.append(lastCell)
             }
