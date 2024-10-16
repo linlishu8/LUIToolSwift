@@ -262,6 +262,9 @@ public class LUICollectionViewPageFlowLayout: UICollectionViewLayout, UICollecti
         if let autoScrollingState = _autoScrollingState, autoScrollingState.isAutoScorlling && autoScrollingState.distance == distance && autoScrollingState.duration == duration { return }
         _autoScrollingState = AutoScrollingState(isAutoScorlling: true, distance: distance, duration: duration)
         self.autoScrollingTimer?.invalidate()
+        self.autoScrollingTimer = Timer.scheduledTimer(withTimeInterval: _autoScrollingState!.duration, repeats: true, block: { [weak self] timer in
+            self?._onAudoScrollingTimer(timer: timer)
+        })
     }
     
     public func stopAutoScrolling() {
@@ -342,6 +345,7 @@ public class LUICollectionViewPageFlowLayout: UICollectionViewLayout, UICollecti
         let position = self.positionOfPagingForRect(bounds: collectionView.bounds)
         let frame = cellAttr.l_frameSafety
         dis = (frame.LUICGRectGetMin(X) + frame.LUICGRectGetLength(X) * self.pagingCellPosition) - position
+        return dis
     }
     
     public func highlightPagingCellAttributes(cellAttr: UICollectionViewLayoutAttributes) {
@@ -567,7 +571,8 @@ public class LUICollectionViewPageFlowLayout: UICollectionViewLayout, UICollecti
         let contentSize = _contentSize
         let bounds = self.visibleRectForOriginBounds(bounds: collectionView.bounds)
         let X = self.scrollAxis
-        let cellIndexes: [NSNumber] = self._cellLayoutAttributesIndexForElements()
+        let cellIndexes: [NSNumber] = self._cellLayoutAttributesIndexForElements(cellAttributes: self.cellAttributes, inRect: bounds)
+        
     }
     
     private func _cellLayoutAttributesIndexForElements(cellAttributes: [UICollectionViewLayoutAttributes], inRect rect: CGRect) -> [NSNumber] {
@@ -587,6 +592,12 @@ public class LUICollectionViewPageFlowLayout: UICollectionViewLayout, UICollecti
             indexes.append(NSNumber(value: i + range.location))
         }
         return indexes
+    }
+    
+    private func _onAudoScrollingTimer(timer: Timer) {
+        if let distance = _autoScrollingState?.distance {
+            self.setIndexPathAtPagingCellWithDistance(distance: distance, animated: true)
+        }
     }
 }
 
