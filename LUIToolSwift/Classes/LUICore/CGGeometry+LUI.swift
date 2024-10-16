@@ -92,8 +92,8 @@ public extension LUICGAxis {
     }
 }
 
-extension CGPoint {
-    func LUICGPointGetValue(_ point: CGPoint, axis: LUICGAxis) -> CGFloat {
+public extension CGPoint {
+    func LUICGPointGetValue(axis: LUICGAxis) -> CGFloat {
         switch axis {
         case .x:
             return self.x
@@ -575,7 +575,7 @@ struct LUICGRange {
     }
     
     func LUICGRectCompareWithPoint(_ rect: CGRect, point: CGPoint, axis: LUICGAxis) -> ComparisonResult {
-        LUICGRangeCompareWithValue(LUICGRectGetRange(rect, axis: axis), value: point.LUICGPointGetValue(point, axis: axis))
+        LUICGRangeCompareWithValue(LUICGRectGetRange(rect, axis: axis), value: point.LUICGPointGetValue(axis: axis))
     }
     
     func LUICGRectCompareWithCGRect(r1: CGRect, r2: CGRect, axis: LUICGAxis) -> ComparisonResult {

@@ -54,8 +54,12 @@ public class LUICollectionViewPageFlowLayout: UICollectionViewLayout {
         
     }
     
-    public func funcindexPathForCellAtOffset(position: CGFloat) -> IndexPath {
-        return IndexPath()
+    public func indexPathForCellAtOffset(position: CGFloat) -> IndexPath? {
+        let index = self._cellIndexForCellAtOffset(position: position)
+        if index != NSNotFound {
+            return self.cellAttributes[index].indexPath
+        }
+        return nil
     }
     
     public func setIndexPathAtPagingCellWithDistance(distance: Int, animated: Bool) {
@@ -90,7 +94,59 @@ public class LUICollectionViewPageFlowLayout: UICollectionViewLayout {
     
     //查找指定offset位置，距离它最近的单元格范围
     public func pagableCellIndexRangeNearToOffset(position: CGFloat) -> NSRange {
-        return NSRange()
+        let X = self.scrollAxis
+        let range = self.cellAttributes.l_rangeOfSortedObjectsWithComparator { [weak self] (arrayObj, idx) -> ComparisonResult in
+            let frame = arrayObj.l_frameSafety
+            var r: ComparisonResult = .orderedSame
+            if frame.LUICGRectGetMin(X) <= position && position <= frame.LUICGRectGetMax(X) {
+                r = .orderedSame
+            } else if frame.LUICGRectGetMax(X) < position {//位于position左侧
+                if let cellAttributes = self?.cellAttributes {
+                    if  idx == cellAttributes.count - 1 {
+                        r = .orderedSame
+                    } else {
+                        r = .orderedAscending
+                        for i in idx + 1..<cellAttributes.count {
+                            let c = cellAttributes[i]
+                            if self?.isCellAttributesVisible(cellAttr: c) ?? false {
+                                let f1 = c.l_frameSafety
+                                if f1.LUICGRectGetMin(X) <= position && position <= f1.LUICGRectGetMax(X) {
+                                    r = .orderedSame
+                                } else if f1.LUICGRectGetMax(X) < position {
+                                    r = .orderedAscending
+                                } else {
+                                    r = .orderedSame
+                                }
+                                break
+                            }
+                        }
+                    }
+                }
+            } else {//位于position右侧
+                if idx == 0 {
+                    r = .orderedSame
+                } else {
+                    r = .orderedDescending
+                    for i in idx-1...0 {
+                        if let c = self?.cellAttributes[i] {
+                            if self?.isCellAttributesVisible(cellAttr: c) ?? false {
+                                let f1 = c.l_frameSafety
+                                if f1.LUICGRectGetMin(X) <= position && position <= f1.LUICGRectGetMax(X) {
+                                    r = .orderedSame
+                                } else if f1.LUICGRectGetMin(X) > position {
+                                    r = .orderedDescending
+                                } else {
+                                    r = .orderedSame
+                                }
+                                break
+                            }
+                        }
+                    }
+                }
+            }
+            return r
+        }
+        return range
     }
     
     public var highlightPagingCell: Bool = false//是否突出显示位于pagingBoundsPosition指定位置上的cell。默认为false
@@ -141,12 +197,117 @@ public class LUICollectionViewPageFlowLayout: UICollectionViewLayout {
         return offset
     }
     
+    private func offsetUnit() -> CGFloat {
+        return 1.0 / UIScreen.main.scale;
+    }
+    
+    private func isCellAttributesVisible(cellAttr: UICollectionViewLayoutAttributes) ->Bool {
+        let frame = cellAttr.l_frameSafety
+        return frame.size.width > 0 && frame.size.height > 0
+    }
+    
     private func _cellIndexForCellNearToOffset(position: CGFloat, scrollVelocity velocity: CGPoint) -> Int {
         let X = self.scrollAxis
         let offset = self.collectionView?.contentOffset ?? .zero
-        let result: Int = Int.max
+        var result: Int = Int.max
         
         let range = self.pagableCellIndexRangeNearToOffset(position: position)
+        let unit = self.offsetUnit()
+        if range.location != NSNotFound {
+            if velocity.LUICGPointGetValue(axis: X) > 0 {
+                for i in 0..<range.length {
+                    let index = i + range.location
+                    let c = self.cellAttributes[index]
+                    if self.isCellAttributesVisible(cellAttr: c) {
+                        let pagingOffset = self.pagingOffsetForCellIndexPath(indexPath: c.indexPath)
+                        if pagingOffset >= offset.LUICGPointGetValue(axis: X) - unit {
+                            result = index
+                            break
+                        }
+                    }
+                }
+            } else if velocity.LUICGPointGetValue(axis: X) < 0 {
+                for i in 0..<range.length {
+                    let index = range.location + range.length - 1 - i
+                    let c = self.cellAttributes[index]
+                    if self.isCellAttributesVisible(cellAttr: c) {
+                        let pagingOffset = self.pagingOffsetForCellIndexPath(indexPath: c.indexPath)
+                        if pagingOffset <= offset.LUICGPointGetValue(axis: X) + unit{
+                            result = index
+                            break
+                        }
+                    }
+                }
+            }
+        }
+        if result == NSNotFound {
+            var min = CGFloat.greatestFiniteMagnitude
+            for i in 0..<range.length {
+                let index = i + range.location
+                let c = self.cellAttributes[index]
+                if self.isCellAttributesVisible(cellAttr: c) {
+                    let pagingOffset = self.pagingOffsetForCellIndexPath(indexPath: c.indexPath)
+                    let dis = abs(pagingOffset - offset.LUICGPointGetValue(axis: X))
+                    if dis < min {
+                        result = index
+                        min = dis
+                    }
+                }
+            }
+        }
+        return result
+    }
+    
+    private func _cellIndexForCellAtOffset(position: CGFloat) -> Int {
+        var p = NSNotFound
+        let X = self.scrollAxis
+        let unit = self.offsetUnit()
+        let range = self.cellAttributes.l_rangeOfSortedObjectsWithComparator { (arrayObj, idx) -> ComparisonResult in
+            var r:ComparisonResult = .orderedSame
+            let frame = arrayObj.l_frameSafety
+            if frame.LUICGRectGetMin(X) - unit <= position && position <= frame.LUICGRectGetMax(X) + unit {
+                r = .orderedSame
+            } else if frame.LUICGRectGetMax(X) - unit < position {
+                r = .orderedAscending
+            } else {
+                r = .orderedDescending
+            }
+            return r
+        }
+        if range.location != NSNotFound {
+            for i in 0..<range.length {
+                let index = i + range.location
+                let c = self.cellAttributes[index]
+                if self.isCellAttributesVisible(cellAttr: c) {
+                    p = index
+                    break
+                }
+            }
+        }
+        return p
+    }
+    
+    private func firstVisibleCellAttributeIn(cellAttributes: [UICollectionViewLayoutAttributes]) -> UICollectionViewLayoutAttributes? {
+        for cellAttribute in cellAttributes {
+            if self.isCellAttributesVisible(cellAttr: cellAttribute) {
+                return cellAttribute
+            }
+        }
+        return nil
+    }
+    
+    private func lastVisibleCellAttributeIn(cellAttributes: [UICollectionViewLayoutAttributes]) -> UICollectionViewLayoutAttributes? {
+        for cellAttribute in cellAttributes.reversed() {
+            if self.isCellAttributesVisible(cellAttr: cellAttribute) {
+                return cellAttribute
+            }
+        }
+        return nil
+    }
+    
+    private func positionOfPagingForRect(bounds: CGRect) -> CGFloat {
+        let X = self.scrollAxis
+        return bounds.LUICGRectGetMin(X) + bounds.LUICGRectGetLength(X) * self.pagingBoundsPositionForCollectionView()
     }
 }
 
