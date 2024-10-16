@@ -93,25 +93,24 @@ public class LUICollectionViewModel: LUICollectionModel, UICollectionViewDataSou
     }
     
     public func reloadCollectionViewData() {
-        if let collectionView = self.collectionView {
-            collectionView.reloadData()
-            for sectionModel in self.sectionModels {
-                for cellModel in sectionModel.cellModels {
-                    if let model = cellModel as? LUICollectionViewCellModel {
-                        model.needReloadCell = true
-                    }
+        guard let collectionView = self.collectionView else { return }
+        collectionView.reloadData()
+        for sectionModel in self.sectionModels {
+            for cellModel in sectionModel.cellModels {
+                if let model = cellModel as? LUICollectionViewCellModel {
+                    model.needReloadCell = true
                 }
             }
-            if self.allowsSelection {
-                if self.allowsMultipleSelection {
-                    let indexPaths = self.indexPathsForSelectedCellModels()
-                    for indexPath in indexPaths {
-                        self.collectionView?.selectItem(at: indexPath, animated: false, scrollPosition: [])
-                    }
-                } else {
-                    let indexPath = self.indexPathForSelectedCellModel()
+        }
+        if self.allowsSelection {
+            if self.allowsMultipleSelection {
+                let indexPaths = self.indexPathsForSelectedCellModels()
+                for indexPath in indexPaths {
                     self.collectionView?.selectItem(at: indexPath, animated: false, scrollPosition: [])
                 }
+            } else {
+                let indexPath = self.indexPathForSelectedCellModel()
+                self.collectionView?.selectItem(at: indexPath, animated: false, scrollPosition: [])
             }
         }
         self.reloadCollectionViewBackgroundView()
