@@ -63,6 +63,7 @@ public class LUICollectionViewPageFlowLayout: UICollectionViewLayout, UICollecti
     private var offsetChanging: Bool?
     private var _preContentOffset: CGPoint?
     private var _shouldCycleScroll: Bool = false
+    private var _isSizeFitting: Bool = false
     
     struct AutoScrollingState {
         var isAutoScorlling: Bool
@@ -599,6 +600,10 @@ public class LUICollectionViewPageFlowLayout: UICollectionViewLayout, UICollecti
             self.setIndexPathAtPagingCellWithDistance(distance: distance, animated: true)
         }
     }
+    
+    private func _prepareCellLayouts(cellAttributes: [UICollectionViewLayoutAttributes], cellAttributeMap: [IndexPath : UICollectionViewLayoutAttributes], cycleCellAttributes: [UICollectionViewLayoutAttributes], sectionModels: [_LUICollectionViewPageFlowSectionModel], shouldCycleScroll shouldCycleScrollRef: Bool, isSizeFit: Bool) -> CGSize {
+        return .zero
+    }
 }
 
 public extension LUICollectionViewPageFlowLayout {
@@ -636,5 +641,25 @@ public extension LUICollectionViewPageFlowLayout {
             value = delegate.pagingBoundsPositionForCollectionView(collectionView: collectionView, pageFlowLayout: self)
         }
         return value
+    }
+    
+    /// 指定collectionview的最大尺寸，返回collectionview最合适的尺寸值
+    /// @param size 外层最大尺寸
+    func l_sizeThatFits(size: CGSize) -> CGSize {
+        guard let collectionView = self.collectionView else { return .zero }
+        let sizeFit: CGSize = .zero
+        let originBounds = collectionView.bounds
+        var bounds = collectionView.bounds
+        let X = self.scrollAxis
+        let Y = LUICGAxis.LUICGAxisReverse(X)
+        _isSizeFitting = true
+        if !CGSizeEqualToSize(originBounds.size, size) {
+            bounds.size = size
+            collectionView.bounds = bounds
+        }
+//        var cellAttributes: [UICollectionViewLayoutAttributes] = []
+//        var cycleCellAttributes: [UICollectionViewLayoutAttributes] = []
+//        var sectionModels: [_LUICollectionViewPageFlowSectionModel] = []
+        return .zero
     }
 }
