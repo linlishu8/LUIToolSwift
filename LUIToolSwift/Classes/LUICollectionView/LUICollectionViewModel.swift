@@ -484,7 +484,25 @@ extension LUICollectionViewModel: UICollectionViewDelegateFlowLayout {
 
 extension LUICollectionViewModel: LUICollectionViewDelegatePageFlowLayout {
     public func collectionView(collectionView: UICollectionView, pageFlowLayout collectionViewLayout: LUICollectionViewPageFlowLayout, itemSizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
-        return .zero
+        
+        let bounds = collectionView.bounds
+        var size: CGSize = .zero
+        if CGSizeEqualToSize(bounds.size, .zero) {
+            size = .zero
+        } else {
+            size = collectionViewLayout.itemSize
+        }
+        
+        if let delegate = self.forwardDelegate as? LUICollectionViewDelegatePageFlowLayout {
+            size = delegate.collectionView(collectionView: collectionView, pageFlowLayout: collectionViewLayout, itemSizeForItemAtIndexPath: indexPath)
+        } else {
+            let cm = self.cellModelAtIndexPath(indexpath: indexPath)
+            if let cellClass = cm.cellClass as? LUICollectionViewCellBase.Type {
+                size = cellClass.sizeWithCollectionView(collectionView: collectionView, collectionCellModel: cm)
+            }
+        }
+        
+        return size
     }
     public func collectionView(collectionView: UICollectionView, pageFlowLayout collectionViewLayout: LUICollectionViewPageFlowLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
         return .zero
