@@ -227,7 +227,7 @@ public class LUICollectionViewPageFlowLayout: UICollectionViewLayout, UICollecti
             fromPadingCellIndexPathPoint = p1
             toPadingCellIndexPathPoint = p2
             
-            if let p1 = p1, let p2 = p2, x1 != x2 {
+            if x1 != x2 {
                 progress = (position - x1) / (x2 - x1)
             }
         }
@@ -566,14 +566,14 @@ public class LUICollectionViewPageFlowLayout: UICollectionViewLayout, UICollecti
         if self.pagingEnabled {
             if let firstCell = self.firstVisibleCellAttributeIn(cellAttributes: cellAttributes) {
                 let firstPagingOffset = self.pagingOffsetForCellFrame(frame: firstCell.l_frameSafety)
-                var minOffset: CGFloat = 0
+                let minOffset: CGFloat = 0
                 if firstPagingOffset < minOffset {
                     contentInsets.LUIEdgeInsetsSetEdge(axis: X, edg: .min, value: minOffset - firstPagingOffset)
                 }
             }
             if let lastCell = self.lastVisibleCellAttributeIn(cellAttributes: cellAttributes) {
                 let lastPagingOffset = self.pagingOffsetForCellFrame(frame: lastCell.l_frameSafety)
-                var maxOffset = contentSize.LUICGSizeGetLength(axis: X) - bounds.LUICGRectGetLength(X)
+                let maxOffset = contentSize.LUICGSizeGetLength(axis: X) - bounds.LUICGRectGetLength(X)
                 if lastPagingOffset > maxOffset {
                     contentInsets.LUIEdgeInsetsSetEdge(axis: X, edg: .max, value: lastPagingOffset - maxOffset)
                 }
@@ -644,7 +644,7 @@ public class LUICollectionViewPageFlowLayout: UICollectionViewLayout, UICollecti
             let interitemSpacing = self.interitemSpacingForSectionAtIndex(section: i)
             let sectionBounds = UIEdgeInsetsInsetRect(bounds, sectionInsets)
             var hadFirstVisibleCell = false
-            var tmp = f.LUICGRectGetMin(X)
+            let tmp = f.LUICGRectGetMin(X)
             f.LUICGRectSetMin(X, value: f.LUICGRectGetMin(X) + sectionInsets.LUIEdgeInsetsGetEdge(axis: X, edge: .min))
             for j in 0..<cellCount {
                 let p = IndexPath(item: j, section: i)
@@ -679,10 +679,9 @@ public class LUICollectionViewPageFlowLayout: UICollectionViewLayout, UICollecti
         }
         var size: CGSize = .zero
         size.LUICGSizeSetLength(bounds.LUICGRectGetLength(Y), axis: Y)
-        if let lastCell = self.lastVisibleCellAttributeIn(cellAttributes: cellAttributes) {
+        if let lastCell = self.lastVisibleCellAttributeIn(cellAttributes: cellAttributes), let sectionInsets = sectionModels[lastCell.indexPath.section].sectionInsets {
             let frame = lastCell.l_frameSafety
-            let sectionInsets = sectionModels[lastCell.indexPath.section].sectionInsets
-            size.LUICGSizeSetLength(frame.LUICGRectGetMax(X) + sectionInset.LUIEdgeInsetsGetEdge(axis: X, edge: .max), axis: X)
+            size.LUICGSizeSetLength(frame.LUICGRectGetMax(X) + sectionInsets.LUIEdgeInsetsGetEdge(axis: X, edge: .max), axis: X)
         }
         var shouldCycleScroll = self.enableCycleScroll
         if self.enableCycleScroll {
