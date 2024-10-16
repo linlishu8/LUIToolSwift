@@ -57,6 +57,12 @@ public class LUICollectionViewPageFlowLayout: UICollectionViewLayout, UICollecti
     private var autoScrollingTimer: Timer?
     private var _needReload: Bool = false
     private var sectionModels: [_LUICollectionViewPageFlowSectionModel] = []
+    private var _l_indexPathAtPagingCellBeforeBoundsChange: IndexPath?
+    private var _l_preffedCellIndexpathAtPaging: IndexPath?
+    private var __cachedPrePagingIndexPath: IndexPath?
+    private var offsetChanging: Bool?
+    private var _preContentOffset: CGPoint?
+    private var _shouldCycleScroll: Bool = false
     
     struct AutoScrollingState {
         var isAutoScorlling: Bool
@@ -124,6 +130,36 @@ public class LUICollectionViewPageFlowLayout: UICollectionViewLayout, UICollecti
         if p.section < 0 || p.section >= collectionView.numberOfSections {
             return
         }
+        let numberOfItems = collectionView.numberOfItems(inSection: p.section)
+        if p.section >= 0 && p.section < collectionView.numberOfSections && p.item >= 0 && p.item < numberOfItems {
+            let numberOfItemsInSetionModel = self.__numberOfItemsInSetionModelWithIndex(index: p.section)
+            //判断self.sectionModels中的数据，是否与collectionView.dataSource中数量上一致.数量不一致，代表dataSource变化了，但prepare方法还未被执行
+            // ||
+            //bounds.size为0时，需要保存期望滚动到中线的值，等待size被重新赋值时，再滚动到该位置
+            if numberOfItemsInSetionModel != numberOfItems || CGSizeEqualToSize(collectionView.bounds.size, .zero) {
+                _l_preffedCellIndexpathAtPaging = p
+                _l_indexPathAtPagingCellBeforeBoundsChange = nil
+            } else {
+                _l_preffedCellIndexpathAtPaging = nil;
+                _l_indexPathAtPagingCellBeforeBoundsChange = nil;
+                let X = self.scrollAxis
+                var pagingOffset = self.pagingOffsetForCellIndexPath(indexPath: p)
+                var offset = collectionView.contentOffset
+                offset.LUICGPointSetValue(pagingOffset, axis: X)
+                
+                let minOffset = self.minContentoffset()
+                let maxOffset = self.maxContentoffset()
+                
+                let outOfScollRange = pagingOffset < minOffset || pagingOffset > maxOffset
+                if self.enableCycleScroll && outOfScollRange && !animated {
+                    self.__setContentViewContentOffset(contentOffset: offset, animated: false)
+                    collectionView.layoutIfNeeded()
+                    pagingOffset = self.pagingOffsetForCellIndexPath(indexPath: p)
+                    offset.LUICGPointSetValue(pagingOffset, axis: X)
+                }
+                self.__setContentViewContentOffset(contentOffset: offset, animated: animated)
+            }
+        }
     }
     
     public func indexPathForCellAtOffset(position: CGFloat) -> IndexPath? {
@@ -135,7 +171,28 @@ public class LUICollectionViewPageFlowLayout: UICollectionViewLayout, UICollecti
     }
     
     public func setIndexPathAtPagingCellWithDistance(distance: Int, animated: Bool) {
-        
+        guard let collectionView = self.collectionView else { return }
+        let position = self.positionOfPagingForRect(bounds: collectionView.bounds)
+        let X = self.scrollAxis
+        var velocity: CGPoint = .zero
+        velocity.LUICGPointSetValue(CGFloat(distance), axis: X)
+        let index = self._cellIndexForCellNearToOffset(position: position, scrollVelocity: velocity)
+        if index != NSNotFound {
+            var dis = distance
+            if dis < 0 {
+                dis = -((-distance) % self.cellAttributes.count)
+            }
+            let newIndex = (index + dis + self.cellAttributes.count) % self.cellAttributes.count
+            let newIndexPath = self.cellAttributes[newIndex].indexPath
+            if index != newIndex {
+                if (self.enableCycleScroll && _shouldCycleScroll) && distance * (newIndex - index) < 0 {
+                    //方向反了。需要进行一次重排
+                    let nextBeginIndex = distance > 0 ? index : newIndex
+                    self.__resortCellAttributeWithBeginIndex(beginIndex: nextBeginIndex)
+                }
+                self.setIndexPathAtPagingCell(indexPathAtPagingCell: newIndexPath, animated: animated)
+            }
+        }
     }
     
     private func scrollProgressWithContentOffset(offset: CGPoint, fromPagingCell fromPadingCellIndexPathPoint: inout IndexPath?, toPagingCell toPadingCellIndexPathPoint: inout IndexPath?) -> CGFloat {
@@ -485,6 +542,42 @@ public class LUICollectionViewPageFlowLayout: UICollectionViewLayout, UICollecti
     deinit {
             collectionView?.delegate = self.originDelegate
             autoScrollingTimer?.invalidate()
+    }
+    
+    private func __setContentViewContentOffset(contentOffset: CGPoint, animated: Bool) {
+        guard let collectionView = self.collectionView else { return }
+        guard CGPointEqualToPoint(contentOffset, collectionView.contentOffset) else { return }
+        self.offsetChanging = true
+        collectionView.setContentOffset(contentOffset, animated: animated)
+        self._preContentOffset = collectionView.contentOffset
+    }
+    
+    private func __resortCellAttributeWithBeginIndex(beginIndex: Int) {
+        guard let collectionView = self.collectionView else { return }
+        let offset = collectionView.contentOffset
+        let contentSize = _contentSize
+        let bounds = self.visibleRectForOriginBounds(bounds: collectionView.bounds)
+        let X = self.scrollAxis
+        let cellIndexes: [NSNumber] = self._cellLayoutAttributesIndexForElements()
+    }
+    
+    private func _cellLayoutAttributesIndexForElements(cellAttributes: [UICollectionViewLayoutAttributes], inRect rect: CGRect) -> [NSNumber] {
+        var indexes: [NSNumber] = []
+        let X = self.scrollAxis
+        let range = cellAttributes.l_rangeOfSortedObjectsWithComparator { (arrayObj, idx) -> ComparisonResult in
+            let frame = arrayObj.l_frameSafety
+            if CGRectIntersectsRect(rect, frame) {
+                return .orderedSame
+            } else if frame.LUICGRectGetMin(X) < rect.LUICGRectGetMin(X) {
+                return .orderedAscending
+            } else {
+                return.orderedDescending
+            }
+        }
+        for i in 0..<range.length {
+            indexes.append(NSNumber(value: i + range.location))
+        }
+        return indexes
     }
 }
 
