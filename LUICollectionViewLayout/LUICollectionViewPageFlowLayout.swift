@@ -558,6 +558,23 @@ public class LUICollectionViewPageFlowLayout: UICollectionViewLayout, UICollecti
             autoScrollingTimer?.invalidate()
     }
     
+    private func __calContentInsetsWithCellAttributes(cellAttributes: [UICollectionViewLayoutAttributes], contentSize: CGSize) -> UIEdgeInsets {
+        guard let collectionView = self.collectionView else { return .zero }
+        let X = self.scrollAxis
+        let bounds = self.visibleRectForOriginBounds(bounds: collectionView.bounds)
+        let contentInsets: UIEdgeInsets = .zero
+        if self.pagingEnabled {
+            if let firstCell = self.firstVisibleCellAttributeIn(cellAttributes: cellAttributes) {
+                let firstPagingOffset = self.pagingOffsetForCellFrame(frame: firstCell.l_frameSafety)
+                var minOffset: CGFloat = 0
+                if firstPagingOffset < minOffset {
+                    let 
+                }
+            }
+        }
+        
+    }
+    
     private func __setContentViewContentOffset(contentOffset: CGPoint, animated: Bool) {
         guard let collectionView = self.collectionView else { return }
         guard CGPointEqualToPoint(contentOffset, collectionView.contentOffset) else { return }
@@ -601,7 +618,7 @@ public class LUICollectionViewPageFlowLayout: UICollectionViewLayout, UICollecti
         }
     }
     
-    private func _prepareCellLayouts(cellAttributeMap: [IndexPath : UICollectionViewLayoutAttributes], shouldCycleScroll shouldCycleScrollRef: Bool, isSizeFit: Bool) -> CGSize {
+    private func _prepareCellLayouts(cellAttributeMap: [IndexPath : UICollectionViewLayoutAttributes], shouldCycleScroll shouldCycleScrollRef: inout Bool, isSizeFit: Bool) -> CGSize {
         guard let collectionView = self.collectionView else { return .zero }
         var cellAttributes: [UICollectionViewLayoutAttributes] = []
         var sectionModels: [_LUICollectionViewPageFlowSectionModel] = []
@@ -660,17 +677,69 @@ public class LUICollectionViewPageFlowLayout: UICollectionViewLayout, UICollecti
             let sectionInsets = sectionModels[lastCell.indexPath.section].sectionInsets
             size.LUICGSizeSetLength(frame.LUICGRectGetMax(X) + LUIEdgeInsetsEdge.LUIEdgeInsetsGetEdge(sectionInset, axis: X, edge: .max), axis: X)
         }
+        var shouldCycleScroll = self.enableCycleScroll
         if self.enableCycleScroll {
             cycleCellAttributes.append(contentsOf: self.__genCycleCellAttributesWithCellAttributes(cellAttributes: cellAttributes, contentSize: size))
             var tryCells: [UICollectionViewLayoutAttributes] = []
             let firstCell = self.firstVisibleCellAttributeIn(cellAttributes: cellAttributes)
-            if let lastCell = self.lastVisibleCellAttributeIn(cellAttributes: cellAttributes), tryCells.contains(where: lastCell) {
-                
+            if let lastCell = self.lastVisibleCellAttributeIn(cellAttributes: cellAttributes), !tryCells.contains(lastCell) {
+                tryCells.append(lastCell)
             }
-            
+            if tryCells.count > 0 {
+                for cell in tryCells {
+                    let cellFrame = cell.l_frameSafety
+                    let offset = self.pagingOffsetForCellFrame(frame: cellFrame)
+                    var tryBounds = bounds
+                    tryBounds.LUICGRectSetMin(X, value: offset)
+                    let cellRange = self.__rangeForCycleScrollWithBounds(contentBounds: tryBounds, cellCount: cellAttributes.count, cycleCellAttributes: cycleCellAttributes, contentSize: size, scrollVector: CGVector(dx: 0, dy: 0))
+                    if cellRange.location == NSNotFound || cellRange.length > cellAttributes.count {
+                        shouldCycleScroll = false
+                        break
+                    }
+                }
+            } else {
+                shouldCycleScroll = false
+            }
+        }
+        //调整collectionView的contentInset，使得paging时，contentOffset能够超出原始的范围
+        if !isSizeFit {
+            collectionView.contentInset = self.__cal
         }
         
         return .zero
+    }
+    
+    private func __rangeForCycleScrollWithBounds(contentBounds: CGRect, cellCount: Int, cycleCellAttributes: [UICollectionViewLayoutAttributes], contentSize: CGSize, scrollVector vector: CGVector) -> NSRange {
+        //具体算法为：将cells扩展为三份（左中右），然后计算bounds覆盖的cell范围。得到范围，如果范围超过总元素数，代表元素数量不足以支持循环滚动。
+        let X = self.scrollAxis
+        let bounds = self.visibleRectForOriginBounds(bounds: contentBounds)
+        let boundsRange = LUICGRange.LUICGRectGetRange(bounds, axis: X)
+        //使用二分法，查找bounds中的cell
+        var resultRange = cycleCellAttributes.l_rangeOfSortedObjectsWithComparator { (arrayObj, idx) -> ComparisonResult in
+            let r = LUICGRange.LUICGRectGetRange(arrayObj.l_frameSafety, axis: X)
+            var result: ComparisonResult = .orderedSame
+            if LUICGRange.LUICGRangeIntersectsRange(r1: boundsRange, r2: r) {
+                let t = LUICGRange.LUICGRangeIntersection(r1: boundsRange, r2: r)
+                if t.end == t.begin {//相切时，不认为在显示范围中
+                    if r.begin < boundsRange.begin {
+                        result = .orderedAscending
+                    } else {
+                        result = .orderedDescending
+                    }
+                } else {
+                    result = .orderedSame
+                }
+            } else if LUICGRange.LUICGRangeGetMax(r) < LUICGRange.LUICGRangeGetMin(boundsRange) {
+                result = .orderedAscending
+            } else {
+                result = .orderedDescending
+            }
+            return result
+        }
+        if resultRange.location != NSNotFound {
+            resultRange.location %= cellCount
+        }
+        return resultRange
     }
     
     private func __genCycleCellAttributesWithCellAttributes(cellAttributes: [UICollectionViewLayoutAttributes], contentSize: CGSize) -> [UICollectionViewLayoutAttributes] {
@@ -750,9 +819,10 @@ public extension LUICollectionViewPageFlowLayout {
             bounds.size = size
             collectionView.bounds = bounds
         }
-//        var cellAttributes: [UICollectionViewLayoutAttributes] = []
-//        var cycleCellAttributes: [UICollectionViewLayoutAttributes] = []
-//        var sectionModels: [_LUICollectionViewPageFlowSectionModel] = []
+        var cellAttributes: [UICollectionViewLayoutAttributes] = []
+        var cycleCellAttributes: [UICollectionViewLayoutAttributes] = []
+        var sectionModels: [_LUICollectionViewPageFlowSectionModel] = []
+        let contentSize = self._prepareCellLayouts(cellAttributeMap: nil, shouldCycleScroll: <#T##Bool#>, isSizeFit: true)
         return .zero
     }
 }

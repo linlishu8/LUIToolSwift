@@ -448,44 +448,49 @@ public enum LUIEdgeInsetsEdge {
     case max  // 对应于bottom, right
 }
 
-public extension LUIEdgeInsetsEdge {
-    static func LUIEdgeInsetsGetEdge(_ insets: UIEdgeInsets, axis: LUICGAxis, edge: LUIEdgeInsetsEdge) -> CGFloat {
+public extension UIEdgeInsets {
+    
+    static func LUIEdgeInsetsMakeSameEdge(_ edge: CGFloat) -> UIEdgeInsets {
+        UIEdgeInsets(top: edge, left: edge, bottom: edge, right: edge)
+    }
+    
+    
+    func LUIEdgeInsetsGetEdge(axis: LUICGAxis, edge: LUIEdgeInsetsEdge) -> CGFloat {
         switch axis {
         case .x:
-            return edge == .min ? insets.left : insets.right
+            return edge == .min ? self.left : self.right
         case .y:
-            return edge == .min ? insets.top : insets.bottom
+            return edge == .min ? self.top : self.bottom
         }
     }
     
-    static func LUIEdgeInsetsGetEdgeSum(_ insets: UIEdgeInsets, axis: LUICGAxis) -> CGFloat {
+    func LUIEdgeInsetsGetEdgeSum(axis: LUICGAxis) -> CGFloat {
         switch axis {
         case .x:
-            return insets.left + insets.right
+            return self.left + self.right
         case .y:
-            return insets.top + insets.bottom
+            return self.top + self.bottom
         }
     }
     
-    func LUIEdgeInsetsSetEdge(_ insets: inout UIEdgeInsets, axis: LUICGAxis, value: CGFloat) {
-        switch (axis, self) {
+    mutating func LUIEdgeInsetsSetEdge(axis: LUICGAxis, edg: LUIEdgeInsetsEdge, value: CGFloat) {
+        switch (axis, edg) {
         case (.x, .min):
-            insets.left = value
+            self.left = value
         case (.x, .max):
-            insets.right = value
+            self.right = value
         case (.y, .min):
-            insets.top = value
+            self.top = value
         case (.y, .max):
-            insets.bottom = value
+            self.bottom = value
         }
     }
     
-    func LUIEdgeInsetsAddEdge(_ insets: inout UIEdgeInsets, axis: LUICGAxis, edge: LUIEdgeInsetsEdge, value: CGFloat) {
-        let currentEdgeValue = LUIEdgeInsetsEdge.LUIEdgeInsetsGetEdge(insets, axis: axis, edge: edge)
-        LUIEdgeInsetsSetEdge(&insets, axis: axis, value: currentEdgeValue + value)
+    mutating func LUIEdgeInsetsAddEdge(axis: LUICGAxis, edge: LUIEdgeInsetsEdge, value: CGFloat) {
+        let currentEdgeValue = self.LUIEdgeInsetsGetEdge(axis: axis, edge: edge)
+        self.LUIEdgeInsetsSetEdge(axis: axis, edg: edge, value: currentEdgeValue + value)
     }
     
-    //CGAffineTransform
     func LUICGAffineTransformMakeTranslation(_ axis: LUICGAxis, _ tx: CGFloat) -> CGAffineTransform {
         axis == .x ? CGAffineTransform(translationX: tx, y: 0) : CGAffineTransform(translationX: 0, y: tx)
     }
@@ -503,7 +508,7 @@ public extension LUIEdgeInsetsEdge {
     }
 }
 
-struct LUICGRange {
+public struct LUICGRange {
     var begin: CGFloat
     var end: CGFloat
     
@@ -513,79 +518,73 @@ struct LUICGRange {
     
     //插值
     func LUICGRangeInterpolate(_ progress: CGFloat) -> CGFloat {
-        begin * (1.0 - progress) + end * progress
+        return begin * (1.0 - progress) + end * progress
     }
     
     //是否包含指定值
     func LUICGRangeContainsValue(v: CGFloat) -> Bool {
-        v >= begin && v <= end
+        return v >= begin && v <= end
     }
     
     //是否是无效的区域
     func LUICGRangeIsNull() -> Bool {
-        end < begin
+        return end < begin
     }
     
     //是否是空区间
     func LUICGRangeIsEmpty() -> Bool {
-        end == begin
+        return end == begin
     }
     
     //两个区间是否相交
-    func LUICGRangeIntersectsRange(r1: LUICGRange, r2: LUICGRange) -> Bool {
-        LUICGRangeContainsValue(v: r2.end) || LUICGRangeContainsValue(v: r2.begin) || LUICGRangeContainsValue(v: r1.end) || LUICGRangeContainsValue(v: r1.begin)
+    static func LUICGRangeIntersectsRange(r1: LUICGRange, r2: LUICGRange) -> Bool {
+        return r1.LUICGRangeContainsValue(v: r2.end) || r1.LUICGRangeContainsValue(v: r2.begin) || r2.LUICGRangeContainsValue(v: r1.end) || r2.LUICGRangeContainsValue(v: r1.begin)
     }
     
     //返回两个区间的并
-    func LUICGRangeUnion(r1: LUICGRange, r2: LUICGRange) -> LUICGRange {
+    static func LUICGRangeUnion(r1: LUICGRange, r2: LUICGRange) -> LUICGRange {
         .LUICGRangeMake(min(r1.begin, r2.begin), end: max(r1.end, r2.end))
     }
     
     //返回两个区间的交，没有交集时，返回无效区间
-    func LUICGRangeIntersection(r1: LUICGRange, r2: LUICGRange) -> LUICGRange {
+    static func LUICGRangeIntersection(r1: LUICGRange, r2: LUICGRange) -> LUICGRange {
         .LUICGRangeMake(max(r1.begin, r2.begin), end: min(r1.end, r2.end))
     }
     
-    func LUICGRectGetRange(_ rect: CGRect, axis: LUICGAxis) -> LUICGRange {
+    static func LUICGRectGetRange(_ rect: CGRect, axis: LUICGAxis) -> LUICGRange {
         .LUICGRangeMake(rect.LUICGRectGetMin(axis), end: rect.LUICGRectGetMax(axis))
     }
     
-    func LUICGRangeGetMin(_ r: LUICGRange) -> CGFloat {
+    static func LUICGRangeGetMin(_ r: LUICGRange) -> CGFloat {
         r.begin
     }
     
-    func LUICGRangeGetMax(_ r: LUICGRange) -> CGFloat {
+    static func LUICGRangeGetMax(_ r: LUICGRange) -> CGFloat {
         r.end
     }
     
-    func LUICGRangeGetMid(_ r: LUICGRange) -> CGFloat {
+    static func LUICGRangeGetMid(_ r: LUICGRange) -> CGFloat {
         r.begin + (r.end - r.begin) * 0.5
     }
     
-    func LUICGRangeGetLength(_ r: LUICGRange) -> CGFloat {
+    static func LUICGRangeGetLength(_ r: LUICGRange) -> CGFloat {
         r.end - r.begin
     }
     
-    func LUICGRangeCompareWithValue(_ r: LUICGRange, value: CGFloat) -> ComparisonResult {
-        LUICGRangeContainsValue(v: value) ? .orderedSame : (r.end < value ? .orderedAscending : .orderedDescending)
+    static func LUICGRangeCompareWithValue(_ r: LUICGRange, value: CGFloat) -> ComparisonResult {
+        return r.LUICGRangeContainsValue(v: value) ? .orderedSame : r.end < value ? .orderedAscending : .orderedDescending
     }
     
-    func LUICGRangeCompareWithRange(r1: LUICGRange, r2: LUICGRange) -> ComparisonResult {
+    static func LUICGRangeCompareWithRange(r1: LUICGRange, r2: LUICGRange) -> ComparisonResult {
         LUICGRangeIntersectsRange(r1: r1, r2: r2) ? .orderedSame : (r1.end < r2.begin ? .orderedAscending : .orderedDescending)
     }
     
-    func LUICGRectCompareWithPoint(_ rect: CGRect, point: CGPoint, axis: LUICGAxis) -> ComparisonResult {
+    static func LUICGRectCompareWithPoint(_ rect: CGRect, point: CGPoint, axis: LUICGAxis) -> ComparisonResult {
         LUICGRangeCompareWithValue(LUICGRectGetRange(rect, axis: axis), value: point.LUICGPointGetValue(axis: axis))
     }
     
-    func LUICGRectCompareWithCGRect(r1: CGRect, r2: CGRect, axis: LUICGAxis) -> ComparisonResult {
+    static func LUICGRectCompareWithCGRect(r1: CGRect, r2: CGRect, axis: LUICGAxis) -> ComparisonResult {
         LUICGRangeCompareWithRange(r1: LUICGRectGetRange(r1, axis: axis), r2: LUICGRectGetRange(r2, axis: axis))
-    }
-}
-
-public extension UIEdgeInsets {
-    static func LUIEdgeInsetsMakeSameEdge(_ edge: CGFloat) -> UIEdgeInsets {
-        UIEdgeInsets(top: edge, left: edge, bottom: edge, right: edge)
     }
 }
 
