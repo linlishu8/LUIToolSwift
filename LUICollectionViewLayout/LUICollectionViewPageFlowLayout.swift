@@ -7,6 +7,12 @@
 
 import UIKit
 
+public class _LUICollectionViewPageFlowSectionModel {
+    var sectionInsets: UIEdgeInsets?
+    var interitemSpacing: CGFloat?
+    var itemCount: Int?
+}
+
 public protocol LUICollectionViewDelegatePageFlowLayout: UICollectionViewDelegate {
     func collectionView(collectionView: UICollectionView, pageFlowLayout collectionViewLayout: LUICollectionViewPageFlowLayout, itemSizeForItemAtIndexPath indexPath: IndexPath) -> CGSize
     func collectionView(collectionView: UICollectionView, pageFlowLayout collectionViewLayout: LUICollectionViewPageFlowLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets
@@ -23,7 +29,7 @@ extension LUICollectionViewDelegatePageFlowLayout {
     func collectionView(collectionView: UICollectionView, pageFlowLayout collectionViewLayout: LUICollectionViewPageFlowLayout, didScrollToPagingCell indexPathAtPagingCell: IndexPath) {}
 }
 
-public class LUICollectionViewPageFlowLayout: UICollectionViewLayout {
+public class LUICollectionViewPageFlowLayout: UICollectionViewLayout, UICollectionViewDelegate {
     public var interitemSpacing: CGFloat = 0
     public var itemSize: CGSize = .zero
     public var scrollDirection: UICollectionViewScrollDirection = .horizontal
@@ -32,7 +38,33 @@ public class LUICollectionViewPageFlowLayout: UICollectionViewLayout {
         return self.scrollDirection == .horizontal ? .x : .y
     }
     public var sectionInset: UIEdgeInsets = .zero
-    public var enableCycleScroll: Bool = false //是否允许循环滚动，默认为false
+    private var _enableCycleScroll: Bool = false //是否允许循环滚动，默认为false
+    public var enableCycleScroll: Bool {
+        get {
+            return _enableCycleScroll
+        }
+        set {
+            if _enableCycleScroll != newValue {
+                _needReload = true
+                _enableCycleScroll = newValue
+                self._prepareDelegate()
+            }
+        }
+    }
+    
+    var originDelegate: UICollectionViewDelegate?
+    
+    private var autoScrollingTimer: Timer?
+    private var _needReload: Bool = false
+    private var sectionModels: [_LUICollectionViewPageFlowSectionModel] = []
+    
+    struct AutoScrollingState {
+        var isAutoScorlling: Bool
+        var distance: Int
+        var duration: TimeInterval
+    }
+    
+    var _autoScrollingState: AutoScrollingState?
     
     public func reloadData() {
         
@@ -44,14 +76,54 @@ public class LUICollectionViewPageFlowLayout: UICollectionViewLayout {
     //{pagingBoundsPosition：0.5，pagingCellPosition：0.5}:cell中线与bounds中线对齐
     //{pagingBoundsPosition：1，pagingCellPosition：1}:cell右侧与bounds右侧对齐
     //如果觉得scroll到paging位置速度太慢，可以设置：collectionView.decelerationRate = UIScrollViewDecelerationRateFast
-    public var pagingEnabled: Bool = false //是否滚动到paging位置，默认为false
-    public var pagingBoundsPosition: CGFloat = 0//百分比取值[0,1]
-    public var pagingCellPosition: CGFloat = 0//百分比取值[0,1]
+    private var _pagingEnabled: Bool = false //是否滚动到paging位置，默认为false
+    public var pagingEnabled: Bool {
+        get {
+            return _pagingEnabled
+        }
+        set {
+            if _pagingEnabled != newValue {
+                _needReload = true
+                _pagingEnabled = newValue
+                self._prepareDelegate()
+            }
+        }
+    }
+    private var _pagingBoundsPosition: CGFloat = 0//百分比取值[0,1]
+    public var pagingBoundsPosition: CGFloat {
+        get {
+            return _pagingBoundsPosition
+        }
+        set {
+            if _pagingBoundsPosition != newValue {
+                _needReload = true
+                _pagingBoundsPosition = newValue
+            }
+        }
+    }
+    private var _pagingCellPosition: CGFloat = 0//百分比取值[0,1]
+    public var pagingCellPosition: CGFloat {
+        get {
+            return _pagingCellPosition
+        }
+        set {
+            if (_pagingCellPosition != newValue) {
+                _needReload = true
+                _pagingCellPosition = newValue
+            }
+        }
+    }
     public var playPagingSound: Bool = false//当滚动到paging位置时，是否播放3DTouch效果，默认为false
-    public var indexPathAtPagingCell: IndexPath?//位于paging位置上的单元格，为nil时，代表没有单元格与paging位置相交。
+    public var indexPathAtPagingCell: IndexPath? { //位于paging位置上的单元格，为nil时，代表没有单元格与paging位置相交。
+        return self.indexPathAtPagingCellWithMinDistance()
+    }
     
     public func setIndexPathAtPagingCell(indexPathAtPagingCell: IndexPath, animated: Bool) {
-        
+        guard let collectionView = self.collectionView else { return }
+        let p = indexPathAtPagingCell
+        if p.section < 0 || p.section >= collectionView.numberOfSections {
+            return
+        }
     }
     
     public func indexPathForCellAtOffset(position: CGFloat) -> IndexPath? {
@@ -66,8 +138,58 @@ public class LUICollectionViewPageFlowLayout: UICollectionViewLayout {
         
     }
     
-    public func scrollProgressWithContentOffset(offset: CGPoint, toPagingCell toPadingCellIndexPathPoint: IndexPath) -> CGFloat {
-        return 0
+    private func scrollProgressWithContentOffset(offset: CGPoint, fromPagingCell fromPadingCellIndexPathPoint: inout IndexPath?, toPagingCell toPadingCellIndexPathPoint: inout IndexPath?) -> CGFloat {
+        var progress: CGFloat = 0
+        guard let collectionView = self.collectionView else { return progress }
+        var bounds = collectionView.bounds
+        bounds.origin = offset
+        let position = self.positionOfPagingForRect(bounds: bounds)
+        let range = self.pagableCellIndexRangeNearToOffset(position: position)
+        
+        if range.length > 0 {
+            var p1: IndexPath?
+            var p2: IndexPath?
+            var x1: CGFloat = 0
+            var x2: CGFloat = 0
+            
+            for i in 0..<range.length {
+                let index = range.location + i
+                let c = cellAttributes[index]
+                let x = self.pagingPositionForCellFrame(frame: c.frame)
+                
+                if x <= position {
+                    p1 = c.indexPath
+                    x1 = x
+                } else if x > position && p2 == nil {
+                    p2 = c.indexPath
+                    x2 = x
+                }
+            }
+            
+            fromPadingCellIndexPathPoint = p1
+            toPadingCellIndexPathPoint = p2
+            
+            if let p1 = p1, let p2 = p2, x1 != x2 {
+                progress = (position - x1) / (x2 - x1)
+            }
+        }
+        return progress
+    }
+    
+    public func scrollProgressWithContentOffset(offset: CGPoint, toPagingCell toPadingCellIndexPathPoint: inout IndexPath) -> CGFloat {
+        var p1: IndexPath?
+        var p2: IndexPath?
+        let currentIndexPath = self.indexPathAtPagingCell
+        var progress = self.scrollProgressWithContentOffset(offset: offset, fromPagingCell: &p1, toPagingCell: &p2)
+        if p1 == currentIndexPath {
+        } else {
+            p2 = p1
+            progress = 1 - progress
+        }
+        if let p = p2 {
+            toPadingCellIndexPathPoint = p
+        }
+        return progress
     }
     
     //MARK: 定时滚动
@@ -308,6 +430,61 @@ public class LUICollectionViewPageFlowLayout: UICollectionViewLayout {
     private func positionOfPagingForRect(bounds: CGRect) -> CGFloat {
         let X = self.scrollAxis
         return bounds.LUICGRectGetMin(X) + bounds.LUICGRectGetLength(X) * self.pagingBoundsPositionForCollectionView()
+    }
+    
+    private func _prepareDelegate() {
+        if self.enableCycleScroll || self.pagingEnabled || (_autoScrollingState?.isAutoScorlling ?? false) {
+            //循环滚动或分页对齐时，都需要添加scrollview的方法
+            if let delegate = self.collectionView?.delegate {
+                if delegate !== self {
+                    self.originDelegate = delegate
+                    self.collectionView?.delegate = self
+                }
+            }
+        } else {
+            if let originDelegate = self.originDelegate {
+                self.collectionView?.delegate = originDelegate
+                self.originDelegate = nil
+            }
+        }
+    }
+    
+    private func indexPathAtPagingCellWithMinDistance() -> IndexPath? {
+        var indexPath: IndexPath?
+        guard let collectionView = self.collectionView else { return indexPath }
+        let bounds = collectionView.bounds
+        let position = self.positionOfPagingForRect(bounds: bounds)
+        let range = self.pagableCellIndexRangeNearToOffset(position: position)
+        if range.length != NSNotFound {
+            var minDis: CGFloat = CGFloat.greatestFiniteMagnitude
+            var minIndexPath: IndexPath?
+            for i in 0..<range.length {
+                let index = range.location + i
+                let c = self.cellAttributes[index]
+                let f1 = c.frame
+                let x1 = self.pagingPositionForCellFrame(frame: f1)
+                let dis = abs(position - x1)
+                if dis < minDis {
+                    minDis = dis
+                    minIndexPath = c.indexPath
+                }
+            }
+            indexPath = minIndexPath;
+        }
+        return indexPath
+    }
+    
+    private func __numberOfItemsInSetionModelWithIndex(index: Int) -> Int {
+        var count: Int = 0
+        if index > 0 && index < self.sectionModels.count {
+            count = self.sectionModels[index].itemCount ?? 0
+        }
+        return count
+    }
+    
+    deinit {
+            collectionView?.delegate = self.originDelegate
+            autoScrollingTimer?.invalidate()
     }
 }
 
