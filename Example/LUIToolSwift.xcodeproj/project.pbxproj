@@ -24,6 +24,8 @@
 		1F7CDF852CC103930097F496 /* LUIChatTextBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7CDF842CC103930097F496 /* LUIChatTextBubbleView.swift */; };
 		1FAFE3A72CC14E380097FD51 /* LUIChatTextTableViewCellOther.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FAFE3A62CC14E380097FD51 /* LUIChatTextTableViewCellOther.swift */; };
 		1FAFE3A92CC1506C0097FD51 /* LUIChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FAFE3A82CC1506C0097FD51 /* LUIChatModel.swift */; };
+		1FAFE3AC2CC15EB00097FD51 /* LUIChatImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FAFE3AB2CC15EB00097FD51 /* LUIChatImageView.swift */; };
+		1FAFE3B02CC1645A0097FD51 /* LUIChatImageTableViewCellMine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FAFE3AF2CC1645A0097FD51 /* LUIChatImageTableViewCellMine.swift */; };
 		1FD566682CBCB84600959D77 /* LUIChatHeaderCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD566672CBCB84600959D77 /* LUIChatHeaderCollectionView.swift */; };
 		1FD5666C2CBCC5AE00959D77 /* LUIChatHeadViewCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD5666B2CBCC5AE00959D77 /* LUIChatHeadViewCollectionCell.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
@@ -67,6 +69,8 @@
 		1F7CDF842CC103930097F496 /* LUIChatTextBubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LUIChatTextBubbleView.swift; sourceTree = "<group>"; };
 		1FAFE3A62CC14E380097FD51 /* LUIChatTextTableViewCellOther.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LUIChatTextTableViewCellOther.swift; sourceTree = "<group>"; };
 		1FAFE3A82CC1506C0097FD51 /* LUIChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LUIChatModel.swift; sourceTree = "<group>"; };
+		1FAFE3AB2CC15EB00097FD51 /* LUIChatImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LUIChatImageView.swift; sourceTree = "<group>"; };
+		1FAFE3AF2CC1645A0097FD51 /* LUIChatImageTableViewCellMine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LUIChatImageTableViewCellMine.swift; sourceTree = "<group>"; };
 		1FD566672CBCB84600959D77 /* LUIChatHeaderCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LUIChatHeaderCollectionView.swift; sourceTree = "<group>"; };
 		1FD5666B2CBCC5AE00959D77 /* LUIChatHeadViewCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LUIChatHeadViewCollectionCell.swift; sourceTree = "<group>"; };
 		39D71DA1159AD903A7E07C6A /* Pods_LUIToolSwift_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LUIToolSwift_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -110,6 +114,7 @@
 		1F6072272CB6590C007E4FBD /* 客服 */ = {
 			isa = PBXGroup;
 			children = (
+				1FAFE3AA2CC15E930097FD51 /* 图片 */,
 				1F7CDF772CC0E19C0097F496 /* 文本 */,
 				1F6072312CB6789E007E4FBD /* 初始猜你想问 */,
 				1F60722C2CB673FB007E4FBD /* LUIChatBaseView */,
@@ -154,6 +159,15 @@
 				1F7CDF842CC103930097F496 /* LUIChatTextBubbleView.swift */,
 			);
 			path = "文本";
+			sourceTree = "<group>";
+		};
+		1FAFE3AA2CC15E930097FD51 /* 图片 */ = {
+			isa = PBXGroup;
+			children = (
+				1FAFE3AB2CC15EB00097FD51 /* LUIChatImageView.swift */,
+				1FAFE3AF2CC1645A0097FD51 /* LUIChatImageTableViewCellMine.swift */,
+			);
+			path = "图片";
 			sourceTree = "<group>";
 		};
 		607FACC71AFB9204008FA782 = {
@@ -430,7 +444,9 @@
 				1F7CDF7B2CC0F6000097F496 /* LUIChatBubbleBaseTableViewCell.swift in Sources */,
 				1FAFE3A72CC14E380097FD51 /* LUIChatTextTableViewCellOther.swift in Sources */,
 				1F7CDF812CC0FF810097F496 /* LUIChatBaseBubbleView.swift in Sources */,
+				1FAFE3B02CC1645A0097FD51 /* LUIChatImageTableViewCellMine.swift in Sources */,
 				1FAFE3A92CC1506C0097FD51 /* LUIChatModel.swift in Sources */,
+				1FAFE3AC2CC15EB00097FD51 /* LUIChatImageView.swift in Sources */,
 				1FD566682CBCB84600959D77 /* LUIChatHeaderCollectionView.swift in Sources */,
 				1F60723A2CB75FDE007E4FBD /* LUIChatHeadViewTableViewCell.swift in Sources */,
 				1F7CDF7F2CC0FC7E0097F496 /* LUIChatTextTableViewCellMine.swift in Sources */,

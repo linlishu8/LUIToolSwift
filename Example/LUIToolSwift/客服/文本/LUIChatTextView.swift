@@ -14,6 +14,9 @@ class LUIChatTextView: LUIChatBaseView, UITextViewDelegate {
         let textView = UITextView()
         textView.delegate = self
         textView.backgroundColor = .clear
+        textView.isScrollEnabled = false
+        textView.isEditable = false
+        textView.isSelectable = false
         textView.font = UIFont.systemFont(ofSize: 14)
         textView.textColor = UIColor.white
         return textView

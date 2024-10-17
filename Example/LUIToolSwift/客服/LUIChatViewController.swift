@@ -47,6 +47,12 @@ class LUIChatViewController: UIViewController {
         textOtherModel2.isSelf = false
         list.append(textOtherModel2)
         
+        let imageMineModel = LUIChatModel()
+        imageMineModel.cellClass = LUIChatImageTableViewCellMine.self
+        imageMineModel.isSelf = true
+        imageMineModel.msgImage = "WX233135"
+        list.append(imageMineModel)
+        
         return list
     }()
     

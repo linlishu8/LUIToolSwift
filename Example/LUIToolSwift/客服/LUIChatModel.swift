@@ -13,4 +13,5 @@ class LUIChatModel {
     var title: String?
     var isSelf: Bool?
     var attrTitle: NSAttributedString?
+    var msgImage: String?
 }
