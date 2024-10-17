@@ -64,8 +64,11 @@ public class LUICollectionViewPageFlowLayout: UICollectionViewLayout, UICollecti
     private var __cachedPrePagingIndexPath: IndexPath?
     private var offsetChanging: Bool?
     private var _preContentOffset: CGPoint?
-    private var _shouldCycleScroll: Bool = false
     private var _isSizeFitting: Bool = false
+    
+    private var shouldCycleScroll: Bool = false
+    private var cellAttributeMap: [IndexPath: UICollectionViewLayoutAttributes] = [:]
+    private var cycleCellAttributes: [UICollectionViewLayoutAttributes] = []
     
     struct AutoScrollingState {
         var isAutoScorlling: Bool
@@ -188,7 +191,7 @@ public class LUICollectionViewPageFlowLayout: UICollectionViewLayout, UICollecti
             let newIndex = (index + dis + self.cellAttributes.count) % self.cellAttributes.count
             let newIndexPath = self.cellAttributes[newIndex].indexPath
             if index != newIndex {
-                if (self.enableCycleScroll && _shouldCycleScroll) && distance * (newIndex - index) < 0 {
+                if (self.enableCycleScroll && self.shouldCycleScroll) && distance * (newIndex - index) < 0 {
                     //方向反了。需要进行一次重排
                     let nextBeginIndex = distance > 0 ? index : newIndex
                     self.__resortCellAttributeWithBeginIndex(beginIndex: nextBeginIndex)
@@ -627,11 +630,12 @@ public class LUICollectionViewPageFlowLayout: UICollectionViewLayout, UICollecti
         }
     }
     
-    private func _prepareCellLayouts(cellAttributes: inout [UICollectionViewLayoutAttributes], cellAttributeMap: inout [IndexPath : UICollectionViewLayoutAttributes]?, cycleCellAttributes: inout [UICollectionViewLayoutAttributes], sectionModels: inout [_LUICollectionViewPageFlowSectionModel], shouldCycleScroll shouldCycleScrollRef: inout Bool?, isSizeFit: Bool) -> CGSize {
+    private func _prepareCellLayouts(shouldCycleScroll shouldCycleScrollRef: inout Bool, isSizeFit: Bool) -> CGSize {
         guard let collectionView = self.collectionView else { return .zero }
-        cellAttributes.removeAll()
-        sectionModels.removeAll()
-        cycleCellAttributes.removeAll()
+        self.cellAttributes.removeAll()
+        self.sectionModels.removeAll()
+        self.cycleCellAttributes.removeAll()
+        self.cellAttributeMap.removeAll()
         
         let X = self.scrollAxis
         let Y = LUICGAxis.LUICGAxisReverse(X)
@@ -676,7 +680,7 @@ public class LUICollectionViewPageFlowLayout: UICollectionViewLayout, UICollecti
             sectionModels.append(sm)
         }
         for cellAttribute in cellAttributes {
-            cellAttributeMap?[cellAttribute.indexPath] = cellAttribute
+            cellAttributeMap[cellAttribute.indexPath] = cellAttribute
         }
         var size: CGSize = .zero
         size.LUICGSizeSetLength(bounds.LUICGRectGetLength(Y), axis: Y)
@@ -711,7 +715,7 @@ public class LUICollectionViewPageFlowLayout: UICollectionViewLayout, UICollecti
             }
         }
         
-        shouldCycleScrollRef? = shouldCycleScroll
+        shouldCycleScrollRef = shouldCycleScroll
         
         //调整collectionView的contentInset，使得paging时，contentOffset能够超出原始的范围
         if !isSizeFit {
@@ -778,6 +782,32 @@ public class LUICollectionViewPageFlowLayout: UICollectionViewLayout, UICollecti
         
         return cycleCellAttributes
     }
+    
+    private func _prepareAllLayout() {
+        _contentSize = self._prepareCellLayouts(shouldCycleScroll: &self.shouldCycleScroll, isSizeFit: false)
+    }
+    
+    public override func prepare() {
+        super.prepare()
+        self._prepareAllLayout()
+    }
+    
+    public override var collectionViewContentSize: CGSize {
+        return _contentSize
+    }
+    
+    public override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+        var attrs: [UICollectionViewLayoutAttributes] = []
+        let indexes: [NSNumber] = self._cellLayoutAttributesIndexForElements(cellAttributes: self.cellAttributes, inRect: rect)
+        for index in indexes {
+            attrs.append(self.cellAttributes[index.intValue])
+        }
+        return attrs
+    }
+    
+    public override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+        return self.cellAttributeMap[indexPath]
+    }
 }
 
 public extension LUICollectionViewPageFlowLayout {
@@ -832,12 +862,7 @@ public extension LUICollectionViewPageFlowLayout {
             bounds.size = size
             collectionView.bounds = bounds
         }
-        var shouldCycleScroll: Bool? = nil
-        var cellAttributes: [UICollectionViewLayoutAttributes] = []
-        var cycleCellAttributes: [UICollectionViewLayoutAttributes] = []
-        var sectionModels: [_LUICollectionViewPageFlowSectionModel] = []
-        var cellAttributeMap: [IndexPath : UICollectionViewLayoutAttributes]? = [:]
-        var contentSize = self._prepareCellLayouts(cellAttributes: &cellAttributes, cellAttributeMap: &cellAttributeMap, cycleCellAttributes: &cycleCellAttributes, sectionModels: &sectionModels, shouldCycleScroll: &shouldCycleScroll, isSizeFit: true)
+        self._prepareAllLayout()
         var maxHeight: CGFloat = 0
         for cellAttribute in cellAttributes {
             let frame = cellAttribute.l_frameSafety
@@ -846,11 +871,11 @@ public extension LUICollectionViewPageFlowLayout {
                 maxHeight = max(maxHeight, height)
             }
         }
-        contentSize.LUICGSizeSetLength(maxHeight, axis: Y)
+        _contentSize.LUICGSizeSetLength(maxHeight, axis: Y)
         if sizeChange {
             collectionView.bounds = originBounds
         }
-        sizeFits = contentSize
+        sizeFits = _contentSize
         sizeFits.width = ceil(sizeFits.width)
         sizeFits.height = ceil(sizeFits.height)
         _isSizeFitting = false
