@@ -31,9 +31,7 @@ class LUIChatBackgroundMineView: UIView {
         self.addSubview(self.arrowImageView)
         
         let imageWrapper = LUILayoutConstraintItemWrapper.wrapItem(self.backImageView) { wrapper, size, resizeItems in
-            var itemSize = wrapper.originItem.sizeThatFits(size, resizeItems: true)
-            itemSize.height = size.height
-            return itemSize
+            return size
         }
         
         self.flowlayout = LUIFlowLayoutConstraint([imageWrapper, self.arrowImageView], param: .H_T_R, contentInsets: .zero, interitemSpacing: 0)
