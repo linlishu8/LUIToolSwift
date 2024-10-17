@@ -2,7 +2,7 @@
 //  LUIChatHeadViewTableViewCell.swift
 //  LUIToolSwift_Example
 //
-//  Created by 六月 on 2024/10/10.
+//  Created by 六月 on 2024/1/10.
 //  Copyright © 2024 CocoaPods. All rights reserved.
 //
 

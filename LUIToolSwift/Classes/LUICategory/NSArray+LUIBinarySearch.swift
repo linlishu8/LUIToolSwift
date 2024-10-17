@@ -2,7 +2,7 @@
 //  NSArray+LUIBinarySearch.swift
 //  LUIToolSwift
 //
-//  Created by 六月 on 2024/10/16.
+//  Created by 六月 on 2024/1/16.
 //
 
 import Foundation

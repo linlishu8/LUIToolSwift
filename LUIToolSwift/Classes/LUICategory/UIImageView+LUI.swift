@@ -2,7 +2,7 @@
 //  UIImageView+LUI.swift
 //  LUIToolSwift
 //
-//  Created by 六月 on 2024/10/11.
+//  Created by 六月 on 2024/1/11.
 //
 
 import Foundation

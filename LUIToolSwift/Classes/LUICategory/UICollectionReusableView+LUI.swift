@@ -2,7 +2,7 @@
 //  UICollectionReusableView+LUI.swift
 //  LUIToolSwift
 //
-//  Created by 六月 on 2024/10/12.
+//  Created by 六月 on 2024/1/12.
 //
 
 import Foundation
