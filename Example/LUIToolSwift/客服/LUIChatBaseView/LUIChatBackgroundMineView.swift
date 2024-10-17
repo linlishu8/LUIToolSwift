@@ -28,7 +28,13 @@ class LUIChatBackgroundMineView: UIView {
         self.addSubview(self.backImageView)
         self.addSubview(self.arrowImageView)
         
-        self.flowlayout = LUIFlowLayoutConstraint([self.backImageView, self.arrowImageView], param: .H_T_R, contentInsets: .zero, interitemSpacing: 0)
+        let imageWrapper = LUILayoutConstraintItemWrapper.wrapItem(self.backImageView) { wrapper, size, resizeItems in
+            var itemSize = wrapper.originItem.sizeThatFits(size, resizeItems: true)
+            itemSize.height = size.height
+            return itemSize
+        }
+        
+        self.flowlayout = LUIFlowLayoutConstraint([imageWrapper, self.arrowImageView], param: .H_T_R, contentInsets: .zero, interitemSpacing: 0)
     }
     
     required init?(coder: NSCoder) {
@@ -37,8 +43,8 @@ class LUIChatBackgroundMineView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
         let bounds = self.bounds
+        
         self.flowlayout?.bounds = bounds
         self.flowlayout?.layoutItemsWithResizeItems(resizeItems: true)
     }

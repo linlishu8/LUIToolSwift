@@ -13,6 +13,7 @@ class LUIChatTextView: LUIChatBaseView, UITextViewDelegate {
     private lazy var textView: UITextView = {
         let textView = UITextView()
         textView.delegate = self
+        textView.backgroundColor = .clear
         return textView
     }()
     
