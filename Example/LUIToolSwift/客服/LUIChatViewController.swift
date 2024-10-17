@@ -29,6 +29,10 @@ class LUIChatViewController: UIViewController {
         headModel.cellClass = LUIChatHeadViewTableViewCell.self
         list.append(headModel)
         
+        let headGridModel = LUIChatModel()
+        headGridModel.cellClass = LUIChatHeadGridTableViewCell.self
+        list.append(headGridModel)
+        
         let textMineModel = LUIChatModel()
         textMineModel.cellClass = LUIChatTextTableViewCellMine.self
         textMineModel.title = "测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试"
