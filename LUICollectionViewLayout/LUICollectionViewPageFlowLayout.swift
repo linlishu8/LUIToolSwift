@@ -818,7 +818,8 @@ public extension LUICollectionViewPageFlowLayout {
     func itemSizeForSectionAtIndexPath(indexPath: IndexPath) -> CGSize {
         var value = self.itemSize
         if let delegate = self.pageFlowDelegate, let collectionView = self.collectionView {
-            value = delegate.collectionView(collectionView: collectionView, pageFlowLayout: self, itemSizeForItemAtIndexPath: indexPath)
+            let size = delegate.collectionView(collectionView: collectionView, pageFlowLayout: self, itemSizeForItemAtIndexPath: indexPath)
+            if !CGSizeEqualToSize(size, .zero) { value = size }
         }
         return value
     }
@@ -826,7 +827,8 @@ public extension LUICollectionViewPageFlowLayout {
     func insetForSectionAtIndex(section: Int) -> UIEdgeInsets {
         var value = self.sectionInset
         if let delegate = self.pageFlowDelegate, let collectionView = self.collectionView {
-            value = delegate.collectionView(collectionView: collectionView, pageFlowLayout: self, insetForSectionAtIndex: section)
+            let edge = delegate.collectionView(collectionView: collectionView, pageFlowLayout: self, insetForSectionAtIndex: section)
+            if !UIEdgeInsetsEqualToEdgeInsets(edge, .zero) { value = edge }
         }
         return value
     }
@@ -834,7 +836,8 @@ public extension LUICollectionViewPageFlowLayout {
     func interitemSpacingForSectionAtIndex(section: Int) -> CGFloat {
         var value = self.interitemSpacing
         if let delegate = self.pageFlowDelegate, let collectionView = self.collectionView {
-            value = delegate.collectionView(collectionView: collectionView, pageFlowLayout: self, interitemSpacingForSectionAtIndex: section)
+            let spacing = delegate.collectionView(collectionView: collectionView, pageFlowLayout: self, interitemSpacingForSectionAtIndex: section)
+            if spacing != 0 { value = spacing }
         }
         return value
     }
