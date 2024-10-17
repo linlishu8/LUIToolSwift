@@ -7,15 +7,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "121580B4-1AD4-4350-B3B2-729D2B3475B2"
+            uuid = "18C7802F-84F4-4DF4-88E0-A3447DB950D3"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../LUICollectionViewLayout/LUICollectionViewPageFlowLayout.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "854"
-            endingLineNumber = "854"
+            startingLineNumber = "857"
+            endingLineNumber = "857"
             landmarkName = "l_sizeThatFits(size:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -23,48 +23,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "047B8C1E-00AC-4E28-94DE-73C7D9FE50D8"
+            uuid = "3D56869C-A25D-4441-9059-A9F4B4BD9DB6"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../LUICollectionViewLayout/LUICollectionViewPageFlowLayout.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "722"
-            endingLineNumber = "722"
-            landmarkName = "_prepareCellLayouts(cellAttributeMap:shouldCycleScroll:isSizeFit:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "6F033D0D-AF5C-4D85-984F-7D192D8FE31A"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../LUICollectionViewLayout/LUICollectionViewPageFlowLayout.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "631"
-            endingLineNumber = "631"
-            landmarkName = "_prepareCellLayouts(cellAttributeMap:shouldCycleScroll:isSizeFit:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "D3BC7062-FBFB-48A8-90C4-86AABFEB6D13"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../LUICollectionViewLayout/LUICollectionViewPageFlowLayout.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "671"
-            endingLineNumber = "671"
-            landmarkName = "_prepareCellLayouts(cellAttributeMap:shouldCycleScroll:isSizeFit:)"
+            startingLineNumber = "849"
+            endingLineNumber = "849"
+            landmarkName = "l_sizeThatFits(size:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

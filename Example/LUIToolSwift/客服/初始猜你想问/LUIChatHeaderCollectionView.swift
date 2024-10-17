@@ -15,7 +15,7 @@ class LUIChatHeaderCollectionView: LUIChatBaseView, LUICollectionViewDelegatePag
         layout.pagingCellPosition = 0;
         layout.pagingBoundsPosition = 0;
         layout.interitemSpacing = 10;
-        layout.sectionInset = UIEdgeInsetsMake(0, 15, 0, 15);
+//        layout.sectionInset = UIEdgeInsetsMake(0, 15, 0, 15);
         
         let collectionView = LUICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .clear

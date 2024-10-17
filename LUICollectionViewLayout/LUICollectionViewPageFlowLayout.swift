@@ -627,12 +627,11 @@ public class LUICollectionViewPageFlowLayout: UICollectionViewLayout, UICollecti
         }
     }
     
-    private func _prepareCellLayouts(cellAttributeMap: [IndexPath : UICollectionViewLayoutAttributes]?, shouldCycleScroll shouldCycleScrollRef: inout Bool?, isSizeFit: Bool) -> CGSize {
+    private func _prepareCellLayouts(cellAttributes: inout [UICollectionViewLayoutAttributes], cellAttributeMap: inout [IndexPath : UICollectionViewLayoutAttributes]?, cycleCellAttributes: inout [UICollectionViewLayoutAttributes], sectionModels: inout [_LUICollectionViewPageFlowSectionModel], shouldCycleScroll shouldCycleScrollRef: inout Bool?, isSizeFit: Bool) -> CGSize {
         guard let collectionView = self.collectionView else { return .zero }
-        var cellAttributes: [UICollectionViewLayoutAttributes] = []
-        var sectionModels: [_LUICollectionViewPageFlowSectionModel] = []
-        var cycleCellAttributes: [UICollectionViewLayoutAttributes] = []
-        var cellAttributeMap = cellAttributeMap
+        cellAttributes.removeAll()
+        sectionModels.removeAll()
+        cycleCellAttributes.removeAll()
         
         let X = self.scrollAxis
         let Y = LUICGAxis.LUICGAxisReverse(X)
@@ -834,9 +833,13 @@ public extension LUICollectionViewPageFlowLayout {
             collectionView.bounds = bounds
         }
         var shouldCycleScroll: Bool? = nil
-        var contentSize = self._prepareCellLayouts(cellAttributeMap: nil, shouldCycleScroll: &shouldCycleScroll, isSizeFit: true)
+        var cellAttributes: [UICollectionViewLayoutAttributes] = []
+        var cycleCellAttributes: [UICollectionViewLayoutAttributes] = []
+        var sectionModels: [_LUICollectionViewPageFlowSectionModel] = []
+        var cellAttributeMap: [IndexPath : UICollectionViewLayoutAttributes]? = [:]
+        var contentSize = self._prepareCellLayouts(cellAttributes: &cellAttributes, cellAttributeMap: &cellAttributeMap, cycleCellAttributes: &cycleCellAttributes, sectionModels: &sectionModels, shouldCycleScroll: &shouldCycleScroll, isSizeFit: true)
         var maxHeight: CGFloat = 0
-        for cellAttribute in self.cellAttributes {
+        for cellAttribute in cellAttributes {
             let frame = cellAttribute.l_frameSafety
             if self.isCellAttributesVisible(cellAttr: cellAttribute), let sectionInsets = sectionModels[cellAttribute.indexPath.section].sectionInsets {
                 let height = frame.LUICGRectGetLength(Y) + sectionInsets.LUIEdgeInsetsGetEdgeSum(axis: Y)
