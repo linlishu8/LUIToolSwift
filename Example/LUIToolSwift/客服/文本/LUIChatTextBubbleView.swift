@@ -40,9 +40,13 @@ class LUIChatTextBubbleView: LUIChatBaseBubbleView {
         let s = self.flowlayout?.sizeThatFits(size, resizeItems: true) ?? .zero
         return s
     }
+    
+    override func loadDataWithCellModel(cellModel: LUITableViewCellModel) {
+        self.textView.loadDataWithCellModel(cellModel: cellModel)
+    }
 }
 
-class CIBChatTextBubbleMineView: LUIChatTextBubbleView {
+class LUIChatTextBubbleMineView: LUIChatTextBubbleView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.mineView = LUIChatBackgroundMineView()

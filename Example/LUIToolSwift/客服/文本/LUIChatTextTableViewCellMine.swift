@@ -10,8 +10,8 @@ import UIKit
 import LUIToolSwift
 
 class LUIChatTextTableViewCellMine: LUIChatBubbleBaseTableViewCell {
-    private lazy var textView: LUIChatBaseBubbleView = {
-        let textView = LUIChatBaseBubbleView(frame: .zero)
+    private lazy var textView: LUIChatTextBubbleMineView = {
+        let textView = LUIChatTextBubbleMineView(frame: .zero)
         return textView
     }()
     
@@ -22,7 +22,7 @@ class LUIChatTextTableViewCellMine: LUIChatBubbleBaseTableViewCell {
         self.contentView.addSubview(self.mineHeaderView)
         self.contentView.addSubview(self.textView)
         
-        self.flowlayout = LUIFlowLayoutConstraint([self.textView, self.mineHeaderView], param: .H_T_C, contentInsets: .zero, interitemSpacing: 10)
+        self.flowlayout = LUIFlowLayoutConstraint([self.textView, self.mineHeaderView], param: .H_T_R, contentInsets: self.contentInsets, interitemSpacing: 10)
     }
     
     @MainActor required init?(coder aDecoder: NSCoder) {
