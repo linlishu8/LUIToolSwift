@@ -14,6 +14,11 @@
 		1F6072382CB75EAC007E4FBD /* LUIChatMsgTableViewCellBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6072372CB75EAC007E4FBD /* LUIChatMsgTableViewCellBase.swift */; };
 		1F60723A2CB75FDE007E4FBD /* LUIChatHeadViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6072392CB75FDE007E4FBD /* LUIChatHeadViewTableViewCell.swift */; };
 		1F60723C2CB76828007E4FBD /* LUIChatHeadContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F60723B2CB76828007E4FBD /* LUIChatHeadContentCell.swift */; };
+		1F7CDF792CC0E1A90097F496 /* LUIChatTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7CDF782CC0E1A90097F496 /* LUIChatTextView.swift */; };
+		1F7CDF7B2CC0F6000097F496 /* LUIChatBubbleBaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7CDF7A2CC0F6000097F496 /* LUIChatBubbleBaseTableViewCell.swift */; };
+		1F7CDF7D2CC0F67F0097F496 /* LUIChatUserPicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7CDF7C2CC0F67F0097F496 /* LUIChatUserPicView.swift */; };
+		1F7CDF7F2CC0FC7E0097F496 /* LUIChatTextTableViewCellMine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7CDF7E2CC0FC7E0097F496 /* LUIChatTextTableViewCellMine.swift */; };
+		1F7CDF812CC0FF810097F496 /* LUIChatBaseBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7CDF802CC0FF810097F496 /* LUIChatBaseBubbleView.swift */; };
 		1FD566682CBCB84600959D77 /* LUIChatHeaderCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD566672CBCB84600959D77 /* LUIChatHeaderCollectionView.swift */; };
 		1FD5666C2CBCC5AE00959D77 /* LUIChatHeadViewCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD5666B2CBCC5AE00959D77 /* LUIChatHeadViewCollectionCell.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
@@ -47,6 +52,11 @@
 		1F6072372CB75EAC007E4FBD /* LUIChatMsgTableViewCellBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LUIChatMsgTableViewCellBase.swift; sourceTree = "<group>"; };
 		1F6072392CB75FDE007E4FBD /* LUIChatHeadViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LUIChatHeadViewTableViewCell.swift; sourceTree = "<group>"; };
 		1F60723B2CB76828007E4FBD /* LUIChatHeadContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LUIChatHeadContentCell.swift; sourceTree = "<group>"; };
+		1F7CDF782CC0E1A90097F496 /* LUIChatTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LUIChatTextView.swift; sourceTree = "<group>"; };
+		1F7CDF7A2CC0F6000097F496 /* LUIChatBubbleBaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LUIChatBubbleBaseTableViewCell.swift; sourceTree = "<group>"; };
+		1F7CDF7C2CC0F67F0097F496 /* LUIChatUserPicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LUIChatUserPicView.swift; sourceTree = "<group>"; };
+		1F7CDF7E2CC0FC7E0097F496 /* LUIChatTextTableViewCellMine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LUIChatTextTableViewCellMine.swift; sourceTree = "<group>"; };
+		1F7CDF802CC0FF810097F496 /* LUIChatBaseBubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LUIChatBaseBubbleView.swift; sourceTree = "<group>"; };
 		1FD566672CBCB84600959D77 /* LUIChatHeaderCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LUIChatHeaderCollectionView.swift; sourceTree = "<group>"; };
 		1FD5666B2CBCC5AE00959D77 /* LUIChatHeadViewCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LUIChatHeadViewCollectionCell.swift; sourceTree = "<group>"; };
 		39D71DA1159AD903A7E07C6A /* Pods_LUIToolSwift_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LUIToolSwift_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -90,6 +100,7 @@
 		1F6072272CB6590C007E4FBD /* 客服 */ = {
 			isa = PBXGroup;
 			children = (
+				1F7CDF772CC0E19C0097F496 /* 文本 */,
 				1F6072312CB6789E007E4FBD /* 初始猜你想问 */,
 				1F60722C2CB673FB007E4FBD /* LUIChatBaseView */,
 				1F6072282CB6592D007E4FBD /* LUIChatViewController.swift */,
@@ -102,6 +113,9 @@
 			children = (
 				1F60722F2CB6742A007E4FBD /* LUIChatBaseView.swift */,
 				1F6072372CB75EAC007E4FBD /* LUIChatMsgTableViewCellBase.swift */,
+				1F7CDF7A2CC0F6000097F496 /* LUIChatBubbleBaseTableViewCell.swift */,
+				1F7CDF7C2CC0F67F0097F496 /* LUIChatUserPicView.swift */,
+				1F7CDF802CC0FF810097F496 /* LUIChatBaseBubbleView.swift */,
 			);
 			path = LUIChatBaseView;
 			sourceTree = "<group>";
@@ -116,6 +130,15 @@
 				1F60723B2CB76828007E4FBD /* LUIChatHeadContentCell.swift */,
 			);
 			path = "初始猜你想问";
+			sourceTree = "<group>";
+		};
+		1F7CDF772CC0E19C0097F496 /* 文本 */ = {
+			isa = PBXGroup;
+			children = (
+				1F7CDF782CC0E1A90097F496 /* LUIChatTextView.swift */,
+				1F7CDF7E2CC0FC7E0097F496 /* LUIChatTextTableViewCellMine.swift */,
+			);
+			path = "文本";
 			sourceTree = "<group>";
 		};
 		607FACC71AFB9204008FA782 = {
@@ -388,11 +411,16 @@
 				1F6072332CB678BA007E4FBD /* LUIChatHeaderView.swift in Sources */,
 				1F6072302CB6742A007E4FBD /* LUIChatBaseView.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				1F7CDF7B2CC0F6000097F496 /* LUIChatBubbleBaseTableViewCell.swift in Sources */,
+				1F7CDF812CC0FF810097F496 /* LUIChatBaseBubbleView.swift in Sources */,
 				1FD566682CBCB84600959D77 /* LUIChatHeaderCollectionView.swift in Sources */,
 				1F60723A2CB75FDE007E4FBD /* LUIChatHeadViewTableViewCell.swift in Sources */,
+				1F7CDF7F2CC0FC7E0097F496 /* LUIChatTextTableViewCellMine.swift in Sources */,
+				1F7CDF792CC0E1A90097F496 /* LUIChatTextView.swift in Sources */,
 				1F6072382CB75EAC007E4FBD /* LUIChatMsgTableViewCellBase.swift in Sources */,
 				1FD5666C2CBCC5AE00959D77 /* LUIChatHeadViewCollectionCell.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				1F7CDF7D2CC0F67F0097F496 /* LUIChatUserPicView.swift in Sources */,
 				1F05BA172CA659BE003750FD /* LUIMainViewTableViewCell.swift in Sources */,
 				1F6072292CB6592D007E4FBD /* LUIChatViewController.swift in Sources */,
 			);
