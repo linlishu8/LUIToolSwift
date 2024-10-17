@@ -21,7 +21,7 @@ class LUIChatTextBubbleView: LUIChatBaseBubbleView {
         super.init(frame: frame)
         self.addSubview(self.textView)
         
-        self.flowlayout = LUIFlowLayoutConstraint([self.textView], param: .H_C_C, contentInsets: self.chatTextMargin, interitemSpacing: 0)
+        self.flowlayout = LUIFlowLayoutConstraint([self.textView], param: .H_C_C, contentInsets: self.chatTextMarginMine, interitemSpacing: 0)
     }
     
     @MainActor required init?(coder: NSCoder) {
@@ -41,6 +41,10 @@ class LUIChatTextBubbleView: LUIChatBaseBubbleView {
     }
     
     override func loadDataWithCellModel(cellModel: LUITableViewCellModel) {
+        if let modelValue = cellModel.modelValue as? LUIChatModel {
+            self.flowlayout?.contentInsets = modelValue.isSelf ?? false ? self.chatTextMarginMine : self.chatTextMarginOther
+        }
+        
         self.textView.loadDataWithCellModel(cellModel: cellModel)
     }
 }
