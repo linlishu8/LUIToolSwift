@@ -23,6 +23,27 @@ class LUIChatViewController: UIViewController {
         return image
     }()
     
+    private lazy var modelList: [LUIChatModel] = {
+        var list: [LUIChatModel] = []
+        let headModel = LUIChatModel()
+        headModel.cellClass = LUIChatHeadViewTableViewCell.self
+        list.append(headModel)
+        
+        let textMineModel = LUIChatModel()
+        textMineModel.cellClass = LUIChatTextTableViewCellMine.self
+        textMineModel.title = "测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试"
+        textMineModel.isSelf = true
+        list.append(textMineModel)
+        
+        let textOtherModel = LUIChatModel()
+        textOtherModel.cellClass = LUIChatTextTableViewCellOther.self
+        textOtherModel.title = "别人的别人的别人的别人的别人的别人的别人的别人的别人的别人的别人的别人的别人的别人的别人的别人的"
+        textOtherModel.isSelf = false
+        list.append(textOtherModel)
+        
+        return list
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -44,15 +65,18 @@ class LUIChatViewController: UIViewController {
     }
     
     private func reloadTableView() {
-        self.chatTableView.model.addCellModel(self.setupTableViewCellModel(modelCellClass: LUIChatHeadViewTableViewCell.self))
-        self.chatTableView.model.addCellModel(self.setupTableViewCellModel(modelCellClass: LUIChatTextTableViewCellMine.self))
+        for chatModel in self.modelList {
+            self.chatTableView.model.addCellModel(self.setupTableViewCellModel(chatModel: chatModel))
+        }
         self.chatTableView.model.reloadTableViewData()
+        
     }
     
-    private func setupTableViewCellModel(modelCellClass: LUITableViewCellBase.Type) -> LUITableViewCellModel {
-        let cellModel = LUITableViewCellModel.init()
-        cellModel.cellClass = modelCellClass.self
-        return cellModel
+    private func setupTableViewCellModel(chatModel: LUIChatModel) -> LUITableViewCellModel {
+        let model = LUITableViewCellModel.init()
+        model.cellClass = chatModel.cellClass as? LUITableViewCellBase.Type
+        model.modelValue = chatModel
+        return model
     }
     
     deinit {

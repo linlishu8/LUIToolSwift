@@ -88,8 +88,7 @@ class LUIChatHeaderView: LUIChatBaseView {
     }
     
     override func sizeThatFits(_ size: CGSize) -> CGSize {
-        let s = self.flowlayout?.sizeThatFits(size, resizeItems: true) ?? .zero
-        return s
+        return self.flowlayout?.sizeThatFits(size, resizeItems: true) ?? .zero
     }
     
     private func __reloadData() {

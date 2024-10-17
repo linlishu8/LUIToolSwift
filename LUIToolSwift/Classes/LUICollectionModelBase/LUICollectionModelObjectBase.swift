@@ -23,7 +23,7 @@ public class LUICollectionModelObjectBase: NSObject {
     }
 
     // 设置动态属性
-    subscript(key: String) -> Any? {
+    public subscript(key: String) -> Any? {
         get {
             return dynamicProperties[key]
         }

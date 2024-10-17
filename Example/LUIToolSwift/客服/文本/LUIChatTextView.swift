@@ -34,9 +34,9 @@ class LUIChatTextView: LUIChatBaseView, UITextViewDelegate {
     }
     
     override func loadDataWithCellModel(cellModel: LUITableViewCellModel) {
-        self.textView.text = "我来输入点子阿斯蒂芬撒旦法"
-        if let text = cellModel.modelValue as? String {
-            self.textView.text = text
+        if let modelValue = cellModel.modelValue as? LUIChatModel {
+            self.textView.text = modelValue.title
+            self.textView.textColor = modelValue.isSelf ?? false ? UIColor.white : UIColor.black
         }
     }
     
@@ -49,7 +49,6 @@ class LUIChatTextView: LUIChatBaseView, UITextViewDelegate {
     }
     
     override func sizeThatFits(_ size: CGSize) -> CGSize {
-        let s = self.flowlayout?.sizeThatFits(size, resizeItems: true) ?? .zero
-        return s
+        return self.flowlayout?.sizeThatFits(size, resizeItems: true) ?? .zero
     }
 }

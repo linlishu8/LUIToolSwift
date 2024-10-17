@@ -17,8 +17,4 @@ class LUIChatBubbleBaseTableViewCell: LUIChatMsgTableViewCellBase {
         let imageView = LUIChatUserPicView(image: UIImage(named: "cib_aiservice_textinput_kefu"))
         return imageView
     }()
-
-    override func customReloadCellModel() {
-        let modelValue = self.cellModel.modelValue
-    }
 }

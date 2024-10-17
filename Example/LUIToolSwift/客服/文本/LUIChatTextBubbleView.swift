@@ -37,8 +37,7 @@ class LUIChatTextBubbleView: LUIChatBaseBubbleView {
     }
     
     override func sizeThatFits(_ size: CGSize) -> CGSize {
-        let s = self.flowlayout?.sizeThatFits(size, resizeItems: true) ?? .zero
-        return s
+        return self.flowlayout?.sizeThatFits(size, resizeItems: true) ?? .zero
     }
     
     override func loadDataWithCellModel(cellModel: LUITableViewCellModel) {
@@ -60,5 +59,22 @@ class LUIChatTextBubbleMineView: LUIChatTextBubbleView {
     override func layoutSubviews() {
         super.layoutSubviews()
         self.mineView?.frame = bounds
+    }
+}
+
+class LUIChatTextBubbleOtherView: LUIChatTextBubbleView {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.otherView = CIBChatBackgroundOtherView()
+        self.bgView.addSubview(self.otherView!)
+    }
+    
+    @MainActor required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.otherView?.frame = bounds
     }
 }

@@ -57,7 +57,6 @@ class LUIChatHeadViewCollectionCell: LUICollectionViewCellBase {
     }
     
     override func customSizeThatFits(size: CGSize) -> CGSize {
-        let s = self.flowlayout?.sizeThatFits(size, resizeItems: true) ?? .zero
-        return s
+        return self.flowlayout?.sizeThatFits(size, resizeItems: true) ?? .zero
     }
 }

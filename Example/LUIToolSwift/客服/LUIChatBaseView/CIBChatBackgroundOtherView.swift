@@ -1,5 +1,5 @@
 //
-//  LUIChatBackgroundMineView.swift
+//  CIBChatBackgroundOtherView.swift
 //  LUIToolSwift_Example
 //
 //  Created by 六月 on 2024/10/17.
@@ -9,17 +9,18 @@
 import UIKit
 import LUIToolSwift
 
-class LUIChatBackgroundMineView: UIView {
+class CIBChatBackgroundOtherView: UIView {
     
-    private lazy var backImageView: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "lui_chat_message_mine_bg"))
-        imageView.layer.cornerRadius = 10
-        imageView.layer.masksToBounds = true
-        return imageView
+    private lazy var backView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.white
+        view.layer.cornerRadius = 10
+        view.layer.masksToBounds = true
+        return view
     }()
     
     private lazy var arrowImageView: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "lui_chat_message_mine"))
+        let imageView = UIImageView(image: UIImage(named: "lui_chat_message_other"))
         return imageView
     }()
     
@@ -27,14 +28,14 @@ class LUIChatBackgroundMineView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.addSubview(self.backImageView)
+        self.addSubview(self.backView)
         self.addSubview(self.arrowImageView)
         
-        let imageWrapper = LUILayoutConstraintItemWrapper.wrapItem(self.backImageView) { wrapper, size, resizeItems in
+        let viewWrapper = LUILayoutConstraintItemWrapper.wrapItem(self.backView) { wrapper, size, resizeItems in
             return size
         }
         
-        self.flowlayout = LUIFlowLayoutConstraint([imageWrapper, self.arrowImageView], param: .H_T_R, contentInsets: .zero, interitemSpacing: 0)
+        self.flowlayout = LUIFlowLayoutConstraint([self.arrowImageView, viewWrapper], param: .H_T_L, contentInsets: .zero, interitemSpacing: 0)
     }
     
     required init?(coder: NSCoder) {

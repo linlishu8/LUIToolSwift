@@ -13,6 +13,7 @@ class LUIChatBaseBubbleView: LUIChatBaseView {
         return UIView()
     }()
     public var mineView: LUIChatBackgroundMineView?
+    public var otherView: CIBChatBackgroundOtherView?
     
     override init(frame: CGRect) {
         super.init(frame: frame)

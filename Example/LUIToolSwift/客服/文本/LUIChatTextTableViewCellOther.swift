@@ -1,5 +1,5 @@
 //
-//  LUIChatTextTableViewCellMine.swift
+//  LUIChatTextTableViewCellOther.swift
 //  LUIToolSwift_Example
 //
 //  Created by 六月 on 2024/10/17.
@@ -9,9 +9,9 @@
 import UIKit
 import LUIToolSwift
 
-class LUIChatTextTableViewCellMine: LUIChatBubbleBaseTableViewCell {
-    private lazy var textView: LUIChatTextBubbleMineView = {
-        let textView = LUIChatTextBubbleMineView(frame: .zero)
+class LUIChatTextTableViewCellOther: LUIChatBubbleBaseTableViewCell {
+    private lazy var textView: LUIChatTextBubbleOtherView = {
+        let textView = LUIChatTextBubbleOtherView(frame: .zero)
         return textView
     }()
     
@@ -19,10 +19,10 @@ class LUIChatTextTableViewCellMine: LUIChatBubbleBaseTableViewCell {
     
     required init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        self.contentView.addSubview(self.mineHeaderView)
+        self.contentView.addSubview(self.otherHeaderView)
         self.contentView.addSubview(self.textView)
         
-        self.flowlayout = LUIFlowLayoutConstraint([self.textView, self.mineHeaderView], param: .H_T_R, contentInsets: self.contentInsets, interitemSpacing: 5)
+        self.flowlayout = LUIFlowLayoutConstraint([self.otherHeaderView, self.textView], param: .H_T_L, contentInsets: self.contentInsets, interitemSpacing: 5)
     }
     
     @MainActor required init?(coder aDecoder: NSCoder) {
