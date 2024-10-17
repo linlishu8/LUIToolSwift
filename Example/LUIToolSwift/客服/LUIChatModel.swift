@@ -9,7 +9,8 @@
 import Foundation
 
 class LUIChatModel {
-    open var cellClass: AnyClass?
-    open var title: String?
-    open var isSelf: Bool?
+    var cellClass: AnyClass?
+    var title: String?
+    var isSelf: Bool?
+    var attrTitle: NSAttributedString?
 }

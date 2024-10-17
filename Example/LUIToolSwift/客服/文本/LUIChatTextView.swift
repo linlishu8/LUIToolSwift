@@ -35,8 +35,12 @@ class LUIChatTextView: LUIChatBaseView, UITextViewDelegate {
     
     override func loadDataWithCellModel(cellModel: LUITableViewCellModel) {
         if let modelValue = cellModel.modelValue as? LUIChatModel {
-            self.textView.text = modelValue.title
-            self.textView.textColor = modelValue.isSelf ?? false ? UIColor.white : UIColor.black
+            if let text = modelValue.title {
+                self.textView.text = text
+                self.textView.textColor = modelValue.isSelf ?? false ? UIColor.white : UIColor.black
+            } else if let attrTitle = modelValue.attrTitle {
+                self.textView.attributedText = attrTitle
+            }
         }
     }
     
@@ -50,5 +54,14 @@ class LUIChatTextView: LUIChatBaseView, UITextViewDelegate {
     
     override func sizeThatFits(_ size: CGSize) -> CGSize {
         return self.flowlayout?.sizeThatFits(size, resizeItems: true) ?? .zero
+    }
+    
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        if URL.scheme == "yourAppScheme" {
+            // 在这里处理你的逻辑，例如打开一个新的视图控制器
+            print("链接被点击")
+            return false // 返回 false 表示我们自定义处理点击事件
+        }
+        return true // 其他 URL 正常处理
     }
 }
