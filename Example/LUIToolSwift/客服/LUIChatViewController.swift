@@ -45,6 +45,7 @@ class LUIChatViewController: UIViewController {
     
     private func reloadTableView() {
         self.chatTableView.model.addCellModel(self.setupTableViewCellModel(modelCellClass: LUIChatHeadViewTableViewCell.self))
+        self.chatTableView.model.addCellModel(self.setupTableViewCellModel(modelCellClass: LUIChatTextTableViewCellMine.self))
         self.chatTableView.model.reloadTableViewData()
     }
     

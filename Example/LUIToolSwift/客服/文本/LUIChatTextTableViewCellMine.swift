@@ -10,8 +10,8 @@ import UIKit
 import LUIToolSwift
 
 class LUIChatTextTableViewCellMine: LUIChatBubbleBaseTableViewCell {
-    private lazy var textView: LUIChatTextView = {
-        let textView = LUIChatTextView(frame: .zero)
+    private lazy var textView: LUIChatBaseBubbleView = {
+        let textView = LUIChatBaseBubbleView(frame: .zero)
         return textView
     }()
     
@@ -30,7 +30,8 @@ class LUIChatTextTableViewCellMine: LUIChatBubbleBaseTableViewCell {
     }
     
     override func customReloadCellModel() {
-        
+//        self.cellModel["text"] = "测试文字测试文字"
+        self.textView.loadDataWithCellModel(cellModel: self.cellModel)
     }
     
     override func customLayoutSubviews() {

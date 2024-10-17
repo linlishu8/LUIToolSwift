@@ -1,18 +1,17 @@
 //
-//  LUIChatTextView.swift
+//  LUIChatTextBubbleView.swift
 //  LUIToolSwift_Example
 //
 //  Created by 六月 on 2024/10/17.
 //  Copyright © 2024 CocoaPods. All rights reserved.
 //
 
-import UIKit
+import Foundation
 import LUIToolSwift
 
-class LUIChatTextView: LUIChatBaseView, UITextViewDelegate {
-    private lazy var textView: UITextView = {
-        let textView = UITextView()
-        textView.delegate = self
+class LUIChatTextBubbleView: LUIChatBaseBubbleView {
+    private lazy var textView: LUIChatTextView = {
+        let textView = LUIChatTextView(frame: .zero)
         return textView
     }()
     
@@ -20,21 +19,13 @@ class LUIChatTextView: LUIChatBaseView, UITextViewDelegate {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         self.addSubview(self.textView)
         
-        self.flowlayout = LUIFlowLayoutConstraint([self.textView], param: .H_T_C, contentInsets: .zero, interitemSpacing: 0)
+        self.flowlayout = LUIFlowLayoutConstraint([self.textView], param: .H_C_C, contentInsets: self.chatMargin, interitemSpacing: 0)
     }
     
     @MainActor required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func loadDataWithCellModel(cellModel: LUITableViewCellModel) {
-        self.textView.text = "我来输入点子阿斯蒂芬撒旦法"
-        if let text = cellModel.modelValue as? String {
-            self.textView.text = text
-        }
     }
     
     override func layoutSubviews() {
@@ -48,5 +39,22 @@ class LUIChatTextView: LUIChatBaseView, UITextViewDelegate {
     override func sizeThatFits(_ size: CGSize) -> CGSize {
         let s = self.flowlayout?.sizeThatFits(size, resizeItems: true) ?? .zero
         return s
+    }
+}
+
+class CIBChatTextBubbleMineView: LUIChatTextBubbleView {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.mineView = LUIChatBackgroundMineView()
+        self.bgView.addSubview(self.mineView!)
+    }
+    
+    @MainActor required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.mineView?.frame = bounds
     }
 }

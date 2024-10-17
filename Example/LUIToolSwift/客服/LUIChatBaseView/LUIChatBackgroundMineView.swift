@@ -1,5 +1,5 @@
 //
-//  LUIChatTextView.swift
+//  LUIChatBackgroundMineView.swift
 //  LUIToolSwift_Example
 //
 //  Created by 六月 on 2024/10/17.
@@ -9,32 +9,30 @@
 import UIKit
 import LUIToolSwift
 
-class LUIChatTextView: LUIChatBaseView, UITextViewDelegate {
-    private lazy var textView: UITextView = {
-        let textView = UITextView()
-        textView.delegate = self
-        return textView
+class LUIChatBackgroundMineView: UIView {
+    
+    private lazy var backImageView: UIImageView = {
+        let imageView = UIImageView(image: UIImage(named: "lui_chat_message_mine_bg"))
+        return imageView
+    }()
+    
+    private lazy var arrowImageView: UIImageView = {
+        let imageView = UIImageView(image: UIImage(named: "lui_chat_message_mine"))
+        return imageView
     }()
     
     private var flowlayout: LUIFlowLayoutConstraint?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.addSubview(self.backImageView)
+        self.addSubview(self.arrowImageView)
         
-        self.addSubview(self.textView)
-        
-        self.flowlayout = LUIFlowLayoutConstraint([self.textView], param: .H_T_C, contentInsets: .zero, interitemSpacing: 0)
+        self.flowlayout = LUIFlowLayoutConstraint([self.backImageView, self.arrowImageView], param: .H_T_R, contentInsets: .zero, interitemSpacing: 0)
     }
     
-    @MainActor required init?(coder: NSCoder) {
+    required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func loadDataWithCellModel(cellModel: LUITableViewCellModel) {
-        self.textView.text = "我来输入点子阿斯蒂芬撒旦法"
-        if let text = cellModel.modelValue as? String {
-            self.textView.text = text
-        }
     }
     
     override func layoutSubviews() {

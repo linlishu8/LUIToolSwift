@@ -9,6 +9,17 @@
 import UIKit
 
 class LUIChatBaseBubbleView: LUIChatBaseView {
-    public var bgView: UIView?
+    public var bgView: UIView = {
+        return UIView()
+    }()
+    public var mineView: LUIChatBackgroundMineView?
     
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.addSubview(self.bgView)
+    }
+    
+    @MainActor required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }
