@@ -22,7 +22,7 @@ class LUIChatTextTableViewCellMine: LUIChatBubbleBaseTableViewCell {
         self.contentView.addSubview(self.mineHeaderView)
         self.contentView.addSubview(self.textView)
         
-        self.flowlayout = LUIFlowLayoutConstraint([self.textView, self.mineHeaderView], param: .H_T_R, contentInsets: self.contentInsets, interitemSpacing: 10)
+        self.flowlayout = LUIFlowLayoutConstraint([self.textView, self.mineHeaderView], param: .H_T_R, contentInsets: self.contentInsets, interitemSpacing: 5)
     }
     
     @MainActor required init?(coder aDecoder: NSCoder) {

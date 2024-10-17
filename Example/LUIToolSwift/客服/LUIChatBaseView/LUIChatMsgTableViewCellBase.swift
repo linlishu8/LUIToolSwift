@@ -10,7 +10,7 @@ import UIKit
 import LUIToolSwift
 
 class LUIChatMsgTableViewCellBase: LUITableViewCellBase {
-    var contentInsets = UIEdgeInsets(top: 16, left: 16, bottom: 0, right: 16)
+    var contentInsets = UIEdgeInsets(top: 16, left: 6, bottom: 0, right: 16)
     var noHeaderContentInsets = UIEdgeInsets(top: 8, left: 55, bottom: 0, right: 16)
     var systemContentInsets = UIEdgeInsets(top: 16, left: 16, bottom: 0, right: 55)
     

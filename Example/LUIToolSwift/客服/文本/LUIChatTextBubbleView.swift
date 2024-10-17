@@ -21,7 +21,7 @@ class LUIChatTextBubbleView: LUIChatBaseBubbleView {
         super.init(frame: frame)
         self.addSubview(self.textView)
         
-        self.flowlayout = LUIFlowLayoutConstraint([self.textView], param: .H_C_C, contentInsets: self.chatMargin, interitemSpacing: 0)
+        self.flowlayout = LUIFlowLayoutConstraint([self.textView], param: .H_C_C, contentInsets: self.chatTextMargin, interitemSpacing: 0)
     }
     
     @MainActor required init?(coder: NSCoder) {

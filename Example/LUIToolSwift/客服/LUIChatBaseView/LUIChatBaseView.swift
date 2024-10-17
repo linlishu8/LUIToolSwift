@@ -11,7 +11,8 @@ import LUIToolSwift
 
 class LUIChatBaseView: UIView {
     weak var cellModel: LUITableViewCellModel?
-    open var chatMargin: UIEdgeInsets = UIEdgeInsets.LUIEdgeInsetsMakeSameEdge(15)
+    open var chatTextMargin: UIEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 10)
+    open var chatMargin: UIEdgeInsets = UIEdgeInsets.LUIEdgeInsetsMakeSameEdge(10)
     
     override init(frame: CGRect) {
         super.init(frame: frame)

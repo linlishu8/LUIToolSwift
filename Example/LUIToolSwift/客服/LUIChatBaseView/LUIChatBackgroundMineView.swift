@@ -13,6 +13,8 @@ class LUIChatBackgroundMineView: UIView {
     
     private lazy var backImageView: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "lui_chat_message_mine_bg"))
+        imageView.layer.cornerRadius = 10
+        imageView.layer.masksToBounds = true
         return imageView
     }()
     
