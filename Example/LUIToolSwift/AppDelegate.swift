@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import IQKeyboardManagerSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,11 +17,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+        
+        IQKeyboardManager.shared.enable = true
+        IQKeyboardManager.shared.enableAutoToolbar = false  // 如果不需要工具条可以禁用
+        IQKeyboardManager.shared.shouldResignOnTouchOutside = true  // 点击背景收起键盘
+        
         let viewController = ViewController()
         let navigationController = UINavigationController(rootViewController: viewController)
         self.window?.backgroundColor = UIColor.white
         self.window?.rootViewController = navigationController
         self.window?.makeKeyAndVisible()
+        
         
         return true
     }

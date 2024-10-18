@@ -10,6 +10,8 @@ import UIKit
 import LUIToolSwift
 
 class LUIChatViewController: UIViewController {
+    var messageInputField: UITextField!
+    
     private lazy var chatTableView: LUITableView = {
         let tableView = LUITableView(frame: .zero, style: .plain)
         tableView.backgroundColor = .clear
@@ -83,6 +85,19 @@ class LUIChatViewController: UIViewController {
         self.view.addSubview(self.chatTableView)
         
         self.reloadTableView()
+        
+        messageInputField = UITextField()
+        messageInputField.placeholder = "请简短输入您的要求"
+        messageInputField.borderStyle = .roundedRect
+        messageInputField.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(messageInputField)
+        
+        NSLayoutConstraint.activate([
+            messageInputField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 8),
+            messageInputField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -8),
+            messageInputField.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -8),
+            messageInputField.heightAnchor.constraint(equalToConstant: 50)
+        ])
     }
     
     override func viewDidLayoutSubviews() {
