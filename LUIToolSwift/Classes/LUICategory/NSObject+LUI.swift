@@ -227,3 +227,13 @@ public extension Dictionary where Key == String {
         return self.l_valueForKeyPath(path, otherwise: nil)
     }
 }
+
+public extension UIViewController {
+    func safeBounds() -> CGRect {
+        var bounds = self.view.bounds
+        if #available(iOS 11.0, *) {
+            bounds = self.view.safeAreaLayoutGuide.layoutFrame
+        }
+        return bounds
+    }
+}

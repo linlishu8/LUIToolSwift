@@ -10,7 +10,10 @@ import UIKit
 import LUIToolSwift
 
 class LUIChatViewController: UIViewController {
-    var messageInputField: UITextField!
+    
+    var inputViewHeight: CGFloat = 70
+    
+    var chatInputView: LUIChatInputView!
     
     private lazy var chatTableView: LUITableView = {
         let tableView = LUITableView(frame: .zero, style: .plain)
@@ -86,18 +89,9 @@ class LUIChatViewController: UIViewController {
         
         self.reloadTableView()
         
-        messageInputField = UITextField()
-        messageInputField.placeholder = "请简短输入您的要求"
-        messageInputField.borderStyle = .roundedRect
-        messageInputField.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(messageInputField)
-        
-        NSLayoutConstraint.activate([
-            messageInputField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 8),
-            messageInputField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -8),
-            messageInputField.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -8),
-            messageInputField.heightAnchor.constraint(equalToConstant: 50)
-        ])
+        chatInputView = LUIChatInputView()
+        chatInputView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(chatInputView)
     }
     
     override func viewDidLayoutSubviews() {
@@ -106,7 +100,22 @@ class LUIChatViewController: UIViewController {
         var bounds = self.view.bounds
         bounds.size.height = 240
         self.backImage.frame = bounds
-        self.chatTableView.frame = self.view.bounds
+        
+        // 获取视图的宽度和底部安全区域
+        let width = view.bounds.width
+        let height: CGFloat = 70
+        let bottomSafeArea = view.safeAreaInsets.bottom
+        
+        // 设置 frame
+        chatInputView.frame = CGRect(
+            x: 0,
+            y: view.bounds.height - height - bottomSafeArea,
+            width: width,
+            height: height
+        )
+        
+        let edge = UIEdgeInsets(top: 0, left: 0, bottom: inputViewHeight, right: 0)
+        self.chatTableView.frame = UIEdgeInsetsInsetRect(self.safeBounds(), edge)
     }
     
     private func reloadTableView() {

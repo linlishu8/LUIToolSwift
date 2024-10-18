@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1F05BA172CA659BE003750FD /* LUIMainViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F05BA162CA659BE003750FD /* LUIMainViewTableViewCell.swift */; };
+		1F48D11E2CC22EA3002DC183 /* LUIChatInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F48D11D2CC22EA3002DC183 /* LUIChatInputView.swift */; };
 		1F4CB0C72CC1488B00E61CD5 /* CIBChatBackgroundOtherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4CB0C62CC1488B00E61CD5 /* CIBChatBackgroundOtherView.swift */; };
 		1F6072292CB6592D007E4FBD /* LUIChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6072282CB6592D007E4FBD /* LUIChatViewController.swift */; };
 		1F6072302CB6742A007E4FBD /* LUIChatBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F60722F2CB6742A007E4FBD /* LUIChatBaseView.swift */; };
@@ -54,6 +55,7 @@
 		1E5A6EAD9C3AAD0D6E1AC0B0 /* LUIToolSwift.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LUIToolSwift.podspec; path = ../LUIToolSwift.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		1EFF3050D2CB1168E22AD7DF /* Pods-LUIToolSwift_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LUIToolSwift_Tests.debug.xcconfig"; path = "Target Support Files/Pods-LUIToolSwift_Tests/Pods-LUIToolSwift_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		1F05BA162CA659BE003750FD /* LUIMainViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LUIMainViewTableViewCell.swift; sourceTree = "<group>"; };
+		1F48D11D2CC22EA3002DC183 /* LUIChatInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LUIChatInputView.swift; sourceTree = "<group>"; };
 		1F4CB0C62CC1488B00E61CD5 /* CIBChatBackgroundOtherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CIBChatBackgroundOtherView.swift; sourceTree = "<group>"; };
 		1F6072282CB6592D007E4FBD /* LUIChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LUIChatViewController.swift; sourceTree = "<group>"; };
 		1F60722F2CB6742A007E4FBD /* LUIChatBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LUIChatBaseView.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 				1F60722C2CB673FB007E4FBD /* LUIChatBaseView */,
 				1F6072282CB6592D007E4FBD /* LUIChatViewController.swift */,
 				1FAFE3A82CC1506C0097FD51 /* LUIChatModel.swift */,
+				1F48D11D2CC22EA3002DC183 /* LUIChatInputView.swift */,
 			);
 			path = "客服";
 			sourceTree = "<group>";
@@ -454,6 +457,7 @@
 				1FAFE3A92CC1506C0097FD51 /* LUIChatModel.swift in Sources */,
 				1FAFE3AC2CC15EB00097FD51 /* LUIChatImageView.swift in Sources */,
 				1FD566682CBCB84600959D77 /* LUIChatHeaderCollectionView.swift in Sources */,
+				1F48D11E2CC22EA3002DC183 /* LUIChatInputView.swift in Sources */,
 				1F60723A2CB75FDE007E4FBD /* LUIChatHeadViewTableViewCell.swift in Sources */,
 				1F7CDF7F2CC0FC7E0097F496 /* LUIChatTextTableViewCellMine.swift in Sources */,
 				1F7CDF792CC0E1A90097F496 /* LUIChatTextView.swift in Sources */,

@@ -38,14 +38,6 @@ class ViewController: UIViewController {
         self.tableView.frame = self.safeBounds()
     }
     
-    func safeBounds() -> CGRect {
-        var bounds = self.view.bounds
-        if #available(iOS 11.0, *) {
-            bounds = self.view.safeAreaLayoutGuide.layoutFrame
-        }
-        return bounds
-    }
-    
     func __reloadData() {
         let testModel1 = self.addCellModelWithCellTitle("客服")
         testModel1.whenClick = { cellModel in
