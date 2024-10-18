@@ -7,144 +7,230 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0508EF6E33E23795F18824136F3BB8B7 /* LUITableViewSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC70D1A47262DAE7F535B899DFD337C7 /* LUITableViewSectionModel.swift */; };
-		0B9443F57F622CC31BFFB1AF1FF94963 /* LUITableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAAFB10440BF8F8E3F70EF4D4BA05B7 /* LUITableViewModel.swift */; };
-		1F05BA192CA69DF1003750FD /* LUITableViewSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F05BA182CA69DF1003750FD /* LUITableViewSectionView.swift */; };
-		1F0D3AE02CBDF831002DCA25 /* UICollectionViewFlowLayout+LUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0D3ADF2CBDF831002DCA25 /* UICollectionViewFlowLayout+LUI.swift */; };
-		1F0D3AE22CBF5998002DCA25 /* NSArray+LUIBinarySearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0D3AE12CBF5998002DCA25 /* NSArray+LUIBinarySearch.swift */; };
-		1F48D11C2CC20F55002DC183 /* LUICollectionViewPageFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F48D11A2CC20F55002DC183 /* LUICollectionViewPageFlowLayout.swift */; };
-		1F4CB0A72CB952D000E61CD5 /* LUICollectionSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4CB0A62CB952D000E61CD5 /* LUICollectionSectionModel.swift */; };
-		1F4CB0AF2CBA9FBD00E61CD5 /* LUICollectionViewCellBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4CB0AA2CBA9FBD00E61CD5 /* LUICollectionViewCellBase.swift */; };
-		1F4CB0B02CBA9FBD00E61CD5 /* LUICollectionViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4CB0AB2CBA9FBD00E61CD5 /* LUICollectionViewCellModel.swift */; };
-		1F4CB0B12CBA9FBD00E61CD5 /* LUICollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4CB0AC2CBA9FBD00E61CD5 /* LUICollectionViewModel.swift */; };
-		1F4CB0B22CBA9FBD00E61CD5 /* LUICollectionViewSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4CB0AD2CBA9FBD00E61CD5 /* LUICollectionViewSectionModel.swift */; };
-		1F4CB0B52CBA9FCA00E61CD5 /* LUILayoutButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4CB0B32CBA9FCA00E61CD5 /* LUILayoutButton.swift */; };
-		1F4CB0BB2CBA9FE200E61CD5 /* LUIFlowLayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4CB0B62CBA9FE200E61CD5 /* LUIFlowLayoutConstraint.swift */; };
-		1F4CB0BC2CBA9FE200E61CD5 /* LUILayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4CB0B72CBA9FE200E61CD5 /* LUILayoutConstraint.swift */; };
-		1F4CB0BD2CBA9FE200E61CD5 /* LUILayoutConstraintItemAttributeBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4CB0B82CBA9FE200E61CD5 /* LUILayoutConstraintItemAttributeBase.swift */; };
-		1F4CB0BE2CBA9FE200E61CD5 /* LUILayoutConstraintItemWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4CB0B92CBA9FE200E61CD5 /* LUILayoutConstraintItemWrapper.swift */; };
-		1F4CB0C52CBE9CCE00E61CD5 /* UICollectionViewLayoutAttributes+LUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4CB0C42CBE9CCE00E61CD5 /* UICollectionViewLayoutAttributes+LUI.swift */; };
+		01E1AC903B3C100DDB0E76EE7F88CA8F /* UICollectionReusableView+LUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C634B7D7936607E8F96141C184129D6E /* UICollectionReusableView+LUI.swift */; };
+		041B655D7F5932F03A65C154BC02BDAA /* IQInvocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74FA4F54F1DC2616F38D44D3CDC55DE /* IQInvocation.swift */; };
+		04B0884964D9592302CA654E0B67E80E /* IQUIView+Hierarchy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CF2A5CAEE3965380B78E407FF383E3 /* IQUIView+Hierarchy.swift */; };
+		08B185E08278AE7EC55F8BBB19693AC5 /* IQKeyboardManager+OrientationNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F38298278DA6564A5853E702159B38 /* IQKeyboardManager+OrientationNotification.swift */; };
+		092C6BE4AF9A483E1543BF0BB614C67D /* LUICollectionViewCellBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508D355FF1EEF03410BE0177FBAC073F /* LUICollectionViewCellBase.swift */; };
+		0F2BF483FD3748AEABD2BF142F508864 /* LUITableViewSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AACDD3F6633CC81E1B7F291581CB680 /* LUITableViewSectionView.swift */; };
+		0F94B2449CA1ADA76AE79C0BF6A08549 /* IQKeyboardManagerConstantsInternal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615AB13CC06C5DFC09B42ED8FC44B9CB /* IQKeyboardManagerConstantsInternal.swift */; };
+		12F0BD50C8F48CAB8728FD69FB20C98D /* LUICollectionCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FD8F26D3F524FAC8DCA76D4079E9D6 /* LUICollectionCellModel.swift */; };
+		163D678BB907FCAB60704D0BE0943CA6 /* LUIToolSwift-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = ECA5D0A067518534C0767361D12221BD /* LUIToolSwift-dummy.m */; };
+		1740CBB33D469AEDD5D7291A9268FA97 /* IQToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B0F7BF78C1D89726BA66A586C2ADAA /* IQToolbar.swift */; };
+		1A9B9579E46EFBA63C5F57A6B17B5ECA /* IQKeyboardManagerSwift-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F0EB244AD79873584DF5275A31D8E432 /* IQKeyboardManagerSwift-dummy.m */; };
+		1B6FFD338254E76398B69F5C0D78EC6D /* LUILayoutConstraintItemAttributeBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64917F185D3DD3A5456EDAD03CB611EA /* LUILayoutConstraintItemAttributeBase.swift */; };
+		1D8031C86A94D32E00ED55B80428A0F3 /* IQKeyboardManager+Toolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72854F72E0889CC05AD906C479CBA47C /* IQKeyboardManager+Toolbar.swift */; };
 		1F716B507DBE51ADC2749CA436F39B53 /* Pods-LUIToolSwift_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8328F059DD8B571BEC3A604A1248F5B7 /* Pods-LUIToolSwift_Tests-dummy.m */; };
-		1FD566582CB8FF0700959D77 /* UIImageView+LUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD566572CB8FF0700959D77 /* UIImageView+LUI.swift */; };
-		1FD5665A2CB900CE00959D77 /* LUICGRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD566592CB900CE00959D77 /* LUICGRect.swift */; };
-		1FD566632CBA620700959D77 /* UICollectionReusableView+LUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD566622CBA620700959D77 /* UICollectionReusableView+LUI.swift */; };
-		1FD5666A2CBCBAF800959D77 /* LUICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD566692CBCBAF800959D77 /* LUICollectionView.swift */; };
-		21D00E7BA3D069AF26552BBF2184D2AB /* UITableViewCell+LUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11491248B7E266AE74DFDE794D90F68C /* UITableViewCell+LUI.swift */; };
-		2438E1C11EEE6739BCD314694C2D9F9F /* LUICollectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04EA15C7178E7029CEF6FE89D93F210 /* LUICollectionModel.swift */; };
-		2F26923936102C02059518624239565A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		3BA420FDFEC7C5EB4F9FB46AEBC4AE64 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		42827799AB3820DC6AE170E9135CE031 /* LUICollectionModelObjectBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE46A44FD531B7AF1ADEDE3696410069 /* LUICollectionModelObjectBase.swift */; };
-		44947C47C087D560DBFF5F9DA83469A9 /* Pods-LUIToolSwift_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B1A90A461F2D196D5EFB964E74CF3FFC /* Pods-LUIToolSwift_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		49A1FDFF2366EFA286A4EDBCB5218670 /* LUITableViewSectionViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444580440DB895F6985996CED292EF18 /* LUITableViewSectionViewProtocol.swift */; };
-		56381F2FE8472F0CB5EFAA8CCF8F4625 /* NSObject+LUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07B4AD125725917F318ACD31E252253 /* NSObject+LUI.swift */; };
-		6DF9C10011C3F1F6F0784DA26A180B6D /* String+LUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A632942CD82335E44FF27F30751BFE6B /* String+LUI.swift */; };
-		6FA9CA7C73978230AD2A492788BDCA26 /* UIView+LUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2794CD583F1609446E16F8232BE013 /* UIView+LUI.swift */; };
-		725192088EA3B99B220A4A8C27599085 /* LUIToolSwift-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 4006B947ABA128CB98F96B97F2F4202E /* LUIToolSwift-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		81AE6EFB5B6AE704DF6086EA147DD1E8 /* LUIToolSwift-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DA9902571E74E1CF5B411A6D41A621 /* LUIToolSwift-dummy.m */; };
-		8A21842628BC6AA6ED174770530C750D /* Pods-LUIToolSwift_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 179BD883232851FFC5A28930BAF0288E /* Pods-LUIToolSwift_Example-dummy.m */; };
-		8D931207C4DADA5AB693AB3C0B162696 /* UIScrollView+LUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B128AB8B63455554602489FC6F8F202 /* UIScrollView+LUI.swift */; };
+		20616A47873318F80BFFEABAC9730122 /* IQTitleBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD7948F2836D6E5A2C382F373805A98 /* IQTitleBarButtonItem.swift */; };
+		221C7F927663E5FB985210CEF5D79ABF /* UIImageView+LUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0FDA31EF91A19A74EBDDE24491D284 /* UIImageView+LUI.swift */; };
+		24EC44FF102C2635A476CEF7567F89DA /* IQPreviousNextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44A1802E658439BC4380D98DB8DC5F3 /* IQPreviousNextView.swift */; };
+		2918BB99BB29ABE8337CF10B46B3FC18 /* LUITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F6529ACD0B40693EB4AAFAFF5CA29F3 /* LUITableView.swift */; };
+		2CA0B3B43A972DF3AD79F58092E3403E /* IQKeyboardManager+Internal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAA271F3A9B93DF8620F90EF07D6566 /* IQKeyboardManager+Internal.swift */; };
+		2E5138271A6C79BDA3C0835F2596219B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04D60AC13D33197690A05C641925DDDA /* UIKit.framework */; };
+		2EA3363266FDD0DDE35F78EF95904F9F /* LUITableViewCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C369659C42F0034B01CCB2429ED11039 /* LUITableViewCellProtocol.swift */; };
+		2EC96162DD6740ECE67FF38B8400A7C5 /* IQKeyboardManager+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293C7104272A3D4FF208B5743BAB1FD2 /* IQKeyboardManager+Debug.swift */; };
+		2F0E9FDFDBD35F8ED9E669A414F64AE8 /* LUICollectionViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDA398F25173CBC3EE8352CEEBD7FC8 /* LUICollectionViewCellModel.swift */; };
+		34C39BDBFE7A2CC585787F5AFCA39FDE /* IQUIView+IQKeyboardToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4280CDA65D22B3380E8F3793AD676448 /* IQUIView+IQKeyboardToolbar.swift */; };
+		393EED37D05E47796AD57FEFB2B387F5 /* LUICollectionModelObjectBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EE3FAED1D619596B57962565E7D357 /* LUICollectionModelObjectBase.swift */; };
+		3BA420FDFEC7C5EB4F9FB46AEBC4AE64 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79CF7D56C5D50C18B2EA0ED106D998C7 /* Foundation.framework */; };
+		3D91349BA3C972B90D4DB855604E1D16 /* String+LUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8829A6EC32F00507D68408CA8CF1A010 /* String+LUI.swift */; };
+		3E059C4F16580626ED773522AFFC751C /* Pods-LUIToolSwift_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B1A90A461F2D196D5EFB964E74CF3FFC /* Pods-LUIToolSwift_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3F01EED6380B596E1D0C1497CBCF9B95 /* IQUITextFieldView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA30101B5B5E098E3C8AF82705FC9153 /* IQUITextFieldView+Additions.swift */; };
+		3F3DBAC1B5210ED8130977B1318B8F8A /* CGGeometry+LUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B1831E40D3FEC1676517FBBBD3471F /* CGGeometry+LUI.swift */; };
+		41CD40F5713CD71AD5AB1471E81C97E1 /* IQBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D76EF06E4464FFC6A5C773DB0BBE58 /* IQBarButtonItem.swift */; };
+		423C524812B76F235C1C7D263C74A75F /* UIView+LUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6DBF4DF126F2478F6E0C91A5CD32F1 /* UIView+LUI.swift */; };
+		4B8C78CBBADA17B5A389FB977F7D8D9D /* LUITableViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E25F8EAAF70D4421F7E06F4B153CA18 /* LUITableViewCellModel.swift */; };
+		56DCE9BE2866E2EE1F1B1A9910FC5EB2 /* LUITableViewSectionViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1040D33F9791F031E40B10F120CEA629 /* LUITableViewSectionViewProtocol.swift */; };
+		593B4533E20D1059D5AA420C3952BB64 /* UICollectionViewLayoutAttributes+LUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1936F839F28DDE4E190282AF1A7EB421 /* UICollectionViewLayoutAttributes+LUI.swift */; };
+		60C6606FF8176EE5A38870CFD9F649C8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79CF7D56C5D50C18B2EA0ED106D998C7 /* Foundation.framework */; };
+		61610AFB0805F49091BC387FC7B645D5 /* LUICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD245DB77E2991800B49AA047E3CF1A /* LUICollectionView.swift */; };
+		63F75E6598715A6550DD5104DBC7B4F5 /* LUITableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49272B7633F3924564BAD35D047DB621 /* LUITableViewModel.swift */; };
+		64F69F09E278D53B5C53C2565A78E868 /* LUICGRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E78A4902801868AD4CD3EC9EF25C705 /* LUICGRect.swift */; };
+		66730A77248D69093E3BD3EFB39ADAFE /* LUIFlowLayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8C76CC6DEA1C4C59C4D40FF0050B73 /* LUIFlowLayoutConstraint.swift */; };
+		68C225A29DD3BEE1CE9732139A405CF1 /* Pods-LUIToolSwift_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 179BD883232851FFC5A28930BAF0288E /* Pods-LUIToolSwift_Example-dummy.m */; };
+		7029AA1DAFC055C6DCA4B8DD009FBA20 /* LUICollectionViewSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5520F32B970B04540C44DF094142F83A /* LUICollectionViewSectionModel.swift */; };
+		70C15F3979EF561261DDB2228D30CAF8 /* LUICollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342B30A6C9198A0974715491E1947998 /* LUICollectionViewModel.swift */; };
+		7AC995F567A776FC1A80A9FA0733F3D1 /* IQNSArray+Sort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B5A5E28C072A0624118F840538984D /* IQNSArray+Sort.swift */; };
+		85F13B069B06ADF2B6DCA622E4645110 /* IQKeyboardManagerConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C7C8A5A21E510A303D762337DF7B23 /* IQKeyboardManagerConstants.swift */; };
+		86A03DE9366D1BE94EB99AA387EACD1F /* IQKeyboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4B74522135041E0DF1BF1033D9B174 /* IQKeyboardManager.swift */; };
+		8C86F0B85825D4D5C9575B8DF8D01B5B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79CF7D56C5D50C18B2EA0ED106D998C7 /* Foundation.framework */; };
+		8FC814A3581CEBAE54CFB49689272EFB /* LUITableViewSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A928DC5AE8E41E272EFF0AE2B618F700 /* LUITableViewSectionModel.swift */; };
 		91558BCD75878053593D6D22B793877A /* Pods-LUIToolSwift_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8184CC285747602B50FFC54035ADAB15 /* Pods-LUIToolSwift_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A1549A5D8D5C50460EB2D655B59BEC5B /* LUITableViewCellSwipeAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84A40298E6E47A8F53C4C993FF9FB16 /* LUITableViewCellSwipeAction.swift */; };
-		A46718632CC3BEE37AAD06AF512612CD /* LUITableViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529311B1F8EFEAD54314D820F76BF798 /* LUITableViewCellModel.swift */; };
-		A950133381AC5DAD9E454740E7C8D9FF /* LUICollectionCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8997CAE696241485648B9012DB2D8600 /* LUICollectionCellModel.swift */; };
-		B577036CCACA7DE9B020B2AF30C9DEFE /* UITableView+LUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FB7B0DF046A162AB2ECE56AC4FD9FD /* UITableView+LUI.swift */; };
-		E3AE906E52E6EA0833FE8F6677B43296 /* LUITableViewCellBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D947B1DA7BC1119E79ACD362292AF468 /* LUITableViewCellBase.swift */; };
-		EE28853A3B3DED13F98A9E0766968BB4 /* LUITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD72DAB872272CD3241BF4E9EFCDAF0 /* LUITableView.swift */; };
-		FA34E6572099B0E2CBE198D59F44A994 /* LUITableViewCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E018591BFAFD9D032F2C71B3B3EE8AC /* LUITableViewCellProtocol.swift */; };
-		FB4C3A575C66FF29BE711A5EB14E93DC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		FF72DC89AEFC416A82669093F8994DA0 /* CGGeometry+LUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 096FA20C5C4A329A29961222E64CC13A /* CGGeometry+LUI.swift */; };
+		9488B2022D6B150B3DE933EB4574FBD8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79CF7D56C5D50C18B2EA0ED106D998C7 /* Foundation.framework */; };
+		A0CBDDE5518E899FF67DCE625A7E48D3 /* LUITableViewCellSwipeAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C449534923F38727B5E2186BF7D5C2D /* LUITableViewCellSwipeAction.swift */; };
+		A137473ED9927E36DAB8BB148B17E270 /* LUICollectionSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A02E4AF0B7DFC8DD52D4660914F195F /* LUICollectionSectionModel.swift */; };
+		A2696BF128A106AF2B192398A5F895E1 /* UIScrollView+LUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD40174403BDDCAE4B352378AB0DADF /* UIScrollView+LUI.swift */; };
+		A3446133CD84CF3139B040384055B437 /* UICollectionViewFlowLayout+LUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52116CCC15136721290ACE21570400B /* UICollectionViewFlowLayout+LUI.swift */; };
+		A4BAEE317BFF650DCC888FC67BFBF7EF /* IQKeyboardManager+UIKeyboardNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9AC1854EF5DFAE2B65F9F7F823EA27 /* IQKeyboardManager+UIKeyboardNotification.swift */; };
+		A792C1ECF9170F30A1606B3192802A98 /* LUILayoutButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9031EB2C63409039C4BC16346810A9F2 /* LUILayoutButton.swift */; };
+		B1B6A2491AC437909DABE20C71BECDBC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 840FA0B75AF62912A30DDC66B647ED98 /* CoreGraphics.framework */; };
+		B6B43B1B78EC0E52CC08F82841A22A31 /* IQKeyboardManagerSwift-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A298EC196A378BD5C7FE4A436CBD1BB9 /* IQKeyboardManagerSwift-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B6EC6D40823E66D5B389ACEAC9FD7AAE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A42DBD2F42D55606EEBA514009498B87 /* QuartzCore.framework */; };
+		B8C4BABFDA6BA5F448EDD3408B24C775 /* NSObject+LUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F82C1663DD2695447AD74D68929533 /* NSObject+LUI.swift */; };
+		BAA3A6655CAB5C754A2B0FFE7EBFE07F /* LUITableViewCellBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7D30E2DC98277FEE0FD0F37FD69C52 /* LUITableViewCellBase.swift */; };
+		C81CB3B5D25BDBCB6D3A3632BE408229 /* IQKeyboardReturnKeyHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137093D8E49217C090D374983F152184 /* IQKeyboardReturnKeyHandler.swift */; };
+		D31356D54A39420DB91C892502CFFD57 /* IQUIViewController+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2C69CCD080DCE1292F31874E43B91D /* IQUIViewController+Additions.swift */; };
+		D5567849BCEEA7AAD62D140CEBF94757 /* LUILayoutConstraintItemWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728DC830D24351587F86BB0CD80AC4FC /* LUILayoutConstraintItemWrapper.swift */; };
+		D6516B5451008BF1ABA150E6482F6325 /* IQKeyboardManager+UITextFieldViewNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6E6BC7C022A99DF59AD0ED4B5597B7 /* IQKeyboardManager+UITextFieldViewNotification.swift */; };
+		DA8E76663EBFD149012E7C6EAE493C42 /* LUICollectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB614F27579F251E41BA7BC0332E9E8F /* LUICollectionModel.swift */; };
+		DF33C3DE068D6116B3F551B0453ACD23 /* IQUIScrollView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368438D51285F622AEC4CA45FB117A53 /* IQUIScrollView+Additions.swift */; };
+		E3C89A2C8FC5E7AC59ED09406124C6C4 /* NSArray+LUIBinarySearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68316D2ECF92599FCC26B5FE5863F0BB /* NSArray+LUIBinarySearch.swift */; };
+		E72E1BDDFF31003BD089544FC112FAAC /* IQTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFE3BBAB67A853B21025B246B315134 /* IQTextView.swift */; };
+		EAF932C1C0893EADF413D259A8FFF6BB /* LUILayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66157864C680CA8B2CDFF66E2332A316 /* LUILayoutConstraint.swift */; };
+		ED05B86A80F33D8DAF9230148DD295EB /* LUIToolSwift-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E61C7806819BE28689D7BE93E50304F8 /* LUIToolSwift-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ED0D970A24D82BAC993525849487D49B /* UITableView+LUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787C22551474892AEEFB82F62F975ADB /* UITableView+LUI.swift */; };
+		F2B1C1D70C629AE19C0D5121B1BBA891 /* IQKeyboardManager+Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA75D03BE22858F15248EF62C270F15 /* IQKeyboardManager+Position.swift */; };
+		F48E03AE7207A9779C135C421E2767BD /* UITableViewCell+LUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0513399B1BA91BC39F5FE1B57EDF47D0 /* UITableViewCell+LUI.swift */; };
+		FA3D3696FB23068551E6FDDE6B2CFA25 /* LUICollectionViewPageFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC91FEE0B2657B0048C134C52EEC1DD /* LUICollectionViewPageFlowLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		1E626FE504DF8332C4360B2766A8773D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C704B2D9EAFB7A7275BA14034694CF09;
-			remoteInfo = "Pods-LUIToolSwift_Example";
-		};
-		721F3C13F9FCC98AA2D55ABAD5A93828 /* PBXContainerItemProxy */ = {
+		8947B7A89F76E07555DECD7FB17B9CD0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = FF5BB4426BE26192F335EC13332ACE10;
 			remoteInfo = LUIToolSwift;
 		};
+		9181F1FFCF5CEF9758A2BA7AD1E22E74 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C704B2D9EAFB7A7275BA14034694CF09;
+			remoteInfo = "Pods-LUIToolSwift_Example";
+		};
+		F69FD8DB878C0D992CC53DF0BABF6FC8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B490E7485944099E16C9CBD79119D1D4;
+			remoteInfo = IQKeyboardManagerSwift;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		029E8554494E69ADBF68302BD7F44EB7 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
 		036A049389555CB4295CFCCEB7CA5F46 /* Pods-LUIToolSwift_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-LUIToolSwift_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		096FA20C5C4A329A29961222E64CC13A /* CGGeometry+LUI.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "CGGeometry+LUI.swift"; sourceTree = "<group>"; };
-		0FD6C0965B0FA6EC4C192ACF7BB02489 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		11491248B7E266AE74DFDE794D90F68C /* UITableViewCell+LUI.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+LUI.swift"; sourceTree = "<group>"; };
+		04D60AC13D33197690A05C641925DDDA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		0513399B1BA91BC39F5FE1B57EDF47D0 /* UITableViewCell+LUI.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+LUI.swift"; sourceTree = "<group>"; };
+		0C5FAD4EDA2F3BF2C4A792E8696DF517 /* LUIToolSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = LUIToolSwift.release.xcconfig; sourceTree = "<group>"; };
+		0E6DBF4DF126F2478F6E0C91A5CD32F1 /* UIView+LUI.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIView+LUI.swift"; sourceTree = "<group>"; };
+		0F6529ACD0B40693EB4AAFAFF5CA29F3 /* LUITableView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LUITableView.swift; sourceTree = "<group>"; };
+		1040D33F9791F031E40B10F120CEA629 /* LUITableViewSectionViewProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LUITableViewSectionViewProtocol.swift; sourceTree = "<group>"; };
 		12D14BBCE6B634D9D2BCCF300D49491B /* Pods-LUIToolSwift_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-LUIToolSwift_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
+		137093D8E49217C090D374983F152184 /* IQKeyboardReturnKeyHandler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = IQKeyboardReturnKeyHandler.swift; path = IQKeyboardManagerSwift/IQKeyboardReturnKeyHandler.swift; sourceTree = "<group>"; };
 		179BD883232851FFC5A28930BAF0288E /* Pods-LUIToolSwift_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-LUIToolSwift_Example-dummy.m"; sourceTree = "<group>"; };
+		1936F839F28DDE4E190282AF1A7EB421 /* UICollectionViewLayoutAttributes+LUI.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UICollectionViewLayoutAttributes+LUI.swift"; sourceTree = "<group>"; };
 		1ECF57F7E65C9B8FF06C46D20386A1DC /* Pods-LUIToolSwift_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-LUIToolSwift_Tests.modulemap"; sourceTree = "<group>"; };
-		1F05BA182CA69DF1003750FD /* LUITableViewSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LUITableViewSectionView.swift; sourceTree = "<group>"; };
-		1F0D3ADF2CBDF831002DCA25 /* UICollectionViewFlowLayout+LUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewFlowLayout+LUI.swift"; sourceTree = "<group>"; };
-		1F0D3AE12CBF5998002DCA25 /* NSArray+LUIBinarySearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSArray+LUIBinarySearch.swift"; sourceTree = "<group>"; };
-		1F48D11A2CC20F55002DC183 /* LUICollectionViewPageFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LUICollectionViewPageFlowLayout.swift; sourceTree = "<group>"; };
-		1F4CB0A62CB952D000E61CD5 /* LUICollectionSectionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LUICollectionSectionModel.swift; sourceTree = "<group>"; };
-		1F4CB0AA2CBA9FBD00E61CD5 /* LUICollectionViewCellBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LUICollectionViewCellBase.swift; sourceTree = "<group>"; };
-		1F4CB0AB2CBA9FBD00E61CD5 /* LUICollectionViewCellModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LUICollectionViewCellModel.swift; sourceTree = "<group>"; };
-		1F4CB0AC2CBA9FBD00E61CD5 /* LUICollectionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LUICollectionViewModel.swift; sourceTree = "<group>"; };
-		1F4CB0AD2CBA9FBD00E61CD5 /* LUICollectionViewSectionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LUICollectionViewSectionModel.swift; sourceTree = "<group>"; };
-		1F4CB0B32CBA9FCA00E61CD5 /* LUILayoutButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LUILayoutButton.swift; sourceTree = "<group>"; };
-		1F4CB0B62CBA9FE200E61CD5 /* LUIFlowLayoutConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LUIFlowLayoutConstraint.swift; sourceTree = "<group>"; };
-		1F4CB0B72CBA9FE200E61CD5 /* LUILayoutConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LUILayoutConstraint.swift; sourceTree = "<group>"; };
-		1F4CB0B82CBA9FE200E61CD5 /* LUILayoutConstraintItemAttributeBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LUILayoutConstraintItemAttributeBase.swift; sourceTree = "<group>"; };
-		1F4CB0B92CBA9FE200E61CD5 /* LUILayoutConstraintItemWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LUILayoutConstraintItemWrapper.swift; sourceTree = "<group>"; };
-		1F4CB0C42CBE9CCE00E61CD5 /* UICollectionViewLayoutAttributes+LUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewLayoutAttributes+LUI.swift"; sourceTree = "<group>"; };
-		1FD566572CB8FF0700959D77 /* UIImageView+LUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+LUI.swift"; sourceTree = "<group>"; };
-		1FD566592CB900CE00959D77 /* LUICGRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LUICGRect.swift; sourceTree = "<group>"; };
-		1FD566622CBA620700959D77 /* UICollectionReusableView+LUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionReusableView+LUI.swift"; sourceTree = "<group>"; };
-		1FD566692CBCBAF800959D77 /* LUICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LUICollectionView.swift; sourceTree = "<group>"; };
-		2746CD20E3A29A7DEE6CBB4CF106E47A /* LUIToolSwift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = LUIToolSwift.modulemap; sourceTree = "<group>"; };
-		2763022547E3C3DF5B0762954E00462A /* LUIToolSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LUIToolSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2CD546427EF522A45F5F1CC7E24D2379 /* LUIToolSwift-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "LUIToolSwift-Info.plist"; sourceTree = "<group>"; };
+		2470FDFA3DC92A6B1243086077859224 /* LUIToolSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = LUIToolSwift.debug.xcconfig; sourceTree = "<group>"; };
+		2763022547E3C3DF5B0762954E00462A /* LUIToolSwift */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = LUIToolSwift; path = LUIToolSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		293C7104272A3D4FF208B5743BAB1FD2 /* IQKeyboardManager+Debug.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "IQKeyboardManager+Debug.swift"; path = "IQKeyboardManagerSwift/IQKeyboardManager+Debug.swift"; sourceTree = "<group>"; };
 		2CE9181A20D6CF41BE6DFA484E5FB440 /* Pods-LUIToolSwift_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LUIToolSwift_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		3B4BB530CFAB47FAABB4F1B62BDBE27B /* LUIToolSwift-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LUIToolSwift-prefix.pch"; sourceTree = "<group>"; };
-		3E797540E13E48D8F108D984F61984F6 /* LUIToolSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = LUIToolSwift.debug.xcconfig; sourceTree = "<group>"; };
-		4006B947ABA128CB98F96B97F2F4202E /* LUIToolSwift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LUIToolSwift-umbrella.h"; sourceTree = "<group>"; };
-		444580440DB895F6985996CED292EF18 /* LUITableViewSectionViewProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LUITableViewSectionViewProtocol.swift; sourceTree = "<group>"; };
+		2DBB1613E5A0BC4CAF3DE161C1976D06 /* IQKeyboardManagerSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = IQKeyboardManagerSwift.release.xcconfig; sourceTree = "<group>"; };
+		2F52550AD1ACBAA22F54ABB6F6614A9F /* IQKeyboardManagerSwift-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "IQKeyboardManagerSwift-prefix.pch"; sourceTree = "<group>"; };
+		342B30A6C9198A0974715491E1947998 /* LUICollectionViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LUICollectionViewModel.swift; sourceTree = "<group>"; };
+		368438D51285F622AEC4CA45FB117A53 /* IQUIScrollView+Additions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "IQUIScrollView+Additions.swift"; path = "IQKeyboardManagerSwift/Categories/IQUIScrollView+Additions.swift"; sourceTree = "<group>"; };
+		3A02E4AF0B7DFC8DD52D4660914F195F /* LUICollectionSectionModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LUICollectionSectionModel.swift; sourceTree = "<group>"; };
+		3AAA271F3A9B93DF8620F90EF07D6566 /* IQKeyboardManager+Internal.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "IQKeyboardManager+Internal.swift"; path = "IQKeyboardManagerSwift/IQKeyboardManager+Internal.swift"; sourceTree = "<group>"; };
+		4280CDA65D22B3380E8F3793AD676448 /* IQUIView+IQKeyboardToolbar.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "IQUIView+IQKeyboardToolbar.swift"; path = "IQKeyboardManagerSwift/IQToolbar/IQUIView+IQKeyboardToolbar.swift"; sourceTree = "<group>"; };
+		49272B7633F3924564BAD35D047DB621 /* LUITableViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LUITableViewModel.swift; sourceTree = "<group>"; };
+		4AACDD3F6633CC81E1B7F291581CB680 /* LUITableViewSectionView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LUITableViewSectionView.swift; sourceTree = "<group>"; };
+		4C7D30E2DC98277FEE0FD0F37FD69C52 /* LUITableViewCellBase.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LUITableViewCellBase.swift; sourceTree = "<group>"; };
+		4E25F8EAAF70D4421F7E06F4B153CA18 /* LUITableViewCellModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LUITableViewCellModel.swift; sourceTree = "<group>"; };
+		4EA75D03BE22858F15248EF62C270F15 /* IQKeyboardManager+Position.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "IQKeyboardManager+Position.swift"; path = "IQKeyboardManagerSwift/IQKeyboardManager+Position.swift"; sourceTree = "<group>"; };
+		4EDA398F25173CBC3EE8352CEEBD7FC8 /* LUICollectionViewCellModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LUICollectionViewCellModel.swift; sourceTree = "<group>"; };
+		508D355FF1EEF03410BE0177FBAC073F /* LUICollectionViewCellBase.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LUICollectionViewCellBase.swift; sourceTree = "<group>"; };
 		5116C4E72FB5705DA227A834EC7B3A64 /* Pods-LUIToolSwift_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-LUIToolSwift_Example-Info.plist"; sourceTree = "<group>"; };
-		529311B1F8EFEAD54314D820F76BF798 /* LUITableViewCellModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LUITableViewCellModel.swift; sourceTree = "<group>"; };
+		5520F32B970B04540C44DF094142F83A /* LUICollectionViewSectionModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LUICollectionViewSectionModel.swift; sourceTree = "<group>"; };
 		55EEE374C01EEF33BD9540447E7E6BC3 /* Pods-LUIToolSwift_Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-LUIToolSwift_Tests-Info.plist"; sourceTree = "<group>"; };
-		5E018591BFAFD9D032F2C71B3B3EE8AC /* LUITableViewCellProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LUITableViewCellProtocol.swift; sourceTree = "<group>"; };
-		65DA9902571E74E1CF5B411A6D41A621 /* LUIToolSwift-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "LUIToolSwift-dummy.m"; sourceTree = "<group>"; };
-		6CFD73F64E2C73E1A2A50817912C4E9A /* Pods_LUIToolSwift_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LUIToolSwift_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		55FD8F26D3F524FAC8DCA76D4079E9D6 /* LUICollectionCellModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LUICollectionCellModel.swift; sourceTree = "<group>"; };
+		58F3B62AEE9B2B8BC1E98B4514C09DEC /* LUIToolSwift-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "LUIToolSwift-Info.plist"; sourceTree = "<group>"; };
+		615AB13CC06C5DFC09B42ED8FC44B9CB /* IQKeyboardManagerConstantsInternal.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = IQKeyboardManagerConstantsInternal.swift; path = IQKeyboardManagerSwift/Constants/IQKeyboardManagerConstantsInternal.swift; sourceTree = "<group>"; };
+		63C7C8A5A21E510A303D762337DF7B23 /* IQKeyboardManagerConstants.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = IQKeyboardManagerConstants.swift; path = IQKeyboardManagerSwift/Constants/IQKeyboardManagerConstants.swift; sourceTree = "<group>"; };
+		64917F185D3DD3A5456EDAD03CB611EA /* LUILayoutConstraintItemAttributeBase.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LUILayoutConstraintItemAttributeBase.swift; sourceTree = "<group>"; };
+		64B0F7BF78C1D89726BA66A586C2ADAA /* IQToolbar.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = IQToolbar.swift; path = IQKeyboardManagerSwift/IQToolbar/IQToolbar.swift; sourceTree = "<group>"; };
+		66157864C680CA8B2CDFF66E2332A316 /* LUILayoutConstraint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LUILayoutConstraint.swift; sourceTree = "<group>"; };
+		66EE3FAED1D619596B57962565E7D357 /* LUICollectionModelObjectBase.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LUICollectionModelObjectBase.swift; sourceTree = "<group>"; };
+		68316D2ECF92599FCC26B5FE5863F0BB /* NSArray+LUIBinarySearch.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "NSArray+LUIBinarySearch.swift"; sourceTree = "<group>"; };
+		68B5A5E28C072A0624118F840538984D /* IQNSArray+Sort.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "IQNSArray+Sort.swift"; path = "IQKeyboardManagerSwift/Categories/IQNSArray+Sort.swift"; sourceTree = "<group>"; };
+		6A6C75D7B0BAF091182FC30BAA83C979 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		6C449534923F38727B5E2186BF7D5C2D /* LUITableViewCellSwipeAction.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LUITableViewCellSwipeAction.swift; sourceTree = "<group>"; };
+		6CFD73F64E2C73E1A2A50817912C4E9A /* Pods-LUIToolSwift_Example */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-LUIToolSwift_Example"; path = Pods_LUIToolSwift_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		70B1831E40D3FEC1676517FBBBD3471F /* CGGeometry+LUI.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "CGGeometry+LUI.swift"; sourceTree = "<group>"; };
+		72854F72E0889CC05AD906C479CBA47C /* IQKeyboardManager+Toolbar.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "IQKeyboardManager+Toolbar.swift"; path = "IQKeyboardManagerSwift/IQKeyboardManager+Toolbar.swift"; sourceTree = "<group>"; };
+		728DC830D24351587F86BB0CD80AC4FC /* LUILayoutConstraintItemWrapper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LUILayoutConstraintItemWrapper.swift; sourceTree = "<group>"; };
+		787C22551474892AEEFB82F62F975ADB /* UITableView+LUI.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UITableView+LUI.swift"; sourceTree = "<group>"; };
+		79CF7D56C5D50C18B2EA0ED106D998C7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		7B0DA74B69EBFCAF6A1396EB8749CFB5 /* Pods-LUIToolSwift_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-LUIToolSwift_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
-		7EAAFB10440BF8F8E3F70EF4D4BA05B7 /* LUITableViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LUITableViewModel.swift; sourceTree = "<group>"; };
+		7BD40174403BDDCAE4B352378AB0DADF /* UIScrollView+LUI.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIScrollView+LUI.swift"; sourceTree = "<group>"; };
+		7E78A4902801868AD4CD3EC9EF25C705 /* LUICGRect.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LUICGRect.swift; sourceTree = "<group>"; };
 		8184CC285747602B50FFC54035ADAB15 /* Pods-LUIToolSwift_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-LUIToolSwift_Tests-umbrella.h"; sourceTree = "<group>"; };
 		8328F059DD8B571BEC3A604A1248F5B7 /* Pods-LUIToolSwift_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-LUIToolSwift_Tests-dummy.m"; sourceTree = "<group>"; };
-		8997CAE696241485648B9012DB2D8600 /* LUICollectionCellModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LUICollectionCellModel.swift; sourceTree = "<group>"; };
-		8B128AB8B63455554602489FC6F8F202 /* UIScrollView+LUI.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIScrollView+LUI.swift"; sourceTree = "<group>"; };
+		840FA0B75AF62912A30DDC66B647ED98 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
+		84F82C1663DD2695447AD74D68929533 /* NSObject+LUI.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "NSObject+LUI.swift"; sourceTree = "<group>"; };
+		8829A6EC32F00507D68408CA8CF1A010 /* String+LUI.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "String+LUI.swift"; sourceTree = "<group>"; };
 		8FBEC00D1C87EEAB47D94ED0E308617B /* Pods-LUIToolSwift_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-LUIToolSwift_Example-frameworks.sh"; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		9FD72DAB872272CD3241BF4E9EFCDAF0 /* LUITableView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LUITableView.swift; sourceTree = "<group>"; };
-		A04EA15C7178E7029CEF6FE89D93F210 /* LUICollectionModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LUICollectionModel.swift; sourceTree = "<group>"; };
-		A632942CD82335E44FF27F30751BFE6B /* String+LUI.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "String+LUI.swift"; sourceTree = "<group>"; };
+		9031EB2C63409039C4BC16346810A9F2 /* LUILayoutButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LUILayoutButton.swift; sourceTree = "<group>"; };
+		9A9AC1854EF5DFAE2B65F9F7F823EA27 /* IQKeyboardManager+UIKeyboardNotification.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "IQKeyboardManager+UIKeyboardNotification.swift"; path = "IQKeyboardManagerSwift/IQKeyboardManager+UIKeyboardNotification.swift"; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9E8C76CC6DEA1C4C59C4D40FF0050B73 /* LUIFlowLayoutConstraint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LUIFlowLayoutConstraint.swift; sourceTree = "<group>"; };
+		9ED4759ABE4634094B57CA2830B6A610 /* LUIToolSwift-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LUIToolSwift-prefix.pch"; sourceTree = "<group>"; };
+		9F6E6BC7C022A99DF59AD0ED4B5597B7 /* IQKeyboardManager+UITextFieldViewNotification.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "IQKeyboardManager+UITextFieldViewNotification.swift"; path = "IQKeyboardManagerSwift/IQKeyboardManager+UITextFieldViewNotification.swift"; sourceTree = "<group>"; };
+		9FD7948F2836D6E5A2C382F373805A98 /* IQTitleBarButtonItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = IQTitleBarButtonItem.swift; path = IQKeyboardManagerSwift/IQToolbar/IQTitleBarButtonItem.swift; sourceTree = "<group>"; };
+		A298EC196A378BD5C7FE4A436CBD1BB9 /* IQKeyboardManagerSwift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "IQKeyboardManagerSwift-umbrella.h"; sourceTree = "<group>"; };
+		A42DBD2F42D55606EEBA514009498B87 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
+		A44A1802E658439BC4380D98DB8DC5F3 /* IQPreviousNextView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = IQPreviousNextView.swift; path = IQKeyboardManagerSwift/IQToolbar/IQPreviousNextView.swift; sourceTree = "<group>"; };
+		A52116CCC15136721290ACE21570400B /* UICollectionViewFlowLayout+LUI.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UICollectionViewFlowLayout+LUI.swift"; sourceTree = "<group>"; };
+		A8E950A16D00F649C54FFB30F81D7842 /* IQKeyboardManagerSwift */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = IQKeyboardManagerSwift; path = IQKeyboardManagerSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A928DC5AE8E41E272EFF0AE2B618F700 /* LUITableViewSectionModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LUITableViewSectionModel.swift; sourceTree = "<group>"; };
+		AA4B74522135041E0DF1BF1033D9B174 /* IQKeyboardManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = IQKeyboardManager.swift; path = IQKeyboardManagerSwift/IQKeyboardManager.swift; sourceTree = "<group>"; };
+		AB614F27579F251E41BA7BC0332E9E8F /* LUICollectionModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LUICollectionModel.swift; sourceTree = "<group>"; };
+		AE7A8BAEA08310718466A194312E933F /* IQKeyboardManagerSwift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = IQKeyboardManagerSwift.modulemap; sourceTree = "<group>"; };
 		B161A345F65C4FF2489BDCBDD575CB44 /* Pods-LUIToolSwift_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-LUIToolSwift_Example.modulemap"; sourceTree = "<group>"; };
 		B1A90A461F2D196D5EFB964E74CF3FFC /* Pods-LUIToolSwift_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-LUIToolSwift_Example-umbrella.h"; sourceTree = "<group>"; };
 		B27FAC594201D52C6D5F16647DA6608B /* Pods-LUIToolSwift_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LUIToolSwift_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		C3127CB55AF13698FCDA9A6B3D072011 /* LUIToolSwift.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = LUIToolSwift.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		CC70D1A47262DAE7F535B899DFD337C7 /* LUITableViewSectionModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LUITableViewSectionModel.swift; sourceTree = "<group>"; };
-		D947B1DA7BC1119E79ACD362292AF468 /* LUITableViewCellBase.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LUITableViewCellBase.swift; sourceTree = "<group>"; };
-		D9FB7B0DF046A162AB2ECE56AC4FD9FD /* UITableView+LUI.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UITableView+LUI.swift"; sourceTree = "<group>"; };
-		DD2794CD583F1609446E16F8232BE013 /* UIView+LUI.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIView+LUI.swift"; sourceTree = "<group>"; };
-		E07B4AD125725917F318ACD31E252253 /* NSObject+LUI.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "NSObject+LUI.swift"; sourceTree = "<group>"; };
+		B448259DDF783866B707C90BBB300BA4 /* IQKeyboardManagerSwift-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "IQKeyboardManagerSwift-Info.plist"; sourceTree = "<group>"; };
+		B6D76EF06E4464FFC6A5C773DB0BBE58 /* IQBarButtonItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = IQBarButtonItem.swift; path = IQKeyboardManagerSwift/IQToolbar/IQBarButtonItem.swift; sourceTree = "<group>"; };
+		C369659C42F0034B01CCB2429ED11039 /* LUITableViewCellProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LUITableViewCellProtocol.swift; sourceTree = "<group>"; };
+		C3CF2A5CAEE3965380B78E407FF383E3 /* IQUIView+Hierarchy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "IQUIView+Hierarchy.swift"; path = "IQKeyboardManagerSwift/Categories/IQUIView+Hierarchy.swift"; sourceTree = "<group>"; };
+		C634B7D7936607E8F96141C184129D6E /* UICollectionReusableView+LUI.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UICollectionReusableView+LUI.swift"; sourceTree = "<group>"; };
+		D4F38298278DA6564A5853E702159B38 /* IQKeyboardManager+OrientationNotification.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "IQKeyboardManager+OrientationNotification.swift"; path = "IQKeyboardManagerSwift/IQKeyboardManager+OrientationNotification.swift"; sourceTree = "<group>"; };
+		D542C2D7650D6697DC10C41720DC9353 /* LUIToolSwift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = LUIToolSwift.modulemap; sourceTree = "<group>"; };
+		D74FA4F54F1DC2616F38D44D3CDC55DE /* IQInvocation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = IQInvocation.swift; path = IQKeyboardManagerSwift/IQToolbar/IQInvocation.swift; sourceTree = "<group>"; };
+		DA30101B5B5E098E3C8AF82705FC9153 /* IQUITextFieldView+Additions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "IQUITextFieldView+Additions.swift"; path = "IQKeyboardManagerSwift/Categories/IQUITextFieldView+Additions.swift"; sourceTree = "<group>"; };
+		DAF7FE9F1447111EC4F646B5B5077B6A /* IQKeyboardManagerSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = IQKeyboardManagerSwift.debug.xcconfig; sourceTree = "<group>"; };
+		DE0FDA31EF91A19A74EBDDE24491D284 /* UIImageView+LUI.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIImageView+LUI.swift"; sourceTree = "<group>"; };
+		DFC91FEE0B2657B0048C134C52EEC1DD /* LUICollectionViewPageFlowLayout.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LUICollectionViewPageFlowLayout.swift; sourceTree = "<group>"; };
 		E34447DDCC6A2297DF6012EF7F9A8A65 /* Pods-LUIToolSwift_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LUIToolSwift_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		E5F476BEE6E0A382FC466765029CBD9B /* Pods_LUIToolSwift_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LUIToolSwift_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		EAE2A23813EC52E7D79E82D80A2B2776 /* LUIToolSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = LUIToolSwift.release.xcconfig; sourceTree = "<group>"; };
-		EE46A44FD531B7AF1ADEDE3696410069 /* LUICollectionModelObjectBase.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LUICollectionModelObjectBase.swift; sourceTree = "<group>"; };
+		E5F476BEE6E0A382FC466765029CBD9B /* Pods-LUIToolSwift_Tests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-LUIToolSwift_Tests"; path = Pods_LUIToolSwift_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E61C7806819BE28689D7BE93E50304F8 /* LUIToolSwift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LUIToolSwift-umbrella.h"; sourceTree = "<group>"; };
+		E95626133D241DAF37AFE9D0BD4BBD57 /* LUIToolSwift.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = LUIToolSwift.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		ECA5D0A067518534C0767361D12221BD /* LUIToolSwift-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "LUIToolSwift-dummy.m"; sourceTree = "<group>"; };
+		F0EB244AD79873584DF5275A31D8E432 /* IQKeyboardManagerSwift-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "IQKeyboardManagerSwift-dummy.m"; sourceTree = "<group>"; };
 		F1E86CE09F8C206EE2A139CBAE283956 /* Pods-LUIToolSwift_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-LUIToolSwift_Example-acknowledgements.plist"; sourceTree = "<group>"; };
-		F4391BB06651D473DC298AE216991CBE /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		F54DE79CD960343689F0329C166585A4 /* Pods-LUIToolSwift_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LUIToolSwift_Example.release.xcconfig"; sourceTree = "<group>"; };
-		F84A40298E6E47A8F53C4C993FF9FB16 /* LUITableViewCellSwipeAction.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LUITableViewCellSwipeAction.swift; sourceTree = "<group>"; };
+		FCFE3BBAB67A853B21025B246B315134 /* IQTextView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = IQTextView.swift; path = IQKeyboardManagerSwift/IQTextView/IQTextView.swift; sourceTree = "<group>"; };
+		FD2C69CCD080DCE1292F31874E43B91D /* IQUIViewController+Additions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "IQUIViewController+Additions.swift"; path = "IQKeyboardManagerSwift/Categories/IQUIViewController+Additions.swift"; sourceTree = "<group>"; };
+		FFD245DB77E2991800B49AA047E3CF1A /* LUICollectionView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LUICollectionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		1B509AD81855EB04E877452EBB9CD423 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C86F0B85825D4D5C9575B8DF8D01B5B /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		81FAA0D6A22B807991F5138496B0E5E3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9488B2022D6B150B3DE933EB4574FBD8 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		94268161D81194E6D3E5D8AC7A283F0E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -153,33 +239,33 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A27C51843B76AFCE8AD98F17116E9F0E /* Frameworks */ = {
+		A3B77577C54970218F8F8340516D00F2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2F26923936102C02059518624239565A /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F50739C9C70003BEE5A150536A9A7072 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				FB4C3A575C66FF29BE711A5EB14E93DC /* Foundation.framework in Frameworks */,
+				B1B6A2491AC437909DABE20C71BECDBC /* CoreGraphics.framework in Frameworks */,
+				60C6606FF8176EE5A38870CFD9F649C8 /* Foundation.framework in Frameworks */,
+				B6EC6D40823E66D5B389ACEAC9FD7AAE /* QuartzCore.framework in Frameworks */,
+				2E5138271A6C79BDA3C0835F2596219B /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		024B18FD54B6B4E74C14B116524C8230 /* LUICore */ = {
+		032998A6B32761CE897A84E020AAF781 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				096FA20C5C4A329A29961222E64CC13A /* CGGeometry+LUI.swift */,
-				1FD566592CB900CE00959D77 /* LUICGRect.swift */,
+				AE7A8BAEA08310718466A194312E933F /* IQKeyboardManagerSwift.modulemap */,
+				F0EB244AD79873584DF5275A31D8E432 /* IQKeyboardManagerSwift-dummy.m */,
+				B448259DDF783866B707C90BBB300BA4 /* IQKeyboardManagerSwift-Info.plist */,
+				2F52550AD1ACBAA22F54ABB6F6614A9F /* IQKeyboardManagerSwift-prefix.pch */,
+				A298EC196A378BD5C7FE4A436CBD1BB9 /* IQKeyboardManagerSwift-umbrella.h */,
+				DAF7FE9F1447111EC4F646B5B5077B6A /* IQKeyboardManagerSwift.debug.xcconfig */,
+				2DBB1613E5A0BC4CAF3DE161C1976D06 /* IQKeyboardManagerSwift.release.xcconfig */,
 			);
-			name = LUICore;
-			path = LUIToolSwift/Classes/LUICore;
+			name = "Support Files";
+			path = "../Target Support Files/IQKeyboardManagerSwift";
 			sourceTree = "<group>";
 		};
 		0B7E897F49A69CED8169FF49CC9350CC /* Pods-LUIToolSwift_Tests */ = {
@@ -198,21 +284,6 @@
 			path = "Target Support Files/Pods-LUIToolSwift_Tests";
 			sourceTree = "<group>";
 		};
-		13CA872037866D0B4F866D823E4D3F65 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				2746CD20E3A29A7DEE6CBB4CF106E47A /* LUIToolSwift.modulemap */,
-				65DA9902571E74E1CF5B411A6D41A621 /* LUIToolSwift-dummy.m */,
-				2CD546427EF522A45F5F1CC7E24D2379 /* LUIToolSwift-Info.plist */,
-				3B4BB530CFAB47FAABB4F1B62BDBE27B /* LUIToolSwift-prefix.pch */,
-				4006B947ABA128CB98F96B97F2F4202E /* LUIToolSwift-umbrella.h */,
-				3E797540E13E48D8F108D984F61984F6 /* LUIToolSwift.debug.xcconfig */,
-				EAE2A23813EC52E7D79E82D80A2B2776 /* LUIToolSwift.release.xcconfig */,
-			);
-			name = "Support Files";
-			path = "Example/Pods/Target Support Files/LUIToolSwift";
-			sourceTree = "<group>";
-		};
 		18E381276A990770308D5B92F6FE6A43 /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -222,136 +293,203 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		1BEF09662B7BC22A0BF919020185CE55 /* Pod */ = {
+		2276EB770E01B540B3C11C8375D9234C /* IQKeyboardManagerSwift */ = {
 			isa = PBXGroup;
 			children = (
-				F4391BB06651D473DC298AE216991CBE /* LICENSE */,
-				C3127CB55AF13698FCDA9A6B3D072011 /* LUIToolSwift.podspec */,
-				0FD6C0965B0FA6EC4C192ACF7BB02489 /* README.md */,
+				B6D76EF06E4464FFC6A5C773DB0BBE58 /* IQBarButtonItem.swift */,
+				D74FA4F54F1DC2616F38D44D3CDC55DE /* IQInvocation.swift */,
+				AA4B74522135041E0DF1BF1033D9B174 /* IQKeyboardManager.swift */,
+				293C7104272A3D4FF208B5743BAB1FD2 /* IQKeyboardManager+Debug.swift */,
+				3AAA271F3A9B93DF8620F90EF07D6566 /* IQKeyboardManager+Internal.swift */,
+				D4F38298278DA6564A5853E702159B38 /* IQKeyboardManager+OrientationNotification.swift */,
+				4EA75D03BE22858F15248EF62C270F15 /* IQKeyboardManager+Position.swift */,
+				72854F72E0889CC05AD906C479CBA47C /* IQKeyboardManager+Toolbar.swift */,
+				9A9AC1854EF5DFAE2B65F9F7F823EA27 /* IQKeyboardManager+UIKeyboardNotification.swift */,
+				9F6E6BC7C022A99DF59AD0ED4B5597B7 /* IQKeyboardManager+UITextFieldViewNotification.swift */,
+				63C7C8A5A21E510A303D762337DF7B23 /* IQKeyboardManagerConstants.swift */,
+				615AB13CC06C5DFC09B42ED8FC44B9CB /* IQKeyboardManagerConstantsInternal.swift */,
+				137093D8E49217C090D374983F152184 /* IQKeyboardReturnKeyHandler.swift */,
+				68B5A5E28C072A0624118F840538984D /* IQNSArray+Sort.swift */,
+				A44A1802E658439BC4380D98DB8DC5F3 /* IQPreviousNextView.swift */,
+				FCFE3BBAB67A853B21025B246B315134 /* IQTextView.swift */,
+				9FD7948F2836D6E5A2C382F373805A98 /* IQTitleBarButtonItem.swift */,
+				64B0F7BF78C1D89726BA66A586C2ADAA /* IQToolbar.swift */,
+				368438D51285F622AEC4CA45FB117A53 /* IQUIScrollView+Additions.swift */,
+				DA30101B5B5E098E3C8AF82705FC9153 /* IQUITextFieldView+Additions.swift */,
+				C3CF2A5CAEE3965380B78E407FF383E3 /* IQUIView+Hierarchy.swift */,
+				4280CDA65D22B3380E8F3793AD676448 /* IQUIView+IQKeyboardToolbar.swift */,
+				FD2C69CCD080DCE1292F31874E43B91D /* IQUIViewController+Additions.swift */,
+				032998A6B32761CE897A84E020AAF781 /* Support Files */,
 			);
-			name = Pod;
+			name = IQKeyboardManagerSwift;
+			path = IQKeyboardManagerSwift;
 			sourceTree = "<group>";
 		};
-		1F48D11B2CC20F55002DC183 /* LUICollectionViewLayout */ = {
+		27FC9ECC8D079050814219AE0CA141B6 /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
-				1F48D11A2CC20F55002DC183 /* LUICollectionViewPageFlowLayout.swift */,
+				30A2F12235838ECACF3D39669E6822DD /* LUIToolSwift */,
 			);
-			path = LUICollectionViewLayout;
+			name = "Development Pods";
 			sourceTree = "<group>";
 		};
-		1F4CB0AE2CBA9FBD00E61CD5 /* LUICollectionView */ = {
+		2A82E9D33F56B16DD53B3603D4797829 /* LUICore */ = {
 			isa = PBXGroup;
 			children = (
-				1F4CB0AA2CBA9FBD00E61CD5 /* LUICollectionViewCellBase.swift */,
-				1F4CB0AB2CBA9FBD00E61CD5 /* LUICollectionViewCellModel.swift */,
-				1F4CB0AC2CBA9FBD00E61CD5 /* LUICollectionViewModel.swift */,
-				1F4CB0AD2CBA9FBD00E61CD5 /* LUICollectionViewSectionModel.swift */,
-				1FD566692CBCBAF800959D77 /* LUICollectionView.swift */,
+				70B1831E40D3FEC1676517FBBBD3471F /* CGGeometry+LUI.swift */,
+				7E78A4902801868AD4CD3EC9EF25C705 /* LUICGRect.swift */,
 			);
-			name = LUICollectionView;
-			path = LUIToolSwift/Classes/LUICollectionView;
+			name = LUICore;
+			path = LUIToolSwift/Classes/LUICore;
 			sourceTree = "<group>";
 		};
-		1F4CB0B42CBA9FCA00E61CD5 /* LUILayoutButton */ = {
+		30651A9204F5F68E3D37F1549DA482CE /* LUICollectionViewLayout */ = {
 			isa = PBXGroup;
 			children = (
-				1F4CB0B32CBA9FCA00E61CD5 /* LUILayoutButton.swift */,
+				DFC91FEE0B2657B0048C134C52EEC1DD /* LUICollectionViewPageFlowLayout.swift */,
 			);
-			name = LUILayoutButton;
-			path = LUIToolSwift/Classes/LUILayoutButton;
+			name = LUICollectionViewLayout;
+			path = LUIToolSwift/Classes/LUICollectionViewLayout;
 			sourceTree = "<group>";
 		};
-		1F4CB0BA2CBA9FE200E61CD5 /* LUIConstraint */ = {
+		30A2F12235838ECACF3D39669E6822DD /* LUIToolSwift */ = {
 			isa = PBXGroup;
 			children = (
-				1F4CB0B62CBA9FE200E61CD5 /* LUIFlowLayoutConstraint.swift */,
-				1F4CB0B72CBA9FE200E61CD5 /* LUILayoutConstraint.swift */,
-				1F4CB0B82CBA9FE200E61CD5 /* LUILayoutConstraintItemAttributeBase.swift */,
-				1F4CB0B92CBA9FE200E61CD5 /* LUILayoutConstraintItemWrapper.swift */,
-			);
-			name = LUIConstraint;
-			path = LUIToolSwift/Classes/LUIConstraint;
-			sourceTree = "<group>";
-		};
-		314EF23A073E4FDAE2E0E01BF54FC858 /* LUIToolSwift */ = {
-			isa = PBXGroup;
-			children = (
-				1F48D11B2CC20F55002DC183 /* LUICollectionViewLayout */,
-				1F4CB0BA2CBA9FE200E61CD5 /* LUIConstraint */,
-				1F4CB0B42CBA9FCA00E61CD5 /* LUILayoutButton */,
-				1F4CB0AE2CBA9FBD00E61CD5 /* LUICollectionView */,
-				A1F82DB656D6FC21009CF62E109CDAD1 /* LUICategory */,
-				E967983E5FBD91FB95E2C3DDF06342F0 /* LUICollectionModelBase */,
-				024B18FD54B6B4E74C14B116524C8230 /* LUICore */,
-				94F1DBE234AC171795C0327BE7A2E9EF /* LUITableView */,
-				1BEF09662B7BC22A0BF919020185CE55 /* Pod */,
-				13CA872037866D0B4F866D823E4D3F65 /* Support Files */,
+				72F950B6F936A52733BBC8E9473E2940 /* LUICategory */,
+				D9B46A80BCCD4C35EEE7A22D0D0670FC /* LUICollectionModelBase */,
+				8F3F9225BD2253E607053212A8B32885 /* LUICollectionView */,
+				30651A9204F5F68E3D37F1549DA482CE /* LUICollectionViewLayout */,
+				C02E7CF09DB9E78018FD9EF1E380A763 /* LUIConstraint */,
+				2A82E9D33F56B16DD53B3603D4797829 /* LUICore */,
+				AFE400B29931C6E790DA1C2540DE4BBC /* LUILayoutButton */,
+				7C818BDAA06E1F7E237FCDCCEF56F027 /* LUITableView */,
+				4324AC25689DF51F1968462417AB79CC /* Pod */,
+				C0692166E5BA55B0CB2C3D77C57CFB2B /* Support Files */,
 			);
 			name = LUIToolSwift;
 			path = ../..;
 			sourceTree = "<group>";
 		};
-		44DE409782D9DF5CE2DD94607BE9A1CD /* Development Pods */ = {
+		4324AC25689DF51F1968462417AB79CC /* Pod */ = {
 			isa = PBXGroup;
 			children = (
-				314EF23A073E4FDAE2E0E01BF54FC858 /* LUIToolSwift */,
+				029E8554494E69ADBF68302BD7F44EB7 /* LICENSE */,
+				E95626133D241DAF37AFE9D0BD4BBD57 /* LUIToolSwift.podspec */,
+				6A6C75D7B0BAF091182FC30BAA83C979 /* README.md */,
 			);
-			name = "Development Pods";
+			name = Pod;
 			sourceTree = "<group>";
 		};
-		578452D2E740E91742655AC8F1636D1F /* iOS */ = {
+		4DCB0EA7BD00EC84DBADB5488807591C /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */,
+				2276EB770E01B540B3C11C8375D9234C /* IQKeyboardManagerSwift */,
 			);
-			name = iOS;
+			name = Pods;
 			sourceTree = "<group>";
 		};
-		94F1DBE234AC171795C0327BE7A2E9EF /* LUITableView */ = {
+		62BA1645F87227D25C83A36643A71C70 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9FD72DAB872272CD3241BF4E9EFCDAF0 /* LUITableView.swift */,
-				D947B1DA7BC1119E79ACD362292AF468 /* LUITableViewCellBase.swift */,
-				529311B1F8EFEAD54314D820F76BF798 /* LUITableViewCellModel.swift */,
-				5E018591BFAFD9D032F2C71B3B3EE8AC /* LUITableViewCellProtocol.swift */,
-				F84A40298E6E47A8F53C4C993FF9FB16 /* LUITableViewCellSwipeAction.swift */,
-				7EAAFB10440BF8F8E3F70EF4D4BA05B7 /* LUITableViewModel.swift */,
-				CC70D1A47262DAE7F535B899DFD337C7 /* LUITableViewSectionModel.swift */,
-				444580440DB895F6985996CED292EF18 /* LUITableViewSectionViewProtocol.swift */,
-				1F05BA182CA69DF1003750FD /* LUITableViewSectionView.swift */,
+				A8E950A16D00F649C54FFB30F81D7842 /* IQKeyboardManagerSwift */,
+				2763022547E3C3DF5B0762954E00462A /* LUIToolSwift */,
+				6CFD73F64E2C73E1A2A50817912C4E9A /* Pods-LUIToolSwift_Example */,
+				E5F476BEE6E0A382FC466765029CBD9B /* Pods-LUIToolSwift_Tests */,
 			);
-			name = LUITableView;
-			path = LUIToolSwift/Classes/LUITableView;
+			name = Products;
 			sourceTree = "<group>";
 		};
-		A1F82DB656D6FC21009CF62E109CDAD1 /* LUICategory */ = {
+		72F950B6F936A52733BBC8E9473E2940 /* LUICategory */ = {
 			isa = PBXGroup;
 			children = (
-				E07B4AD125725917F318ACD31E252253 /* NSObject+LUI.swift */,
-				A632942CD82335E44FF27F30751BFE6B /* String+LUI.swift */,
-				8B128AB8B63455554602489FC6F8F202 /* UIScrollView+LUI.swift */,
-				D9FB7B0DF046A162AB2ECE56AC4FD9FD /* UITableView+LUI.swift */,
-				11491248B7E266AE74DFDE794D90F68C /* UITableViewCell+LUI.swift */,
-				DD2794CD583F1609446E16F8232BE013 /* UIView+LUI.swift */,
-				1FD566572CB8FF0700959D77 /* UIImageView+LUI.swift */,
-				1FD566622CBA620700959D77 /* UICollectionReusableView+LUI.swift */,
-				1F0D3ADF2CBDF831002DCA25 /* UICollectionViewFlowLayout+LUI.swift */,
-				1F4CB0C42CBE9CCE00E61CD5 /* UICollectionViewLayoutAttributes+LUI.swift */,
-				1F0D3AE12CBF5998002DCA25 /* NSArray+LUIBinarySearch.swift */,
+				68316D2ECF92599FCC26B5FE5863F0BB /* NSArray+LUIBinarySearch.swift */,
+				84F82C1663DD2695447AD74D68929533 /* NSObject+LUI.swift */,
+				8829A6EC32F00507D68408CA8CF1A010 /* String+LUI.swift */,
+				C634B7D7936607E8F96141C184129D6E /* UICollectionReusableView+LUI.swift */,
+				A52116CCC15136721290ACE21570400B /* UICollectionViewFlowLayout+LUI.swift */,
+				1936F839F28DDE4E190282AF1A7EB421 /* UICollectionViewLayoutAttributes+LUI.swift */,
+				DE0FDA31EF91A19A74EBDDE24491D284 /* UIImageView+LUI.swift */,
+				7BD40174403BDDCAE4B352378AB0DADF /* UIScrollView+LUI.swift */,
+				787C22551474892AEEFB82F62F975ADB /* UITableView+LUI.swift */,
+				0513399B1BA91BC39F5FE1B57EDF47D0 /* UITableViewCell+LUI.swift */,
+				0E6DBF4DF126F2478F6E0C91A5CD32F1 /* UIView+LUI.swift */,
 			);
 			name = LUICategory;
 			path = LUIToolSwift/Classes/LUICategory;
 			sourceTree = "<group>";
 		};
-		C519C48F4C64197962A72F77A2E276A5 /* Products */ = {
+		7C818BDAA06E1F7E237FCDCCEF56F027 /* LUITableView */ = {
 			isa = PBXGroup;
 			children = (
-				2763022547E3C3DF5B0762954E00462A /* LUIToolSwift.framework */,
-				6CFD73F64E2C73E1A2A50817912C4E9A /* Pods_LUIToolSwift_Example.framework */,
-				E5F476BEE6E0A382FC466765029CBD9B /* Pods_LUIToolSwift_Tests.framework */,
+				0F6529ACD0B40693EB4AAFAFF5CA29F3 /* LUITableView.swift */,
+				4C7D30E2DC98277FEE0FD0F37FD69C52 /* LUITableViewCellBase.swift */,
+				4E25F8EAAF70D4421F7E06F4B153CA18 /* LUITableViewCellModel.swift */,
+				C369659C42F0034B01CCB2429ED11039 /* LUITableViewCellProtocol.swift */,
+				6C449534923F38727B5E2186BF7D5C2D /* LUITableViewCellSwipeAction.swift */,
+				49272B7633F3924564BAD35D047DB621 /* LUITableViewModel.swift */,
+				A928DC5AE8E41E272EFF0AE2B618F700 /* LUITableViewSectionModel.swift */,
+				4AACDD3F6633CC81E1B7F291581CB680 /* LUITableViewSectionView.swift */,
+				1040D33F9791F031E40B10F120CEA629 /* LUITableViewSectionViewProtocol.swift */,
 			);
-			name = Products;
+			name = LUITableView;
+			path = LUIToolSwift/Classes/LUITableView;
+			sourceTree = "<group>";
+		};
+		8F3F9225BD2253E607053212A8B32885 /* LUICollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				FFD245DB77E2991800B49AA047E3CF1A /* LUICollectionView.swift */,
+				508D355FF1EEF03410BE0177FBAC073F /* LUICollectionViewCellBase.swift */,
+				4EDA398F25173CBC3EE8352CEEBD7FC8 /* LUICollectionViewCellModel.swift */,
+				342B30A6C9198A0974715491E1947998 /* LUICollectionViewModel.swift */,
+				5520F32B970B04540C44DF094142F83A /* LUICollectionViewSectionModel.swift */,
+			);
+			name = LUICollectionView;
+			path = LUIToolSwift/Classes/LUICollectionView;
+			sourceTree = "<group>";
+		};
+		AFE400B29931C6E790DA1C2540DE4BBC /* LUILayoutButton */ = {
+			isa = PBXGroup;
+			children = (
+				9031EB2C63409039C4BC16346810A9F2 /* LUILayoutButton.swift */,
+			);
+			name = LUILayoutButton;
+			path = LUIToolSwift/Classes/LUILayoutButton;
+			sourceTree = "<group>";
+		};
+		BA4F31F07263C99FC76E66D632A59F09 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F9D206BABE81E6BF0B9B23880B238CC7 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C02E7CF09DB9E78018FD9EF1E380A763 /* LUIConstraint */ = {
+			isa = PBXGroup;
+			children = (
+				9E8C76CC6DEA1C4C59C4D40FF0050B73 /* LUIFlowLayoutConstraint.swift */,
+				66157864C680CA8B2CDFF66E2332A316 /* LUILayoutConstraint.swift */,
+				64917F185D3DD3A5456EDAD03CB611EA /* LUILayoutConstraintItemAttributeBase.swift */,
+				728DC830D24351587F86BB0CD80AC4FC /* LUILayoutConstraintItemWrapper.swift */,
+			);
+			name = LUIConstraint;
+			path = LUIToolSwift/Classes/LUIConstraint;
+			sourceTree = "<group>";
+		};
+		C0692166E5BA55B0CB2C3D77C57CFB2B /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				D542C2D7650D6697DC10C41720DC9353 /* LUIToolSwift.modulemap */,
+				ECA5D0A067518534C0767361D12221BD /* LUIToolSwift-dummy.m */,
+				58F3B62AEE9B2B8BC1E98B4514C09DEC /* LUIToolSwift-Info.plist */,
+				9ED4759ABE4634094B57CA2830B6A610 /* LUIToolSwift-prefix.pch */,
+				E61C7806819BE28689D7BE93E50304F8 /* LUIToolSwift-umbrella.h */,
+				2470FDFA3DC92A6B1243086077859224 /* LUIToolSwift.debug.xcconfig */,
+				0C5FAD4EDA2F3BF2C4A792E8696DF517 /* LUIToolSwift.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/LUIToolSwift";
 			sourceTree = "<group>";
 		};
 		C9C72F75D3BEB30FEA0A3AE94E57BAF1 /* Pods-LUIToolSwift_Example */ = {
@@ -375,49 +513,61 @@
 			isa = PBXGroup;
 			children = (
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
-				44DE409782D9DF5CE2DD94607BE9A1CD /* Development Pods */,
-				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
-				C519C48F4C64197962A72F77A2E276A5 /* Products */,
+				27FC9ECC8D079050814219AE0CA141B6 /* Development Pods */,
+				BA4F31F07263C99FC76E66D632A59F09 /* Frameworks */,
+				4DCB0EA7BD00EC84DBADB5488807591C /* Pods */,
+				62BA1645F87227D25C83A36643A71C70 /* Products */,
 				18E381276A990770308D5B92F6FE6A43 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */ = {
+		D9B46A80BCCD4C35EEE7A22D0D0670FC /* LUICollectionModelBase */ = {
 			isa = PBXGroup;
 			children = (
-				578452D2E740E91742655AC8F1636D1F /* iOS */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		E967983E5FBD91FB95E2C3DDF06342F0 /* LUICollectionModelBase */ = {
-			isa = PBXGroup;
-			children = (
-				1F4CB0A62CB952D000E61CD5 /* LUICollectionSectionModel.swift */,
-				8997CAE696241485648B9012DB2D8600 /* LUICollectionCellModel.swift */,
-				A04EA15C7178E7029CEF6FE89D93F210 /* LUICollectionModel.swift */,
-				EE46A44FD531B7AF1ADEDE3696410069 /* LUICollectionModelObjectBase.swift */,
+				55FD8F26D3F524FAC8DCA76D4079E9D6 /* LUICollectionCellModel.swift */,
+				AB614F27579F251E41BA7BC0332E9E8F /* LUICollectionModel.swift */,
+				66EE3FAED1D619596B57962565E7D357 /* LUICollectionModelObjectBase.swift */,
+				3A02E4AF0B7DFC8DD52D4660914F195F /* LUICollectionSectionModel.swift */,
 			);
 			name = LUICollectionModelBase;
 			path = LUIToolSwift/Classes/LUICollectionModelBase;
 			sourceTree = "<group>";
 		};
+		F9D206BABE81E6BF0B9B23880B238CC7 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				840FA0B75AF62912A30DDC66B647ED98 /* CoreGraphics.framework */,
+				79CF7D56C5D50C18B2EA0ED106D998C7 /* Foundation.framework */,
+				A42DBD2F42D55606EEBA514009498B87 /* QuartzCore.framework */,
+				04D60AC13D33197690A05C641925DDDA /* UIKit.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		1DDDC63D63C9B7B062DA4F55E0957449 /* Headers */ = {
+		278BD7CCCA1DEFD46FA9B5A107A702F0 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				44947C47C087D560DBFF5F9DA83469A9 /* Pods-LUIToolSwift_Example-umbrella.h in Headers */,
+				3E059C4F16580626ED773522AFFC751C /* Pods-LUIToolSwift_Example-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		59C2EDF6FF756CC602DD10043F695A7A /* Headers */ = {
+		ADA18C1DEAA13C500259E337E2E561FE /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				725192088EA3B99B220A4A8C27599085 /* LUIToolSwift-umbrella.h in Headers */,
+				ED05B86A80F33D8DAF9230148DD295EB /* LUIToolSwift-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CCEEFAA8C63580C9CB8978EDA9312BDF /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B6B43B1B78EC0E52CC08F82841A22A31 /* IQKeyboardManagerSwift-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -444,40 +594,59 @@
 			buildRules = (
 			);
 			dependencies = (
-				7FAF1A94E43AACDA40316A78A76439DC /* PBXTargetDependency */,
+				814AF2336A1C5E216D98E67DD2357553 /* PBXTargetDependency */,
 			);
 			name = "Pods-LUIToolSwift_Tests";
 			productName = Pods_LUIToolSwift_Tests;
-			productReference = E5F476BEE6E0A382FC466765029CBD9B /* Pods_LUIToolSwift_Tests.framework */;
+			productReference = E5F476BEE6E0A382FC466765029CBD9B /* Pods-LUIToolSwift_Tests */;
 			productType = "com.apple.product-type.framework";
 		};
-		C704B2D9EAFB7A7275BA14034694CF09 /* Pods-LUIToolSwift_Example */ = {
+		B490E7485944099E16C9CBD79119D1D4 /* IQKeyboardManagerSwift */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C29F37D21A7DD88F5999CE68EDE69ECF /* Build configuration list for PBXNativeTarget "Pods-LUIToolSwift_Example" */;
+			buildConfigurationList = 42F76AA8E84D32E2DED70BBA35321CB1 /* Build configuration list for PBXNativeTarget "IQKeyboardManagerSwift" */;
 			buildPhases = (
-				1DDDC63D63C9B7B062DA4F55E0957449 /* Headers */,
-				9A19A2F9C844CF5362626D3F355090C6 /* Sources */,
-				A27C51843B76AFCE8AD98F17116E9F0E /* Frameworks */,
-				DB177D48B7CCE6EEC6CA28EAE90D1C67 /* Resources */,
+				CCEEFAA8C63580C9CB8978EDA9312BDF /* Headers */,
+				AC7850B8AD058752CD0E80D5A5B07A42 /* Sources */,
+				A3B77577C54970218F8F8340516D00F2 /* Frameworks */,
+				DAEA1F953296419744C852BAA2739BA1 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				27613F3DB9B5EBEFC882CE80C8839941 /* PBXTargetDependency */,
+			);
+			name = IQKeyboardManagerSwift;
+			productName = IQKeyboardManagerSwift;
+			productReference = A8E950A16D00F649C54FFB30F81D7842 /* IQKeyboardManagerSwift */;
+			productType = "com.apple.product-type.framework";
+		};
+		C704B2D9EAFB7A7275BA14034694CF09 /* Pods-LUIToolSwift_Example */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9DBFAC560FD3FEB98823317728CB4A29 /* Build configuration list for PBXNativeTarget "Pods-LUIToolSwift_Example" */;
+			buildPhases = (
+				278BD7CCCA1DEFD46FA9B5A107A702F0 /* Headers */,
+				FB588891630E7082E1958B5CC7FCE654 /* Sources */,
+				81FAA0D6A22B807991F5138496B0E5E3 /* Frameworks */,
+				34CC48B25D33A31BDC734E7118173942 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				854A0EF05EBA98E4FA0BF1D171E2810B /* PBXTargetDependency */,
+				98081B645A0F44C602549AC4118C776D /* PBXTargetDependency */,
 			);
 			name = "Pods-LUIToolSwift_Example";
 			productName = Pods_LUIToolSwift_Example;
-			productReference = 6CFD73F64E2C73E1A2A50817912C4E9A /* Pods_LUIToolSwift_Example.framework */;
+			productReference = 6CFD73F64E2C73E1A2A50817912C4E9A /* Pods-LUIToolSwift_Example */;
 			productType = "com.apple.product-type.framework";
 		};
 		FF5BB4426BE26192F335EC13332ACE10 /* LUIToolSwift */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BFF6BFF0244C31F47412FE274A119572 /* Build configuration list for PBXNativeTarget "LUIToolSwift" */;
+			buildConfigurationList = 93BF05A63DF037FF21952E8196419CE7 /* Build configuration list for PBXNativeTarget "LUIToolSwift" */;
 			buildPhases = (
-				59C2EDF6FF756CC602DD10043F695A7A /* Headers */,
-				392C04891751F00250A7BA9A29F5D0ED /* Sources */,
-				F50739C9C70003BEE5A150536A9A7072 /* Frameworks */,
-				75B9BB95F578C7B23A479E8F35011829 /* Resources */,
+				ADA18C1DEAA13C500259E337E2E561FE /* Headers */,
+				6AAF9EC93DFEC8A038944CAADF318BB8 /* Sources */,
+				1B509AD81855EB04E877452EBB9CD423 /* Frameworks */,
+				C6FF41BAEEC1160878DB6A7A59991C5C /* Resources */,
 			);
 			buildRules = (
 			);
@@ -485,7 +654,7 @@
 			);
 			name = LUIToolSwift;
 			productName = LUIToolSwift;
-			productReference = 2763022547E3C3DF5B0762954E00462A /* LUIToolSwift.framework */;
+			productReference = 2763022547E3C3DF5B0762954E00462A /* LUIToolSwift */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -506,10 +675,12 @@
 				en,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
-			productRefGroup = C519C48F4C64197962A72F77A2E276A5 /* Products */;
+			minimizedProjectReferenceProxies = 0;
+			productRefGroup = 62BA1645F87227D25C83A36643A71C70 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				B490E7485944099E16C9CBD79119D1D4 /* IQKeyboardManagerSwift */,
 				FF5BB4426BE26192F335EC13332ACE10 /* LUIToolSwift */,
 				C704B2D9EAFB7A7275BA14034694CF09 /* Pods-LUIToolSwift_Example */,
 				AA44ED913A4D0E2F1399A5EC63D47487 /* Pods-LUIToolSwift_Tests */,
@@ -518,6 +689,13 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		34CC48B25D33A31BDC734E7118173942 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		534BC7A9085E0070A951139481779DCF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -525,14 +703,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		75B9BB95F578C7B23A479E8F35011829 /* Resources */ = {
+		C6FF41BAEEC1160878DB6A7A59991C5C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DB177D48B7CCE6EEC6CA28EAE90D1C67 /* Resources */ = {
+		DAEA1F953296419744C852BAA2739BA1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -542,48 +720,48 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		392C04891751F00250A7BA9A29F5D0ED /* Sources */ = {
+		6AAF9EC93DFEC8A038944CAADF318BB8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F4CB0B02CBA9FBD00E61CD5 /* LUICollectionViewCellModel.swift in Sources */,
-				FF72DC89AEFC416A82669093F8994DA0 /* CGGeometry+LUI.swift in Sources */,
-				A950133381AC5DAD9E454740E7C8D9FF /* LUICollectionCellModel.swift in Sources */,
-				2438E1C11EEE6739BCD314694C2D9F9F /* LUICollectionModel.swift in Sources */,
-				1F48D11C2CC20F55002DC183 /* LUICollectionViewPageFlowLayout.swift in Sources */,
-				1F4CB0C52CBE9CCE00E61CD5 /* UICollectionViewLayoutAttributes+LUI.swift in Sources */,
-				42827799AB3820DC6AE170E9135CE031 /* LUICollectionModelObjectBase.swift in Sources */,
-				1F4CB0A72CB952D000E61CD5 /* LUICollectionSectionModel.swift in Sources */,
-				1F4CB0B52CBA9FCA00E61CD5 /* LUILayoutButton.swift in Sources */,
-				1F4CB0BB2CBA9FE200E61CD5 /* LUIFlowLayoutConstraint.swift in Sources */,
-				EE28853A3B3DED13F98A9E0766968BB4 /* LUITableView.swift in Sources */,
-				E3AE906E52E6EA0833FE8F6677B43296 /* LUITableViewCellBase.swift in Sources */,
-				A46718632CC3BEE37AAD06AF512612CD /* LUITableViewCellModel.swift in Sources */,
-				1F4CB0B22CBA9FBD00E61CD5 /* LUICollectionViewSectionModel.swift in Sources */,
-				FA34E6572099B0E2CBE198D59F44A994 /* LUITableViewCellProtocol.swift in Sources */,
-				1F4CB0BC2CBA9FE200E61CD5 /* LUILayoutConstraint.swift in Sources */,
-				A1549A5D8D5C50460EB2D655B59BEC5B /* LUITableViewCellSwipeAction.swift in Sources */,
-				1FD5666A2CBCBAF800959D77 /* LUICollectionView.swift in Sources */,
-				1F05BA192CA69DF1003750FD /* LUITableViewSectionView.swift in Sources */,
-				1F4CB0BD2CBA9FE200E61CD5 /* LUILayoutConstraintItemAttributeBase.swift in Sources */,
-				0B9443F57F622CC31BFFB1AF1FF94963 /* LUITableViewModel.swift in Sources */,
-				1F0D3AE22CBF5998002DCA25 /* NSArray+LUIBinarySearch.swift in Sources */,
-				1F0D3AE02CBDF831002DCA25 /* UICollectionViewFlowLayout+LUI.swift in Sources */,
-				0508EF6E33E23795F18824136F3BB8B7 /* LUITableViewSectionModel.swift in Sources */,
-				1FD566582CB8FF0700959D77 /* UIImageView+LUI.swift in Sources */,
-				49A1FDFF2366EFA286A4EDBCB5218670 /* LUITableViewSectionViewProtocol.swift in Sources */,
-				1F4CB0AF2CBA9FBD00E61CD5 /* LUICollectionViewCellBase.swift in Sources */,
-				81AE6EFB5B6AE704DF6086EA147DD1E8 /* LUIToolSwift-dummy.m in Sources */,
-				1FD5665A2CB900CE00959D77 /* LUICGRect.swift in Sources */,
-				56381F2FE8472F0CB5EFAA8CCF8F4625 /* NSObject+LUI.swift in Sources */,
-				6DF9C10011C3F1F6F0784DA26A180B6D /* String+LUI.swift in Sources */,
-				8D931207C4DADA5AB693AB3C0B162696 /* UIScrollView+LUI.swift in Sources */,
-				1FD566632CBA620700959D77 /* UICollectionReusableView+LUI.swift in Sources */,
-				B577036CCACA7DE9B020B2AF30C9DEFE /* UITableView+LUI.swift in Sources */,
-				1F4CB0B12CBA9FBD00E61CD5 /* LUICollectionViewModel.swift in Sources */,
-				21D00E7BA3D069AF26552BBF2184D2AB /* UITableViewCell+LUI.swift in Sources */,
-				6FA9CA7C73978230AD2A492788BDCA26 /* UIView+LUI.swift in Sources */,
-				1F4CB0BE2CBA9FE200E61CD5 /* LUILayoutConstraintItemWrapper.swift in Sources */,
+				3F3DBAC1B5210ED8130977B1318B8F8A /* CGGeometry+LUI.swift in Sources */,
+				64F69F09E278D53B5C53C2565A78E868 /* LUICGRect.swift in Sources */,
+				12F0BD50C8F48CAB8728FD69FB20C98D /* LUICollectionCellModel.swift in Sources */,
+				DA8E76663EBFD149012E7C6EAE493C42 /* LUICollectionModel.swift in Sources */,
+				393EED37D05E47796AD57FEFB2B387F5 /* LUICollectionModelObjectBase.swift in Sources */,
+				A137473ED9927E36DAB8BB148B17E270 /* LUICollectionSectionModel.swift in Sources */,
+				61610AFB0805F49091BC387FC7B645D5 /* LUICollectionView.swift in Sources */,
+				092C6BE4AF9A483E1543BF0BB614C67D /* LUICollectionViewCellBase.swift in Sources */,
+				2F0E9FDFDBD35F8ED9E669A414F64AE8 /* LUICollectionViewCellModel.swift in Sources */,
+				70C15F3979EF561261DDB2228D30CAF8 /* LUICollectionViewModel.swift in Sources */,
+				FA3D3696FB23068551E6FDDE6B2CFA25 /* LUICollectionViewPageFlowLayout.swift in Sources */,
+				7029AA1DAFC055C6DCA4B8DD009FBA20 /* LUICollectionViewSectionModel.swift in Sources */,
+				66730A77248D69093E3BD3EFB39ADAFE /* LUIFlowLayoutConstraint.swift in Sources */,
+				A792C1ECF9170F30A1606B3192802A98 /* LUILayoutButton.swift in Sources */,
+				EAF932C1C0893EADF413D259A8FFF6BB /* LUILayoutConstraint.swift in Sources */,
+				1B6FFD338254E76398B69F5C0D78EC6D /* LUILayoutConstraintItemAttributeBase.swift in Sources */,
+				D5567849BCEEA7AAD62D140CEBF94757 /* LUILayoutConstraintItemWrapper.swift in Sources */,
+				2918BB99BB29ABE8337CF10B46B3FC18 /* LUITableView.swift in Sources */,
+				BAA3A6655CAB5C754A2B0FFE7EBFE07F /* LUITableViewCellBase.swift in Sources */,
+				4B8C78CBBADA17B5A389FB977F7D8D9D /* LUITableViewCellModel.swift in Sources */,
+				2EA3363266FDD0DDE35F78EF95904F9F /* LUITableViewCellProtocol.swift in Sources */,
+				A0CBDDE5518E899FF67DCE625A7E48D3 /* LUITableViewCellSwipeAction.swift in Sources */,
+				63F75E6598715A6550DD5104DBC7B4F5 /* LUITableViewModel.swift in Sources */,
+				8FC814A3581CEBAE54CFB49689272EFB /* LUITableViewSectionModel.swift in Sources */,
+				0F2BF483FD3748AEABD2BF142F508864 /* LUITableViewSectionView.swift in Sources */,
+				56DCE9BE2866E2EE1F1B1A9910FC5EB2 /* LUITableViewSectionViewProtocol.swift in Sources */,
+				163D678BB907FCAB60704D0BE0943CA6 /* LUIToolSwift-dummy.m in Sources */,
+				E3C89A2C8FC5E7AC59ED09406124C6C4 /* NSArray+LUIBinarySearch.swift in Sources */,
+				B8C4BABFDA6BA5F448EDD3408B24C775 /* NSObject+LUI.swift in Sources */,
+				3D91349BA3C972B90D4DB855604E1D16 /* String+LUI.swift in Sources */,
+				01E1AC903B3C100DDB0E76EE7F88CA8F /* UICollectionReusableView+LUI.swift in Sources */,
+				A3446133CD84CF3139B040384055B437 /* UICollectionViewFlowLayout+LUI.swift in Sources */,
+				593B4533E20D1059D5AA420C3952BB64 /* UICollectionViewLayoutAttributes+LUI.swift in Sources */,
+				221C7F927663E5FB985210CEF5D79ABF /* UIImageView+LUI.swift in Sources */,
+				A2696BF128A106AF2B192398A5F895E1 /* UIScrollView+LUI.swift in Sources */,
+				ED0D970A24D82BAC993525849487D49B /* UITableView+LUI.swift in Sources */,
+				F48E03AE7207A9779C135C421E2767BD /* UITableViewCell+LUI.swift in Sources */,
+				423C524812B76F235C1C7D263C74A75F /* UIView+LUI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -595,36 +773,74 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9A19A2F9C844CF5362626D3F355090C6 /* Sources */ = {
+		AC7850B8AD058752CD0E80D5A5B07A42 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8A21842628BC6AA6ED174770530C750D /* Pods-LUIToolSwift_Example-dummy.m in Sources */,
+				41CD40F5713CD71AD5AB1471E81C97E1 /* IQBarButtonItem.swift in Sources */,
+				041B655D7F5932F03A65C154BC02BDAA /* IQInvocation.swift in Sources */,
+				86A03DE9366D1BE94EB99AA387EACD1F /* IQKeyboardManager.swift in Sources */,
+				2EC96162DD6740ECE67FF38B8400A7C5 /* IQKeyboardManager+Debug.swift in Sources */,
+				2CA0B3B43A972DF3AD79F58092E3403E /* IQKeyboardManager+Internal.swift in Sources */,
+				08B185E08278AE7EC55F8BBB19693AC5 /* IQKeyboardManager+OrientationNotification.swift in Sources */,
+				F2B1C1D70C629AE19C0D5121B1BBA891 /* IQKeyboardManager+Position.swift in Sources */,
+				1D8031C86A94D32E00ED55B80428A0F3 /* IQKeyboardManager+Toolbar.swift in Sources */,
+				A4BAEE317BFF650DCC888FC67BFBF7EF /* IQKeyboardManager+UIKeyboardNotification.swift in Sources */,
+				D6516B5451008BF1ABA150E6482F6325 /* IQKeyboardManager+UITextFieldViewNotification.swift in Sources */,
+				85F13B069B06ADF2B6DCA622E4645110 /* IQKeyboardManagerConstants.swift in Sources */,
+				0F94B2449CA1ADA76AE79C0BF6A08549 /* IQKeyboardManagerConstantsInternal.swift in Sources */,
+				1A9B9579E46EFBA63C5F57A6B17B5ECA /* IQKeyboardManagerSwift-dummy.m in Sources */,
+				C81CB3B5D25BDBCB6D3A3632BE408229 /* IQKeyboardReturnKeyHandler.swift in Sources */,
+				7AC995F567A776FC1A80A9FA0733F3D1 /* IQNSArray+Sort.swift in Sources */,
+				24EC44FF102C2635A476CEF7567F89DA /* IQPreviousNextView.swift in Sources */,
+				E72E1BDDFF31003BD089544FC112FAAC /* IQTextView.swift in Sources */,
+				20616A47873318F80BFFEABAC9730122 /* IQTitleBarButtonItem.swift in Sources */,
+				1740CBB33D469AEDD5D7291A9268FA97 /* IQToolbar.swift in Sources */,
+				DF33C3DE068D6116B3F551B0453ACD23 /* IQUIScrollView+Additions.swift in Sources */,
+				3F01EED6380B596E1D0C1497CBCF9B95 /* IQUITextFieldView+Additions.swift in Sources */,
+				04B0884964D9592302CA654E0B67E80E /* IQUIView+Hierarchy.swift in Sources */,
+				34C39BDBFE7A2CC585787F5AFCA39FDE /* IQUIView+IQKeyboardToolbar.swift in Sources */,
+				D31356D54A39420DB91C892502CFFD57 /* IQUIViewController+Additions.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FB588891630E7082E1958B5CC7FCE654 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				68C225A29DD3BEE1CE9732139A405CF1 /* Pods-LUIToolSwift_Example-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		27613F3DB9B5EBEFC882CE80C8839941 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = LUIToolSwift;
-			target = FF5BB4426BE26192F335EC13332ACE10 /* LUIToolSwift */;
-			targetProxy = 721F3C13F9FCC98AA2D55ABAD5A93828 /* PBXContainerItemProxy */;
-		};
-		7FAF1A94E43AACDA40316A78A76439DC /* PBXTargetDependency */ = {
+		814AF2336A1C5E216D98E67DD2357553 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Pods-LUIToolSwift_Example";
 			target = C704B2D9EAFB7A7275BA14034694CF09 /* Pods-LUIToolSwift_Example */;
-			targetProxy = 1E626FE504DF8332C4360B2766A8773D /* PBXContainerItemProxy */;
+			targetProxy = 9181F1FFCF5CEF9758A2BA7AD1E22E74 /* PBXContainerItemProxy */;
+		};
+		854A0EF05EBA98E4FA0BF1D171E2810B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = IQKeyboardManagerSwift;
+			target = B490E7485944099E16C9CBD79119D1D4 /* IQKeyboardManagerSwift */;
+			targetProxy = F69FD8DB878C0D992CC53DF0BABF6FC8 /* PBXContainerItemProxy */;
+		};
+		98081B645A0F44C602549AC4118C776D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = LUIToolSwift;
+			target = FF5BB4426BE26192F335EC13332ACE10 /* LUIToolSwift */;
+			targetProxy = 8947B7A89F76E07555DECD7FB17B9CD0 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		0A0A1EE7053C6BD05BCEEDDFE2E54EB7 /* Debug */ = {
+		42740C2629A772167D0FE095FFDC5D43 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3E797540E13E48D8F108D984F61984F6 /* LUIToolSwift.debug.xcconfig */;
+			baseConfigurationReference = 2CE9181A20D6CF41BE6DFA484E5FB440 /* Pods-LUIToolSwift_Example.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -634,18 +850,19 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/LUIToolSwift/LUIToolSwift-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/LUIToolSwift/LUIToolSwift-Info.plist";
+				INFOPLIST_FILE = "Target Support Files/Pods-LUIToolSwift_Example/Pods-LUIToolSwift_Example-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/LUIToolSwift/LUIToolSwift.modulemap";
-				PRODUCT_MODULE_NAME = LUIToolSwift;
-				PRODUCT_NAME = LUIToolSwift;
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-LUIToolSwift_Example/Pods-LUIToolSwift_Example.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -685,38 +902,6 @@
 			};
 			name = Debug;
 		};
-		55F74A67A5C4C20F9C4B14B9B3E8B91F /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = EAE2A23813EC52E7D79E82D80A2B2776 /* LUIToolSwift.release.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/LUIToolSwift/LUIToolSwift-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/LUIToolSwift/LUIToolSwift-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/LUIToolSwift/LUIToolSwift.modulemap";
-				PRODUCT_MODULE_NAME = LUIToolSwift;
-				PRODUCT_NAME = LUIToolSwift;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 		685E0D43B81C740DDED39042DD1AF3A4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E34447DDCC6A2297DF6012EF7F9A8A65 /* Pods-LUIToolSwift_Tests.release.xcconfig */;
@@ -750,39 +935,6 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
-		};
-		791CBBDB28CC7CDDEB934EA1D1EDC9BE /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2CE9181A20D6CF41BE6DFA484E5FB440 /* Pods-LUIToolSwift_Example.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-LUIToolSwift_Example/Pods-LUIToolSwift_Example-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-LUIToolSwift_Example/Pods-LUIToolSwift_Example.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
 		};
 		7EE7A78859F657F6BEFC651185B43192 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -839,17 +991,48 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};
 			name = Release;
 		};
-		AA66423FFD14EB19E97D18113437EDA2 /* Release */ = {
+		9D8C08F259B4E57381CFE8BC28467628 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F54DE79CD960343689F0329C166585A4 /* Pods-LUIToolSwift_Example.release.xcconfig */;
+			baseConfigurationReference = 2DBB1613E5A0BC4CAF3DE161C1976D06 /* IQKeyboardManagerSwift.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/IQKeyboardManagerSwift/IQKeyboardManagerSwift-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/IQKeyboardManagerSwift/IQKeyboardManagerSwift-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/IQKeyboardManagerSwift/IQKeyboardManagerSwift.modulemap";
+				PRODUCT_MODULE_NAME = IQKeyboardManagerSwift;
+				PRODUCT_NAME = IQKeyboardManagerSwift;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.6;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		B31BA111F08E9FFE734E9B4FF46B8F0E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0C5FAD4EDA2F3BF2C4A792E8696DF517 /* LUIToolSwift.release.xcconfig */;
+			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -859,25 +1042,55 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-LUIToolSwift_Example/Pods-LUIToolSwift_Example-Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/LUIToolSwift/LUIToolSwift-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/LUIToolSwift/LUIToolSwift-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-LUIToolSwift_Example/Pods-LUIToolSwift_Example.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				MODULEMAP_FILE = "Target Support Files/LUIToolSwift/LUIToolSwift.modulemap";
+				PRODUCT_MODULE_NAME = LUIToolSwift;
+				PRODUCT_NAME = LUIToolSwift;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
+		};
+		CE61A378D6E7849BCC83ECC07ECB0722 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2470FDFA3DC92A6B1243086077859224 /* LUIToolSwift.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/LUIToolSwift/LUIToolSwift-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/LUIToolSwift/LUIToolSwift-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/LUIToolSwift/LUIToolSwift.modulemap";
+				PRODUCT_MODULE_NAME = LUIToolSwift;
+				PRODUCT_NAME = LUIToolSwift;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
 		};
 		D299434AB35E7FD6F7921C8EF24742FF /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -945,9 +1158,82 @@
 			};
 			name = Debug;
 		};
+		D4280506A1D79580AEA4263153A3E976 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F54DE79CD960343689F0329C166585A4 /* Pods-LUIToolSwift_Example.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-LUIToolSwift_Example/Pods-LUIToolSwift_Example-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-LUIToolSwift_Example/Pods-LUIToolSwift_Example.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		F0377F003E77F0F91AC8FEE0F297E927 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DAF7FE9F1447111EC4F646B5B5077B6A /* IQKeyboardManagerSwift.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/IQKeyboardManagerSwift/IQKeyboardManagerSwift-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/IQKeyboardManagerSwift/IQKeyboardManagerSwift-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/IQKeyboardManagerSwift/IQKeyboardManagerSwift.modulemap";
+				PRODUCT_MODULE_NAME = IQKeyboardManagerSwift;
+				PRODUCT_NAME = IQKeyboardManagerSwift;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.6;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		42F76AA8E84D32E2DED70BBA35321CB1 /* Build configuration list for PBXNativeTarget "IQKeyboardManagerSwift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F0377F003E77F0F91AC8FEE0F297E927 /* Debug */,
+				9D8C08F259B4E57381CFE8BC28467628 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -957,20 +1243,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BFF6BFF0244C31F47412FE274A119572 /* Build configuration list for PBXNativeTarget "LUIToolSwift" */ = {
+		93BF05A63DF037FF21952E8196419CE7 /* Build configuration list for PBXNativeTarget "LUIToolSwift" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				0A0A1EE7053C6BD05BCEEDDFE2E54EB7 /* Debug */,
-				55F74A67A5C4C20F9C4B14B9B3E8B91F /* Release */,
+				CE61A378D6E7849BCC83ECC07ECB0722 /* Debug */,
+				B31BA111F08E9FFE734E9B4FF46B8F0E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C29F37D21A7DD88F5999CE68EDE69ECF /* Build configuration list for PBXNativeTarget "Pods-LUIToolSwift_Example" */ = {
+		9DBFAC560FD3FEB98823317728CB4A29 /* Build configuration list for PBXNativeTarget "Pods-LUIToolSwift_Example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				791CBBDB28CC7CDDEB934EA1D1EDC9BE /* Debug */,
-				AA66423FFD14EB19E97D18113437EDA2 /* Release */,
+				42740C2629A772167D0FE095FFDC5D43 /* Debug */,
+				D4280506A1D79580AEA4263153A3E976 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

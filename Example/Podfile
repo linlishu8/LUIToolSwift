@@ -4,7 +4,7 @@ platform :ios, '10.0'
 
 target 'LUIToolSwift_Example' do
   pod 'LUIToolSwift', :path => '../'
-
+  pod 'IQKeyboardManagerSwift'
   target 'LUIToolSwift_Tests' do
     inherit! :search_paths
 
