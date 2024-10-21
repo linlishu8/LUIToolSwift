@@ -16,9 +16,10 @@ class LUIChatTextView: LUIChatBaseView, UITextViewDelegate {
         textView.backgroundColor = .clear
         textView.isScrollEnabled = false
         textView.isEditable = false
-        textView.isSelectable = false
+        textView.isSelectable = true
         textView.font = UIFont.systemFont(ofSize: 14)
         textView.textColor = UIColor.white
+        textView.dataDetectorTypes = .link
         return textView
     }()
     
@@ -59,12 +60,12 @@ class LUIChatTextView: LUIChatBaseView, UITextViewDelegate {
         return self.flowlayout?.sizeThatFits(size, resizeItems: true) ?? .zero
     }
     
-    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
-        if URL.scheme == "yourAppScheme" {
-            // 在这里处理你的逻辑，例如打开一个新的视图控制器
-            print("链接被点击")
-            return false // 返回 false 表示我们自定义处理点击事件
+    public func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        // 这里可以使用 UIApplication 打开链接
+        if interaction == .invokeDefaultAction {
+            UIApplication.shared.open(URL, options: [:], completionHandler: nil)
+            return false // 返回 false 表示不执行 TextView 默认的打开操作
         }
-        return true // 其他 URL 正常处理
+        return true
     }
 }

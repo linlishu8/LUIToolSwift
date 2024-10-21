@@ -94,6 +94,15 @@ class LUIChatViewController: UIViewController {
         // 监听键盘显示和隐藏
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tapGesture.cancelsTouchesInView = false
+        tapGesture.delegate = self  // 设置委托
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc private func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     private func setupTableView() {
@@ -125,28 +134,28 @@ class LUIChatViewController: UIViewController {
         let keyboardHeight = keyboardFrame.height
         let window = UIApplication.shared.windows.first
         let bottomPadding = window?.safeAreaInsets.bottom ?? 0
-
+        
         // 调整输入框的底部约束
         chatInputViewBottomConstraint?.constant = -keyboardHeight + bottomPadding
-
+        
         let duration = notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? Double ?? 0.3
         let curve = notification.userInfo?[UIKeyboardAnimationCurveUserInfoKey] as? UInt ?? UIView.AnimationOptions.curveEaseInOut.rawValue
         let options = UIView.AnimationOptions(rawValue: curve)
-
+        
         UIView.animate(withDuration: duration, delay: 0, options: options, animations: {
             self.view.layoutIfNeeded()
         }, completion: nil)
         
         self.scrollToBottom(animated: true)
     }
-
+    
     @objc private func keyboardWillHide(notification: Notification) {
         chatInputViewBottomConstraint?.constant = 0
-
+        
         let duration = notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? Double ?? 0.3
         let curve = notification.userInfo?[UIKeyboardAnimationCurveUserInfoKey] as? UInt ?? UIView.AnimationOptions.curveEaseInOut.rawValue
         let options = UIView.AnimationOptions(rawValue: curve)
-
+        
         UIView.animate(withDuration: duration, delay: 0, options: options, animations: {
             self.view.layoutIfNeeded()
         }, completion: nil)
@@ -184,8 +193,20 @@ class LUIChatViewController: UIViewController {
         self.backImage.frame = bounds
     }
     
-    
     deinit {
         NotificationCenter.default.removeObserver(self)
+    }
+}
+
+
+extension LUIChatViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        // 检查触摸的视图是否为控件本身或其子视图
+        if touch.view is UIControl || touch.view?.isDescendant(of: chatInputView.textView) == true {
+            // 如果是控件（如按钮、开关等），或者是富文本视图的一部分，不触发手势
+            return false
+        }
+        // 在其他情况下，触发手势
+        return true
     }
 }
