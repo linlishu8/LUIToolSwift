@@ -110,6 +110,22 @@ class LUIChatViewController: UIViewController {
     
     @objc private func dismissKeyboard() {
         view.endEditing(true)
+        
+        // 检查如果 customInputView 是显示状态，将其隐藏
+        if !chatInputView.customInputView.isHidden {
+            hideCustomInputView()
+        }
+    }
+    
+    private func hideCustomInputView() {
+        // 更新布局
+        chatInputView.toggleCustomInputView()
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutIfNeeded()
+        }
+        
+        // 可能还需要更新其他相关的布局或进行额外的清理工作
+        chatInputView.heightDidChange?()
     }
     
     private func setupTableView() {
