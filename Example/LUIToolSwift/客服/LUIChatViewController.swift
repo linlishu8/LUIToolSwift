@@ -141,30 +141,20 @@ class LUIChatViewController: UIViewController {
     
     private func sendText(_ text: String) {
             guard !text.isEmpty else { return }
-            
-            // 这里添加发送文本的逻辑
-            // 例如，更新数据源并刷新聊天界面
-            // 假设你有一个方法来添加新消息到数据源并更新UI
             addMessageToDataSource(text: text, isSelf: true)
             updateChatInterface()
-
-            // 如果你需要发送到服务器，可能还要调用网络请求
-            // sendMessageToServer(text)
         }
 
         private func addMessageToDataSource(text: String, isSelf: Bool) {
-            // 更新你的数据源，例如添加一个新的聊天消息模型
             let textModel = LUIChatModel()
             textModel.cellClass = LUIChatTextTableViewCellMine.self
             textModel.title = text
             textModel.isSelf = isSelf
-            
-            self.chatTableView.model.addCellModel(self.setupTableViewCellModel(chatModel: textModel))
+            self.modelList.append(textModel)
+            self.reloadTableView()
         }
 
         private func updateChatInterface() {
-            // 你可能需要刷新你的表格视图或集合视图
-            self.chatTableView.model.reloadTableViewData()
             scrollToBottom(animated: false)
         }
     
@@ -195,44 +185,36 @@ class LUIChatViewController: UIViewController {
         // 调整输入框的底部约束
         chatInputViewBottomConstraint?.constant = -keyboardHeight + bottomPadding
         
-        let duration = notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? Double ?? 0.3
-        let curve = notification.userInfo?[UIKeyboardAnimationCurveUserInfoKey] as? UInt ?? UIView.AnimationOptions.curveEaseInOut.rawValue
-        let options = UIView.AnimationOptions(rawValue: curve)
-        
-        UIView.animate(withDuration: duration, delay: 0, options: options, animations: {
+
             self.view.layoutIfNeeded()
-        }, completion: nil)
+
         
         self.scrollToBottom(animated: false)
     }
     
     @objc private func keyboardWillHide(notification: Notification) {
         chatInputViewBottomConstraint?.constant = 0
-        
-        let duration = notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? Double ?? 0.3
-        let curve = notification.userInfo?[UIKeyboardAnimationCurveUserInfoKey] as? UInt ?? UIView.AnimationOptions.curveEaseInOut.rawValue
-        let options = UIView.AnimationOptions(rawValue: curve)
-        
-        UIView.animate(withDuration: duration, delay: 0, options: options, animations: {
-            self.view.layoutIfNeeded()
-        }, completion: nil)
     }
     
-    // 滚动到 TableView 底部
     private func scrollToBottom(animated: Bool) {
-        let lastRowIndex = max(0, chatTableView.numberOfRows(inSection: 0) - 1)
-        if lastRowIndex >= 0 {
-            let indexPath = IndexPath(row: lastRowIndex, section: 0)
+        let rowCount = chatTableView.numberOfRows(inSection: 0)
+        if rowCount > 0 {
+            let indexPath = IndexPath(row: rowCount - 1, section: 0)
             chatTableView.scrollToRow(at: indexPath, at: .bottom, animated: animated)
         }
     }
     
     private func reloadTableView() {
-        for chatModel in self.modelList {
-            self.chatTableView.model.addCellModel(self.setupTableViewCellModel(chatModel: chatModel))
+        let messageNumber: Int = self.modelList.count;
+        let cellNumber: Int = self.chatTableView.model.numberOfCells;
+        if (messageNumber > cellNumber) {
+            let extraElements = Array(modelList[cellNumber..<messageNumber])
+            for chatModel in extraElements {
+                self.chatTableView.model.addCellModel(self.setupTableViewCellModel(chatModel: chatModel))
+            }
+            self.chatTableView.model.reloadTableViewData()
+            self.view.layoutIfNeeded()
         }
-        self.chatTableView.model.reloadTableViewData()
-        
     }
     
     private func setupTableViewCellModel(chatModel: LUIChatModel) -> LUITableViewCellModel {
