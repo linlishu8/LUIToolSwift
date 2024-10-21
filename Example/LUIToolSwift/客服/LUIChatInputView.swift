@@ -31,7 +31,7 @@ class LUIChatInputView: UIView, UITextViewDelegate {
     
     private func setupCustomInputView() {
         customInputView = UIView()
-        customInputView.backgroundColor = UIColor.lightGray
+        customInputView.backgroundColor = UIColor(hex: "F9F9F9")
         customInputView.isHidden = true
         addSubview(customInputView)
         
@@ -91,6 +91,7 @@ class LUIChatInputView: UIView, UITextViewDelegate {
         textView.isScrollEnabled = false
         textView.layer.cornerRadius = 4
         textView.layer.borderWidth = 1
+        textView.returnKeyType = .send
         textView.layer.borderColor = UIColor.lightGray.cgColor
         addSubview(textView)
         
@@ -121,6 +122,23 @@ class LUIChatInputView: UIView, UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         updateInputViewHeight()
         heightDidChange?()
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        // 检查是否点击了发送（换行）键
+        if text == "\n" {
+            // 调用发送文本的方法
+            sendText(textView.text)
+            textView.text = "" // 清空输入框
+            textViewDidChange(textView) // 调用这个方法来更新视图高度
+            return false // 返回 false 表示不需要插入换行符
+        }
+        return true // 允许其他修改
+    }
+    
+    private func sendText(_ text: String) {
+        // 实际发送文本的逻辑
+        onSendText?(text.trimmingCharacters(in: .whitespacesAndNewlines)) // 可能需要处理前后空白字符
     }
     
     private func updateInputViewHeight() {
@@ -167,4 +185,6 @@ class LUIChatInputView: UIView, UITextViewDelegate {
 
         heightDidChange?()
     }
+    
+    
 }

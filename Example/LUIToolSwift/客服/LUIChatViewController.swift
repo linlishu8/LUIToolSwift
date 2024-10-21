@@ -139,9 +139,43 @@ class LUIChatViewController: UIViewController {
         ])
     }
     
+    private func sendText(_ text: String) {
+            guard !text.isEmpty else { return }
+            
+            // 这里添加发送文本的逻辑
+            // 例如，更新数据源并刷新聊天界面
+            // 假设你有一个方法来添加新消息到数据源并更新UI
+            addMessageToDataSource(text: text, isSelf: true)
+            updateChatInterface()
+
+            // 如果你需要发送到服务器，可能还要调用网络请求
+            // sendMessageToServer(text)
+        }
+
+        private func addMessageToDataSource(text: String, isSelf: Bool) {
+            // 更新你的数据源，例如添加一个新的聊天消息模型
+            let textModel = LUIChatModel()
+            textModel.cellClass = LUIChatTextTableViewCellMine.self
+            textModel.title = text
+            textModel.isSelf = isSelf
+            
+            self.chatTableView.model.addCellModel(self.setupTableViewCellModel(chatModel: textModel))
+        }
+
+        private func updateChatInterface() {
+            // 你可能需要刷新你的表格视图或集合视图
+            self.chatTableView.model.reloadTableViewData()
+            scrollToBottom(animated: false)
+        }
+    
     private func setupInputView() {
         view.addSubview(chatInputView)
         chatInputView.translatesAutoresizingMaskIntoConstraints = false
+        
+        // 设置发送文本的回调
+        chatInputView.onSendText = { [weak self] text in
+            self?.sendText(text)
+        }
         
         NSLayoutConstraint.activate([
             chatInputView.leftAnchor.constraint(equalTo: view.leftAnchor),
@@ -225,11 +259,9 @@ class LUIChatViewController: UIViewController {
 extension LUIChatViewController: UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         // 检查触摸的视图是否为控件本身或其子视图
-        if touch.view is UIControl || touch.view?.isDescendant(of: chatInputView.textView) == true {
-            // 如果是控件（如按钮、开关等），或者是富文本视图的一部分，不触发手势
+        if touch.view is UIControl || touch.view?.isDescendant(of: chatInputView.textView) == true || touch.view?.isDescendant(of: chatInputView.customInputView) == true {
             return false
         }
-        // 在其他情况下，触发手势
         return true
     }
 }
