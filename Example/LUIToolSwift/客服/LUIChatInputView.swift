@@ -10,16 +10,47 @@ import UIKit
 
 class LUIChatInputView: UIView, UITextViewDelegate {
     let textView = UITextView()
-    let sendButton = UIButton(type: .custom)
+    let moreButton = UIButton(type: .custom)
     var heightDidChange: (() -> Void)?
     var onSendText: ((String) -> Void)?
     
     var maxTextViewHeight: CGFloat = 100
     var inputViewHeightConstraint: NSLayoutConstraint?
     
+    private var customInputView: UIView!
+    private let customInputViewHeight: CGFloat = 200  // 自定义视图的高度
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
+        setupCustomInputView()
         setupViews()
+        
+    }
+    
+    private func setupCustomInputView() {
+        customInputView = UIView()
+        customInputView.backgroundColor = UIColor.lightGray
+        customInputView.isHidden = true
+        addSubview(customInputView)
+        
+        customInputView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            customInputView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            customInputView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            customInputView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            customInputView.heightAnchor.constraint(equalToConstant: customInputViewHeight)
+        ])
+    }
+    
+    @objc private func toggleCustomInputView() {
+        let shouldShow = customInputView.isHidden
+        UIView.animate(withDuration: 0.3, animations: {
+            self.customInputView.alpha = shouldShow ? 1 : 0
+            self.customInputView.isHidden = !shouldShow
+            self.inputViewHeightConstraint?.constant = shouldShow ? 50 + self.customInputViewHeight : 50
+            self.layoutIfNeeded()
+        })
+        heightDidChange?()
     }
     
     required init?(coder: NSCoder) {
@@ -30,9 +61,9 @@ class LUIChatInputView: UIView, UITextViewDelegate {
         backgroundColor = UIColor(white: 0.95, alpha: 1.0)
         
         // 设置发送按钮
-        sendButton.setImage(UIImage(named: "lui_chat_input_more"), for: .normal)
-        sendButton.addTarget(self, action: #selector(sendText), for: .touchUpInside)
-        addSubview(sendButton)
+        moreButton.setImage(UIImage(named: "lui_chat_input_more"), for: .normal)
+        moreButton.addTarget(self, action: #selector(toggleCustomInputView), for: .touchUpInside)
+        addSubview(moreButton)
         
         // 设置 textView
         textView.delegate = self
@@ -45,19 +76,18 @@ class LUIChatInputView: UIView, UITextViewDelegate {
         
         // 使用自动布局
         textView.translatesAutoresizingMaskIntoConstraints = false
-        sendButton.translatesAutoresizingMaskIntoConstraints = false
+        moreButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            sendButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            sendButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5),
-            sendButton.widthAnchor.constraint(equalToConstant: 40),
-            sendButton.heightAnchor.constraint(equalToConstant: 40),
+            moreButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            moreButton.topAnchor.constraint(equalTo: topAnchor, constant: 8),
+            moreButton.widthAnchor.constraint(equalToConstant: 40),
+            moreButton.heightAnchor.constraint(equalToConstant: 40),
             
             textView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            textView.trailingAnchor.constraint(equalTo: sendButton.leadingAnchor, constant: -8),
+            textView.trailingAnchor.constraint(equalTo: moreButton.leadingAnchor, constant: -8),
             textView.topAnchor.constraint(equalTo: topAnchor, constant: 8),
-            textView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
-            textView.heightAnchor.constraint(greaterThanOrEqualToConstant: 36)  // 设置最小高度
+            textView.heightAnchor.constraint(equalToConstant: 40),
         ])
         
         inputViewHeightConstraint = heightAnchor.constraint(equalToConstant: 50)
@@ -65,29 +95,14 @@ class LUIChatInputView: UIView, UITextViewDelegate {
     }
     
     func textViewDidChange(_ textView: UITextView) {
-        adjustTextViewHeight()
-    }
-    
-    private func adjustTextViewHeight() {
-        let size = textView.sizeThatFits(CGSize(width: textView.frame.width, height: CGFloat.greatestFiniteMagnitude))
-        var newHeight = size.height
-        if newHeight > maxTextViewHeight {
-            newHeight = maxTextViewHeight
-            textView.isScrollEnabled = true
-        } else {
-            textView.isScrollEnabled = false
+        let fittingSize = CGSize(width: textView.frame.size.width, height: CGFloat.greatestFiniteMagnitude)
+        let size = textView.sizeThatFits(fittingSize)
+        let newHeight = min(max(size.height, 36), maxTextViewHeight)
+        textView.isScrollEnabled = newHeight == maxTextViewHeight
+        inputViewHeightConstraint?.constant = newHeight + (customInputView.isHidden ? 0 : customInputViewHeight)
+        UIView.animate(withDuration: 0.3) {
+            self.layoutIfNeeded()
         }
-        
-        if let heightConstraint = inputViewHeightConstraint, heightConstraint.constant != newHeight + 16 {
-            heightConstraint.constant = newHeight + 16
-            heightDidChange?()
-        }
-    }
-    
-    @objc private func sendText() {
-        guard let text = textView.text, !text.isEmpty else { return }
-        onSendText?(text)
-        textView.text = ""
-        adjustTextViewHeight()
+        heightDidChange?()
     }
 }

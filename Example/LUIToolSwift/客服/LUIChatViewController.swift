@@ -88,8 +88,8 @@ class LUIChatViewController: UIViewController {
         self.setupInputView()
         
         chatInputView.heightDidChange = { [weak self] in
-            self?.scrollToBottom(animated: true)
-        }
+                self?.adjustLayoutForKeyboardOrCustomView()
+            }
         
         // 监听键盘显示和隐藏
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -99,6 +99,13 @@ class LUIChatViewController: UIViewController {
         tapGesture.cancelsTouchesInView = false
         tapGesture.delegate = self  // 设置委托
         view.addGestureRecognizer(tapGesture)
+    }
+    
+    private func adjustLayoutForKeyboardOrCustomView() {
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutIfNeeded()  // 更新外部视图布局以适应输入区域的变化
+        }
+        scrollToBottom(animated: true)  // 确保聊天内容保持在底部
     }
     
     @objc private func dismissKeyboard() {
