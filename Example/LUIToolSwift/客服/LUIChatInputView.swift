@@ -94,6 +94,9 @@ class LUIChatInputView: UIView, UITextViewDelegate {
         textView.returnKeyType = .send
         textView.layer.borderColor = UIColor.lightGray.cgColor
         addSubview(textView)
+        if #available(iOS 13.0, *) {
+            textView.overrideUserInterfaceStyle = .light
+        }
         
         // 使用自动布局
         textView.translatesAutoresizingMaskIntoConstraints = false
