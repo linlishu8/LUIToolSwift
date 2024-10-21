@@ -12,8 +12,11 @@ import LUIToolSwift
 class LUIChatViewController: UIViewController {
     
     var inputViewHeight: CGFloat = 70
+    // 键盘的高度
+    var bottomConstraint: NSLayoutConstraint?
+    var keyboardHeight: CGFloat = 0
     
-    var chatInputView: LUIChatInputView!
+    let chatInputView = LUIChatInputView()
     
     private lazy var chatTableView: LUITableView = {
         let tableView = LUITableView(frame: .zero, style: .plain)
@@ -85,37 +88,83 @@ class LUIChatViewController: UIViewController {
         self.navigationItem.title = "在线客服";
         self.view.backgroundColor = UIColor(hex: "F9F9F9")
         self.view.addSubview(self.backImage)
-        self.view.addSubview(self.chatTableView)
         
-        self.reloadTableView()
+        self.setupInputView()
+        self.setupTableView()
         
-        chatInputView = LUIChatInputView()
-        chatInputView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(chatInputView)
+        chatInputView.heightDidChange = { [weak self] in
+            self?.scrollToBottom()
+        }
+        
+        // 监听键盘显示和隐藏
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
+    private func setupTableView() {
+        self.view.addSubview(self.chatTableView)
+        self.reloadTableView()
+        chatTableView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            chatTableView.topAnchor.constraint(equalTo: view.topAnchor),
+            chatTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            chatTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            chatTableView.bottomAnchor.constraint(equalTo: chatInputView.topAnchor)
+        ])
+    }
+    
+    private func setupInputView() {
+        view.addSubview(chatInputView)
+        chatInputView.translatesAutoresizingMaskIntoConstraints = false
         
-        var bounds = self.view.bounds
-        bounds.size.height = 240
-        self.backImage.frame = bounds
+        // 创建 bottomConstraint，将 inputViewContainer 底部与 view 的 safeAreaLayoutGuide 底部关联
+        bottomConstraint = chatInputView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        NSLayoutConstraint.activate([
+            chatInputView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            chatInputView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            bottomConstraint!  // 激活约束
+        ])
+    }
+    
+    @objc func keyboardWillShow(_ notification: Notification) {
+        if let userInfo = notification.userInfo,
+           let keyboardFrame = userInfo[UIKeyboardFrameEndUserInfoKey] as? CGRect {
+            let keyboardHeight = keyboardFrame.height  // 获取键盘高度
+            adjustViewForKeyboard(up: true, keyboardHeight: keyboardHeight)
+        }
+    }
+    
+    @objc func keyboardWillHide(_ notification: Notification) {
+        adjustViewForKeyboard(up: false, keyboardHeight: 0)
+    }
+    
+    private func adjustViewForKeyboard(up: Bool, keyboardHeight: CGFloat) {
+        // 动画调整约束
+        UIView.animate(withDuration: 0.3) {
+            if up {
+                // 键盘弹出时，将输入框移动到键盘上方，并忽略 safeAreaLayoutGuide
+                self.bottomConstraint?.constant = -keyboardHeight
+            } else {
+                // 键盘收起时，恢复到 safeAreaLayoutGuide 的底部
+                self.bottomConstraint?.constant = 0
+            }
+            self.view.layoutIfNeeded()
+        }
         
-        // 获取视图的宽度和底部安全区域
-        let width = view.bounds.width
-        let height: CGFloat = 70
-        let bottomSafeArea = view.safeAreaInsets.bottom
-        
-        // 设置 frame
-        chatInputView.frame = CGRect(
-            x: 0,
-            y: view.bounds.height - height - bottomSafeArea,
-            width: width,
-            height: height
-        )
-        
-        let edge = UIEdgeInsets(top: 0, left: 0, bottom: inputViewHeight, right: 0)
-        self.chatTableView.frame = UIEdgeInsetsInsetRect(self.safeBounds(), edge)
+        if up {
+            scrollToBottom()  // 键盘弹出时滚动到最新消息
+        }
+    }
+    
+    
+    // 滚动到 TableView 底部
+    func scrollToBottom() {
+        guard chatTableView.numberOfSections > 0 else { return }
+        let lastRow = chatTableView.numberOfRows(inSection: 0) - 1
+        if lastRow >= 0 {
+            let indexPath = IndexPath(row: lastRow, section: 0)
+            chatTableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+        }
     }
     
     private func reloadTableView() {
@@ -132,6 +181,15 @@ class LUIChatViewController: UIViewController {
         model.modelValue = chatModel
         return model
     }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        var bounds = self.view.bounds
+        bounds.size.height = 240
+        self.backImage.frame = bounds
+    }
+    
     
     deinit {
         

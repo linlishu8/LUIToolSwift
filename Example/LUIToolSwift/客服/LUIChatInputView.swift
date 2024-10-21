@@ -8,70 +8,96 @@
 
 import UIKit
 
-class LUIChatInputView: UIView {
-    let inputTextField: UITextField = {
-            let textField = UITextField()
-            textField.borderStyle = .roundedRect
-            textField.placeholder = "Enter text here..."
-            return textField
-        }()
+class LUIChatInputView: UIView, UITextViewDelegate {
+    let textView = UITextView()
+    let emojiButton = UIButton(type: .system)
+    let sendButton = UIButton(type: .system)
+    let maxTextViewHeight: CGFloat = 100
+    var heightDidChange: (() -> Void)?  // 高度变化时的回调
+    var inputViewHeightConstraint: NSLayoutConstraint?
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        backgroundColor = UIColor(white: 0.95, alpha: 1.0)
+        setupViews()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setupViews() {
+        // 设置 emojiButton
+        emojiButton.setTitle("😊", for: .normal)
+        addSubview(emojiButton)
         
-        let actionButton: UIButton = {
-            let button = UIButton(type: .system)
-            button.setTitle("Menu", for: .normal)
-            return button
-        }()
+        // 设置 textView
+        textView.delegate = self
+        textView.font = UIFont.systemFont(ofSize: 16)
+        textView.isScrollEnabled = false
+        textView.backgroundColor = .white
+        textView.layer.cornerRadius = 4
+        textView.layer.borderWidth = 1
+        textView.layer.borderColor = UIColor.lightGray.cgColor
+        addSubview(textView)
         
-        let menuView: UIView = {
-            let view = UIView()
-            view.backgroundColor = .lightGray
-            return view
-        }()
+        // 设置 sendButton
+        sendButton.setTitle("发送", for: .normal)
+        sendButton.isEnabled = false
+        addSubview(sendButton)
         
-        override init(frame: CGRect) {
-            super.init(frame: frame)
-            setupViews()
-            setupConstraints()
-        }
+        // 设置约束
+        emojiButton.translatesAutoresizingMaskIntoConstraints = false
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        sendButton.translatesAutoresizingMaskIntoConstraints = false
         
-        required init?(coder: NSCoder) {
-            fatalError("init(coder:) has not been implemented")
-        }
-        
-        private func setupViews() {
-            addSubview(inputTextField)
-            addSubview(actionButton)
-            backgroundColor = .white
+        NSLayoutConstraint.activate([
+            emojiButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
+            emojiButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
+            emojiButton.widthAnchor.constraint(equalToConstant: 32),
+            emojiButton.heightAnchor.constraint(equalToConstant: 32),
             
-            actionButton.addTarget(self, action: #selector(toggleMenu), for: .touchUpInside)
-        }
-        
-        private func setupConstraints() {
-            inputTextField.translatesAutoresizingMaskIntoConstraints = false
-            actionButton.translatesAutoresizingMaskIntoConstraints = false
-            menuView.translatesAutoresizingMaskIntoConstraints = false
+            sendButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
+            sendButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
+            sendButton.widthAnchor.constraint(equalToConstant: 50),
+            sendButton.heightAnchor.constraint(equalToConstant: 32),
             
-            NSLayoutConstraint.activate([
-                inputTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-                inputTextField.topAnchor.constraint(equalTo: topAnchor, constant: 20),
-                inputTextField.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
-                inputTextField.trailingAnchor.constraint(equalTo: actionButton.leadingAnchor, constant: -10),
-                
-                actionButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-                actionButton.centerYAnchor.constraint(equalTo: centerYAnchor),
-                actionButton.widthAnchor.constraint(equalToConstant: 80)
-            ])
+            textView.leadingAnchor.constraint(equalTo: emojiButton.trailingAnchor, constant: 8),
+            textView.trailingAnchor.constraint(equalTo: sendButton.leadingAnchor, constant: -8),
+            textView.topAnchor.constraint(equalTo: topAnchor, constant: 8),
+            textView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
+            textView.heightAnchor.constraint(greaterThanOrEqualToConstant: 36)  // 设置最小高度
+        ])
+        
+        inputViewHeightConstraint = heightAnchor.constraint(equalToConstant: 50)  // 初始高度
+        inputViewHeightConstraint?.isActive = true
+    }
+    
+    // 监听文本内容变化
+    func textViewDidChange(_ textView: UITextView) {
+        adjustTextViewHeight()
+        sendButton.isEnabled = !textView.text.isEmpty
+    }
+    
+    // 动态调整 textView 和 inputView 的高度
+    private func adjustTextViewHeight() {
+        let size = textView.sizeThatFits(CGSize(width: textView.frame.width, height: CGFloat.greatestFiniteMagnitude))
+        var newHeight = size.height
+        
+        if newHeight > maxTextViewHeight {
+            newHeight = maxTextViewHeight
+            textView.isScrollEnabled = true
+        } else {
+            textView.isScrollEnabled = false
         }
         
-        @objc func toggleMenu() {
-            if menuView.superview == nil {
-                // Assuming the menu should appear where the keyboard was
-                if let window = UIApplication.shared.windows.filter({$0.isKeyWindow}).first {
-                    window.addSubview(menuView)
-                    menuView.frame = CGRect(x: 0, y: window.bounds.height - 300, width: window.bounds.width, height: 300)
-                }
-            } else {
-                menuView.removeFromSuperview()
+        textView.constraints.forEach { constraint in
+            if constraint.firstAttribute == .height {
+                constraint.constant = newHeight
             }
         }
+        
+        inputViewHeightConstraint?.constant = newHeight + 16  // 更新整体 view 的高度
+        heightDidChange?()  // 通知外部 view 高度发生了变化
+    }
 }

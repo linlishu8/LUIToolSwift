@@ -1,23 +1,16 @@
 PODS:
-  - IQKeyboardManagerSwift (6.5.11)
   - LUIToolSwift (0.1.5)
 
 DEPENDENCIES:
-  - IQKeyboardManagerSwift
   - LUIToolSwift (from `../`)
-
-SPEC REPOS:
-  trunk:
-    - IQKeyboardManagerSwift
 
 EXTERNAL SOURCES:
   LUIToolSwift:
     :path: "../"
 
 SPEC CHECKSUMS:
-  IQKeyboardManagerSwift: c7955c0bdbf7b2eb29bb7daaa44e3d90f55a9a85
   LUIToolSwift: 9ca8bfeadc44d9e54e8a4e2d4987528915d8d5e1
 
-PODFILE CHECKSUM: f3a88b985f97afdf263088c220cf003ef56cdae3
+PODFILE CHECKSUM: d9e367a40045742e35a6df86e159ee4e065e9d43
 
 COCOAPODS: 1.15.2
