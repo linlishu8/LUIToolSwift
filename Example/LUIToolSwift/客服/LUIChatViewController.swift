@@ -105,7 +105,7 @@ class LUIChatViewController: UIViewController {
         UIView.animate(withDuration: 0.3) {
             self.view.layoutIfNeeded()  // 更新外部视图布局以适应输入区域的变化
         }
-        scrollToBottom(animated: true)  // 确保聊天内容保持在底部
+        scrollToBottom(animated: false)  // 确保聊天内容保持在底部
     }
     
     @objc private func dismissKeyboard() {
@@ -203,7 +203,7 @@ class LUIChatViewController: UIViewController {
             self.view.layoutIfNeeded()
         }, completion: nil)
         
-        self.scrollToBottom(animated: true)
+        self.scrollToBottom(animated: false)
     }
     
     @objc private func keyboardWillHide(notification: Notification) {
