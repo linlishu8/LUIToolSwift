@@ -17,15 +17,23 @@ class LUIChatInputView: UIView, UITextViewDelegate {
     var maxTextViewHeight: CGFloat = 100
     var inputViewHeightConstraint: NSLayoutConstraint?
     
+    private var textViewBottomConstraint: NSLayoutConstraint?
+    private var moreButtonBottomConstraint: NSLayoutConstraint?
+    
     private var customInputView: UIView!
-    private let customInputViewHeight: CGFloat = 200  // 自定义视图的高度
+    private let customInputViewHeight: CGFloat = 110  // 自定义视图的高度
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupCustomInputView()
         setupViews()
         
+//        setupNotifications()
     }
+    
+//    private func setupNotifications() {
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+//    }
     
     private func setupCustomInputView() {
         customInputView = UIView()
@@ -43,13 +51,31 @@ class LUIChatInputView: UIView, UITextViewDelegate {
     }
     
     @objc private func toggleCustomInputView() {
-        let shouldShow = customInputView.isHidden
+        // 收起键盘
+        textView.resignFirstResponder()
+
+        customInputView.isHidden.toggle()
+
         UIView.animate(withDuration: 0.3, animations: {
-            self.customInputView.alpha = shouldShow ? 1 : 0
-            self.customInputView.isHidden = !shouldShow
-            self.inputViewHeightConstraint?.constant = shouldShow ? 50 + self.customInputViewHeight : 50
+            self.customInputView.alpha = self.customInputView.isHidden ? 0 : 1
+
+            // 更新 moreButton 和 textView 的底部约束
+            self.moreButtonBottomConstraint?.isActive = false
+            self.moreButtonBottomConstraint = self.moreButton.bottomAnchor.constraint(equalTo: self.customInputView.isHidden ? self.bottomAnchor : self.customInputView.topAnchor, constant: -8)
+            self.moreButtonBottomConstraint?.isActive = true
+
+            self.textViewBottomConstraint?.isActive = false
+            self.textViewBottomConstraint = self.textView.bottomAnchor.constraint(equalTo: self.customInputView.isHidden ? self.bottomAnchor : self.customInputView.topAnchor, constant: -8)
+            self.textViewBottomConstraint?.isActive = true
+            
+            self.updateInputViewHeight()
             self.layoutIfNeeded()
-        })
+        }) { _ in
+            if self.customInputView.isHidden {
+                self.customInputView.isHidden = true // 确保完全隐藏
+            }
+        }
+
         heightDidChange?()
     }
     
@@ -80,29 +106,41 @@ class LUIChatInputView: UIView, UITextViewDelegate {
         
         NSLayoutConstraint.activate([
             moreButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            moreButton.topAnchor.constraint(equalTo: topAnchor, constant: 8),
             moreButton.widthAnchor.constraint(equalToConstant: 40),
             moreButton.heightAnchor.constraint(equalToConstant: 40),
             
             textView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             textView.trailingAnchor.constraint(equalTo: moreButton.leadingAnchor, constant: -8),
             textView.topAnchor.constraint(equalTo: topAnchor, constant: 8),
-            textView.heightAnchor.constraint(equalToConstant: 40),
         ])
+        
+        moreButtonBottomConstraint = moreButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8)
+        moreButtonBottomConstraint?.isActive = true
+        
+        textViewBottomConstraint = textView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8)
+        textViewBottomConstraint?.isActive = true
         
         inputViewHeightConstraint = heightAnchor.constraint(equalToConstant: 50)
         inputViewHeightConstraint?.isActive = true
     }
     
     func textViewDidChange(_ textView: UITextView) {
+        updateInputViewHeight()
+        heightDidChange?()
+    }
+    
+    private func updateInputViewHeight() {
         let fittingSize = CGSize(width: textView.frame.size.width, height: CGFloat.greatestFiniteMagnitude)
         let size = textView.sizeThatFits(fittingSize)
         let newHeight = min(max(size.height, 36), maxTextViewHeight)
         textView.isScrollEnabled = newHeight == maxTextViewHeight
-        inputViewHeightConstraint?.constant = newHeight + (customInputView.isHidden ? 0 : customInputViewHeight)
+        
+        let paddingHeight = 16  // 根据实际布局调整
+        let totalHeight = newHeight + CGFloat(paddingHeight) + (customInputView.isHidden ? 0 : customInputViewHeight)
+        inputViewHeightConstraint?.constant = totalHeight
+        
         UIView.animate(withDuration: 0.3) {
             self.layoutIfNeeded()
         }
-        heightDidChange?()
     }
 }

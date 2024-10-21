@@ -88,8 +88,8 @@ class LUIChatViewController: UIViewController {
         self.setupInputView()
         
         chatInputView.heightDidChange = { [weak self] in
-                self?.adjustLayoutForKeyboardOrCustomView()
-            }
+            self?.adjustLayoutForKeyboardOrCustomView()
+        }
         
         // 监听键盘显示和隐藏
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
