@@ -10,7 +10,7 @@ import UIKit
 
 class LUIChatInputView: UIView, UITextViewDelegate {
     let textView = UITextView()
-    let sendButton = UIButton(type: .system)
+    let sendButton = UIButton(type: .custom)
     var heightDidChange: (() -> Void)?
     var onSendText: ((String) -> Void)?
     
@@ -30,7 +30,7 @@ class LUIChatInputView: UIView, UITextViewDelegate {
         backgroundColor = UIColor(white: 0.95, alpha: 1.0)
         
         // 设置发送按钮
-        sendButton.setTitle("发送", for: .normal)
+        sendButton.setImage(UIImage(named: "lui_chat_input_more"), for: .normal)
         sendButton.addTarget(self, action: #selector(sendText), for: .touchUpInside)
         addSubview(sendButton)
         
@@ -48,12 +48,12 @@ class LUIChatInputView: UIView, UITextViewDelegate {
         sendButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            sendButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
-            sendButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
-            sendButton.widthAnchor.constraint(equalToConstant: 60),
+            sendButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            sendButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5),
+            sendButton.widthAnchor.constraint(equalToConstant: 40),
             sendButton.heightAnchor.constraint(equalToConstant: 40),
             
-            textView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
+            textView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             textView.trailingAnchor.constraint(equalTo: sendButton.leadingAnchor, constant: -8),
             textView.topAnchor.constraint(equalTo: topAnchor, constant: 8),
             textView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
