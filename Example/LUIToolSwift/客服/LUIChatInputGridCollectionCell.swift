@@ -39,7 +39,9 @@ class LUIChatInputGridCollectionCell: LUICollectionViewCellBase {
         
         let bounds = self.contentView.bounds
         self.backView.frame = bounds
-        self.iconView.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        var f = CGRect(x: 0, y: 0, width: 20, height: 20)
+        f.LUICGRectAlignCenterToRect(bounds)
+        self.iconView.frame = f
     }
     
     override func customReloadCellModel() {

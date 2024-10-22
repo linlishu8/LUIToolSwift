@@ -9,18 +9,19 @@
 import UIKit
 import LUIToolSwift
 
-class LUIChatInputGridView: LUIChatBaseView, UICollectionViewDelegateFlowLayout {
+class LUIChatInputGridView: LUIChatBaseView {
     private lazy var collectionView: LUICollectionView = {
-        let layout = UICollectionViewFlowLayout.init()
-        layout.minimumLineSpacing = 10;
-        layout.minimumInteritemSpacing = 10;
-        layout.sectionInset = UIEdgeInsets.LUIEdgeInsetsMakeSameEdge(10);
+        let layout = LUICollectionViewPageFlowLayout.init()
+        layout.pagingCellPosition = 0;
+        layout.pagingBoundsPosition = 0;
+        layout.interitemSpacing = 10;
+        layout.sectionInset = UIEdgeInsetsMake(0, 15, 0, 15);
+        layout.itemSize = CGSize(width: 50, height: 50)
         
         let collectionView = LUICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.showsVerticalScrollIndicator = false;
         collectionView.backgroundColor = .clear
-        collectionView.model.forwardDelegate = self
         
         return collectionView
     }()

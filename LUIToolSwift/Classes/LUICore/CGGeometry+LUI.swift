@@ -229,8 +229,8 @@ public extension CGRect {
         self.size.height = value
     }
 
-    func LUICGRectGetCenter() -> CGPoint {
-        return CGPoint(x: self.midX, y: self.midY)
+    func LUICGRectGetCenter(rect: CGRect) -> CGPoint {
+        return CGPoint(x: rect.midX, y: rect.midY)
     }
     
     mutating func LUICGRectSetCenter(_ center: CGPoint) {
@@ -264,7 +264,7 @@ public extension CGRect {
     
     // 与另一个rect进行对齐
     mutating func LUICGRectAlignCenterToRect(_ bounds: CGRect) {
-        LUICGRectSetCenter(LUICGRectGetCenter())
+        LUICGRectSetCenter(LUICGRectGetCenter(rect: bounds))
     }
     
     mutating func LUICGRectAlignMinXToRect(_ bounds: CGRect) {
