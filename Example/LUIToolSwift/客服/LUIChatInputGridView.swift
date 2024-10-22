@@ -10,6 +10,8 @@ import UIKit
 import LUIToolSwift
 
 class LUIChatInputGridView: LUIChatBaseView {
+    var onImagePick: (() -> Void)?
+    
     private lazy var collectionView: LUICollectionView = {
         let layout = LUICollectionViewPageFlowLayout.init()
         layout.pagingCellPosition = 0;
@@ -38,12 +40,15 @@ class LUIChatInputGridView: LUIChatBaseView {
     }
     
     private func __reloadData() {
-        let collectionData = ["lui_chat_input_grid_1"]
+        let collectionData = ["lui_chat_input_grid_1", "lui_chat_input_grid_1", "lui_chat_input_grid_1", "lui_chat_input_grid_1"]
         self.collectionView.model.removeAllSectionModels()
         for data in collectionData {
             let cellModel = LUICollectionViewCellModel.init()
             cellModel.cellClass = LUIChatInputGridCollectionCell.self
             cellModel.modelValue = data
+            cellModel.whenClick = { [weak self] cellModel in
+                self?.onImagePick?()
+            }
             self.collectionView.model.addCellModel(cellModel)
         }
         self.collectionView.model.reloadCollectionViewData()

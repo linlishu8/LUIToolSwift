@@ -53,8 +53,12 @@ class LUIChatImageView: LUIChatBaseView {
     }
     
     override func loadDataWithCellModel(cellModel: LUITableViewCellModel) {
-        if let modelValue = cellModel.modelValue as? LUIChatModel, let imageName = modelValue.msgImage {
-            self.imageMsgView.image = UIImage(named: imageName)
+        if let modelValue = cellModel.modelValue as? LUIChatModel {
+            if let imageName = modelValue.msgImageString {
+                self.imageMsgView.image = UIImage(named: imageName)
+            } else if let image = modelValue.msgImage {
+                self.imageMsgView.image = image
+            }
         }
     }
 }

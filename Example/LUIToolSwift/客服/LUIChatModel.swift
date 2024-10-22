@@ -6,12 +6,13 @@
 //  Copyright © 2024 CocoaPods. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class LUIChatModel {
     var cellClass: AnyClass?
     var title: String?
     var isSelf: Bool?
     var attrTitle: NSAttributedString?
-    var msgImage: String?
+    var msgImageString: String?
+    var msgImage: UIImage?
 }

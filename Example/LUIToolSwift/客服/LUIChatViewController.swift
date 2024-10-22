@@ -9,7 +9,7 @@
 import UIKit
 import LUIToolSwift
 
-class LUIChatViewController: UIViewController {
+class LUIChatViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     let chatInputView = LUIChatInputView()
     private var chatInputViewBottomConstraint: NSLayoutConstraint?
     
@@ -57,7 +57,7 @@ class LUIChatViewController: UIViewController {
         let imageMineModel = LUIChatModel()
         imageMineModel.cellClass = LUIChatImageTableViewCellMine.self
         imageMineModel.isSelf = true
-        imageMineModel.msgImage = "WX233135"
+        imageMineModel.msgImageString = "WX233135"
         list.append(imageMineModel)
         
         return list
@@ -161,7 +161,9 @@ class LUIChatViewController: UIViewController {
     private func setupInputView() {
         view.addSubview(chatInputView)
         chatInputView.translatesAutoresizingMaskIntoConstraints = false
-        
+        chatInputView.customInputView.onImagePick = { [weak self] in
+            self?.selectImage()
+        }
         // 设置发送文本的回调
         chatInputView.onSendText = { [weak self] text in
             self?.sendText(text)
@@ -230,6 +232,30 @@ class LUIChatViewController: UIViewController {
         var bounds = self.view.bounds
         bounds.size.height = 240
         self.backImage.frame = bounds
+    }
+    
+    
+    func selectImage() {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .photoLibrary
+        present(imagePicker, animated: true)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let selectedImage = info["UIImagePickerControllerOriginalImage"] as? UIImage {
+            let imageModel = LUIChatModel()
+            imageModel.cellClass = LUIChatImageTableViewCellMine.self
+            imageModel.isSelf = true
+            imageModel.msgImage = selectedImage
+            self.modelList.append(imageModel)
+            self.reloadTableView()
+            }
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
     }
     
     deinit {
