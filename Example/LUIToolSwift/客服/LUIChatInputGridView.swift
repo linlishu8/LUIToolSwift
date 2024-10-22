@@ -9,7 +9,7 @@
 import UIKit
 import LUIToolSwift
 
-class LUIChatInputGridView: LUIChatBaseView {
+class LUIChatInputGridView: LUIChatBaseView, UICollectionViewDelegateFlowLayout {
     private lazy var collectionView: LUICollectionView = {
         let layout = UICollectionViewFlowLayout.init()
         layout.minimumLineSpacing = 10;
@@ -20,9 +20,11 @@ class LUIChatInputGridView: LUIChatBaseView {
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.showsVerticalScrollIndicator = false;
         collectionView.backgroundColor = .clear
+        collectionView.model.forwardDelegate = self
         
         return collectionView
     }()
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -48,6 +50,7 @@ class LUIChatInputGridView: LUIChatBaseView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.collectionView.bounds = self.bounds
+        let bounds = self.bounds
+        self.collectionView.frame = bounds
     }
 }
