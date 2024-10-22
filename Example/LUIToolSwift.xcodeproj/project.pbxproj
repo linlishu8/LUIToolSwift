@@ -10,6 +10,7 @@
 		1F05BA172CA659BE003750FD /* LUIMainViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F05BA162CA659BE003750FD /* LUIMainViewTableViewCell.swift */; };
 		1F48D11E2CC22EA3002DC183 /* LUIChatInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F48D11D2CC22EA3002DC183 /* LUIChatInputView.swift */; };
 		1F4CB0C72CC1488B00E61CD5 /* CIBChatBackgroundOtherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4CB0C62CC1488B00E61CD5 /* CIBChatBackgroundOtherView.swift */; };
+		1F4CFE1E2CC784340002673D /* LUIChatEvaluateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4CFE1D2CC784340002673D /* LUIChatEvaluateView.swift */; };
 		1F6072292CB6592D007E4FBD /* LUIChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6072282CB6592D007E4FBD /* LUIChatViewController.swift */; };
 		1F6072302CB6742A007E4FBD /* LUIChatBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F60722F2CB6742A007E4FBD /* LUIChatBaseView.swift */; };
 		1F6072332CB678BA007E4FBD /* LUIChatHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6072322CB678BA007E4FBD /* LUIChatHeaderView.swift */; };
@@ -59,6 +60,7 @@
 		1F05BA162CA659BE003750FD /* LUIMainViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LUIMainViewTableViewCell.swift; sourceTree = "<group>"; };
 		1F48D11D2CC22EA3002DC183 /* LUIChatInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LUIChatInputView.swift; sourceTree = "<group>"; };
 		1F4CB0C62CC1488B00E61CD5 /* CIBChatBackgroundOtherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CIBChatBackgroundOtherView.swift; sourceTree = "<group>"; };
+		1F4CFE1D2CC784340002673D /* LUIChatEvaluateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LUIChatEvaluateView.swift; sourceTree = "<group>"; };
 		1F6072282CB6592D007E4FBD /* LUIChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LUIChatViewController.swift; sourceTree = "<group>"; };
 		1F60722F2CB6742A007E4FBD /* LUIChatBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LUIChatBaseView.swift; sourceTree = "<group>"; };
 		1F6072322CB678BA007E4FBD /* LUIChatHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LUIChatHeaderView.swift; sourceTree = "<group>"; };
@@ -119,9 +121,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1F4CFE1C2CC782F40002673D /* 评价 */ = {
+			isa = PBXGroup;
+			children = (
+				1F4CFE1D2CC784340002673D /* LUIChatEvaluateView.swift */,
+			);
+			path = "评价";
+			sourceTree = "<group>";
+		};
 		1F6072272CB6590C007E4FBD /* 客服 */ = {
 			isa = PBXGroup;
 			children = (
+				1F4CFE1C2CC782F40002673D /* 评价 */,
 				1FAFE3AA2CC15E930097FD51 /* 图片 */,
 				1F7CDF772CC0E19C0097F496 /* 文本 */,
 				1F6072312CB6789E007E4FBD /* 初始猜你想问 */,
@@ -452,6 +463,7 @@
 				1F6072332CB678BA007E4FBD /* LUIChatHeaderView.swift in Sources */,
 				1F889E632CC68F37008CDDB4 /* LUIChatInputGridView.swift in Sources */,
 				1FAFE3B22CC16AA60097FD51 /* LUIChatHeadGridTableViewCell.swift in Sources */,
+				1F4CFE1E2CC784340002673D /* LUIChatEvaluateView.swift in Sources */,
 				1F6072302CB6742A007E4FBD /* LUIChatBaseView.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				1F7CDF852CC103930097F496 /* LUIChatTextBubbleView.swift in Sources */,

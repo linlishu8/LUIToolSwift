@@ -68,11 +68,16 @@ class LUIChatViewController: UIViewController, UIImagePickerControllerDelegate, 
         attributedString.addAttribute(.font, value: UIFont.systemFont(ofSize: 14), range: NSRange(location: 0, length: attributedString.length))
         attributedString.addAttribute(.foregroundColor, value: UIColor.blue, range: NSRange(location: 10, length: 4))
         attributedString.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: 18), range: NSRange(location: 10, length: 4))
-        attributedString.addAttribute(.link, value: "yourAppScheme://do_something", range: NSRange(location: 16, length: 4))
+        attributedString.addAttribute(.link, value: "appScheme://", range: NSRange(location: 16, length: 4))
         
         // 添加链接
         let linkRange = (attributedString.string as NSString).range(of: "网页地址")
         attributedString.addAttribute(.link, value: "https://www.baidu.com", range: linkRange)
+        return attributedString
+    }
+    
+    private let evaluateString = {
+        let attributedString = NSMutableAttributedString(string: "服务结束，请给本次服务一个评价")
         return attributedString
     }
     
