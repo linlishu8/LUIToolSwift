@@ -102,10 +102,10 @@ class LUIChatViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     private func adjustLayoutForKeyboardOrCustomView() {
-        UIView.animate(withDuration: 0.3) {
-            self.view.layoutIfNeeded()  // 更新外部视图布局以适应输入区域的变化
+        UIView.animate(withDuration: 0.1) {
+            self.view.layoutIfNeeded()
         }
-        scrollToBottom(animated: false)  // 确保聊天内容保持在底部
+        scrollToBottom(animated: false)
     }
     
     @objc private func dismissKeyboard() {
@@ -120,7 +120,7 @@ class LUIChatViewController: UIViewController, UIImagePickerControllerDelegate, 
     private func hideCustomInputView() {
         // 更新布局
         chatInputView.toggleCustomInputView()
-        UIView.animate(withDuration: 0.3) {
+        UIView.animate(withDuration: 0.1) {
             self.view.layoutIfNeeded()
         }
         
@@ -140,23 +140,23 @@ class LUIChatViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     private func sendText(_ text: String) {
-            guard !text.isEmpty else { return }
-            addMessageToDataSource(text: text, isSelf: true)
-            updateChatInterface()
-        }
-
-        private func addMessageToDataSource(text: String, isSelf: Bool) {
-            let textModel = LUIChatModel()
-            textModel.cellClass = LUIChatTextTableViewCellMine.self
-            textModel.title = text
-            textModel.isSelf = isSelf
-            self.modelList.append(textModel)
-            self.reloadTableView()
-        }
-
-        private func updateChatInterface() {
-            scrollToBottom(animated: false)
-        }
+        guard !text.isEmpty else { return }
+        addMessageToDataSource(text: text, isSelf: true)
+        updateChatInterface()
+    }
+    
+    private func addMessageToDataSource(text: String, isSelf: Bool) {
+        let textModel = LUIChatModel()
+        textModel.cellClass = LUIChatTextTableViewCellMine.self
+        textModel.title = text
+        textModel.isSelf = isSelf
+        self.modelList.append(textModel)
+        self.reloadTableView()
+    }
+    
+    private func updateChatInterface() {
+        scrollToBottom(animated: false)
+    }
     
     private func setupInputView() {
         view.addSubview(chatInputView)
@@ -187,9 +187,9 @@ class LUIChatViewController: UIViewController, UIImagePickerControllerDelegate, 
         // 调整输入框的底部约束
         chatInputViewBottomConstraint?.constant = -keyboardHeight + bottomPadding
         
-
-            self.view.layoutIfNeeded()
-
+        
+        self.view.layoutIfNeeded()
+        
         
         self.scrollToBottom(animated: false)
     }
@@ -250,7 +250,8 @@ class LUIChatViewController: UIViewController, UIImagePickerControllerDelegate, 
             imageModel.msgImage = selectedImage
             self.modelList.append(imageModel)
             self.reloadTableView()
-            }
+            self.updateChatInterface()
+        }
         dismiss(animated: true, completion: nil)
     }
     

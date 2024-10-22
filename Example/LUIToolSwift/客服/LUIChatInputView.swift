@@ -50,25 +50,21 @@ class LUIChatInputView: UIView, UITextViewDelegate {
             textView.resignFirstResponder()
         }
         customInputView.isHidden.toggle()
+        self.customInputView.alpha = self.customInputView.isHidden ? 0 : 1
         
-        UIView.animate(withDuration: 0.3, animations: {
-            self.customInputView.alpha = self.customInputView.isHidden ? 0 : 1
-            
-            // 更新 moreButton 和 textView 的底部约束
-            self.moreButtonBottomConstraint?.isActive = false
-            self.moreButtonBottomConstraint = self.moreButton.bottomAnchor.constraint(equalTo: self.customInputView.isHidden ? self.bottomAnchor : self.customInputView.topAnchor, constant: -8)
-            self.moreButtonBottomConstraint?.isActive = true
-            
-            self.textViewBottomConstraint?.isActive = false
-            self.textViewBottomConstraint = self.textView.bottomAnchor.constraint(equalTo: self.customInputView.isHidden ? self.bottomAnchor : self.customInputView.topAnchor, constant: -8)
-            self.textViewBottomConstraint?.isActive = true
-            
-            self.updateInputViewHeight()
-            self.layoutIfNeeded()
-        }) { _ in
-            if self.customInputView.isHidden {
-                self.customInputView.isHidden = true // 确保完全隐藏
-            }
+        // 更新 moreButton 和 textView 的底部约束
+        self.moreButtonBottomConstraint?.isActive = false
+        self.moreButtonBottomConstraint = self.moreButton.bottomAnchor.constraint(equalTo: self.customInputView.isHidden ? self.bottomAnchor : self.customInputView.topAnchor, constant: -8)
+        self.moreButtonBottomConstraint?.isActive = true
+        
+        self.textViewBottomConstraint?.isActive = false
+        self.textViewBottomConstraint = self.textView.bottomAnchor.constraint(equalTo: self.customInputView.isHidden ? self.bottomAnchor : self.customInputView.topAnchor, constant: -8)
+        self.textViewBottomConstraint?.isActive = true
+        
+        self.updateInputViewHeight()
+        self.layoutIfNeeded()
+        if self.customInputView.isHidden {
+            self.customInputView.isHidden = true // 确保完全隐藏
         }
         
         heightDidChange?()
@@ -154,9 +150,7 @@ class LUIChatInputView: UIView, UITextViewDelegate {
         let totalHeight = newHeight + CGFloat(paddingHeight) + (customInputView.isHidden ? 0 : customInputViewHeight)
         inputViewHeightConstraint?.constant = totalHeight
         
-        UIView.animate(withDuration: 0.3) {
-            self.layoutIfNeeded()
-        }
+        self.layoutIfNeeded()
     }
     
     func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
@@ -168,7 +162,7 @@ class LUIChatInputView: UIView, UITextViewDelegate {
 
     private func hideCustomInputView() {
         customInputView.isHidden = true
-        UIView.animate(withDuration: 0.3, animations: {
+        UIView.animate(withDuration: 0.1, animations: {
             self.customInputView.alpha = 0
             
             // 更新底部约束，以确保textView正确放置
