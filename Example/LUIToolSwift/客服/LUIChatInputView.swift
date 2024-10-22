@@ -20,7 +20,7 @@ class LUIChatInputView: UIView, UITextViewDelegate {
     private var textViewBottomConstraint: NSLayoutConstraint?
     private var moreButtonBottomConstraint: NSLayoutConstraint?
     
-    public var customInputView: UIView!
+    public var customInputView: LUIChatInputGridView!
     private let customInputViewHeight: CGFloat = 110  // 自定义视图的高度
     
     override init(frame: CGRect) {
@@ -30,7 +30,7 @@ class LUIChatInputView: UIView, UITextViewDelegate {
     }
     
     private func setupCustomInputView() {
-        customInputView = UIView()
+        customInputView = LUIChatInputGridView()
         customInputView.backgroundColor = UIColor(hex: "F9F9F9")
         customInputView.isHidden = true
         addSubview(customInputView)

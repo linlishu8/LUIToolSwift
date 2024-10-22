@@ -24,13 +24,10 @@ class LUIChatInputGridView: LUIChatBaseView {
         return collectionView
     }()
     
-    private var flowlayout: LUIFlowLayoutConstraint?
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.addSubview(self.collectionView)
-        
-        self.flowlayout = LUIFlowLayoutConstraint([self.collectionView], param: .H_C_C, contentInsets: .zero, interitemSpacing: 0)
+        self.__reloadData()
     }
     
     required init?(coder: NSCoder) {
@@ -38,11 +35,11 @@ class LUIChatInputGridView: LUIChatBaseView {
     }
     
     private func __reloadData() {
-        let collectionData = ["我的资产", "理财产品", "转账汇款", "基金代销", "我要贷款"]
+        let collectionData = ["lui_chat_input_grid_1"]
         self.collectionView.model.removeAllSectionModels()
         for data in collectionData {
             let cellModel = LUICollectionViewCellModel.init()
-            cellModel.cellClass = LUIChatHeadViewCollectionCell.self
+            cellModel.cellClass = LUIChatInputGridCollectionCell.self
             cellModel.modelValue = data
             self.collectionView.model.addCellModel(cellModel)
         }
@@ -51,11 +48,6 @@ class LUIChatInputGridView: LUIChatBaseView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.flowlayout?.bounds = self.bounds
-        self.flowlayout?.layoutItemsWithResizeItems(resizeItems: true)
-    }
-    
-    override func sizeThatFits(_ size: CGSize) -> CGSize {
-        return self.flowlayout?.sizeThatFits(size, resizeItems: true) ?? .zero
+        self.collectionView.bounds = self.bounds
     }
 }

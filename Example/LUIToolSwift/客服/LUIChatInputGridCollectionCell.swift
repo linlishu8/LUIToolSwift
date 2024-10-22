@@ -10,20 +10,24 @@ import Foundation
 import LUIToolSwift
 
 class LUIChatInputGridCollectionCell: LUICollectionViewCellBase {
-    private lazy var iconView: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "lui_chat_head_collection_bg"))
-        return imageView
+    private lazy var backView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.white
+        view.layer.cornerRadius = 8
+        view.layer.masksToBounds = true
+        return view
     }()
     
-    private var flowlayout: LUIFlowLayoutConstraint?
-    
+    private lazy var iconView: UIImageView = {
+        let imageView = UIImageView()
+        return imageView
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.contentView.backgroundColor = .clear
-        self.contentView.addSubview(self.backgroundImageView)
-        
-        self.flowlayout = LUIFlowLayoutConstraint([self.iconButton], param: .H_C_C, contentInsets: UIEdgeInsets(top: 10, left: 15, bottom: 10, right: 15), interitemSpacing: 0)
+        self.contentView.addSubview(self.backView)
+        self.contentView.addSubview(self.iconView)
     }
     
     @MainActor required init?(coder: NSCoder) {
@@ -34,18 +38,14 @@ class LUIChatInputGridCollectionCell: LUICollectionViewCellBase {
         super.customLayoutSubviews()
         
         let bounds = self.contentView.bounds
-        self.backgroundImageView.frame = bounds
-        self.flowlayout?.bounds = bounds
-        self.flowlayout?.layoutItemsWithResizeItems(resizeItems: true)
+        var iconRect = CGRect(x: 0, y: 0, width: 30, height: 30)
+        self.backView.frame = bounds
+        iconRect.LUICGRectAlignCenterToRect(bounds)
     }
     
     override func customReloadCellModel() {
-        if let title = self.collectionCellModel?.modelValue as? String {
-            self.iconButton.setTitle(title, for: .normal)
+        if let image = self.collectionCellModel?.modelValue as? String {
+            self.iconView.image = UIImage(named: image)
         }
-    }
-    
-    override func customSizeThatFits(size: CGSize) -> CGSize {
-        return self.flowlayout?.sizeThatFits(size, resizeItems: true) ?? .zero
     }
 }

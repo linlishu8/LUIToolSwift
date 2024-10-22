@@ -196,7 +196,7 @@ extension LUICGRectAlignment {
     }
 }
 
-extension CGRect {
+public extension CGRect {
     mutating func LUICGRectSetMinX(_ value: CGFloat) {
         self.origin.x = value
     }
