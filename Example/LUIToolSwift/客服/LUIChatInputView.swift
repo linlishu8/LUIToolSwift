@@ -11,6 +11,9 @@ import UIKit
 class LUIChatInputView: UIView, UITextViewDelegate {
     let textView = UITextView()
     let moreButton = UIButton(type: .custom)
+    var voiceButton = UIButton(type: .custom)
+
+    
     var heightDidChange: (() -> Void)?
     var onSendText: ((String) -> Void)?
     
@@ -21,7 +24,7 @@ class LUIChatInputView: UIView, UITextViewDelegate {
     private var moreButtonBottomConstraint: NSLayoutConstraint?
     
     public var customInputView: LUIChatInputGridView!
-    private let customInputViewHeight: CGFloat = 110  // 自定义视图的高度
+    private let customInputViewHeight: CGFloat = 110
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -52,7 +55,6 @@ class LUIChatInputView: UIView, UITextViewDelegate {
         customInputView.isHidden.toggle()
         self.customInputView.alpha = self.customInputView.isHidden ? 0 : 1
         
-        // 更新 moreButton 和 textView 的底部约束
         self.moreButtonBottomConstraint?.isActive = false
         self.moreButtonBottomConstraint = self.moreButton.bottomAnchor.constraint(equalTo: self.customInputView.isHidden ? self.bottomAnchor : self.customInputView.topAnchor, constant: -8)
         self.moreButtonBottomConstraint?.isActive = true
@@ -64,7 +66,7 @@ class LUIChatInputView: UIView, UITextViewDelegate {
         self.updateInputViewHeight()
         self.layoutIfNeeded()
         if self.customInputView.isHidden {
-            self.customInputView.isHidden = true // 确保完全隐藏
+            self.customInputView.isHidden = true
         }
         
         heightDidChange?()
@@ -88,15 +90,23 @@ class LUIChatInputView: UIView, UITextViewDelegate {
         textView.layer.cornerRadius = 4
         textView.layer.borderWidth = 1
         textView.returnKeyType = .send
+        textView.text = "请简短输入您的问题"
+        textView.textColor = UIColor(hex: "dfdfdf")
         textView.layer.borderColor = UIColor.lightGray.cgColor
+        var textEdge = textView.textContainerInset
+        textEdge.right = 54
+        textView.textContainerInset = textEdge
         addSubview(textView)
         if #available(iOS 13.0, *) {
             textView.overrideUserInterfaceStyle = .light
         }
         
-        // 使用自动布局
+        voiceButton.setImage(UIImage(named: "lui_chat_input_voiceinput"), for: .normal)
+        addSubview(voiceButton)
+        
         textView.translatesAutoresizingMaskIntoConstraints = false
         moreButton.translatesAutoresizingMaskIntoConstraints = false
+        voiceButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             moreButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
@@ -106,6 +116,11 @@ class LUIChatInputView: UIView, UITextViewDelegate {
             textView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             textView.trailingAnchor.constraint(equalTo: moreButton.leadingAnchor, constant: -8),
             textView.topAnchor.constraint(equalTo: topAnchor, constant: 8),
+            
+            voiceButton.widthAnchor.constraint(equalToConstant: 30),
+            voiceButton.heightAnchor.constraint(equalToConstant: 30),
+            voiceButton.trailingAnchor.constraint(equalTo: textView.trailingAnchor, constant: -8),
+            voiceButton.centerYAnchor.constraint(equalTo: textView.centerYAnchor)
         ])
         
         moreButtonBottomConstraint = moreButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8)
@@ -124,20 +139,32 @@ class LUIChatInputView: UIView, UITextViewDelegate {
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        // 检查是否点击了发送（换行）键
         if text == "\n" {
-            // 调用发送文本的方法
             sendText(textView.text)
-            textView.text = "" // 清空输入框
-            textViewDidChange(textView) // 调用这个方法来更新视图高度
-            return false // 返回 false 表示不需要插入换行符
+            textView.text = ""
+            textViewDidChange(textView)
+            return false
         }
-        return true // 允许其他修改
+        return true
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor(hex: "dfdfdf") {
+            textView.text = nil
+            textView.textColor = UIColor.black
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = "请简短输入您的问题"
+            textView.textColor = UIColor(hex: "dfdfdf")
+        }
     }
     
     private func sendText(_ text: String) {
         // 实际发送文本的逻辑
-        onSendText?(text.trimmingCharacters(in: .whitespacesAndNewlines)) // 可能需要处理前后空白字符
+        onSendText?(text.trimmingCharacters(in: .whitespacesAndNewlines))
     }
     
     private func updateInputViewHeight() {
@@ -177,7 +204,7 @@ class LUIChatInputView: UIView, UITextViewDelegate {
             self.updateInputViewHeight()
             self.layoutIfNeeded()
         }, completion: { _ in
-            self.customInputView.isHidden = true // 确保完全隐藏
+            self.customInputView.isHidden = true
         })
 
         heightDidChange?()
